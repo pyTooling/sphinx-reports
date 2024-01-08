@@ -42,6 +42,7 @@ from pyTooling.Decorators import export
 from sphinx.application   import Sphinx
 from sphinx.directives    import ObjectDescription
 
+from sphinx_reports                import __version__
 from sphinx_reports.DataModel      import PackageCoverage
 from sphinx_reports.DocStrCoverage import Analyzer
 
