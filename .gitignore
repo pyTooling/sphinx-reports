@@ -1,0 +1,33 @@
+# Python cache and object files
+__pycache__/
+*.py[cod]
+
+# Coverage.py
+.coverage
+.cov
+coverage.xml
+
+# Generated reports
+report/
+
+# setuptools
+/build/**/*.*
+/dist/**/*.*
+/*.egg-info
+
+# Dependencies
+!requirements.txt
+
+# Sphinx
+doc/_build/
+doc/sphinx-reports/**/*.*
+!doc/sphinx-reports/index.rst
+
+# BuildTheDocs
+doc/_theme/**/*.*
+
+# IntelliJ project files
+/.idea/workspace.xml
+
+# Git files
+!.git*
