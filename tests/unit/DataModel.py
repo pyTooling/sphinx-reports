@@ -28,18 +28,31 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Package installer for 'Write version information for any programming language as source file'."""
-from pathlib             import Path
-from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub
+"""Unit tests for the data model."""
+from pathlib  import Path
+from unittest import TestCase
 
-gitHubNamespace =        "pyTooling"
-packageName =            "sphinx_reports"
-packageDirectory =       packageName.replace(".", "/")
-packageInformationFile = Path(f"{packageDirectory}/__init__.py")
+from sphinx_reports.DataModel import PackageCoverage, ModuleCoverage, ClassCoverage
 
-DescribePythonPackageHostedOnGitHub(
-	packageName=packageName,
-	description="A Sphinx extension providing coverage details embedded in documentation pages.",
-	gitHubNamespace=gitHubNamespace,
-	sourceFileWithVersion=packageInformationFile,
-)
+
+if __name__ == "__main__":
+	print("ERROR: you called a testcase declaration file as an executable module.")
+	print("Use: 'python -m unitest <testcase module>'")
+	exit(1)
+
+
+class DocumentationCoverage(TestCase):
+	def test_Package(self) -> None:
+		cov = PackageCoverage(Path("__init__.py"), "myPackage")
+
+		self.assertEqual(cov.Name, "myPackage")
+
+	def test_Module(self) -> None:
+		cov = ModuleCoverage(Path("__init__.py"), "myModule")
+
+		self.assertEqual(cov.Name, "myModule")
+
+	def test_Class(self) -> None:
+		cov = ClassCoverage("myClass")
+
+		self.assertEqual(cov.Name, "myClass")

@@ -10,7 +10,7 @@ jobs:
   Params:
     uses: pyTooling/Actions/.github/workflows/Parameters.yml@dev
     with:
-      name: sphinx-reports
+      name: sphinx_reports
       system_list: "ubuntu"
 
   UnitTesting:

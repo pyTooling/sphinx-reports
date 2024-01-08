@@ -84,6 +84,14 @@ class Coverage:
 		self._coverage = -1.0
 
 	@readonly
+	def Name(self) -> str:
+		return self._name
+
+	@readonly
+	def Parent(self) -> "Coverage":
+		return self._parent
+
+	@readonly
 	def Total(self) -> int:
 		return self._total
 
@@ -243,10 +251,6 @@ class ModuleCoverage(AggregatedCoverage):
 	def File(self) -> Path:
 		return self._file
 
-	@readonly
-	def Name(self) -> str:
-		return self._name
-
 	def CalculateCoverage(self):
 		for cls in self._classes.values():
 			cls.CalculateCoverage()
@@ -309,10 +313,6 @@ class PackageCoverage(AggregatedCoverage):
 	@readonly
 	def FileCount(self) -> int:
 		return self._fileCount
-
-	@readonly
-	def Name(self) -> str:
-		return self._name
 
 	def __getitem__(self, key: str) -> Union["PackageCoverage", ModuleCoverage]:
 		try:
