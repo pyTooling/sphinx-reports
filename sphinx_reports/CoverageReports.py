@@ -35,15 +35,15 @@ from enum    import Flag
 from re      import match
 from pathlib import Path
 from sys     import version_info
-from typing import Dict, Tuple, Any, List, Optional as Nullable, Iterable, Mapping, Generator
+from typing  import Dict, Tuple, Any, List, Optional as Nullable, Iterable, Mapping, Generator
 
 from docutils             import nodes
 from pyTooling.Decorators import export
 from sphinx.application   import Sphinx
 from sphinx.directives    import ObjectDescription
 
-from doc._extensions.DataModel import PackageCoverage, AggregatedCoverage
-from doc._extensions.DocStrCoverage import Analyzer
+from sphinx_reports.DataModel      import PackageCoverage
+from sphinx_reports.DocStrCoverage import Analyzer
 
 
 @export

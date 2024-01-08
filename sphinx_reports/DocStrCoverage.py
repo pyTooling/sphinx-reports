@@ -35,11 +35,11 @@ from pathlib import Path
 from sys     import version_info
 from typing  import List
 
-from docstr_coverage                   import analyze, ResultCollection, ExpectedDocstring
+from docstr_coverage                   import analyze, ResultCollection
 from docstr_coverage.result_collection import FileCount
 from pyTooling.Decorators              import export, readonly
 
-from doc._extensions.DataModel         import ModuleCoverage, PackageCoverage
+from sphinx_reports.DataModel          import ModuleCoverage, PackageCoverage
 
 
 @export
