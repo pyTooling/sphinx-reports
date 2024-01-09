@@ -32,24 +32,56 @@
 **A Sphinx domain providing directives to add reports to the Sphinx-based documentation.**
 
 Supported reports:
-* :ref:`Documentation coverage reports <DOCCOV>`
+
+* :ref:`DOCCOV`
+* :ref:`CODECOV`
+* :ref:`UNITTEST`
+* :ref:`DEP`
+
 """
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2024, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.1.0"
+__version__ =   "0.2.0"
 __keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate"]
 
 from typing import Any, Tuple, Dict, Optional as Nullable
 
+from docutils import nodes
 from pyTooling.Decorators import export
+from sphinx.addnodes import pending_xref
 from sphinx.application   import Sphinx
+from sphinx.builders import Builder
 from sphinx.domains       import Domain
+from sphinx.environment import BuildEnvironment
 
 
 @export
 class ReportDomain(Domain):
+	"""
+	A Sphinx extension providing a ``report`` domain to integrate reports and summaries into a Sphinx-based documentation.
+
+	.. rubric:: New directives:
+
+	* :rst:dir:`doc-coverage`
+
+	.. rubric:: New roles:
+
+	* *None*
+
+	.. rubric:: New indices:
+
+	* *None*
+
+  .. rubric:: Configuration variables
+
+	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:
+
+	* ``report_doccov_packages``
+
+	"""
+
 	name =  "report"  #: The name of this domain
 	label = "rpt"     #: The label of this domain
 
@@ -102,7 +134,6 @@ class ReportDomain(Domain):
 		     See http://sphinx-doc.org/extdev/appapi.html#event-builder-inited
 
 		:param sphinxApplication: The Sphinx application.
-		:return:
 		"""
 		print(f"Callback: builder-inited -> ReadReports")
 		print(f"[REPORT] Reading reports ...")
@@ -113,23 +144,23 @@ class ReportDomain(Domain):
 		# "source-read": ReadDesigns
 	}  #: A dictionary of all callbacks used by this domain.
 
-	# def resolve_xref(
-	# 	self,
-	# 	env: BuildEnvironment,
-	# 	fromdocname: str,
-	# 	builder: Builder,
-	# 	typ: str,
-	# 	target: str,
-	# 	node: pending_xref,
-	# 	contnode: nodes.Element
-	# ) -> Nullable[nodes.Element]:
-	# 	raise NotImplementedError()
+	def resolve_xref(
+		self,
+		env: BuildEnvironment,
+		fromdocname: str,
+		builder: Builder,
+		typ: str,
+		target: str,
+		node: pending_xref,
+		contnode: nodes.Element
+	) -> Nullable[nodes.Element]:
+		raise NotImplementedError()
 
 
 @export
 def setup(sphinxApplication: Sphinx):
 	"""
-	Extension setup function registering the VHDL domain in Sphinx.
+	Extension setup function registering the ``report`` domain in Sphinx.
 
 	:param sphinxApplication: The Sphinx application.
 	:return:                  Dictionary containing the extension version and some properties.

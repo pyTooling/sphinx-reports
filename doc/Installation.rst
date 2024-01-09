@@ -11,6 +11,9 @@ Using PIP to Install from PyPI
 The following instruction are using PIP (Package Installer for Python) as a package manager and PyPI (Python Package
 Index) as a source of Python packages.
 
+
+.. _INSTALL/pip/install:
+
 Installing a Wheel Package from PyPI using PIP
 ==============================================
 
@@ -99,6 +102,8 @@ just all (``all``) dependencies.
                pip install sphinx_reports[all]
 
 
+.. _INSTALL/pip/update:
+
 Updating from PyPI using PIP
 ============================
 
@@ -118,6 +123,8 @@ Updating from PyPI using PIP
 
          pip3 install -U sphinx_reports
 
+
+.. _INSTALL/pip/uninstall:
 
 Uninstallation using PIP
 ========================
@@ -183,7 +190,7 @@ Ensure :ref:`packaging requirements <DEP/packaging>` are installed.
          python -m pip uninstall -y sphinx_reports
 
          # Install from wheel
-         python -m pip install ./dist/sphinx_reports-4.1.0-py3-none-any.whl
+         python -m pip install ./dist/sphinx_reports-1.0.0-py3-none-any.whl
 
    .. tab-item:: Windows
       :sync: Windows
@@ -199,4 +206,4 @@ Ensure :ref:`packaging requirements <DEP/packaging>` are installed.
          py -m pip uninstall -y sphinx_reports
 
          # Install from wheel
-         py -m pip install .\dist\sphinx_reports-4.1.0-py3-none-any.whl
+         py -m pip install .\dist\sphinx_reports-1.0.0-py3-none-any.whl

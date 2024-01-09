@@ -4,11 +4,11 @@
    # percent encoding so that the URL is properly parsed.
 
 .. # Sourcecode link to GitHub
-.. |SHIELD:svgreports-github| image:: https://img.shields.io/badge/pyTooling-sphinx-reports-63bf7f.svg?longCache=true&style=flat-square&longCache=true&logo=GitHub
+.. |SHIELD:svgreports-github| image:: https://img.shields.io/badge/pyTooling-sphinx--reports-63bf7f.svg?longCache=true&style=flat-square&longCache=true&logo=GitHub
    :alt: Sourcecode on GitHub
    :height: 22
    :target: https://GitHub.com/pyTooling/sphinx-reports
-.. |SHIELD:pngreports-github| image:: https://raster.shields.io/badge/pyTooling-sphinx-reports-63bf7f.svg?longCache=true&style=flat-square&longCache=true&logo=GitHub
+.. |SHIELD:pngreports-github| image:: https://raster.shields.io/badge/pyTooling-sphinx--reports-63bf7f.svg?longCache=true&style=flat-square&longCache=true&logo=GitHub
    :alt: Sourcecode on GitHub
    :height: 22
    :target: https://GitHub.com/pyTooling/sphinx-reports
