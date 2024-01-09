@@ -88,7 +88,7 @@ details.
      }
    }
    ```
-2. Add the `doc-coverage` into your Restructured Text (ReST) document.
+2. Add the `doc-coverage` directive into your Restructured Text (ReST) document.
    
    * `packageid`  
      The ID used in `conf.py` to describe a Python package.

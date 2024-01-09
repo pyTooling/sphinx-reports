@@ -287,9 +287,9 @@ sd_fontawesome_latex = True
 # AutoAPI.Sphinx
 # ==============================================================================
 autoapi_modules = {
-	"sphinx_reports":  {
+	project: {
 		"template": "module",
-		"output": "sphinx_reports",
+		"output":   project,
 		"override": True
 	}
 }
