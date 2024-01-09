@@ -1,0 +1,5 @@
+.. _CODECOV:
+
+Code Coverage
+#############
+

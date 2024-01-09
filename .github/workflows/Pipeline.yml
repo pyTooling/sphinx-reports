@@ -1,0 +1,154 @@
+name: Pipeline
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  UnitTestingParams:
+    uses: pyTooling/Actions/.github/workflows/Parameters.yml@cov
+    with:
+      name: sphinx-eports
+#      python_version_list: "3.8 3.9 3.10 3.11 3.12 pypy-3.8 pypy-3.9 pypy-3.10"
+#      disable_list: "windows:pypy-3.8 windows:pypy-3.9 windows:pypy-3.10"
+
+  UnitTesting:
+    uses: pyTooling/Actions/.github/workflows/UnitTesting.yml@cov
+    needs:
+      - UnitTestingParams
+    with:
+      jobs: ${{ needs.UnitTestingParams.outputs.python_jobs }}
+      requirements: "-r tests/unit/requirements.txt"
+      pacboy: "msys/git"
+      unittest_xml_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}
+      coverage_sqlite_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}
+
+#  Coverage:
+#    uses: pyTooling/Actions/.github/workflows/CoverageCollection.yml@cov
+#    needs:
+#      - UnitTestingParams
+#    with:
+#      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
+#      artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_html }}
+#    secrets:
+#      codacy_token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+
+  StaticTypeCheck:
+    uses: pyTooling/Actions/.github/workflows/StaticTypeCheck.yml@cov
+    needs:
+      - UnitTestingParams
+    with:
+      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
+      commands: |
+        mypy --html-report htmlmypy -p sphinx_reports
+      html_report: 'htmlmypy'
+      html_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).statictyping_html }}
+
+  PublishCoverageResults:
+    uses: pyTooling/Actions/.github/workflows/PublishCoverageResults.yml@cov
+    needs:
+      - UnitTestingParams
+      - UnitTesting
+#      - Coverage
+    with:
+#      coverage_sqlite_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}
+#      coverage_xml_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_xml }}
+#      coverage_json_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_json }}
+      coverage_html_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_html }}
+    secrets:
+      codacy_token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+
+  PublishTestResults:
+    uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@cov
+    needs:
+      - UnitTesting
+
+  Package:
+    uses: pyTooling/Actions/.github/workflows/Package.yml@cov
+    needs:
+      - UnitTestingParams
+      - UnitTesting
+#      - Coverage
+    with:
+      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
+      artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).package_all }}
+
+#  VerifyDocs:
+#    uses: pyTooling/Actions/.github/workflows/VerifyDocs.yml@cov
+#    needs:
+#      - UnitTestingParams
+#    with:
+#      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
+
+  BuildTheDocs:
+    uses: pyTooling/Actions/.github/workflows/BuildTheDocs.yml@cov
+    needs:
+      - UnitTestingParams
+#      - VerifyDocs
+    with:
+      artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_html }}
+
+  PublishToGitHubPages:
+    uses: pyTooling/Actions/.github/workflows/PublishToGitHubPages.yml@cov
+    needs:
+      - UnitTestingParams
+      - BuildTheDocs
+#      - Coverage
+      - PublishCoverageResults
+      - StaticTypeCheck
+    with:
+      doc: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_html }}
+      coverage: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_html }}
+      typing: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).statictyping_html }}
+
+  ReleasePage:
+    uses: pyTooling/Actions/.github/workflows/Release.yml@cov
+    if: startsWith(github.ref, 'refs/tags')
+    needs:
+      - UnitTesting
+#      - Coverage
+#      - StaticTypeCheck
+      - Package
+      - PublishToGitHubPages
+
+  PublishOnPyPI:
+    uses: pyTooling/Actions/.github/workflows/PublishOnPyPI.yml@cov
+    if: startsWith(github.ref, 'refs/tags')
+    needs:
+      - UnitTestingParams
+      - ReleasePage
+    with:
+      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
+      requirements: -r dist/requirements.txt
+      artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).package_all }}
+    secrets:
+      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+
+  ArtifactCleanUp:
+    uses: pyTooling/Actions/.github/workflows/ArtifactCleanUp.yml@cov
+    needs:
+      - UnitTestingParams
+      - UnitTesting
+#      - Coverage
+      - StaticTypeCheck
+#      - BuildTheDocs
+      - PublishToGitHubPages
+      - PublishCoverageResults
+      - PublishTestResults
+    with:
+      package: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).package_all }}
+      remaining: |
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}-*
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_html }}-*
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}-*
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_xml }}-*
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_json }}-*
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_html }}-*
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_html }}
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_xml }}
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_json }}
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_html }}
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).statictyping_html }}
+        ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_html }}
