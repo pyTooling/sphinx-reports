@@ -1,4 +1,4 @@
-.. |img-sphinx-reports-github| image:: https://img.shields.io/badge/pyTooling-sphinx-reports-323131.svg?logo=github&longCache=true
+.. |img-sphinx-reports-github| image:: https://img.shields.io/badge/pyTooling-sphinx--reports-323131.svg?logo=github&longCache=true
    :alt: Sourcecode on GitHub
    :height: 22
    :target: https://github.com/pyTooling/sphinx-reports
@@ -43,11 +43,11 @@
    :alt: Dependent repos (via libraries.io)
    :height: 22
    :target: https://github.com/pyTooling/sphinx-reports/network/dependents
-.. |img-sphinx-reports-codacy-quality| image:: https://img.shields.io/codacy/grade/b63aac7ef7e34baf829f11a61574bbaf?logo=codacy
+.. |img-sphinx-reports-codacy-quality| image:: https://img.shields.io/codacy/grade/9a89bbc1d2c04a699ea14abea75588c7?logo=codacy
    :alt: Codacy - Quality
    :height: 22
    :target: https://www.codacy.com/manual/pyTooling/sphinx-reports
-.. |img-sphinx-reports-codacy-coverage| image:: https://img.shields.io/codacy/coverage/b63aac7ef7e34baf829f11a61574bbaf?logo=codacy
+.. |img-sphinx-reports-codacy-coverage| image:: https://img.shields.io/codacy/coverage/9a89bbc1d2c04a699ea14abea75588c7?logo=codacy
    :alt: Codacy - Line Coverage
    :height: 22
    :target: https://www.codacy.com/manual/pyTooling/sphinx-reports

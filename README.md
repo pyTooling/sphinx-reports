@@ -1,4 +1,4 @@
-[![Sourcecode on GitHub](https://img.shields.io/badge/pyTooling-sphinx-reports-323131.svg?logo=github&longCache=true)](https://github.com/pyTooling/sphinx-reports)
+[![Sourcecode on GitHub](https://img.shields.io/badge/pyTooling-sphinx--reports-323131.svg?logo=github&longCache=true)](https://github.com/pyTooling/sphinx-reports)
 [![License](https://img.shields.io/badge/code%20license-Apache%20License%2C%202.0-lightgrey?logo=GitHub)](LICENSE.md)
 [![GitHub tag (latest SemVer incl. pre-release)](https://img.shields.io/github/v/tag/pyTooling/sphinx-reports?logo=GitHub&include_prereleases)](https://github.com/pyTooling/sphinx-reports/tags)
 [![GitHub release (latest SemVer incl. including pre-releases)](https://img.shields.io/github/v/release/pyTooling/sphinx-reports?logo=GitHub&include_prereleases)](https://github.com/pyTooling/sphinx-reports/releases/latest)
@@ -10,8 +10,8 @@
 [![Dependent repos (via libraries.io)](https://img.shields.io/librariesio/dependent-repos/pypi/sphinx-reports)](https://github.com/pyTooling/sphinx-reports/network/dependents)  
 [![Libraries.io status for latest release](https://img.shields.io/librariesio/release/pypi/sphinx-reports)](https://libraries.io/github/pyTooling/sphinx-reports)
 [![Requires.io](https://img.shields.io/requires/github/pyTooling/sphinx-reports)](https://requires.io/github/pyTooling/sphinx-reports/requirements/?branch=master)  
-[![Codacy - Quality](https://img.shields.io/codacy/grade/b63aac7ef7e34baf829f11a61574bbaf?logo=Codacy)](https://www.codacy.com/manual/pyTooling/sphinx-reports)
-[![Codacy - Coverage](https://img.shields.io/codacy/coverage/b63aac7ef7e34baf829f11a61574bbaf?logo=Codacy)](https://www.codacy.com/manual/pyTooling/sphinx-reports)
+[![Codacy - Quality](https://img.shields.io/codacy/grade/9a89bbc1d2c04a699ea14abea75588c7?logo=Codacy)](https://www.codacy.com/manual/pyTooling/sphinx-reports)
+[![Codacy - Coverage](https://img.shields.io/codacy/coverage/9a89bbc1d2c04a699ea14abea75588c7?logo=Codacy)](https://www.codacy.com/manual/pyTooling/sphinx-reports)
 [![Codecov - Branch Coverage](https://img.shields.io/codecov/c/github/pyTooling/sphinx-reports?logo=Codecov)](https://codecov.io/gh/pyTooling/sphinx-reports)
 [![Libraries.io SourceRank](https://img.shields.io/librariesio/sourcerank/pypi/sphinx-reports)](https://libraries.io/github/pyTooling/sphinx-reports/sourcerank)  
 <!-- [![Read the Docs](https://img.shields.io/readthedocs/sphinx-reports)](https://pyVersioning.readthedocs.io/en/latest/) -->

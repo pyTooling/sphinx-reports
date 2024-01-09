@@ -105,13 +105,13 @@ the mandatory dependencies too.
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
 | `pytest-cov <https://GitHub.com/pytest-dev/pytest-cov>`__           | ≥4.1.0      | `MIT <https://GitHub.com/pytest-dev/pytest-cov/blob/master/LICENSE>`__                 | *Not yet evaluated.* |
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
-| `Coverage <https://GitHub.com/nedbat/coveragepy>`__                 | ≥7.3        | `Apache License, 2.0 <https://GitHub.com/nedbat/coveragepy/blob/master/LICENSE.txt>`__ | *Not yet evaluated.* |
+| `Coverage <https://GitHub.com/nedbat/coveragepy>`__                 | ≥7.4        | `Apache License, 2.0 <https://GitHub.com/nedbat/coveragepy/blob/master/LICENSE.txt>`__ | *Not yet evaluated.* |
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
-| `mypy <https://GitHub.com/python/mypy>`__                           | ≥1.5.0      | `MIT <https://GitHub.com/python/mypy/blob/master/LICENSE>`__                           | *Not yet evaluated.* |
+| `mypy <https://GitHub.com/python/mypy>`__                           | ≥1.8.0      | `MIT <https://GitHub.com/python/mypy/blob/master/LICENSE>`__                           | *Not yet evaluated.* |
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
-| `typing-extensions <https://GitHub.com/python/typing_extensions>`__ | ≥4.7.1      | `PSF-2.0 <https://github.com/python/typing_extensions/blob/main/LICENSE>`__            | *Not yet evaluated.* |
+| `typing-extensions <https://GitHub.com/python/typing_extensions>`__ | ≥4.9.0      | `PSF-2.0 <https://github.com/python/typing_extensions/blob/main/LICENSE>`__            | *Not yet evaluated.* |
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
-| `lxml <https://GitHub.com/lxml/lxml>`__                             | ≥4.9        | `BSD 3-Clause <https://GitHub.com/lxml/lxml/blob/master/LICENSE.txt>`__                | *Not yet evaluated.* |
+| `lxml <https://GitHub.com/lxml/lxml>`__                             | ≥5.0        | `BSD 3-Clause <https://GitHub.com/lxml/lxml/blob/master/LICENSE.txt>`__                | *Not yet evaluated.* |
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
 
 
@@ -165,7 +165,7 @@ the mandatory dependencies too.
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 | `sphinx-copybutton <https://GitHub.com/executablebooks/sphinx-copybutton>`__                    | ≥0.5.2       | `MIT <https://GitHub.com/executablebooks/sphinx-copybutton/blob/master/LICENSE>`__                        | *Not yet evaluated.*                                                                                                                                |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `sphinx_autodoc_typehints <https://GitHub.com/agronholm/sphinx-autodoc-typehints>`__            | ≥1.24.0      | `MIT <https://GitHub.com/agronholm/sphinx-autodoc-typehints/blob/master/LICENSE>`__                      | *Not yet evaluated.*                                                                                                                                 |
+| `sphinx_autodoc_typehints <https://GitHub.com/agronholm/sphinx-autodoc-typehints>`__            | ≥1.25.2      | `MIT <https://GitHub.com/agronholm/sphinx-autodoc-typehints/blob/master/LICENSE>`__                      | *Not yet evaluated.*                                                                                                                                 |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. TODO:: document the usage of
