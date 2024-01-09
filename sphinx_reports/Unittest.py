@@ -29,146 +29,24 @@
 # ==================================================================================================================== #
 #
 """
-**A Sphinx extension providing coverage details embedded in documentation pages.**
+**Report unit test results as Sphinx documentation page(s).**
 """
-from enum    import Flag
-from re      import match
 from pathlib import Path
-from sys     import version_info
-from typing  import Dict, Tuple, Any, List, Optional as Nullable, Iterable, Mapping, Generator
+from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator
 
 from docutils             import nodes
 from pyTooling.Decorators import export
-from sphinx.application   import Sphinx
-from sphinx.directives    import ObjectDescription
 
-from sphinx_reports                import __version__
-from sphinx_reports.DataModel      import PackageCoverage
-from sphinx_reports.DocStrCoverage import Analyzer
-
-
-@export
-class ExtensionError(Exception):
-	# WORKAROUND: for Python <3.11
-	# Implementing a dummy method for Python versions before
-	__notes__: List[str]
-	if version_info < (3, 11):  # pragma: no cover
-		def add_note(self, message: str):
-			try:
-				self.__notes__.append(message)
-			except AttributeError:
-				self.__notes__ = [message]
+from sphinx_reports.Common                          import ReportExtensionError
+from sphinx_reports.Sphinx                          import strip, LegendPosition, BaseDirective
+from sphinx_reports.DataModel.DocumentationCoverage import PackageCoverage
+from sphinx_reports.Adapter.DocStrCoverage          import Analyzer
 
 
 @export
-def strip(option: str):
-	return option.strip().lower()
-
-
-@export
-class LegendPosition(Flag):
-	NoLegend = 0
-	Top = 1
-	Bottom = 2
-	Both = 3
-
-
-@export
-class BaseDirective(ObjectDescription):
-	has_content: bool = False
+class UnittestSummary(BaseDirective):
 	"""
-	A boolean; ``True`` if content is allowed.
-
-	Client code must handle the case where content is required but not supplied (an empty content list will be supplied).
-	"""
-
-	required_arguments = 0
-	"""Number of required directive arguments."""
-
-	optional_arguments = 0
-	"""Number of optional arguments after the required arguments."""
-
-	final_argument_whitespace = False
-	"""A boolean, indicating if the final argument may contain whitespace."""
-
-	option_spec = None
-	"""
-	Mapping of option names to validator functions.
-
-	A dictionary, mapping known option names to conversion functions such as :class:`int` or :class:`float`
-	(default: {}, no options). Several conversion functions are defined in the ``directives/__init__.py`` module.
-
-	Option conversion functions take a single parameter, the option argument (a string or :class:`None`), validate it
-	and/or convert it to the appropriate form. Conversion functions may raise :exc:`ValueError` and
-	:exc:`TypeError` exceptions.
-	"""
-
-	directiveName: str
-
-	def _ParseBooleanOption(self, optionName: str, default: Nullable[bool] = None) -> bool:
-		try:
-			option = self.options[optionName]
-		except KeyError as ex:
-			if default is not None:
-				return default
-			else:
-				raise ExtensionError(f"{self.directiveName}: Required option '{optionName}' not found for directive.") from ex
-
-		if option in ("yes", "true"):
-			return True
-		elif option in ("no", "false"):
-			return False
-		else:
-			raise ExtensionError(f"{self.directiveName}::{optionName}: '{option}' not supported for a boolean value (yes/true, no/false).")
-
-	def _ParseStringOption(self, optionName: str, default: Nullable[str] = None, regexp: str = "\\w+") -> str:
-		try:
-			option = self.options[optionName]
-		except KeyError as ex:
-			if default is not None:
-				return default
-			else:
-				raise ExtensionError(f"{self.directiveName}: Required option '{optionName}' not found for directive.") from ex
-
-		if match(regexp, option):
-			return option
-		else:
-			raise ExtensionError(f"{self.directiveName}::{optionName}: '{option}' not an accepted value for regexp '{regexp}'.")
-
-	def _ParseLegendOption(self, optionName: str, default: Nullable[LegendPosition] = None) -> LegendPosition:
-		try:
-			option = self.options[optionName]
-		except KeyError as ex:
-			if default is not None:
-				return default
-			else:
-				raise ExtensionError(f"{self.directiveName}: Required option '{optionName}' not found for directive.") from ex
-
-		try:
-			return LegendPosition[option]
-		except KeyError as ex:
-			raise ExtensionError(f"{self.directiveName}::{optionName}: Value '{option}' is not a valid member of 'LegendPosition'.") from ex
-
-	def _PrepareTable(self, columns: Dict[str, int], id: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
-		table = nodes.table("", id=id, classes=classes)
-
-		tableGroup = nodes.tgroup(cols=(len(columns)))
-		table += tableGroup
-
-		tableRow = nodes.row()
-		for columnTitle, width in columns.items():
-			tableGroup += nodes.colspec(colwidth=width)
-			tableRow += nodes.entry("", nodes.paragraph(text=columnTitle))
-
-		tableGroup += nodes.thead("", tableRow)
-
-		return table, tableGroup
-
-
-@export
-class DocCoverage(BaseDirective):
-	"""
-	This directive will be replaced by a table representing documentation coverage.
+	This directive will be replaced by a table representing unit test results.
 	"""
 	has_content = False
 	required_arguments = 0
@@ -176,17 +54,17 @@ class DocCoverage(BaseDirective):
 
 	option_spec = {
 		"packageid": strip,
-		"legend": strip,
+		"legend":    strip,
 	}
 
-	directiveName: str = "docstr-coverage"
-	configPrefix: str = "doccov"
-	configValues: Dict[str, Tuple[Any, str, Any]] = {
+	directiveName: str = "unittest-summary"
+	configPrefix:  str = "unittest"
+	configValues:  Dict[str, Tuple[Any, str, Any]] = {
 		"packages": ({}, "env", Dict)
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
-	_packageID: str
-	_legend:    LegendPosition
+	_packageID:   str
+	_legend:      LegendPosition
 	_packageName: str
 	_directory:   Path
 	_failBelow:   float
@@ -203,33 +81,33 @@ class DocCoverage(BaseDirective):
 		try:
 			allPackages = self.config[f"{self.configPrefix}_packages"]
 		except (KeyError, AttributeError) as ex:
-			raise ExtensionError(f"Configuration option '{self.configPrefix}_packages' is not configured.") from ex
+			raise ReportExtensionError(f"Configuration option '{self.configPrefix}_packages' is not configured.") from ex
 
 		try:
 			packageConfiguration = allPackages[self._packageID]
 		except KeyError as ex:
-			raise ExtensionError(f"conf.py: {self.configPrefix}_packages: No configuration found for '{self._packageID}'.") from ex
+			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages: No configuration found for '{self._packageID}'.") from ex
 
 		try:
 			self._packageName = packageConfiguration["name"]
 		except KeyError as ex:
-			raise ExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.name: Configuration is missing.") from ex
+			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.name: Configuration is missing.") from ex
 
 		try:
 			self._directory = Path(packageConfiguration["directory"])
 		except KeyError as ex:
-			raise ExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.directory: Configuration is missing.") from ex
+			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.directory: Configuration is missing.") from ex
 
 		if not self._directory.exists():
-			raise ExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.directory: Directory doesn't exist.") from FileNotFoundError(self._directory)
+			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.directory: Directory doesn't exist.") from FileNotFoundError(self._directory)
 
 		try:
 			self._failBelow = int(packageConfiguration["fail_below"]) / 100
 		except KeyError as ex:
-			raise ExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.fail_below: Configuration is missing.") from ex
+			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.fail_below: Configuration is missing.") from ex
 
 		if not (0.0 <= self._failBelow <= 100.0):
-			raise ExtensionError(
+			raise ReportExtensionError(
 				f"conf.py: {self.configPrefix}_packages:{self._packageID}.fail_below: Is out of range 0..100.")
 
 		self._levels = {
@@ -289,7 +167,7 @@ class DocCoverage(BaseDirective):
 					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Coverage:.1%}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
 					classes=["doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
@@ -339,9 +217,6 @@ class DocCoverage(BaseDirective):
 
 		return [rubric, table]
 
-
-@export
-class DocStrCoverage(DocCoverage):
 	def run(self):
 		self._CheckOptions()
 		self._CheckConfiguration()
@@ -364,24 +239,3 @@ class DocStrCoverage(DocCoverage):
 			container += self._CreateLegend(id="legend2", classes=["doccov-legend"])
 
 		return [container]
-
-
-@export
-def setup(sphinxApplication: Sphinx):
-	"""
-	Extension setup function registering the VHDL domain in Sphinx.
-
-	:param sphinxApplication: The Sphinx application.
-	:return:                  Dictionary containing the extension version and some properties.
-	"""
-	sphinxApplication.add_directive("doc-coverage", DocStrCoverage)
-
-	for configName, (configDefault, configRebuilt, configTypes) in DocStrCoverage.configValues.items():
-		sphinxApplication.add_config_value(f"{DocStrCoverage.configPrefix}_{configName}", configDefault, configRebuilt, configTypes)
-
-	return {
-		"version": __version__,                          # version of the extension
-		"env_version": int(__version__.split(".")[0]),   # version of the data structure stored in the environment
-		'parallel_read_safe': False,                     # Not yet evaluated, thus false
-		'parallel_write_safe': True,                     # Internal data structure is used read-only, thus no problems will occur by parallel writing.
-	}

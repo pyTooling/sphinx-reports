@@ -122,8 +122,9 @@ License
    :caption: Details
    :hidden:
 
-   sphinx-reports
-
+   DocCov/index
+   CodeCov/index
+   Unittest/index
 
 .. raw:: latex
 
@@ -133,7 +134,7 @@ License
    :caption: References and Reports
    :hidden:
 
-   sphinx-reports/sphinx-reports
+   sphinx_reports/sphinx_reports
    Unittest Report ➚ <unittests/index>
    Code Coverage Report ➚ <coverage/index>
    Doc. Coverage Report <DocCoverage>

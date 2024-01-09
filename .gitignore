@@ -20,8 +20,8 @@ report/
 
 # Sphinx
 doc/_build/
-doc/sphinx-reports/**/*.*
-!doc/sphinx-reports/index.rst
+doc/sphinx_reports/**/*.*
+!doc/sphinx_reports/index.rst
 
 # BuildTheDocs
 doc/_theme/**/*.*

@@ -39,11 +39,12 @@ from docstr_coverage                   import analyze, ResultCollection
 from docstr_coverage.result_collection import FileCount
 from pyTooling.Decorators              import export, readonly
 
-from sphinx_reports.DataModel          import ModuleCoverage, PackageCoverage
+from sphinx_reports.Common                          import ReportExtensionError
+from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, PackageCoverage
 
 
 @export
-class DocStrCoverageError(Exception):
+class DocStrCoverageError(ReportExtensionError):
 	# WORKAROUND: for Python <3.11
 	# Implementing a dummy method for Python versions before
 	__notes__: List[str]

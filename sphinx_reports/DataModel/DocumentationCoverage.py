@@ -29,11 +29,12 @@
 # ==================================================================================================================== #
 #
 """
-**A Sphinx extension providing coverage details embedded in documentation pages.**
+**Abstract documentation coverage data model for Python code.**
 """
+
 from enum    import Flag
 from pathlib import Path
-from typing  import Iterable, Dict, Optional as Nullable, Union
+from typing  import Optional as Nullable, Iterable, Dict, Union
 
 from pyTooling.Decorators import export, readonly
 

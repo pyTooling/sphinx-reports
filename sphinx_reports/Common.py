@@ -28,30 +28,33 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Unit tests for the data model."""
-from pathlib  import Path
-from unittest import TestCase
+"""
+**Common exceptions, classes and helper functions..**
+"""
+from enum   import Flag
+from sys    import version_info
+from typing import List
 
-from sphinx_reports.DataModel.DocumentationCoverage import ClassCoverage, ModuleCoverage, PackageCoverage
-
-if __name__ == "__main__":
-	print("ERROR: you called a testcase declaration file as an executable module.")
-	print("Use: 'python -m unitest <testcase module>'")
-	exit(1)
+from pyTooling.Decorators import export
+from sphinx.errors        import ExtensionError
 
 
-class DocumentationCoverage(TestCase):
-	def test_Package(self) -> None:
-		cov = PackageCoverage(Path("__init__.py"), "myPackage")
+@export
+class ReportExtensionError(ExtensionError):
+	# WORKAROUND: for Python <3.11
+	# Implementing a dummy method for Python versions before
+	__notes__: List[str]
+	if version_info < (3, 11):  # pragma: no cover
+		def add_note(self, message: str):
+			try:
+				self.__notes__.append(message)
+			except AttributeError:
+				self.__notes__ = [message]
 
-		self.assertEqual(cov.Name, "myPackage")
 
-	def test_Module(self) -> None:
-		cov = ModuleCoverage(Path("__init__.py"), "myModule")
-
-		self.assertEqual(cov.Name, "myModule")
-
-	def test_Class(self) -> None:
-		cov = ClassCoverage("myClass")
-
-		self.assertEqual(cov.Name, "myClass")
+@export
+class LegendPosition(Flag):
+	NoLegend = 0
+	Top = 1
+	Bottom = 2
+	Both = 3

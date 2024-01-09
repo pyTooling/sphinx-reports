@@ -28,30 +28,6 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Unit tests for the data model."""
-from pathlib  import Path
-from unittest import TestCase
-
-from sphinx_reports.DataModel.DocumentationCoverage import ClassCoverage, ModuleCoverage, PackageCoverage
-
-if __name__ == "__main__":
-	print("ERROR: you called a testcase declaration file as an executable module.")
-	print("Use: 'python -m unitest <testcase module>'")
-	exit(1)
-
-
-class DocumentationCoverage(TestCase):
-	def test_Package(self) -> None:
-		cov = PackageCoverage(Path("__init__.py"), "myPackage")
-
-		self.assertEqual(cov.Name, "myPackage")
-
-	def test_Module(self) -> None:
-		cov = ModuleCoverage(Path("__init__.py"), "myModule")
-
-		self.assertEqual(cov.Name, "myModule")
-
-	def test_Class(self) -> None:
-		cov = ClassCoverage("myClass")
-
-		self.assertEqual(cov.Name, "myClass")
+"""
+**Adapters between report generators and data models.**
+"""

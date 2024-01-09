@@ -182,8 +182,8 @@ extensions = [
 	"sphinx_copybutton",
 	"sphinx_autodoc_typehints",
 	"autoapi.sphinx",
+	"sphinx_reports",
 # User defined extensions
-	"CoverageReports",
 ]
 
 
@@ -261,7 +261,7 @@ todo_link_only = True
 # ==============================================================================
 # DocCov
 # ==============================================================================
-doccov_packages = {
+report_doccov_packages = {
 	"src": {
 		"name":       "sphinx_reports",
 		"directory":  "../sphinx_reports",
