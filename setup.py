@@ -30,7 +30,7 @@
 #
 """Package installer for 'Write version information for any programming language as source file'."""
 from pathlib             import Path
-from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub
+from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub, DEFAULT_CLASSIFIERS
 
 gitHubNamespace =        "pyTooling"
 packageName =            "sphinx_reports"
@@ -42,6 +42,15 @@ DescribePythonPackageHostedOnGitHub(
 	description="A Sphinx extension providing coverage details embedded in documentation pages.",
 	gitHubNamespace=gitHubNamespace,
 	sourceFileWithVersion=packageInformationFile,
+	classifiers=DEFAULT_CLASSIFIERS + [
+		"Framework :: Sphinx",
+		"Framework :: Sphinx :: Domain",
+		"Framework :: Sphinx :: Extension",
+		"Topic :: Documentation :: Sphinx",
+		"Topic :: Software Development :: Documentation",
+		"Topic :: Software Development :: Quality Assurance",
+	],
+	developmentStatus="beta",
 	dataFiles={
 		"sphinx_reports": ["static/*.css"]
 	}
