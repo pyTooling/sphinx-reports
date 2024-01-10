@@ -42,7 +42,7 @@ DescribePythonPackageHostedOnGitHub(
 	description="A Sphinx extension providing coverage details embedded in documentation pages.",
 	gitHubNamespace=gitHubNamespace,
 	sourceFileWithVersion=packageInformationFile,
-	classifiers=DEFAULT_CLASSIFIERS + [
+	classifiers=list(DEFAULT_CLASSIFIERS) + [
 		"Framework :: Sphinx",
 		"Framework :: Sphinx :: Domain",
 		"Framework :: Sphinx :: Extension",
@@ -51,6 +51,7 @@ DescribePythonPackageHostedOnGitHub(
 		"Topic :: Software Development :: Quality Assurance",
 	],
 	developmentStatus="beta",
+	pythonVersions=("3.9", "3.10", "3.11", "3.12"),
 	dataFiles={
 		"sphinx_reports": ["static/*.css"]
 	}
