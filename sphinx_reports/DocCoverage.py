@@ -32,7 +32,7 @@
 **Report documentation coverage as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict
+from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict
 
 from docutils             import nodes
 from pyTooling.Decorators import export
