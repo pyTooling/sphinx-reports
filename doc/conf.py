@@ -261,18 +261,38 @@ todo_link_only = True
 # ==============================================================================
 # Sphinx-reports - DocCov
 # ==============================================================================
+_levels = {
+	30:  {"class": "doccov-below30",  "desc": "almost undocumented"},
+	50:  {"class": "doccov-below50",  "desc": "poorly documented"},
+	80:  {"class": "doccov-below80",  "desc": "roughly documented"},
+	90:  {"class": "doccov-below90",  "desc": "well documented"},
+	100: {"class": "doccov-below100", "desc": "excellent documented"}
+}
+
 report_doccov_packages = {
 	"src": {
 		"name":       "sphinx_reports",
 		"directory":  "../sphinx_reports",
 		"fail_below": 80,
-		"levels": {
-			30:  {"class": "doccov-below30",  "background": "rgba(101,  31, 255, .2)", "desc": "almost undocumented"},
-			50:  {"class": "doccov-below50",  "background": "rgba(255,  82,  82, .2)", "desc": "poorly documented"},
-			80:  {"class": "doccov-below80",  "background": "rgba(255, 145,   0, .2)", "desc": "roughly documented"},
-			90:  {"class": "doccov-below90",  "background": "rgba(  0, 200,  82, .2)", "desc": "well documented"},
-			100: {"class": "doccov-below100", "background": "rgba(  0, 200,  82, .2)", "desc": "excellent documented"}
-		}
+		"levels":     _levels
+	},
+	"undocumented": {
+		"name":       "undocumented",
+		"directory":  "../tests/packages/undocumented",
+		"fail_below": 80,
+		"levels":     _levels
+	},
+	"partially": {
+		"name":       "partially",
+		"directory":  "../tests/packages/partially",
+		"fail_below": 80,
+		"levels":     _levels
+	},
+	"documented": {
+		"name":       "documented",
+		"directory":  "../tests/packages/documented",
+		"fail_below": 80,
+		"levels":     _levels
 	}
 }
 

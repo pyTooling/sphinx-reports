@@ -28,30 +28,28 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Package installer for 'Write version information for any programming language as source file'."""
-from pathlib             import Path
-from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub, DEFAULT_CLASSIFIERS
+"""Unit tests for the data model."""
+from pathlib  import Path
+from unittest import TestCase
 
-gitHubNamespace =        "pyTooling"
-packageName =            "sphinx_reports"
-packageDirectory =       packageName.replace(".", "/")
-packageInformationFile = Path(f"{packageDirectory}/__init__.py")
+from sphinx_reports.Adapter.DocStrCoverage import Analyzer
+from sphinx_reports.DataModel.DocumentationCoverage import ClassCoverage, ModuleCoverage, PackageCoverage
 
-DescribePythonPackageHostedOnGitHub(
-	packageName=packageName,
-	description="A Sphinx extension providing coverage details embedded in documentation pages.",
-	gitHubNamespace=gitHubNamespace,
-	sourceFileWithVersion=packageInformationFile,
-	classifiers=DEFAULT_CLASSIFIERS + [
-		"Framework :: Sphinx",
-		"Framework :: Sphinx :: Domain",
-		"Framework :: Sphinx :: Extension",
-		"Topic :: Documentation :: Sphinx",
-		"Topic :: Software Development :: Documentation",
-		"Topic :: Software Development :: Quality Assurance",
-	],
-	developmentStatus="beta",
-	dataFiles={
-		"sphinx_reports": ["static/*.css"]
-	}
-)
+if __name__ == "__main__":
+	print("ERROR: you called a testcase declaration file as an executable module.")
+	print("Use: 'python -m unitest <testcase module>'")
+	exit(1)
+
+
+class Undocumented(TestCase):
+	def test_Package(self) -> None:
+		packageName = "undocumented"
+		packageDirectory = Path(f"tests/packages/{packageName}")
+
+		analyzer = Analyzer(packageDirectory, packageName)
+		analyzer.Analyze()
+		coverage = analyzer.Convert()
+		# coverage.CalculateCoverage()
+		coverage.Aggregate()
+
+		cov = coverage.Coverage

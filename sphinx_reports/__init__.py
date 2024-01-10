@@ -43,18 +43,24 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2024, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.2.0"
+__version__ =   "0.3.0"
 __keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate"]
 
-from typing import Any, Tuple, Dict, Optional as Nullable
+from hashlib              import md5
+from importlib.resources  import files
+from pathlib              import Path
+from typing               import Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable
 
-from docutils import nodes
-from pyTooling.Decorators import export
-from sphinx.addnodes import pending_xref
+from docutils             import nodes
+from sphinx.addnodes      import pending_xref
 from sphinx.application   import Sphinx
-from sphinx.builders import Builder
+from sphinx.builders      import Builder
 from sphinx.domains       import Domain
-from sphinx.environment import BuildEnvironment
+from sphinx.environment   import BuildEnvironment
+from pyTooling.Decorators import export
+
+from .                    import static as ResourcePackage
+from .Common              import ReadResourceFile
 
 
 @export
@@ -74,7 +80,7 @@ class ReportDomain(Domain):
 
 	* *None*
 
-  .. rubric:: Configuration variables
+	.. rubric:: Configuration variables
 
 	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:
 
@@ -85,7 +91,7 @@ class ReportDomain(Domain):
 	name =  "report"  #: The name of this domain
 	label = "rpt"     #: The label of this domain
 
-	dependencies = [
+	dependencies: List[str] = [
 	]  #: A list of other extensions this domain depends on.
 
 	from sphinx_reports.CodeCoverage import CodeCoverage
@@ -103,9 +109,9 @@ class ReportDomain(Domain):
 		# "design":   DesignRole,
 	}  #: A dictionary of all roles in this domain.
 
-	indices = {
+	indices = [
 		# LibraryIndex,
-	}  #: A dictionary of all indices in this domain.
+	]  #: A list of all indices in this domain.
 
 	configValues: Dict[str, Tuple[Any, str, Any]] = {
 		"designs":  ({}, "env", Dict),
@@ -122,6 +128,44 @@ class ReportDomain(Domain):
 		return self.data["reports"]
 
 	@staticmethod
+	def AddCSSFiles(sphinxApplication: Sphinx) -> None:
+		"""
+		Call back for Sphinx ``builder-inited`` event.
+
+		This callback will copy the CSS file(s) to the build directory.
+
+		.. seealso::
+
+		   Sphinx *builder-inited* event
+		     See https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events
+
+		:param sphinxApplication: The Sphinx application.
+		"""
+		# Create a new static path for this extension
+		staticDirectory = (Path(sphinxApplication.outdir) / "_report_static").resolve()
+		staticDirectory.mkdir(exist_ok=True)
+		sphinxApplication.config.html_static_path.append(str(staticDirectory))
+
+		# Read the CSS content from package resources and hash it
+		cssFilename = "sphinx-reports.css"
+		cssContent = ReadResourceFile(ResourcePackage, cssFilename)
+
+		# Compute md5 hash of CSS file
+		hash = md5(cssContent.encode("utf8")).hexdigest()
+
+		# Write the CSS file into output directory
+		cssFile = staticDirectory / f"sphinx-reports.{hash}.css"
+		sphinxApplication.add_css_file(cssFile.name)
+
+		if not cssFile.exists():
+			# Purge old CSS files
+			for file in staticDirectory.glob("*.css"):
+				file.unlink()
+
+			# Write CSS content
+			cssFile.write_text(cssContent, encoding="utf8")
+
+	@staticmethod
 	def ReadReports(sphinxApplication: Sphinx) -> None:
 		"""
 		Call back for Sphinx ``builder-inited`` event.
@@ -131,7 +175,7 @@ class ReportDomain(Domain):
 		.. seealso::
 
 		   Sphinx *builder-inited* event
-		     See http://sphinx-doc.org/extdev/appapi.html#event-builder-inited
+		     See https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events
 
 		:param sphinxApplication: The Sphinx application.
 		"""
@@ -139,10 +183,9 @@ class ReportDomain(Domain):
 		print(f"[REPORT] Reading reports ...")
 
 
-	callbacks = {
-		"builder-inited": ReadReports,
-		# "source-read": ReadDesigns
-	}  #: A dictionary of all callbacks used by this domain.
+	callbacks: Dict[str, List[Callable]] = {
+		"builder-inited": [AddCSSFiles, ReadReports],
+	}  #: A dictionary of all `events/callbacks <https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events>`__ used by this domain.
 
 	def resolve_xref(
 		self,
@@ -157,10 +200,23 @@ class ReportDomain(Domain):
 		raise NotImplementedError()
 
 
+class setup_ReturnType(TypedDict):
+	version: str
+	env_version: int
+	parallel_read_safe: bool
+	parallel_write_safe: bool
+
+
 @export
-def setup(sphinxApplication: Sphinx):
+def setup(sphinxApplication: Sphinx) -> setup_ReturnType:
 	"""
 	Extension setup function registering the ``report`` domain in Sphinx.
+
+	It will execute these steps:
+
+	* register domains, directives and roles.
+	* connect events (register callbacks)
+	* register configuration variables for :file:`conf.py`
 
 	:param sphinxApplication: The Sphinx application.
 	:return:                  Dictionary containing the extension version and some properties.
@@ -168,8 +224,9 @@ def setup(sphinxApplication: Sphinx):
 	sphinxApplication.add_domain(ReportDomain)
 
 	# Register callbacks
-	for eventName, callback in ReportDomain.callbacks.items():
-		sphinxApplication.connect(eventName, callback)
+	for eventName, callbacks in ReportDomain.callbacks.items():
+		for callback in callbacks:
+			sphinxApplication.connect(eventName, callback)
 
 	# Register configuration options supported/needed in Sphinx's 'conf.py'
 	for configName, (configDefault, configRebuilt, configTypes) in ReportDomain.configValues.items():

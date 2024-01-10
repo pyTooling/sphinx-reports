@@ -42,7 +42,7 @@ from sphinx_reports.Common import ReportExtensionError, LegendPosition
 
 
 @export
-def strip(option: str):
+def strip(option: str) -> str:
 	return option.strip().lower()
 
 
@@ -96,7 +96,7 @@ class BaseDirective(ObjectDescription):
 
 	def _ParseStringOption(self, optionName: str, default: Nullable[str] = None, regexp: str = "\\w+") -> str:
 		try:
-			option = self.options[optionName]
+			option: str = self.options[optionName]
 		except KeyError as ex:
 			if default is not None:
 				return default
@@ -122,8 +122,8 @@ class BaseDirective(ObjectDescription):
 		except KeyError as ex:
 			raise ReportExtensionError(f"{self.directiveName}::{optionName}: Value '{option}' is not a valid member of 'LegendPosition'.") from ex
 
-	def _PrepareTable(self, columns: Dict[str, int], id: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
-		table = nodes.table("", id=id, classes=classes)
+	def _PrepareTable(self, columns: Dict[str, int], identifier: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
+		table = nodes.table("", identifier=identifier, classes=classes)
 
 		tableGroup = nodes.tgroup(cols=(len(columns)))
 		table += tableGroup

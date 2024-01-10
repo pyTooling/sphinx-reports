@@ -32,7 +32,6 @@
 **A Sphinx extension providing coverage details embedded in documentation pages.**
 """
 from pathlib import Path
-from sys     import version_info
 from typing  import List
 
 from docstr_coverage                   import analyze, ResultCollection
@@ -40,20 +39,12 @@ from docstr_coverage.result_collection import FileCount
 from pyTooling.Decorators              import export, readonly
 
 from sphinx_reports.Common                          import ReportExtensionError
-from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, PackageCoverage
+from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, PackageCoverage, AggregatedCoverage
 
 
 @export
 class DocStrCoverageError(ReportExtensionError):
-	# WORKAROUND: for Python <3.11
-	# Implementing a dummy method for Python versions before
-	__notes__: List[str]
-	if version_info < (3, 11):  # pragma: no cover
-		def add_note(self, message: str):
-			try:
-				self.__notes__.append(message)
-			except AttributeError:
-				self.__notes__ = [message]
+	pass
 
 
 @export
@@ -63,7 +54,7 @@ class Analyzer:
 	_moduleFiles:     List[Path]
 	_coverageReport:  str
 
-	def __init__(self, directory: Path, packageName: str):
+	def __init__(self, directory: Path, packageName: str) -> None:
 		self._searchDirectory = directory
 		self._packageName = packageName
 		self._moduleFiles = []
@@ -91,7 +82,7 @@ class Analyzer:
 		return self._coverageReport
 
 	def Analyze(self) -> ResultCollection:
-		self._coverageReport: ResultCollection = analyze(self._moduleFiles)
+		self._coverageReport: ResultCollection = analyze(self._moduleFiles, show_progress=False)
 		return self._coverageReport
 
 	def Convert(self) -> PackageCoverage:
@@ -102,10 +93,10 @@ class Analyzer:
 			perFileResult: FileCount = value.count_aggregate()
 
 			moduleName = path.stem
-			modulePath = [p.name for p in path.parents]
+			modulePath = [p.name for p in path.parents if p.name != ""]
 
-			currentCoverageObject = rootPackageCoverage
-			for packageName in modulePath[1:]:
+			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
+			for packageName in modulePath:
 				try:
 					currentCoverageObject = currentCoverageObject[packageName]
 				except KeyError:
@@ -117,6 +108,11 @@ class Analyzer:
 			currentCoverageObject._expected = perFileResult.needed
 			currentCoverageObject._covered = perFileResult.found
 			currentCoverageObject._uncovered = perFileResult.missing
-			currentCoverageObject._coverage = perFileResult.coverage()
+
+			currentCoverageObject._uncovered = currentCoverageObject._expected - currentCoverageObject._covered
+			if currentCoverageObject._expected != 0:
+				currentCoverageObject._coverage = currentCoverageObject._covered / currentCoverageObject._expected
+			else:
+				currentCoverageObject._coverage = 1.0
 
 		return rootPackageCoverage
