@@ -220,6 +220,18 @@ class ClassCoverage(Coverage):
 		self._methods = {}
 		self._classes = {}
 
+	@readonly
+	def Fields(self) -> Dict[str, CoverageState]:
+		return self._fields
+
+	@readonly
+	def Methods(self) -> Dict[str, CoverageState]:
+		return self._methods
+
+	@readonly
+	def Classes(self) -> Dict[str, "ClassCoverage"]:
+		return self._classes
+
 	def CalculateCoverage(self) -> None:
 		for cls in self._classes.values():
 			cls.CalculateCoverage()
@@ -250,6 +262,18 @@ class ModuleCoverage(AggregatedCoverage):
 		self._variables = {}
 		self._functions = {}
 		self._classes =   {}
+
+	@readonly
+	def Variables(self) -> Dict[str, CoverageState]:
+		return self._variables
+
+	@readonly
+	def Functions(self) -> Dict[str, CoverageState]:
+		return self._functions
+
+	@readonly
+	def Classes(self) -> Dict[str, ClassCoverage]:
+		return self._classes
 
 	def CalculateCoverage(self) -> None:
 		for cls in self._classes.values():
@@ -308,6 +332,27 @@ class PackageCoverage(AggregatedCoverage):
 	@readonly
 	def FileCount(self) -> int:
 		return self._fileCount
+
+	@readonly
+	def Variables(self) -> Dict[str, CoverageState]:
+		return self._variables
+
+
+	@readonly
+	def Functions(self) -> Dict[str, CoverageState]:
+		return self._functions
+
+	@readonly
+	def Classes(self) -> Dict[str, ClassCoverage]:
+		return self._classes
+
+	@readonly
+	def Modules(self) -> Dict[str, ModuleCoverage]:
+		return self._modules
+
+	@readonly
+	def Packages(self) -> Dict[str, "PackageCoverage"]:
+		return self._packages
 
 	def __getitem__(self, key: str) -> Union["PackageCoverage", ModuleCoverage]:
 		try:

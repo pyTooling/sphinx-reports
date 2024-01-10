@@ -180,7 +180,7 @@ class DocCoverage(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Expected}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.0%}")),
 				classes=["doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
 				# style="background: rgba(  0, 200,  82, .2);"
 			)
@@ -195,7 +195,7 @@ class DocCoverage(BaseDirective):
 					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.0%}")),
 					classes=["doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
@@ -209,7 +209,7 @@ class DocCoverage(BaseDirective):
 			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Expected}")),
 			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Covered}")),
 			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Uncovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Coverage:.1%}"),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Coverage:.0%}"),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
 			classes=["doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
