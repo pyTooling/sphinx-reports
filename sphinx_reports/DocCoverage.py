@@ -114,18 +114,37 @@ class DocCoverage(BaseDirective):
 			self._failBelow = int(packageConfiguration["fail_below"]) / 100
 		except KeyError as ex:
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: Configuration is missing.") from ex
+		except ValueError as ex:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: '{packageConfiguration["fail_below"]}' is not an integer in range 0..100.") from ex
 
 		if not (0.0 <= self._failBelow <= 100.0):
 			raise ReportExtensionError(
 				f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: Is out of range 0..100.")
 
-		self._levels = {
-			30:  {"class": "doccov-below30",  "background": "rgba(101,  31, 255, .2)", "desc": "almost undocumented"},
-			50:  {"class": "doccov-below50",  "background": "rgba(255,  82,  82, .2)", "desc": "poorly documented"},
-			80:  {"class": "doccov-below80",  "background": "rgba(255, 145,   0, .2)", "desc": "roughly documented"},
-			90:  {"class": "doccov-below90",  "background": "rgba(  0, 200,  82, .2)", "desc": "well documented"},
-			100: {"class": "doccov-below100", "background": "rgba(  0, 200,  82, .2)", "desc": "excellent documented"},
-		}
+		try:
+			levels = packageConfiguration["levels"]
+		except KeyError as ex:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Configuration is missing.") from ex
+
+		self._levels = {}
+		for level, levelConfig in levels.items():
+			try:
+				if not (0.0 <= int(level) <= 100.0):
+					raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is out of range 0..100.")
+			except ValueError as ex:
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not an integer in range 0..100.") from ex
+
+			try:
+				cssClass = levelConfig["class"]
+			except KeyError as ex:
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[level].class: CSS class is missing.") from ex
+
+			try:
+				description = levelConfig["desc"]
+			except KeyError as ex:
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[level].desc: Description is missing.") from ex
+
+			self._levels[level] = {"class": cssClass, "desc": description}
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
 		for levelLimit, levelConfig in self._levels.items():
