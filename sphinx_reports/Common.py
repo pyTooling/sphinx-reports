@@ -31,12 +31,14 @@
 """
 **Common exceptions, classes and helper functions..**
 """
-from enum   import Flag
-from sys    import version_info
-from typing import List
+from enum                        import Flag
+from importlib.resources         import files
+from sys                         import version_info
+from types                       import ModuleType
+from typing                      import List, Union
 
-from pyTooling.Decorators import export
-from sphinx.errors        import ExtensionError
+from pyTooling.Decorators        import export
+from sphinx.errors               import ExtensionError
 
 
 @export
@@ -58,3 +60,8 @@ class LegendPosition(Flag):
 	Top = 1
 	Bottom = 2
 	Both = 3
+
+
+@export
+def ReadResourceFile(module: Union[str, ModuleType], filename: str) -> str:
+	return files(module).joinpath(filename).read_text()

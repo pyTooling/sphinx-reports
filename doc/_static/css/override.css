@@ -99,27 +99,3 @@ section > p,
 	padding-left: 0;
 	padding-right: 0;
 }
-
-.rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td {
-	background-color: unset;
-}
-
-.doccov-below100 {
-	background: rgba(0, 200, 82, .4);
-}
-.doccov-below90 {
-	background: rgba(0, 200, 82, .2);
-}
-.doccov-below80 {
-	background: rgba(255, 145, 0, .2);
-}
-.doccov-below50 {
-	background: rgba(255, 82, 82, .2);
-}
-.doccov-below30 {
-	background: rgba(101, 31, 255, .2);
-}
-
-.doccov-summary-row {
-	font-weight: bold;
-}
