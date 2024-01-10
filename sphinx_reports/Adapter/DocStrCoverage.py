@@ -39,7 +39,7 @@ from docstr_coverage.result_collection import FileCount
 from pyTooling.Decorators              import export, readonly
 
 from sphinx_reports.Common                          import ReportExtensionError
-from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, PackageCoverage
+from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, PackageCoverage, AggregatedCoverage
 
 
 @export
@@ -54,7 +54,7 @@ class Analyzer:
 	_moduleFiles:     List[Path]
 	_coverageReport:  str
 
-	def __init__(self, directory: Path, packageName: str):
+	def __init__(self, directory: Path, packageName: str) -> None:
 		self._searchDirectory = directory
 		self._packageName = packageName
 		self._moduleFiles = []
@@ -95,7 +95,7 @@ class Analyzer:
 			moduleName = path.stem
 			modulePath = [p.name for p in path.parents]
 
-			currentCoverageObject = rootPackageCoverage
+			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
 			for packageName in modulePath[1:]:
 				try:
 					currentCoverageObject = currentCoverageObject[packageName]

@@ -46,7 +46,7 @@ __license__ =   "Apache License, Version 2.0"
 __version__ =   "0.3.0"
 __keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate"]
 
-from typing import Any, Tuple, Dict, Optional as Nullable
+from typing import Any, Tuple, Dict, Optional as Nullable, TypedDict, List
 
 from docutils import nodes
 from pyTooling.Decorators import export
@@ -85,7 +85,7 @@ class ReportDomain(Domain):
 	name =  "report"  #: The name of this domain
 	label = "rpt"     #: The label of this domain
 
-	dependencies = [
+	dependencies: List[str] = [
 	]  #: A list of other extensions this domain depends on.
 
 	from sphinx_reports.CodeCoverage import CodeCoverage
@@ -103,9 +103,9 @@ class ReportDomain(Domain):
 		# "design":   DesignRole,
 	}  #: A dictionary of all roles in this domain.
 
-	indices = {
+	indices = [
 		# LibraryIndex,
-	}  #: A dictionary of all indices in this domain.
+	]  #: A list of all indices in this domain.
 
 	configValues: Dict[str, Tuple[Any, str, Any]] = {
 		"designs":  ({}, "env", Dict),
@@ -157,8 +157,15 @@ class ReportDomain(Domain):
 		raise NotImplementedError()
 
 
+class setup_ReturnType(TypedDict):
+	version: str
+	env_version: int
+	parallel_read_safe: bool
+	parallel_write_safe: bool
+
+
 @export
-def setup(sphinxApplication: Sphinx):
+def setup(sphinxApplication: Sphinx) -> setup_ReturnType:
 	"""
 	Extension setup function registering the ``report`` domain in Sphinx.
 

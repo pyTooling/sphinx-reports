@@ -34,7 +34,7 @@
 
 from enum    import Flag
 from pathlib import Path
-from typing  import Optional as Nullable, Iterable, Dict, Union
+from typing import Optional as Nullable, Iterable, Dict, Union, Tuple
 
 from pyTooling.Decorators import export, readonly
 
@@ -60,7 +60,7 @@ class CoverageState(Flag):
 @export
 class Coverage:
 	_name:      str
-	_parent:    "Coverage"
+	_parent:    Nullable["Coverage"]
 
 	_total:     int
 	_excluded:  int
@@ -71,7 +71,7 @@ class Coverage:
 
 	_coverage:  float
 
-	def __init__(self, name: str, parent: Nullable["Coverage"] = None):
+	def __init__(self, name: str, parent: Nullable["Coverage"] = None) -> None:
 		self._name =   name
 		self._parent = parent
 
@@ -89,7 +89,7 @@ class Coverage:
 		return self._name
 
 	@readonly
-	def Parent(self) -> "Coverage":
+	def Parent(self) -> Nullable["Coverage"]:
 		return self._parent
 
 	@readonly
@@ -120,14 +120,14 @@ class Coverage:
 	def Coverage(self) -> float:
 		return self._coverage
 
-	def CalculateCoverage(self):
+	def CalculateCoverage(self) -> None:
 		self._uncovered = self._expected - self._covered
 		if self._expected != 0:
 			self._coverage = self._covered / self._expected
 		else:
 			self._coverage = 1.0
 
-	def _CountCoverage(self, iterator: Iterable[CoverageState]):
+	def _CountCoverage(self, iterator: Iterable[CoverageState]) -> Tuple[int, int, int, int, int]:
 		total =    0
 		excluded = 0
 		ignored =  0
@@ -153,6 +153,7 @@ class Coverage:
 
 @export
 class AggregatedCoverage(Coverage):
+	_file:                Path
 	_aggregatedTotal:     int
 	_aggregatedExcluded:  int
 	_aggregatedIgnored:   int
@@ -161,6 +162,10 @@ class AggregatedCoverage(Coverage):
 	_aggregatedUncovered: int
 
 	_aggregatedCoverage:  float
+
+	@readonly
+	def File(self) -> Path:
+		return self._file
 
 	@readonly
 	def AggregatedTotal(self) -> int:
@@ -205,7 +210,7 @@ class ClassCoverage(Coverage):
 	_methods: Dict[str, CoverageState]
 	_classes: Dict[str, "ClassCoverage"]
 
-	def __init__(self, name: str, parent: Union["PackageCoverage", "ClassCoverage", None] = None):
+	def __init__(self, name: str, parent: Union["PackageCoverage", "ClassCoverage", None] = None) -> None:
 		super().__init__(name, parent)
 
 		if parent is not None:
@@ -215,7 +220,7 @@ class ClassCoverage(Coverage):
 		self._methods = {}
 		self._classes = {}
 
-	def CalculateCoverage(self):
+	def CalculateCoverage(self) -> None:
 		for cls in self._classes.values():
 			cls.CalculateCoverage()
 
@@ -230,13 +235,11 @@ class ClassCoverage(Coverage):
 
 @export
 class ModuleCoverage(AggregatedCoverage):
-	_file:      Path
-	_name:      str
 	_variables: Dict[str, CoverageState]
 	_functions: Dict[str, CoverageState]
 	_classes:   Dict[str, ClassCoverage]
 
-	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None):
+	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None) -> None:
 		super().__init__(name, parent)
 
 		if parent is not None:
@@ -248,11 +251,7 @@ class ModuleCoverage(AggregatedCoverage):
 		self._functions = {}
 		self._classes =   {}
 
-	@readonly
-	def File(self) -> Path:
-		return self._file
-
-	def CalculateCoverage(self):
+	def CalculateCoverage(self) -> None:
 		for cls in self._classes.values():
 			cls.CalculateCoverage()
 
@@ -285,7 +284,6 @@ class ModuleCoverage(AggregatedCoverage):
 
 @export
 class PackageCoverage(AggregatedCoverage):
-	_file:      Path
 	_fileCount: int
 	_variables: Dict[str, CoverageState]
 	_functions: Dict[str, CoverageState]
@@ -293,7 +291,7 @@ class PackageCoverage(AggregatedCoverage):
 	_modules:   Dict[str, ModuleCoverage]
 	_packages:  Dict[str, "PackageCoverage"]
 
-	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None):
+	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None) -> None:
 		super().__init__(name, parent)
 
 		if parent is not None:
@@ -308,10 +306,6 @@ class PackageCoverage(AggregatedCoverage):
 		self._packages =  {}
 
 	@readonly
-	def File(self) -> Path:
-		return self._file
-
-	@readonly
 	def FileCount(self) -> int:
 		return self._fileCount
 
@@ -321,7 +315,7 @@ class PackageCoverage(AggregatedCoverage):
 		except KeyError:
 			return self._packages[key]
 
-	def CalculateCoverage(self):
+	def CalculateCoverage(self) -> None:
 		for cls in self._classes.values():
 			cls.CalculateCoverage()
 

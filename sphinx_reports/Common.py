@@ -45,7 +45,7 @@ class ReportExtensionError(ExtensionError):
 	# Implementing a dummy method for Python versions before
 	__notes__: List[str]
 	if version_info < (3, 11):  # pragma: no cover
-		def add_note(self, message: str):
+		def add_note(self, message: str) -> None:
 			try:
 				self.__notes__.append(message)
 			except AttributeError:

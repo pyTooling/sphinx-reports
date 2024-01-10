@@ -42,7 +42,7 @@ from sphinx_reports.Common import ReportExtensionError, LegendPosition
 
 
 @export
-def strip(option: str):
+def strip(option: str) -> str:
 	return option.strip().lower()
 
 
@@ -96,7 +96,7 @@ class BaseDirective(ObjectDescription):
 
 	def _ParseStringOption(self, optionName: str, default: Nullable[str] = None, regexp: str = "\\w+") -> str:
 		try:
-			option = self.options[optionName]
+			option: str = self.options[optionName]
 		except KeyError as ex:
 			if default is not None:
 				return default

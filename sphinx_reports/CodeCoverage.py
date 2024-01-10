@@ -32,15 +32,22 @@
 **Report code coverage as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator
+from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict
 
 from docutils             import nodes
 from pyTooling.Decorators import export
 
 from sphinx_reports.Common                          import ReportExtensionError
 from sphinx_reports.Sphinx                          import strip, LegendPosition, BaseDirective
-from sphinx_reports.DataModel.DocumentationCoverage import PackageCoverage
+from sphinx_reports.DataModel.DocumentationCoverage import PackageCoverage, AggregatedCoverage
 from sphinx_reports.Adapter.DocStrCoverage          import Analyzer
+
+
+class package_DictType(TypedDict):
+	name: str
+	directory: str
+	fail_below: int
+	levels: Dict[int, Dict[str, str]]
 
 
 @export
@@ -71,15 +78,15 @@ class CodeCoverage(BaseDirective):
 	_levels:      Dict[int, Dict[str, str]]
 	_coverage:    PackageCoverage
 
-	def _CheckOptions(self):
+	def _CheckOptions(self) -> None:
 		# Parse all directive options or use default values
 		self._packageID = self._ParseStringOption("packageid")
 		self._legend = self._ParseLegendOption("legend", LegendPosition.Bottom)
 
-	def _CheckConfiguration(self):
+	def _CheckConfiguration(self) -> None:
 		# Check configuration fields and load necessary values
 		try:
-			allPackages = self.config[f"{self.configPrefix}_packages"]
+			allPackages: Dict[str, package_DictType] = self.config[f"{self.configPrefix}_packages"]
 		except (KeyError, AttributeError) as ex:
 			raise ReportExtensionError(f"Configuration option '{self.configPrefix}_packages' is not configured.") from ex
 
@@ -118,7 +125,7 @@ class CodeCoverage(BaseDirective):
 			100: {"class": "doccov-below100", "background": "rgba(  0, 200,  82, .2)", "desc": "excellent documented"},
 		}
 
-	def _ConvertToColor(self, currentLevel, configKey):
+	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
 		for levelLimit, levelConfig in self._levels.items():
 			if (currentLevel * 100) < levelLimit:
 				return levelConfig[configKey]
@@ -141,11 +148,11 @@ class CodeCoverage(BaseDirective):
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
-		def sortedValues(d: Mapping) -> Generator[Any, None, None]:
+		def sortedValues(d: Mapping[str, AggregatedCoverage]) -> Generator[AggregatedCoverage, None, None]:
 			for key in sorted(d.keys()):
 				yield d[key]
 
-		def renderlevel(tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0):
+		def renderlevel(tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
 			tableBody += nodes.row(
 				"",
 				nodes.entry("", nodes.paragraph(text=f"{' '*level}{packageCoverage.Name} ({packageCoverage.File})")),
@@ -217,7 +224,7 @@ class CodeCoverage(BaseDirective):
 
 		return [rubric, table]
 
-	def run(self):
+	def run(self) -> List[nodes.Node]:
 		self._CheckOptions()
 		self._CheckConfiguration()
 
