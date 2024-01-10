@@ -191,7 +191,7 @@ class DocCoverage(BaseDirective):
 			for module in sortedValues(packageCoverage._modules):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)} {module.Name}")),
+					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),

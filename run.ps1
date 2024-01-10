@@ -164,6 +164,9 @@ if ($livecov)
   Write-Host -ForegroundColor DarkMagenta "[live][COV]  Convert coverage report to XML (Cobertura) ..."
   coverage xml
 
+  Write-Host -ForegroundColor DarkMagenta "[live][COV]  Convert coverage report to JSON ..."
+  coverage json
+
   Write-Host -ForegroundColor DarkMagenta "[live][COV]  Write coverage report to console ..."
   coverage report
 

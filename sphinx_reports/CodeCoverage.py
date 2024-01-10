@@ -44,10 +44,10 @@ from sphinx_reports.Adapter.DocStrCoverage          import Analyzer
 
 
 class package_DictType(TypedDict):
-	name: str
-	directory: str
-	fail_below: int
-	levels: Dict[int, Dict[str, str]]
+	name:        str
+	html_report: str
+	fail_below:  int
+	levels:      Dict[int, Dict[str, str]]
 
 
 @export
@@ -67,13 +67,13 @@ class CodeCoverage(BaseDirective):
 	directiveName: str = "code-coverage"
 	configPrefix:  str = "codecov"
 	configValues:  Dict[str, Tuple[Any, str, Any]] = {
-		"packages": ({}, "env", Dict)
+		f"{configPrefix}_packages": ({}, "env", Dict)
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
 	_packageID:   str
 	_legend:      LegendPosition
 	_packageName: str
-	_directory:   Path
+	_html_report: Path
 	_failBelow:   float
 	_levels:      Dict[int, Dict[str, str]]
 	_coverage:    PackageCoverage
@@ -84,46 +84,67 @@ class CodeCoverage(BaseDirective):
 		self._legend = self._ParseLegendOption("legend", LegendPosition.Bottom)
 
 	def _CheckConfiguration(self) -> None:
+		from sphinx_reports import ReportDomain
+
 		# Check configuration fields and load necessary values
 		try:
-			allPackages: Dict[str, package_DictType] = self.config[f"{self.configPrefix}_packages"]
+			allPackages: Dict[str, package_DictType] = self.config[f"{ReportDomain.name}_{self.configPrefix}_packages"]
 		except (KeyError, AttributeError) as ex:
-			raise ReportExtensionError(f"Configuration option '{self.configPrefix}_packages' is not configured.") from ex
+			raise ReportExtensionError(f"Configuration option '{ReportDomain.name}_{self.configPrefix}_packages' is not configured.") from ex
 
 		try:
 			packageConfiguration = allPackages[self._packageID]
 		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages: No configuration found for '{self._packageID}'.") from ex
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages: No configuration found for '{self._packageID}'.") from ex
 
 		try:
 			self._packageName = packageConfiguration["name"]
 		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.name: Configuration is missing.") from ex
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.name: Configuration is missing.") from ex
 
 		try:
-			self._directory = Path(packageConfiguration["directory"])
+			self._html_report = Path(packageConfiguration["html_report"])
 		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.directory: Configuration is missing.") from ex
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.html_report: Configuration is missing.") from ex
 
-		if not self._directory.exists():
-			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.directory: Directory doesn't exist.") from FileNotFoundError(self._directory)
+		if not self._html_report.exists():
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.html_report: Report directory doesn't exist.") from FileNotFoundError(self._html_report)
 
 		try:
 			self._failBelow = int(packageConfiguration["fail_below"]) / 100
 		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {self.configPrefix}_packages:{self._packageID}.fail_below: Configuration is missing.") from ex
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: Configuration is missing.") from ex
+		except ValueError as ex:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: '{packageConfiguration['fail_below']}' is not an integer in range 0..100.") from ex
 
 		if not (0.0 <= self._failBelow <= 100.0):
 			raise ReportExtensionError(
-				f"conf.py: {self.configPrefix}_packages:{self._packageID}.fail_below: Is out of range 0..100.")
+				f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: Is out of range 0..100.")
 
-		self._levels = {
-			30:  {"class": "doccov-below30",  "background": "rgba(101,  31, 255, .2)", "desc": "almost undocumented"},
-			50:  {"class": "doccov-below50",  "background": "rgba(255,  82,  82, .2)", "desc": "poorly documented"},
-			80:  {"class": "doccov-below80",  "background": "rgba(255, 145,   0, .2)", "desc": "roughly documented"},
-			90:  {"class": "doccov-below90",  "background": "rgba(  0, 200,  82, .2)", "desc": "well documented"},
-			100: {"class": "doccov-below100", "background": "rgba(  0, 200,  82, .2)", "desc": "excellent documented"},
-		}
+		try:
+			levels = packageConfiguration["levels"]
+		except KeyError as ex:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Configuration is missing.") from ex
+
+		self._levels = {}
+		for level, levelConfig in levels.items():
+			try:
+				if not (0.0 <= int(level) <= 100.0):
+					raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is out of range 0..100.")
+			except ValueError as ex:
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not an integer in range 0..100.") from ex
+
+			try:
+				cssClass = levelConfig["class"]
+			except KeyError as ex:
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[level].class: CSS class is missing.") from ex
+
+			try:
+				description = levelConfig["desc"]
+			except KeyError as ex:
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[level].desc: Description is missing.") from ex
+
+			self._levels[level] = {"class": cssClass, "desc": description}
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
 		for levelLimit, levelConfig in self._levels.items():
@@ -155,7 +176,7 @@ class CodeCoverage(BaseDirective):
 		def renderlevel(tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{' '*level}{packageCoverage.Name} ({packageCoverage.File})")),
+				nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Expected}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
@@ -170,7 +191,7 @@ class CodeCoverage(BaseDirective):
 			for module in sortedValues(packageCoverage._modules):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"{' '*level}{module.Name} ({module.File})")),
+					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
@@ -185,10 +206,10 @@ class CodeCoverage(BaseDirective):
 		tableBody += nodes.row(
 			"",
 			nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Expected}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Covered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Uncovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Coverage:.1%}"),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedExpected}")),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCovered}")),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedUncovered}")),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoverage:.1%}"),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
 			classes=["doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
@@ -229,7 +250,7 @@ class CodeCoverage(BaseDirective):
 		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._directory, self._packageName)
+		analyzer = Analyzer(self._html_report, self._packageName)
 		analyzer.Analyze()
 		self._coverage = analyzer.Convert()
 		# self._coverage.CalculateCoverage()

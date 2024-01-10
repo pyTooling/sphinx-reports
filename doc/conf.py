@@ -269,6 +269,14 @@ _levels = {
 	100: {"class": "doccov-below100", "desc": "excellent documented"}
 }
 
+report_codecov_packages = {
+	"src": {
+		"name":        "sphinx_reports",
+		"html_report": "../report/coverage/html",
+		"fail_below":  80,
+		"levels":      _levels
+	}
+}
 report_doccov_packages = {
 	"src": {
 		"name":       "sphinx_reports",

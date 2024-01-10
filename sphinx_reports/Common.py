@@ -29,7 +29,7 @@
 # ==================================================================================================================== #
 #
 """
-**Common exceptions, classes and helper functions..**
+**Common exceptions, classes and helper functions.**
 """
 from enum                        import Flag
 from importlib.resources         import files
