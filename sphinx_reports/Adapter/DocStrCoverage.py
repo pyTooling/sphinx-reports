@@ -32,7 +32,6 @@
 **A Sphinx extension providing coverage details embedded in documentation pages.**
 """
 from pathlib import Path
-from sys     import version_info
 from typing  import List
 
 from docstr_coverage                   import analyze, ResultCollection
@@ -45,15 +44,7 @@ from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, Packa
 
 @export
 class DocStrCoverageError(ReportExtensionError):
-	# WORKAROUND: for Python <3.11
-	# Implementing a dummy method for Python versions before
-	__notes__: List[str]
-	if version_info < (3, 11):  # pragma: no cover
-		def add_note(self, message: str):
-			try:
-				self.__notes__.append(message)
-			except AttributeError:
-				self.__notes__ = [message]
+	pass
 
 
 @export
