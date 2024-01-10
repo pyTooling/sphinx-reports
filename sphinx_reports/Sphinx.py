@@ -110,7 +110,7 @@ class BaseDirective(ObjectDescription):
 
 	def _ParseLegendOption(self, optionName: str, default: Nullable[LegendPosition] = None) -> LegendPosition:
 		try:
-			option = self.options[optionName]
+			option = self.options[optionName].lower()
 		except KeyError as ex:
 			if default is not None:
 				return default

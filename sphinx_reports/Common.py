@@ -56,10 +56,10 @@ class ReportExtensionError(ExtensionError):
 
 @export
 class LegendPosition(Flag):
-	NoLegend = 0
-	Top = 1
-	Bottom = 2
-	Both = 3
+	no_legend = 0
+	top = 1
+	bottom = 2
+	both = 3
 
 
 @export

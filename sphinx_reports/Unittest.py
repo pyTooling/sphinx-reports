@@ -81,7 +81,7 @@ class UnittestSummary(BaseDirective):
 	def _CheckOptions(self) -> None:
 		# Parse all directive options or use default values
 		self._packageID = self._ParseStringOption("packageid")
-		self._legend = self._ParseLegendOption("legend", LegendPosition.Bottom)
+		self._legend = self._ParseLegendOption("legend", LegendPosition.bottom)
 
 	def _CheckConfiguration(self) -> None:
 		# Check configuration fields and load necessary values
@@ -237,12 +237,12 @@ class UnittestSummary(BaseDirective):
 
 		container = nodes.container()
 
-		if LegendPosition.Top in self._legend:
+		if LegendPosition.top in self._legend:
 			container += self._CreateLegend(identifier="legend1", classes=["doccov-legend"])
 
 		container += self._GenerateCoverageTable()
 
-		if LegendPosition.Bottom in self._legend:
+		if LegendPosition.bottom in self._legend:
 			container += self._CreateLegend(identifier="legend2", classes=["doccov-legend"])
 
 		return [container]
