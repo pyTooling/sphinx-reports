@@ -115,7 +115,7 @@ class DocCoverage(BaseDirective):
 		except KeyError as ex:
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: Configuration is missing.") from ex
 		except ValueError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: '{packageConfiguration["fail_below"]}' is not an integer in range 0..100.") from ex
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: '{packageConfiguration['fail_below']}' is not an integer in range 0..100.") from ex
 
 		if not (0.0 <= self._failBelow <= 100.0):
 			raise ReportExtensionError(
