@@ -116,7 +116,8 @@ class ReportDomain(Domain):
 	configValues: Dict[str, Tuple[Any, str, Any]] = {
 		"designs":  ({}, "env", Dict),
 		"defaults": ({}, "env", Dict),
-		**DocStrCoverage.configValues
+		**DocStrCoverage.configValues,
+		**CodeCoverage.configValues
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
 	initial_data = {

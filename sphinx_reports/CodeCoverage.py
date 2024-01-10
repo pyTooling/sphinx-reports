@@ -37,10 +37,10 @@ from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedD
 from docutils             import nodes
 from pyTooling.Decorators import export
 
-from sphinx_reports.Common                          import ReportExtensionError
-from sphinx_reports.Sphinx                          import strip, LegendPosition, BaseDirective
-from sphinx_reports.DataModel.DocumentationCoverage import PackageCoverage, AggregatedCoverage
-from sphinx_reports.Adapter.DocStrCoverage          import Analyzer
+from sphinx_reports.Common                 import ReportExtensionError
+from sphinx_reports.Sphinx                 import strip, LegendPosition, BaseDirective
+from sphinx_reports.DataModel.CodeCoverage import PackageCoverage
+from sphinx_reports.Adapter.Coverage       import Analyzer
 
 
 class package_DictType(TypedDict):
@@ -251,17 +251,16 @@ class CodeCoverage(BaseDirective):
 
 		# Assemble a list of Python source files
 		analyzer = Analyzer(self._html_report, self._packageName)
-		analyzer.Analyze()
-		self._coverage = analyzer.Convert()
-		# self._coverage.CalculateCoverage()
-		self._coverage.Aggregate()
+		# analyzer.Analyze()
+		# self._coverage = analyzer.Convert()
+		# self._coverage.Aggregate()
 
 		container = nodes.container()
 
 		if LegendPosition.top in self._legend:
 			container += self._CreateLegend(identifier="legend1", classes=["doccov-legend"])
 
-		container += self._GenerateCoverageTable()
+		# container += self._GenerateCoverageTable()
 
 		if LegendPosition.bottom in self._legend:
 			container += self._CreateLegend(identifier="legend2", classes=["doccov-legend"])
