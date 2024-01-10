@@ -41,15 +41,78 @@ if __name__ == "__main__":
 	exit(1)
 
 
-class Undocumented(TestCase):
-	def test_Package(self) -> None:
+class Coverage(TestCase):
+	def test_Undocumented(self) -> None:
 		packageName = "undocumented"
 		packageDirectory = Path(f"tests/packages/{packageName}")
 
 		analyzer = Analyzer(packageDirectory, packageName)
 		analyzer.Analyze()
 		coverage = analyzer.Convert()
-		# coverage.CalculateCoverage()
 		coverage.Aggregate()
 
-		cov = coverage.Coverage
+		self.assertEqual(0, coverage.AggregatedTotal)
+		self.assertEqual(0, coverage.AggregatedExcluded)
+		self.assertEqual(0, coverage.AggregatedIgnored)
+		self.assertEqual(12, coverage.AggregatedExpected)
+		self.assertEqual(0, coverage.AggregatedCovered)
+		self.assertEqual(12, coverage.AggregatedUncovered)
+		self.assertEqual(0.0, coverage.AggregatedCoverage)
+
+		self.assertEqual(0, coverage.Total)
+		self.assertEqual(0, coverage.Excluded)
+		self.assertEqual(0, coverage.Ignored)
+		self.assertEqual(6, coverage.Expected)
+		self.assertEqual(0, coverage.Covered)
+		self.assertEqual(6, coverage.Uncovered)
+		self.assertEqual(0.0, coverage.Coverage)
+
+	def test_Partial(self) -> None:
+		packageName = "partially"
+		packageDirectory = Path(f"tests/packages/{packageName}")
+
+		analyzer = Analyzer(packageDirectory, packageName)
+		analyzer.Analyze()
+		coverage = analyzer.Convert()
+		coverage.Aggregate()
+
+		self.assertEqual(0, coverage.AggregatedTotal)
+		self.assertEqual(0, coverage.AggregatedExcluded)
+		self.assertEqual(0, coverage.AggregatedIgnored)
+		self.assertEqual(12, coverage.AggregatedExpected)
+		self.assertEqual(5, coverage.AggregatedCovered)
+		self.assertEqual(7, coverage.AggregatedUncovered)
+		self.assertAlmostEqual(0.417, coverage.AggregatedCoverage, 3)
+
+		self.assertEqual(0, coverage.Total)
+		self.assertEqual(0, coverage.Excluded)
+		self.assertEqual(0, coverage.Ignored)
+		self.assertEqual(6, coverage.Expected)
+		self.assertEqual(3, coverage.Covered)
+		self.assertEqual(3, coverage.Uncovered)
+		self.assertEqual(0.5, coverage.Coverage)
+
+	def test_Documented(self) -> None:
+		packageName = "documented"
+		packageDirectory = Path(f"tests/packages/{packageName}")
+
+		analyzer = Analyzer(packageDirectory, packageName)
+		analyzer.Analyze()
+		coverage = analyzer.Convert()
+		coverage.Aggregate()
+
+		self.assertEqual(0, coverage.AggregatedTotal)
+		self.assertEqual(0, coverage.AggregatedExcluded)
+		self.assertEqual(0, coverage.AggregatedIgnored)
+		self.assertEqual(12, coverage.AggregatedExpected)
+		self.assertEqual(12, coverage.AggregatedCovered)
+		self.assertEqual(0, coverage.AggregatedUncovered)
+		self.assertEqual(1.0, coverage.AggregatedCoverage)
+
+		self.assertEqual(0, coverage.Total)
+		self.assertEqual(0, coverage.Excluded)
+		self.assertEqual(0, coverage.Ignored)
+		self.assertEqual(6, coverage.Expected)
+		self.assertEqual(6, coverage.Covered)
+		self.assertEqual(0, coverage.Uncovered)
+		self.assertEqual(1.0, coverage.Coverage)
