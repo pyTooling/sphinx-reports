@@ -47,7 +47,9 @@ Each report directive might require an individual configuration, therefore see t
 
 ## Documentation Coverage
 
-    DocCov: write introduction
+```
+DocCov: write introduction
+```
 
 
 ### Quick Configuration
@@ -61,7 +63,7 @@ details.
    directive. Here, the ID is called `src` (dictionary key). Each package needs 4 configuration entries:
 
    * `name`  
-     Name of the Python package[^PkgNameVsPkgDir].
+     Name of the Python package[^1].
    * `directory`  
      The directory of the package to analyze.
    * `fail_below`  
@@ -100,20 +102,29 @@ details.
       :packageid: src
    ```
 
+[^1]: Toplevel Python packages can reside in a directory not matching the package name. This is possible because the
+      toplevel package name is set in the package installation description. This is not good practice, but possible and
+      unfortunately widely used. E.g. `src` as directory name.
 
 ## Code Coverage
 
-    CodeCov: write introduction
+```
+CodeCov: write introduction
+```
 
 
 ## Unit Test Summary
 
-    UnitTest: write introduction
+```
+UnitTest: write introduction
+```
 
 
 ## Dependencies
 
-    Dep: write introduction
+```
+Dep: write introduction
+```
 
 
 ## Contributors

@@ -122,13 +122,13 @@ class UnittestSummary(BaseDirective):
 		for levelLimit, levelConfig in self._levels.items():
 			if (currentLevel * 100) < levelLimit:
 				return levelConfig[configKey]
-		else:
-			return self._levels[100][configKey]
+
+		return self._levels[100][configKey]
 
 	def _GenerateCoverageTable(self) -> nodes.table:
 		# Create a table and table header with 5 columns
 		table, tableGroup = self._PrepareTable(
-			id=self._packageID,
+			identifier=self._packageID,
 			columns={
 				"Filename": 500,
 				"Total": 100,
@@ -189,10 +189,10 @@ class UnittestSummary(BaseDirective):
 
 		return table
 
-	def _CreateLegend(self, id: str, classes: Iterable[str]) -> List[nodes.Element]:
+	def _CreateLegend(self, identifier: str, classes: Iterable[str]) -> List[nodes.Element]:
 		rubric = nodes.rubric("", text="Legend")
 
-		table = nodes.table("", id=id, classes=classes)
+		table = nodes.table("", id=identifier, classes=classes)
 
 		tableGroup = nodes.tgroup(cols=2)
 		table += tableGroup
@@ -231,11 +231,11 @@ class UnittestSummary(BaseDirective):
 		container = nodes.container()
 
 		if LegendPosition.Top in self._legend:
-			container += self._CreateLegend(id="legend1", classes=["doccov-legend"])
+			container += self._CreateLegend(identifier="legend1", classes=["doccov-legend"])
 
 		container += self._GenerateCoverageTable()
 
 		if LegendPosition.Bottom in self._legend:
-			container += self._CreateLegend(id="legend2", classes=["doccov-legend"])
+			container += self._CreateLegend(identifier="legend2", classes=["doccov-legend"])
 
 		return [container]

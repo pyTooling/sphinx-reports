@@ -122,8 +122,8 @@ class BaseDirective(ObjectDescription):
 		except KeyError as ex:
 			raise ReportExtensionError(f"{self.directiveName}::{optionName}: Value '{option}' is not a valid member of 'LegendPosition'.") from ex
 
-	def _PrepareTable(self, columns: Dict[str, int], id: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
-		table = nodes.table("", id=id, classes=classes)
+	def _PrepareTable(self, columns: Dict[str, int], identifier: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
+		table = nodes.table("", identifier=identifier, classes=classes)
 
 		tableGroup = nodes.tgroup(cols=(len(columns)))
 		table += tableGroup

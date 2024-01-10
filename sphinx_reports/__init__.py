@@ -74,7 +74,7 @@ class ReportDomain(Domain):
 
 	* *None*
 
-  .. rubric:: Configuration variables
+	.. rubric:: Configuration variables
 
 	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:
 
