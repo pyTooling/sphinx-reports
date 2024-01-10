@@ -244,6 +244,9 @@ class ClassCoverage(Coverage):
 
 		super().CalculateCoverage()
 
+	def __str__(self) -> str:
+		return f"<ClassCoverage - tot:{self._total}, ex:{self._excluded}, ig:{self._ignored}, exp:{self._expected}, cov:{self._covered}, un:{self._uncovered} => {self._coverage:.1%}>"
+
 
 @export
 class ModuleCoverage(AggregatedCoverage):
@@ -304,6 +307,9 @@ class ModuleCoverage(AggregatedCoverage):
 			self._aggregatedUncovered += cls._uncovered
 
 		super().Aggregate()
+
+	def __str__(self) -> str:
+		return f"<ModuleCoverage - tot:{self._total}|{self._aggregatedTotal}, ex:{self._excluded}|{self._aggregatedExcluded}, ig:{self._ignored}|{self._aggregatedIgnored}, exp:{self._expected}|{self._aggregatedExpected}, cov:{self._covered}|{self._aggregatedCovered}, un:{self._uncovered}|{self._aggregatedUncovered} => {self._coverage:.1%}|{self._aggregatedCoverage:.1%}>"
 
 
 @export
@@ -407,3 +413,6 @@ class PackageCoverage(AggregatedCoverage):
 			self._aggregatedUncovered += mod._uncovered
 
 		super().Aggregate()
+
+	def __str__(self) -> str:
+		return f"<PackageCoverage - tot:{self._total}|{self._aggregatedTotal}, ex:{self._excluded}|{self._aggregatedExcluded}, ig:{self._ignored}|{self._aggregatedIgnored}, exp:{self._expected}|{self._aggregatedExpected}, cov:{self._covered}|{self._aggregatedCovered}, un:{self._uncovered}|{self._aggregatedUncovered} => {self._coverage:.1%}|{self._aggregatedCoverage:.1%}>"

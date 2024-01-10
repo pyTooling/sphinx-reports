@@ -176,11 +176,11 @@ class DocCoverage(BaseDirective):
 		def renderlevel(tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{' '*level}{packageCoverage.Name} ({packageCoverage.File})")),
+				nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Expected}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.0%}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
 				classes=["doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
 				# style="background: rgba(  0, 200,  82, .2);"
 			)
@@ -191,11 +191,11 @@ class DocCoverage(BaseDirective):
 			for module in sortedValues(packageCoverage._modules):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"{' '*level}{module.Name} ({module.File})")),
+					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)} {module.Name}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.0%}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
 					classes=["doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
@@ -206,10 +206,10 @@ class DocCoverage(BaseDirective):
 		tableBody += nodes.row(
 			"",
 			nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Expected}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Covered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Uncovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Coverage:.0%}"),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedExpected}")),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCovered}")),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedUncovered}")),
+			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoverage:.1%}"),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
 			classes=["doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]

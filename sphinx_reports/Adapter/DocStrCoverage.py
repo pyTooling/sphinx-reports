@@ -82,7 +82,7 @@ class Analyzer:
 		return self._coverageReport
 
 	def Analyze(self) -> ResultCollection:
-		self._coverageReport: ResultCollection = analyze(self._moduleFiles)
+		self._coverageReport: ResultCollection = analyze(self._moduleFiles, show_progress=False)
 		return self._coverageReport
 
 	def Convert(self) -> PackageCoverage:
@@ -93,10 +93,10 @@ class Analyzer:
 			perFileResult: FileCount = value.count_aggregate()
 
 			moduleName = path.stem
-			modulePath = [p.name for p in path.parents]
+			modulePath = [p.name for p in path.parents if p.name != ""]
 
 			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
-			for packageName in modulePath[1:]:
+			for packageName in modulePath:
 				try:
 					currentCoverageObject = currentCoverageObject[packageName]
 				except KeyError:
