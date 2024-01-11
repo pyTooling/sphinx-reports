@@ -109,10 +109,12 @@ class Analyzer:
 			currentCoverageObject._covered = perFileResult.found
 			currentCoverageObject._uncovered = perFileResult.missing
 
-			currentCoverageObject._uncovered = currentCoverageObject._expected - currentCoverageObject._covered
 			if currentCoverageObject._expected != 0:
 				currentCoverageObject._coverage = currentCoverageObject._covered / currentCoverageObject._expected
 			else:
 				currentCoverageObject._coverage = 1.0
+
+			if currentCoverageObject._uncovered != currentCoverageObject._expected - currentCoverageObject._covered:
+				currentCoverageObject._coverage = -2.0
 
 		return rootPackageCoverage

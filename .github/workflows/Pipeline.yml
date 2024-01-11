@@ -6,7 +6,7 @@ on:
 
 jobs:
   UnitTestingParams:
-    uses: pyTooling/Actions/.github/workflows/Parameters.yml@sphinx
+    uses: pyTooling/Actions/.github/workflows/Parameters.yml@cov
     with:
       name: sphinx-reports
       python_version_list: "3.9 3.10 3.11 3.12 pypy-3.9 pypy-3.10"
@@ -119,7 +119,7 @@ jobs:
 #      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
 
   Documentation:
-    uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@sphinx
+    uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@cov
     needs:
       - UnitTestingParams
       - PublishCoverageResults

@@ -32,7 +32,7 @@
 **Report code coverage as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union
+from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union
 
 from docutils             import nodes
 from pyTooling.Decorators import export
@@ -173,8 +173,8 @@ class CodeCoverage(BaseDirective):
 			columns={
 				"Module": 500,
 				"Statements": 100,
-				"Missing": 100,
 				"Excluded": 100,
+				"Missing": 100,
 				"Branches": 100,
 				"Partial": 100,
 				"Coverage in %": 100
