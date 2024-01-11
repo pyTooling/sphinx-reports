@@ -6,9 +6,9 @@ on:
 
 jobs:
   UnitTestingParams:
-    uses: pyTooling/Actions/.github/workflows/Parameters.yml@cov
+    uses: pyTooling/Actions/.github/workflows/Parameters.yml@sphinx
     with:
-      name: sphinx-eports
+      name: sphinx-reports
       python_version_list: "3.9 3.10 3.11 3.12 pypy-3.9 pypy-3.10"
 #      disable_list: "windows:pypy-3.8 windows:pypy-3.9 windows:pypy-3.10"
 
@@ -23,15 +23,14 @@ jobs:
       unittest_xml_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}
       coverage_sqlite_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}
 
-#  Coverage:
-#    uses: pyTooling/Actions/.github/workflows/CoverageCollection.yml@cov
-#    needs:
-#      - UnitTestingParams
-#    with:
-#      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
-#      artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_html }}
-#    secrets:
-#      codacy_token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+  Package:
+    uses: pyTooling/Actions/.github/workflows/Package.yml@cov
+    needs:
+      - UnitTestingParams
+      - UnitTesting
+    with:
+      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
+      artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).package_all }}
 
   StaticTypeCheck:
     uses: pyTooling/Actions/.github/workflows/StaticTypeCheck.yml@cov
@@ -49,7 +48,6 @@ jobs:
     needs:
       - UnitTestingParams
       - UnitTesting
-#      - Coverage
     with:
 #      coverage_sqlite_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}
 #      coverage_xml_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_xml }}
@@ -63,16 +61,6 @@ jobs:
     needs:
       - UnitTesting
 
-  Package:
-    uses: pyTooling/Actions/.github/workflows/Package.yml@cov
-    needs:
-      - UnitTestingParams
-      - UnitTesting
-#      - Coverage
-    with:
-      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
-      artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).package_all }}
-
 #  VerifyDocs:
 #    uses: pyTooling/Actions/.github/workflows/VerifyDocs.yml@cov
 #    needs:
@@ -80,20 +68,22 @@ jobs:
 #    with:
 #      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
 
-  BuildTheDocs:
-    uses: pyTooling/Actions/.github/workflows/BuildTheDocs.yml@cov
+  Sphinx:
+    uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@sphinx
     needs:
       - UnitTestingParams
+      - PublishCoverageResults
 #      - VerifyDocs
     with:
-      artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_html }}
+      coverage_html_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_html }}
+      html_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_html }}
+      latex_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_latex }}
 
   PublishToGitHubPages:
     uses: pyTooling/Actions/.github/workflows/PublishToGitHubPages.yml@cov
     needs:
       - UnitTestingParams
-      - BuildTheDocs
-#      - Coverage
+      - Sphinx
       - PublishCoverageResults
       - StaticTypeCheck
     with:
@@ -105,8 +95,6 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/Release.yml@cov
     if: startsWith(github.ref, 'refs/tags')
     needs:
-      - UnitTesting
-#      - Coverage
 #      - StaticTypeCheck
       - Package
       - PublishToGitHubPages
@@ -129,12 +117,12 @@ jobs:
     needs:
       - UnitTestingParams
       - UnitTesting
-#      - Coverage
+      - Sphinx
       - StaticTypeCheck
-#      - BuildTheDocs
-      - PublishToGitHubPages
-      - PublishCoverageResults
       - PublishTestResults
+      - PublishCoverageResults
+      - PublishToGitHubPages
+      - PublishOnPyPI
     with:
       package: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).package_all }}
       remaining: |
