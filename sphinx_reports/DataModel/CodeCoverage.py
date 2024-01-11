@@ -126,7 +126,7 @@ class PackageCoverage(AggregatedCoverage):
 	_modules:   Dict[str, ModuleCoverage]
 	_packages:  Dict[str, "PackageCoverage"]
 
-	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None) -> None:
+	def __init__(self, name: str, file: Path, parent: Nullable["PackageCoverage"] = None) -> None:
 		super().__init__(name, file, parent)
 
 		if parent is not None:

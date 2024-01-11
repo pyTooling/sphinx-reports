@@ -32,7 +32,7 @@
 from pathlib  import Path
 from unittest import TestCase
 
-from sphinx_reports.DataModel.DocumentationCoverage import ClassCoverage, ModuleCoverage, PackageCoverage
+from sphinx_reports.DataModel.CodeCoverage import ModuleCoverage, PackageCoverage
 
 if __name__ == "__main__":
 	print("ERROR: you called a testcase declaration file as an executable module.")
@@ -40,7 +40,7 @@ if __name__ == "__main__":
 	exit(1)
 
 
-class DocumentationCoverage(TestCase):
+class Instantiation(TestCase):
 	def test_Package(self) -> None:
 		cov = PackageCoverage("myPackage", Path("__init__.py"))
 
@@ -50,8 +50,3 @@ class DocumentationCoverage(TestCase):
 		cov = ModuleCoverage("myModule", Path("__init__.py"))
 
 		self.assertEqual(cov.Name, "myModule")
-
-	def test_Class(self) -> None:
-		cov = ClassCoverage("myClass")
-
-		self.assertEqual(cov.Name, "myClass")

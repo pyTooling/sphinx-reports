@@ -77,7 +77,7 @@ class Analyzer:
 			raise CodeCoverageError(f"File format of '{jsonFile}' is not supported.")
 
 	def Convert(self) -> PackageCoverage:
-		rootPackageCoverage = PackageCoverage(Path("__init__.py"), self._packageName)
+		rootPackageCoverage = PackageCoverage(self._packageName, Path("__init__.py"))
 
 		for statusRecord in self._coverageReportStatus["files"]:
 			fileID = statusRecord.Key
@@ -94,7 +94,7 @@ class Analyzer:
 				try:
 					currentCoverageObject = currentCoverageObject[packageName]
 				except KeyError:
-					currentCoverageObject = PackageCoverage(moduleFile, packageName, currentCoverageObject)
+					currentCoverageObject = PackageCoverage(packageName, moduleFile, currentCoverageObject)
 
 			if moduleName != "__init__":
 				currentCoverageObject = ModuleCoverage(moduleFile, moduleName, currentCoverageObject)
