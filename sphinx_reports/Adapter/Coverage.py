@@ -34,11 +34,12 @@
 from pathlib import Path
 from typing  import List
 
+from coverage.results             import Numbers
 from pyTooling.Configuration.JSON import Configuration
-from pyTooling.Decorators              import export, readonly
+from pyTooling.Decorators         import export, readonly
 
-from sphinx_reports.Common                          import ReportExtensionError
-from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, PackageCoverage, AggregatedCoverage
+from sphinx_reports.Common                 import ReportExtensionError
+from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, ModuleCoverage
 
 
 @export
@@ -63,11 +64,26 @@ class Analyzer:
 		if int(status["format"]) != 2:
 			raise CodeCoverageError(f"File format of '{jsonFile}' is not supported.")
 
+		rootPackageCoverage = PackageCoverage(Path("__init__.py"), self._packageName)
+
 		for statusRecord in status["files"]:
 			fileID = statusRecord.Key
 
 			moduleFile = Path(statusRecord["index"]["relative_filename"])
 			reportFile = Path(statusRecord["index"]["html_filename"])
-			coverageStatus = [int(i) for i in statusRecord["index"]["nums"]]
+			coverageStatus = Numbers(*(int(i) for i in statusRecord["index"]["nums"]))
+
+			moduleName = moduleFile.stem
+			modulePath = [p.name for p in moduleFile.parents if p.name != ""]
+
+			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
+			for packageName in modulePath:
+				try:
+					currentCoverageObject = currentCoverageObject[packageName]
+				except KeyError:
+					currentCoverageObject = PackageCoverage(moduleFile, packageName, currentCoverageObject)
+
+			if moduleName != "__init__":
+				currentCoverageObject = ModuleCoverage(moduleFile, moduleName, currentCoverageObject)
 
 			print(fileID, moduleFile, reportFile, coverageStatus)

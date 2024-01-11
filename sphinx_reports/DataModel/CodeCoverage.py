@@ -40,6 +40,77 @@ from pyTooling.Decorators import export, readonly
 
 
 @export
-class PackageCoverage:
-	def __init__(self):
-		pass
+class Coverage:
+	_name:      str
+	_parent:    Nullable["Coverage"]
+
+	def __init__(self, name: str, parent: Nullable["Coverage"] = None) -> None:
+		self._name =   name
+		self._parent = parent
+
+	@readonly
+	def Name(self) -> str:
+		return self._name
+
+	@readonly
+	def Parent(self) -> Nullable["Coverage"]:
+		return self._parent
+
+
+@export
+class AggregatedCoverage(Coverage):
+	_file:                Path
+
+	def __init__(self, name: str, file: Path, parent: Nullable["Coverage"] = None) -> None:
+		super().__init__(name, parent)
+		self._file = file
+
+	@readonly
+	def File(self) -> Path:
+		return self._file
+
+
+@export
+class ModuleCoverage(AggregatedCoverage):
+
+	def __init__(self, name: str, file: Path, parent: Nullable["PackageCoverage"] = None) -> None:
+		super().__init__(name, file, parent)
+
+		if parent is not None:
+			parent._modules[name] = self
+
+
+@export
+class PackageCoverage(AggregatedCoverage):
+	_fileCount: int
+
+	_modules:   Dict[str, ModuleCoverage]
+	_packages:  Dict[str, "PackageCoverage"]
+
+	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None) -> None:
+		super().__init__(name, file, parent)
+
+		if parent is not None:
+			parent._packages[name] = self
+
+		self._fileCount = 1
+		self._modules =   {}
+		self._packages =  {}
+
+	@readonly
+	def FileCount(self) -> int:
+		return self._fileCount
+
+	@readonly
+	def Modules(self) -> Dict[str, ModuleCoverage]:
+		return self._modules
+
+	@readonly
+	def Packages(self) -> Dict[str, "PackageCoverage"]:
+		return self._packages
+
+	def __getitem__(self, key: str) -> Union["PackageCoverage", ModuleCoverage]:
+		try:
+			return self._modules[key]
+		except KeyError:
+			return self._packages[key]
