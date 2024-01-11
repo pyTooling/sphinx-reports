@@ -59,32 +59,64 @@ class Coverage:
 
 @export
 class AggregatedCoverage(Coverage):
-	_file:                Path
+	_file:               Path
+
+	_totalStatements:    int
+	_excludedStatements: int
+	_missingStatements:  int
+	_totalBranches:      int
+	_partialBranches:    int
+
+	_coverage:           float
 
 	def __init__(self, name: str, file: Path, parent: Nullable["Coverage"] = None) -> None:
 		super().__init__(name, parent)
 		self._file = file
 
+		self._totalStatements =    0
+		self._excludedStatements = 0
+		self._missingStatements =  0
+		self._totalBranches =      0
+		self._partialBranches =    0
+
+		self._coverage = -1.0
+
 	@readonly
 	def File(self) -> Path:
 		return self._file
 
+	@readonly
+	def TotalStatements(self) -> int:
+		return self._totalStatements
+
+	@readonly
+	def ExcludedStatements(self) -> int:
+		return self._excludedStatements
+
+	@readonly
+	def MissingStatements(self) -> int:
+		return self._missingStatements
+
+	@readonly
+	def TotalBranches(self) -> int:
+		return self._totalBranches
+
+	@readonly
+	def PartialBranches(self) -> int:
+		return self._partialBranches
+
+	@readonly
+	def Coverage(self) -> float:
+		return self._coverage
+
 
 @export
 class ModuleCoverage(AggregatedCoverage):
-	_coverage:  float
-
 	def __init__(self, name: str, file: Path, parent: Nullable["PackageCoverage"] = None) -> None:
 		super().__init__(name, file, parent)
 
 		if parent is not None:
 			parent._modules[name] = self
-
-		self._coverage = -1.0
-
-	@readonly
-	def Coverage(self) -> float:
-		return self._coverage
 
 
 @export
@@ -93,8 +125,6 @@ class PackageCoverage(AggregatedCoverage):
 
 	_modules:   Dict[str, ModuleCoverage]
 	_packages:  Dict[str, "PackageCoverage"]
-
-	_coverage:  float
 
 	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None) -> None:
 		super().__init__(name, file, parent)
@@ -105,7 +135,6 @@ class PackageCoverage(AggregatedCoverage):
 		self._fileCount = 1
 		self._modules =   {}
 		self._packages =  {}
-		self._coverage = -1.0
 
 	@readonly
 	def FileCount(self) -> int:
@@ -118,10 +147,6 @@ class PackageCoverage(AggregatedCoverage):
 	@readonly
 	def Packages(self) -> Dict[str, "PackageCoverage"]:
 		return self._packages
-
-	@readonly
-	def Coverage(self) -> float:
-		return self._coverage
 
 	def __getitem__(self, key: str) -> Union["PackageCoverage", ModuleCoverage]:
 		try:

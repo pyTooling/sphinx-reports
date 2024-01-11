@@ -171,10 +171,12 @@ class CodeCoverage(BaseDirective):
 		table, tableGroup = self._PrepareTable(
 			identifier=self._packageID,
 			columns={
-				"Filename": 500,
-				"Total": 100,
-				"Covered": 100,
+				"Module": 500,
+				"Statements": 100,
 				"Missing": 100,
+				"Excluded": 100,
+				"Branches": 100,
+				"Partial": 100,
 				"Coverage in %": 100
 			},
 			classes=["report-doccov-table"]
@@ -190,10 +192,12 @@ class CodeCoverage(BaseDirective):
 			tableBody += nodes.row(
 				"",
 				nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {packageCoverage.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {packageCoverage.Covered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {packageCoverage.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {packageCoverage.Coverage:.1%}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalStatements}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.ExcludedStatements}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingStatements}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalBranches}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.PartialBranches}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
 				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
 				# style="background: rgba(  0, 200,  82, .2);"
 			)
@@ -205,10 +209,12 @@ class CodeCoverage(BaseDirective):
 				tableBody += nodes.row(
 					"",
 					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {module.Expected}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {module.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {module.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {module.Coverage :.1%}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.MissingStatements}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.TotalBranches}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.PartialBranches}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
 					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
@@ -220,6 +226,8 @@ class CodeCoverage(BaseDirective):
 			"",
 			nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):")),
 			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedExpected}")),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
 			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
 			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedUncovered}")),
 			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCoverage:.1%}")),

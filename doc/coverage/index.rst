@@ -5,4 +5,3 @@ Coverage Report
 
 .. report:code-coverage::
    :packageid: src
-   :legend: both

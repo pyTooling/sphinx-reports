@@ -88,4 +88,11 @@ class Analyzer:
 			if moduleName != "__init__":
 				currentCoverageObject = ModuleCoverage(moduleFile, moduleName, currentCoverageObject)
 
+			currentCoverageObject._totalStatements = coverageStatus.n_statements
+			currentCoverageObject._excludedStatements = coverageStatus.n_excluded
+			currentCoverageObject._missingStatements = coverageStatus.n_missing
+			currentCoverageObject._totalStatements = coverageStatus.n_branches
+			currentCoverageObject._partialBranches = coverageStatus.n_partial_branches
+			currentCoverageObject._coverage = coverageStatus.pc_covered / 100
+
 		return rootPackageCoverage
