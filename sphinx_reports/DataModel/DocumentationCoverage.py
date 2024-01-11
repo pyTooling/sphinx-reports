@@ -163,6 +163,10 @@ class AggregatedCoverage(Coverage):
 
 	_aggregatedCoverage:  float
 
+	def __init__(self, name: str, file: Path, parent: Nullable["Coverage"] = None) -> None:
+		super().__init__(name, parent)
+		self._file = file
+
 	@readonly
 	def File(self) -> Path:
 		return self._file
@@ -254,14 +258,13 @@ class ModuleCoverage(AggregatedCoverage):
 	_functions: Dict[str, CoverageState]
 	_classes:   Dict[str, ClassCoverage]
 
-	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None) -> None:
-		super().__init__(name, parent)
+	def __init__(self, name: str, file: Path, parent: Nullable["PackageCoverage"] = None) -> None:
+		super().__init__(name, file, parent)
 
 		if parent is not None:
 			parent._modules[name] = self
 
 		self._file =      file
-		self._name =      name
 		self._variables = {}
 		self._functions = {}
 		self._classes =   {}
@@ -321,8 +324,8 @@ class PackageCoverage(AggregatedCoverage):
 	_modules:   Dict[str, ModuleCoverage]
 	_packages:  Dict[str, "PackageCoverage"]
 
-	def __init__(self, file: Path, name: str, parent: Nullable["PackageCoverage"] = None) -> None:
-		super().__init__(name, parent)
+	def __init__(self, name: str, file: Path, parent: Nullable["PackageCoverage"] = None) -> None:
+		super().__init__(name, file, parent)
 
 		if parent is not None:
 			parent._packages[name] = self
@@ -342,7 +345,6 @@ class PackageCoverage(AggregatedCoverage):
 	@readonly
 	def Variables(self) -> Dict[str, CoverageState]:
 		return self._variables
-
 
 	@readonly
 	def Functions(self) -> Dict[str, CoverageState]:

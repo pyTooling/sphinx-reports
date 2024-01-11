@@ -86,7 +86,7 @@ class Analyzer:
 		return self._coverageReport
 
 	def Convert(self) -> PackageCoverage:
-		rootPackageCoverage = PackageCoverage(self._searchDirectory / "__init__.py", self._packageName)
+		rootPackageCoverage = PackageCoverage(self._packageName, self._searchDirectory / "__init__.py")
 
 		for key, value in self._coverageReport.files():
 			path: Path = key.relative_to(self._searchDirectory)
@@ -100,10 +100,10 @@ class Analyzer:
 				try:
 					currentCoverageObject = currentCoverageObject[packageName]
 				except KeyError:
-					currentCoverageObject = PackageCoverage(path, packageName, currentCoverageObject)
+					currentCoverageObject = PackageCoverage(packageName, path, currentCoverageObject)
 
 			if moduleName != "__init__":
-				currentCoverageObject = ModuleCoverage(path, moduleName, currentCoverageObject)
+				currentCoverageObject = ModuleCoverage(moduleName, path, currentCoverageObject)
 
 			currentCoverageObject._expected = perFileResult.needed
 			currentCoverageObject._covered = perFileResult.found

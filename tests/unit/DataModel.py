@@ -42,12 +42,12 @@ if __name__ == "__main__":
 
 class DocumentationCoverage(TestCase):
 	def test_Package(self) -> None:
-		cov = PackageCoverage(Path("__init__.py"), "myPackage")
+		cov = PackageCoverage("myPackage", Path("__init__.py"))
 
 		self.assertEqual(cov.Name, "myPackage")
 
 	def test_Module(self) -> None:
-		cov = ModuleCoverage(Path("__init__.py"), "myModule")
+		cov = ModuleCoverage("myModule", Path("__init__.py"))
 
 		self.assertEqual(cov.Name, "myModule")
 
