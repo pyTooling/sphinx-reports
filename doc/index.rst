@@ -175,7 +175,7 @@ License
 
    Python Class Reference <sphinx_reports/sphinx_reports>
    Unittest Report ➚ <unittests/index>
-   Code Coverage Report ➚ <coverage/index>
+   coverage/index
    Doc. Coverage Report <DocCoverage>
    Static Type Check Report ➚ <typing/index>
 

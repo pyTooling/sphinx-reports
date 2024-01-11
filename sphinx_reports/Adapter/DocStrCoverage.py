@@ -93,7 +93,7 @@ class Analyzer:
 			perFileResult: FileCount = value.count_aggregate()
 
 			moduleName = path.stem
-			modulePath = [p.name for p in path.parents if p.name != ""]
+			modulePath = path.parent.parts
 
 			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
 			for packageName in modulePath:

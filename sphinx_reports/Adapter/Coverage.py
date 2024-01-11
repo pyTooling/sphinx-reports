@@ -76,7 +76,7 @@ class Analyzer:
 			coverageStatus = Numbers(*(int(i) for i in statusRecord["index"]["nums"]))
 
 			moduleName = moduleFile.stem
-			modulePath = [p.name for p in moduleFile.parents if p.name != ""][1:]
+			modulePath = moduleFile.parent.parts[1:]
 
 			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
 			for packageName in modulePath:

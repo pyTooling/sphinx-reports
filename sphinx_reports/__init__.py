@@ -84,6 +84,7 @@ class ReportDomain(Domain):
 
 	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:
 
+	* ``report_codecov_packages``
 	* ``report_doccov_packages``
 
 	"""
