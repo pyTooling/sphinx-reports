@@ -90,12 +90,13 @@ jobs:
     needs:
       - UnitTesting
 
-  CoverageCleanUp:
+  IntermediateCleanUp:
     name: 🗑️ Intermediate Artifact Cleanup
     runs-on: ubuntu-latest
     needs:
       - UnitTestingParams
       - PublishCoverageResults
+      - PublishTestResults
     steps:
       - name: 🗑️ Delete SQLite coverage artifacts from matrix jobs
         uses: geekyeggo/delete-artifact@v4
@@ -107,7 +108,7 @@ jobs:
         uses: geekyeggo/delete-artifact@v4
         continue-on-error: true
         with:
-          name: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_xml }}-*
+          name: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}-*
           token: ${{ secrets.GITHUB_TOKEN }}
 
 #  VerifyDocs:
@@ -117,7 +118,7 @@ jobs:
 #    with:
 #      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
 
-  Sphinx:
+  Documentation:
     uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@sphinx
     needs:
       - UnitTestingParams
@@ -133,7 +134,7 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/PublishToGitHubPages.yml@cov
     needs:
       - UnitTestingParams
-      - Sphinx
+      - Documentation
       - PublishCoverageResults
       - StaticTypeCheck
     with:
@@ -167,7 +168,7 @@ jobs:
     needs:
       - UnitTestingParams
       - UnitTesting
-      - Sphinx
+      - Documentation
       - StaticTypeCheck
       - PublishTestResults
       - PublishCoverageResults
