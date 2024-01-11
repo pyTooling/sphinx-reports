@@ -43,7 +43,7 @@ if __name__ == "__main__":
 
 class Coverage(TestCase):
 	def test_Undocumented(self) -> None:
-		packageName = "undocumented"
+		packageName = "MyPackage"
 		packageDirectory = Path(f"tests/packages/{packageName}")
 
 		analyzer = Analyzer(packageName, packageDirectory)
@@ -68,7 +68,7 @@ class Coverage(TestCase):
 		self.assertEqual(0.0, coverage.Coverage)
 
 	def test_Partial(self) -> None:
-		packageName = "partially"
+		packageName = "MyPackage"
 		packageDirectory = Path(f"tests/packages/{packageName}")
 
 		analyzer = Analyzer(packageName, packageDirectory)
@@ -93,7 +93,7 @@ class Coverage(TestCase):
 		self.assertEqual(0.5, coverage.Coverage)
 
 	def test_Documented(self) -> None:
-		packageName = "documented"
+		packageName = "MyPackage"
 		packageDirectory = Path(f"tests/packages/{packageName}")
 
 		analyzer = Analyzer(packageName, packageDirectory)

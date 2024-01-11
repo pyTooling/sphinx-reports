@@ -286,19 +286,19 @@ report_doccov_packages = {
 		"levels":     _coverageLevels
 	},
 	"undocumented": {
-		"name":       "undocumented",
+		"name":       "MyPackage",
 		"directory":  "../tests/packages/undocumented",
 		"fail_below": 80,
 		"levels":     _coverageLevels
 	},
 	"partially": {
-		"name":       "partially",
+		"name":       "MyPackage",
 		"directory":  "../tests/packages/partially",
 		"fail_below": 80,
 		"levels":     _coverageLevels
 	},
 	"documented": {
-		"name":       "documented",
+		"name":       "MyPackage",
 		"directory":  "../tests/packages/documented",
 		"fail_below": 80,
 		"levels":     _coverageLevels
