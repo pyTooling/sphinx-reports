@@ -126,6 +126,12 @@ class CodeCoverage(BaseDirective):
 		except KeyError as ex:
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Configuration is missing.") from ex
 
+		if 100 not in packageConfiguration["levels"]:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[100]: Configuration is missing.")
+
+		if "error" not in packageConfiguration["levels"]:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[error]: Configuration is missing.")
+
 		self._levels = {}
 		for level, levelConfig in levels.items():
 			try:
@@ -151,11 +157,11 @@ class CodeCoverage(BaseDirective):
 			self._levels[level] = {"class": cssClass, "desc": description}
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
-		if currentLevel == -1.0:
+		if currentLevel < 0.0:
 			return self._levels["error"][configKey]
 
 		for levelLimit, levelConfig in self._levels.items():
-			if (currentLevel * 100) < levelLimit:
+			if isinstance(levelLimit, int) and (currentLevel * 100) < levelLimit:
 				return levelConfig[configKey]
 
 		return self._levels[100][configKey]

@@ -32,7 +32,7 @@
 **Report documentation coverage as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict
+from typing import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union
 
 from docutils             import nodes
 from pyTooling.Decorators import export
@@ -75,7 +75,7 @@ class DocCoverage(BaseDirective):
 	_packageName: str
 	_directory:   Path
 	_failBelow:   float
-	_levels:      Dict[int, Dict[str, str]]
+	_levels:      Dict[Union[int, str], Dict[str, str]]
 	_coverage:    PackageCoverage
 
 	def _CheckOptions(self) -> None:
@@ -126,6 +126,12 @@ class DocCoverage(BaseDirective):
 		except KeyError as ex:
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Configuration is missing.") from ex
 
+		if 100 not in packageConfiguration["levels"]:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[100]: Configuration is missing.")
+
+		if "error" not in packageConfiguration["levels"]:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[error]: Configuration is missing.")
+
 		self._levels = {}
 		for level, levelConfig in levels.items():
 			try:
@@ -151,6 +157,9 @@ class DocCoverage(BaseDirective):
 			self._levels[level] = {"class": cssClass, "desc": description}
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
+		if currentLevel < 0.0:
+			return self._levels["error"][configKey]
+
 		for levelLimit, levelConfig in self._levels.items():
 			if isinstance(levelLimit, int) and (currentLevel * 100) < levelLimit:
 				return levelConfig[configKey]

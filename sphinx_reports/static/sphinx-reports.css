@@ -31,7 +31,7 @@
 }
 /* internal error */
 .report-cov-error{
-	background: rgba(255, 0, 0, .2);
+	background: rgba(255, 0, 0, .4);
 }
 
 .report-dep-summary-row {
