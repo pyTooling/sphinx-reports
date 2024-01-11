@@ -53,11 +53,11 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
             "directory":  "../myPackage",
             "fail_below": 80,
             "levels": {
-               30:  {"class": "doccov-below30",  "desc": "almost undocumented"},
-               50:  {"class": "doccov-below50",  "desc": "poorly documented"},
-               80:  {"class": "doccov-below80",  "desc": "roughly documented"},
-               90:  {"class": "doccov-below90",  "desc": "well documented"},
-               100: {"class": "doccov-below100", "desc": "excellent documented"},
+               30:  {"class": "report-cov-below30",  "desc": "almost undocumented"},
+               50:  {"class": "report-cov-below50",  "desc": "poorly documented"},
+               80:  {"class": "report-cov-below80",  "desc": "roughly documented"},
+               90:  {"class": "report-cov-below90",  "desc": "well documented"},
+               100: {"class": "report-cov-below100", "desc": "excellent documented"},
             },
          }
       }

@@ -129,10 +129,14 @@ class DocCoverage(BaseDirective):
 		self._levels = {}
 		for level, levelConfig in levels.items():
 			try:
-				if not (0.0 <= int(level) <= 100.0):
+				if isinstance(level, str):
+					if level != "error":
+						raise ReportExtensionError(
+							f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is a keyword, but not 'error'.")
+				elif not (0.0 <= int(level) <= 100.0):
 					raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is out of range 0..100.")
 			except ValueError as ex:
-				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not an integer in range 0..100.") from ex
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not a keyword or an integer in range 0..100.") from ex
 
 			try:
 				cssClass = levelConfig["class"]
@@ -148,7 +152,7 @@ class DocCoverage(BaseDirective):
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
 		for levelLimit, levelConfig in self._levels.items():
-			if (currentLevel * 100) < levelLimit:
+			if isinstance(levelLimit, int) and (currentLevel * 100) < levelLimit:
 				return levelConfig[configKey]
 
 		return self._levels[100][configKey]
@@ -164,7 +168,7 @@ class DocCoverage(BaseDirective):
 				"Missing": 100,
 				"Coverage in %": 100
 			},
-			classes=["doccov-table"]
+			classes=["report-doccov-table"]
 		)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
@@ -181,7 +185,7 @@ class DocCoverage(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
-				classes=["doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
+				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
 				# style="background: rgba(  0, 200,  82, .2);"
 			)
 
@@ -196,7 +200,7 @@ class DocCoverage(BaseDirective):
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
-					classes=["doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
+					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
 
@@ -212,7 +216,7 @@ class DocCoverage(BaseDirective):
 			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoverage:.1%}"),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
-			classes=["doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
+			classes=["report-doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
 		)
 
 		return table
@@ -236,12 +240,13 @@ class DocCoverage(BaseDirective):
 		tableGroup += tableBody
 
 		for level, config in self._levels.items():
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"≤{level}%")),
-				nodes.entry("", nodes.paragraph(text=config["desc"])),
-				classes=["doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
-			)
+			if isinstance(level, int):
+				tableBody += nodes.row(
+					"",
+					nodes.entry("", nodes.paragraph(text=f"≤{level}%")),
+					nodes.entry("", nodes.paragraph(text=config["desc"])),
+					classes=["report-doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
+				)
 
 		return [rubric, table]
 
@@ -262,11 +267,11 @@ class DocStrCoverage(DocCoverage):
 		container = nodes.container()
 
 		if LegendPosition.top in self._legend:
-			container += self._CreateLegend(identifier="legend1", classes=["doccov-legend"])
+			container += self._CreateLegend(identifier="legend1", classes=["report-doccov-legend"])
 
 		container += self._GenerateCoverageTable()
 
 		if LegendPosition.bottom in self._legend:
-			container += self._CreateLegend(identifier="legend2", classes=["doccov-legend"])
+			container += self._CreateLegend(identifier="legend2", classes=["report-doccov-legend"])
 
 		return [container]

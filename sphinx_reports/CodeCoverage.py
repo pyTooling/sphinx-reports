@@ -32,14 +32,14 @@
 **Report code coverage as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict
+from typing import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union
 
 from docutils             import nodes
 from pyTooling.Decorators import export
 
 from sphinx_reports.Common                 import ReportExtensionError
 from sphinx_reports.Sphinx                 import strip, LegendPosition, BaseDirective
-from sphinx_reports.DataModel.CodeCoverage import PackageCoverage
+from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, AggregatedCoverage
 from sphinx_reports.Adapter.Coverage       import Analyzer
 
 
@@ -75,7 +75,7 @@ class CodeCoverage(BaseDirective):
 	_packageName: str
 	_html_report: Path
 	_failBelow:   float
-	_levels:      Dict[int, Dict[str, str]]
+	_levels:      Dict[Union[int, str], Dict[str, str]]
 	_coverage:    PackageCoverage
 
 	def _CheckOptions(self) -> None:
@@ -129,10 +129,14 @@ class CodeCoverage(BaseDirective):
 		self._levels = {}
 		for level, levelConfig in levels.items():
 			try:
-				if not (0.0 <= int(level) <= 100.0):
+				if isinstance(level, str):
+					if level != "error":
+						raise ReportExtensionError(
+							f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is a keyword, but not 'error'.")
+				elif not (0.0 <= int(level) <= 100.0):
 					raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is out of range 0..100.")
 			except ValueError as ex:
-				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not an integer in range 0..100.") from ex
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not a keyword or an integer in range 0..100.") from ex
 
 			try:
 				cssClass = levelConfig["class"]
@@ -147,6 +151,9 @@ class CodeCoverage(BaseDirective):
 			self._levels[level] = {"class": cssClass, "desc": description}
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
+		if currentLevel == -1.0:
+			return self._levels["error"][configKey]
+
 		for levelLimit, levelConfig in self._levels.items():
 			if (currentLevel * 100) < levelLimit:
 				return levelConfig[configKey]
@@ -164,7 +171,7 @@ class CodeCoverage(BaseDirective):
 				"Missing": 100,
 				"Coverage in %": 100
 			},
-			classes=["doccov-table"]
+			classes=["report-doccov-table"]
 		)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
@@ -177,11 +184,11 @@ class CodeCoverage(BaseDirective):
 			tableBody += nodes.row(
 				"",
 				nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
-				classes=["doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
+				nodes.entry("", nodes.paragraph(text=f"")),  # {packageCoverage.Expected}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {packageCoverage.Covered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {packageCoverage.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {packageCoverage.Coverage:.1%}")),
+				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
 				# style="background: rgba(  0, 200,  82, .2);"
 			)
 
@@ -192,11 +199,11 @@ class CodeCoverage(BaseDirective):
 				tableBody += nodes.row(
 					"",
 					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
-					classes=["doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
+					nodes.entry("", nodes.paragraph(text=f"")),  # {module.Expected}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {module.Covered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {module.Uncovered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {module.Coverage :.1%}")),
+					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
 
@@ -206,13 +213,12 @@ class CodeCoverage(BaseDirective):
 		tableBody += nodes.row(
 			"",
 			nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedExpected}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedUncovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoverage:.1%}"),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedExpected}")),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedUncovered}")),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCoverage:.1%}")),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
-			),
-			classes=["doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
+			classes=["report-doccov-summary-row", self._ConvertToColor(self._coverage.Coverage, "class")]  # self._coverage.AggregatedCoverage, "class")]
 		)
 
 		return table
@@ -236,12 +242,13 @@ class CodeCoverage(BaseDirective):
 		tableGroup += tableBody
 
 		for level, config in self._levels.items():
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"≤{level}%")),
-				nodes.entry("", nodes.paragraph(text=config["desc"])),
-				classes=["doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
-			)
+			if isinstance(level, int):
+				tableBody += nodes.row(
+					"",
+					nodes.entry("", nodes.paragraph(text=f"≤{level}%")),
+					nodes.entry("", nodes.paragraph(text=config["desc"])),
+					classes=["report-doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
+				)
 
 		return [rubric, table]
 
@@ -251,18 +258,17 @@ class CodeCoverage(BaseDirective):
 
 		# Assemble a list of Python source files
 		analyzer = Analyzer(self._html_report, self._packageName)
-		# analyzer.Analyze()
-		# self._coverage = analyzer.Convert()
+		self._coverage = analyzer.Convert()
 		# self._coverage.Aggregate()
 
 		container = nodes.container()
 
 		if LegendPosition.top in self._legend:
-			container += self._CreateLegend(identifier="legend1", classes=["doccov-legend"])
+			container += self._CreateLegend(identifier="legend1", classes=["report-doccov-legend"])
 
-		# container += self._GenerateCoverageTable()
+		container += self._GenerateCoverageTable()
 
 		if LegendPosition.bottom in self._legend:
-			container += self._CreateLegend(identifier="legend2", classes=["doccov-legend"])
+			container += self._CreateLegend(identifier="legend2", classes=["report-doccov-legend"])
 
 		return [container]

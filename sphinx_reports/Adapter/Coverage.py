@@ -39,7 +39,7 @@ from pyTooling.Configuration.JSON import Configuration
 from pyTooling.Decorators         import export, readonly
 
 from sphinx_reports.Common                 import ReportExtensionError
-from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, ModuleCoverage
+from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, ModuleCoverage, AggregatedCoverage
 
 
 @export
@@ -49,8 +49,9 @@ class CodeCoverageError(ReportExtensionError):
 
 @export
 class Analyzer:
-	_packageName: str
-	_htmlReportDirectory: Path
+	_packageName:          str
+	_htmlReportDirectory:  Path
+	_coverageReportStatus: Configuration
 
 	def __init__(self, htmlReportDirectory: Path, packageName: str):
 		self._packageName = packageName
@@ -59,14 +60,15 @@ class Analyzer:
 		self._ReadReportStatus(self._htmlReportDirectory / "status.json")
 
 	def _ReadReportStatus(self, jsonFile: Path):
-		status = Configuration(jsonFile)
+		self._coverageReportStatus = Configuration(jsonFile)
 
-		if int(status["format"]) != 2:
+		if int(self._coverageReportStatus["format"]) != 2:
 			raise CodeCoverageError(f"File format of '{jsonFile}' is not supported.")
 
+	def Convert(self):
 		rootPackageCoverage = PackageCoverage(Path("__init__.py"), self._packageName)
 
-		for statusRecord in status["files"]:
+		for statusRecord in self._coverageReportStatus["files"]:
 			fileID = statusRecord.Key
 
 			moduleFile = Path(statusRecord["index"]["relative_filename"])
@@ -74,7 +76,7 @@ class Analyzer:
 			coverageStatus = Numbers(*(int(i) for i in statusRecord["index"]["nums"]))
 
 			moduleName = moduleFile.stem
-			modulePath = [p.name for p in moduleFile.parents if p.name != ""]
+			modulePath = [p.name for p in moduleFile.parents if p.name != ""][1:]
 
 			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
 			for packageName in modulePath:
@@ -86,4 +88,4 @@ class Analyzer:
 			if moduleName != "__init__":
 				currentCoverageObject = ModuleCoverage(moduleFile, moduleName, currentCoverageObject)
 
-			print(fileID, moduleFile, reportFile, coverageStatus)
+		return rootPackageCoverage

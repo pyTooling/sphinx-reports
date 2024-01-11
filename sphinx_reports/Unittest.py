@@ -118,11 +118,11 @@ class UnittestSummary(BaseDirective):
 				f"conf.py: {self.configPrefix}_packages:{self._packageID}.fail_below: Is out of range 0..100.")
 
 		self._levels = {
-			30:  {"class": "doccov-below30",  "background": "rgba(101,  31, 255, .2)", "desc": "almost undocumented"},
-			50:  {"class": "doccov-below50",  "background": "rgba(255,  82,  82, .2)", "desc": "poorly documented"},
-			80:  {"class": "doccov-below80",  "background": "rgba(255, 145,   0, .2)", "desc": "roughly documented"},
-			90:  {"class": "doccov-below90",  "background": "rgba(  0, 200,  82, .2)", "desc": "well documented"},
-			100: {"class": "doccov-below100", "background": "rgba(  0, 200,  82, .2)", "desc": "excellent documented"},
+			30:  {"class": "report-cov-below30",  "background": "rgba(101,  31, 255, .2)", "desc": "almost undocumented"},
+			50:  {"class": "report-cov-below50",  "background": "rgba(255,  82,  82, .2)", "desc": "poorly documented"},
+			80:  {"class": "report-cov-below80",  "background": "rgba(255, 145,   0, .2)", "desc": "roughly documented"},
+			90:  {"class": "report-cov-below90",  "background": "rgba(  0, 200,  82, .2)", "desc": "well documented"},
+			100: {"class": "report-cov-below100", "background": "rgba(  0, 200,  82, .2)", "desc": "excellent documented"},
 		}
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
@@ -143,7 +143,7 @@ class UnittestSummary(BaseDirective):
 				"Missing": 100,
 				"Coverage in %": 100
 			},
-			classes=["doccov-table"]
+			classes=["report-doccov-table"]
 		)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
@@ -160,7 +160,7 @@ class UnittestSummary(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
-				classes=["doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
+				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
 				# style="background: rgba(  0, 200,  82, .2);"
 			)
 
@@ -175,7 +175,7 @@ class UnittestSummary(BaseDirective):
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
-					classes=["doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
+					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
 
@@ -191,7 +191,7 @@ class UnittestSummary(BaseDirective):
 			nodes.entry("", nodes.paragraph(text=f"{self._coverage.Coverage:.1%}"),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
-			classes=["doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
+			classes=["report-doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
 		)
 
 		return table
@@ -219,7 +219,7 @@ class UnittestSummary(BaseDirective):
 				"",
 				nodes.entry("", nodes.paragraph(text=f"≤{level}%")),
 				nodes.entry("", nodes.paragraph(text=config["desc"])),
-				classes=["doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
+				classes=["report-doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
 			)
 
 		return [rubric, table]
@@ -238,11 +238,11 @@ class UnittestSummary(BaseDirective):
 		container = nodes.container()
 
 		if LegendPosition.top in self._legend:
-			container += self._CreateLegend(identifier="legend1", classes=["doccov-legend"])
+			container += self._CreateLegend(identifier="legend1", classes=["report-doccov-legend"])
 
 		container += self._GenerateCoverageTable()
 
 		if LegendPosition.bottom in self._legend:
-			container += self._CreateLegend(identifier="legend2", classes=["doccov-legend"])
+			container += self._CreateLegend(identifier="legend2", classes=["report-doccov-legend"])
 
 		return [container]

@@ -261,12 +261,13 @@ todo_link_only = True
 # ==============================================================================
 # Sphinx-reports - DocCov
 # ==============================================================================
-_levels = {
-	30:  {"class": "doccov-below30",  "desc": "almost undocumented"},
-	50:  {"class": "doccov-below50",  "desc": "poorly documented"},
-	80:  {"class": "doccov-below80",  "desc": "roughly documented"},
-	90:  {"class": "doccov-below90",  "desc": "well documented"},
-	100: {"class": "doccov-below100", "desc": "excellent documented"}
+_coverageLevels = {
+	30:      {"class": "report-cov-below30",  "desc": "almost undocumented"},
+	50:      {"class": "report-cov-below50",  "desc": "poorly documented"},
+	80:      {"class": "report-cov-below80",  "desc": "roughly documented"},
+	90:      {"class": "report-cov-below90",  "desc": "well documented"},
+	100:     {"class": "report-cov-below100", "desc": "excellent documented"},
+	"error": {"class": "report-cov-error",    "desc": "internal error"},
 }
 
 report_codecov_packages = {
@@ -274,7 +275,7 @@ report_codecov_packages = {
 		"name":        "sphinx_reports",
 		"html_report": "../report/coverage/html",
 		"fail_below":  80,
-		"levels":      _levels
+		"levels":      _coverageLevels
 	}
 }
 report_doccov_packages = {
@@ -282,25 +283,25 @@ report_doccov_packages = {
 		"name":       "sphinx_reports",
 		"directory":  "../sphinx_reports",
 		"fail_below": 80,
-		"levels":     _levels
+		"levels":     _coverageLevels
 	},
 	"undocumented": {
 		"name":       "undocumented",
 		"directory":  "../tests/packages/undocumented",
 		"fail_below": 80,
-		"levels":     _levels
+		"levels":     _coverageLevels
 	},
 	"partially": {
 		"name":       "partially",
 		"directory":  "../tests/packages/partially",
 		"fail_below": 80,
-		"levels":     _levels
+		"levels":     _coverageLevels
 	},
 	"documented": {
 		"name":       "documented",
 		"directory":  "../tests/packages/documented",
 		"fail_below": 80,
-		"levels":     _levels
+		"levels":     _coverageLevels
 	}
 }
 

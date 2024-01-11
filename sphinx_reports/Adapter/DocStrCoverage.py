@@ -49,10 +49,10 @@ class DocStrCoverageError(ReportExtensionError):
 
 @export
 class Analyzer:
-	_searchDirectory: Path
 	_packageName:     str
+	_searchDirectory: Path
 	_moduleFiles:     List[Path]
-	_coverageReport:  str
+	_coverageReport:  ResultCollection
 
 	def __init__(self, directory: Path, packageName: str) -> None:
 		self._searchDirectory = directory
