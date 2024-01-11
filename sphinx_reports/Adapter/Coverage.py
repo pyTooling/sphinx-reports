@@ -32,7 +32,6 @@
 **A Sphinx extension providing coverage details embedded in documentation pages.**
 """
 from pathlib import Path
-from typing  import List
 
 from coverage.results             import Numbers
 from pyTooling.Configuration.JSON import Configuration
@@ -53,19 +52,31 @@ class Analyzer:
 	_htmlReportDirectory:  Path
 	_coverageReportStatus: Configuration
 
-	def __init__(self, htmlReportDirectory: Path, packageName: str):
+	def __init__(self, packageName: str, htmlReportDirectory: Path) -> None:
 		self._packageName = packageName
 		self._htmlReportDirectory = htmlReportDirectory
 
 		self._ReadReportStatus(self._htmlReportDirectory / "status.json")
 
-	def _ReadReportStatus(self, jsonFile: Path):
+	@readonly
+	def PackageName(self) -> str:
+		return self._packageName
+
+	@readonly
+	def HTMLReportDirectory(self) -> Path:
+		return self._htmlReportDirectory
+
+	@readonly
+	def CoverageReportStatus(self) -> Configuration:
+		return self._coverageReportStatus
+
+	def _ReadReportStatus(self, jsonFile: Path) -> None:
 		self._coverageReportStatus = Configuration(jsonFile)
 
 		if int(self._coverageReportStatus["format"]) != 2:
 			raise CodeCoverageError(f"File format of '{jsonFile}' is not supported.")
 
-	def Convert(self):
+	def Convert(self) -> PackageCoverage:
 		rootPackageCoverage = PackageCoverage(Path("__init__.py"), self._packageName)
 
 		for statusRecord in self._coverageReportStatus["files"]:

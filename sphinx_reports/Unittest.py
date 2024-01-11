@@ -37,8 +37,8 @@ from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedD
 from docutils             import nodes
 from pyTooling.Decorators import export
 
-from sphinx_reports.Common                          import ReportExtensionError
-from sphinx_reports.Sphinx                          import strip, LegendPosition, BaseDirective
+from sphinx_reports.Common                          import ReportExtensionError, LegendPosition
+from sphinx_reports.Sphinx                          import strip, BaseDirective
 from sphinx_reports.DataModel.DocumentationCoverage import PackageCoverage, AggregatedCoverage
 from sphinx_reports.Adapter.DocStrCoverage          import Analyzer
 
@@ -229,7 +229,7 @@ class UnittestSummary(BaseDirective):
 		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._directory, self._packageName)
+		analyzer = Analyzer(self._packageName, self._directory)
 		analyzer.Analyze()
 		self._coverage = analyzer.Convert()
 		# self._coverage.CalculateCoverage()

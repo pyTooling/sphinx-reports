@@ -54,7 +54,7 @@ class Analyzer:
 	_moduleFiles:     List[Path]
 	_coverageReport:  ResultCollection
 
-	def __init__(self, directory: Path, packageName: str) -> None:
+	def __init__(self, packageName: str, directory: Path) -> None:
 		self._searchDirectory = directory
 		self._packageName = packageName
 		self._moduleFiles = []

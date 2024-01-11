@@ -47,7 +47,7 @@ class package_DictType(TypedDict):
 	name: str
 	directory: str
 	fail_below: int
-	levels: Dict[int, Dict[str, str]]
+	levels: Dict[Union[int, str], Dict[str, str]]
 
 
 @export
@@ -267,7 +267,7 @@ class DocStrCoverage(DocCoverage):
 		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._directory, self._packageName)
+		analyzer = Analyzer(self._packageName, self._directory)
 		analyzer.Analyze()
 		self._coverage = analyzer.Convert()
 		# self._coverage.CalculateCoverage()

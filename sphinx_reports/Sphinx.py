@@ -64,7 +64,7 @@ class BaseDirective(ObjectDescription):
 	final_argument_whitespace = False
 	"""A boolean, indicating if the final argument may contain whitespace."""
 
-	option_spec = None
+	option_spec = {}
 	"""
 	Mapping of option names to validator functions.
 

@@ -37,8 +37,8 @@ from typing import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDi
 from docutils             import nodes
 from pyTooling.Decorators import export
 
-from sphinx_reports.Common                 import ReportExtensionError
-from sphinx_reports.Sphinx                 import strip, LegendPosition, BaseDirective
+from sphinx_reports.Common                 import ReportExtensionError, LegendPosition
+from sphinx_reports.Sphinx                 import strip, BaseDirective
 from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, AggregatedCoverage
 from sphinx_reports.Adapter.Coverage       import Analyzer
 
@@ -47,7 +47,7 @@ class package_DictType(TypedDict):
 	name:        str
 	html_report: str
 	fail_below:  int
-	levels:      Dict[int, Dict[str, str]]
+	levels:      Dict[Union[int, str], Dict[str, str]]
 
 
 @export
@@ -271,7 +271,7 @@ class CodeCoverage(BaseDirective):
 		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._html_report, self._packageName)
+		analyzer = Analyzer(self._packageName, self._html_report)
 		self._coverage = analyzer.Convert()
 		# self._coverage.Aggregate()
 

@@ -83,8 +83,12 @@ Supported Report Formats
 
 Supported format reports are:
 
-* ✅ Documentation coverage (by `docstr_coverage` (or `interrogate`?))
-* 🚧 Code coverage (by `Coverage.py`)
+* ✅ Documentation coverage (by `docstr_coverage <https://github.com/HunterMcGushion/docstr_coverage>`__ (or `interrogate`?))
+* 🚧 Code coverage (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
+
+  * ✅ Summary page
+  * 🚧 Highlighted source code
+
 * 🚧 Unit Test summaries (by `pytest`)
 * 🚧 Dependencies (reading `requirements.txt` files)
 
@@ -101,7 +105,14 @@ documentation coverage can be computed.
 Code Coverage
 =============
 
-🚧 This is a planned feature. 🚧
+🚧 This is a work-in-progress feature. 🚧
+
+:ref:`CODECOV` checks if a source code was used during execution. Usually, testcases are run by a testcase execution
+framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the code for code
+coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually based on
+`Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage collection.
+
+.. todo:: index: Screen shot here and link to this coverage report.
 
 
 Unit Test Summary

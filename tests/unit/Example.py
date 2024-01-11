@@ -46,7 +46,7 @@ class Coverage(TestCase):
 		packageName = "undocumented"
 		packageDirectory = Path(f"tests/packages/{packageName}")
 
-		analyzer = Analyzer(packageDirectory, packageName)
+		analyzer = Analyzer(packageName, packageDirectory)
 		analyzer.Analyze()
 		coverage = analyzer.Convert()
 		coverage.Aggregate()
@@ -71,7 +71,7 @@ class Coverage(TestCase):
 		packageName = "partially"
 		packageDirectory = Path(f"tests/packages/{packageName}")
 
-		analyzer = Analyzer(packageDirectory, packageName)
+		analyzer = Analyzer(packageName, packageDirectory)
 		analyzer.Analyze()
 		coverage = analyzer.Convert()
 		coverage.Aggregate()
@@ -96,7 +96,7 @@ class Coverage(TestCase):
 		packageName = "documented"
 		packageDirectory = Path(f"tests/packages/{packageName}")
 
-		analyzer = Analyzer(packageDirectory, packageName)
+		analyzer = Analyzer(packageName, packageDirectory)
 		analyzer.Analyze()
 		coverage = analyzer.Convert()
 		coverage.Aggregate()
