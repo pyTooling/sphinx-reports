@@ -1,4 +1,6 @@
 pyTooling ~= 5.0
 
 sphinx >= 6.0, < 8.0
+
+coverage >= 7.4
 docstr_coverage >= 2.3.0
