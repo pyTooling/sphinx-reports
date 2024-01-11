@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-  "setuptools >= 68.0.0",
+  "setuptools >= 69.0.0",
   "wheel >= 0.40.0",
   "pyTooling >= 5.0.0"
 ]
@@ -34,8 +34,8 @@ filterwarnings = [
 color = true
 verbose = 1             # possible values: 0 (minimal output), 1 (-v), 2 (-vv)
 fail-under = 80
-generate-badge = "."
-badge-format = "png"
+#generate-badge = "."
+#badge-format = "png"
 ignore-setters = true
 
 [tool.coverage.run]
