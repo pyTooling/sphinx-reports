@@ -76,7 +76,7 @@ if ($copyall)
 if ($clean)
 { Write-Host -ForegroundColor DarkYellow "[live][DOC]  Cleaning documentation build directories ..."
   rm -Force .\doc\$PackageName\*
-  .\doc\make.bat clean
+  rm -Force .\doc\_build\*
 }
 
 if ($build)
@@ -109,7 +109,9 @@ $jobs = @()
 if ($livedoc)
 { Write-Host -ForegroundColor DarkYellow "[live][DOC]  Building documentation using Sphinx ..."
 
-  .\doc\make.bat html --verbose
+  cd doc
+  py -3.12 -m sphinx build -v -E -a -b html -w _build/html.log . _build/html
+  cd -
 
   Write-Host -ForegroundColor DarkYellow "[live][DOC]  Documentation finished"
 }
@@ -119,7 +121,9 @@ elseif ($doc)
 
   # Compile documentation
   $compileDocFunc = {
-    .\doc\make.bat html --verbose
+    cd doc
+    py -3.12 -m sphinx build -v -E -a -b html -w _build/html.log . _build/html
+    cd -
   }
   $docJob = Start-Job -Name "Documentation" -ScriptBlock $compileDocFunc
 #  $jobs += $docJob

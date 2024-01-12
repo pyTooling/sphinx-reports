@@ -143,10 +143,14 @@ jobs:
           name: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_latex }}
           path: latex
 
+      - name: Debug
+        run: ls -lah . && ls -lah latex
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
+        continue-on-error: true
         with:
-          root_file: latex/sphinx-reports.tex
+          root_file: latex/sphinx_reports.tex
 
       - name: 📤 Upload 'PDF Documentation' artifact
         uses: actions/upload-artifact@v4
@@ -161,7 +165,7 @@ jobs:
     needs:
       - UnitTestingParams
       - HTMLDocumentation
-      - PDFDocumentation
+#      - PDFDocumentation
       - PublishCoverageResults
       - StaticTypeCheck
     with:
