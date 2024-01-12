@@ -100,7 +100,7 @@ class AggregatedCoverage(Coverage):
 
 	@readonly
 	def CoveredStatements(self) -> int:
-		return self._missingStatements
+		return self._coveredStatements
 
 	@readonly
 	def MissingStatements(self) -> int:
