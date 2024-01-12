@@ -28,91 +28,145 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Unit tests for the data model."""
-from pathlib  import Path
-from unittest import TestCase
+"""
+**Abstract documentation coverage data model for Python code.**
+"""
 
-from sphinx_reports.Adapter.DocStrCoverage import Analyzer
-from sphinx_reports.DataModel.DocumentationCoverage import ClassCoverage, ModuleCoverage, PackageCoverage
+from enum    import Flag
+from pathlib import Path
+from typing import Optional as Nullable, Iterable, Dict, Union, Tuple
 
-if __name__ == "__main__":
-	print("ERROR: you called a testcase declaration file as an executable module.")
-	print("Use: 'python -m unitest <testcase module>'")
-	exit(1)
+from pyTooling.Decorators import export, readonly
 
 
-class DocCoverage(TestCase):
-	def test_Undocumented(self) -> None:
-		packageName = "MyPackage"
-		packageDirectory = Path(f"tests/packages/undocumented")
+@export
+class Coverage:
+	_name:      str
+	_parent:    Nullable["Coverage"]
 
-		analyzer = Analyzer(packageName, packageDirectory)
-		analyzer.Analyze()
-		coverage = analyzer.Convert()
-		coverage.Aggregate()
+	def __init__(self, name: str, parent: Nullable["Coverage"] = None) -> None:
+		self._name =   name
+		self._parent = parent
 
-		self.assertEqual(0, coverage.AggregatedTotal)
-		self.assertEqual(0, coverage.AggregatedExcluded)
-		self.assertEqual(0, coverage.AggregatedIgnored)
-		self.assertEqual(12, coverage.AggregatedExpected)
-		self.assertEqual(0, coverage.AggregatedCovered)
-		self.assertEqual(12, coverage.AggregatedUncovered)
-		self.assertEqual(0.0, coverage.AggregatedCoverage)
+	@readonly
+	def Name(self) -> str:
+		return self._name
 
-		self.assertEqual(0, coverage.Total)
-		self.assertEqual(0, coverage.Excluded)
-		self.assertEqual(0, coverage.Ignored)
-		self.assertEqual(6, coverage.Expected)
-		self.assertEqual(0, coverage.Covered)
-		self.assertEqual(6, coverage.Uncovered)
-		self.assertEqual(0.0, coverage.Coverage)
+	@readonly
+	def Parent(self) -> Nullable["Coverage"]:
+		return self._parent
 
-	def test_Partial(self) -> None:
-		packageName = "MyPackage"
-		packageDirectory = Path(f"tests/packages/partially")
 
-		analyzer = Analyzer(packageName, packageDirectory)
-		analyzer.Analyze()
-		coverage = analyzer.Convert()
-		coverage.Aggregate()
+@export
+class AggregatedCoverage(Coverage):
+	_file:               Path
 
-		self.assertEqual(0, coverage.AggregatedTotal)
-		self.assertEqual(0, coverage.AggregatedExcluded)
-		self.assertEqual(0, coverage.AggregatedIgnored)
-		self.assertEqual(12, coverage.AggregatedExpected)
-		self.assertEqual(5, coverage.AggregatedCovered)
-		self.assertEqual(7, coverage.AggregatedUncovered)
-		self.assertAlmostEqual(0.417, coverage.AggregatedCoverage, 3)
+	_totalStatements:    int
+	_excludedStatements: int
+	_coveredStatements:  int
+	_missingStatements:  int
+	_totalBranches:      int
+	_partialBranches:    int
 
-		self.assertEqual(0, coverage.Total)
-		self.assertEqual(0, coverage.Excluded)
-		self.assertEqual(0, coverage.Ignored)
-		self.assertEqual(6, coverage.Expected)
-		self.assertEqual(3, coverage.Covered)
-		self.assertEqual(3, coverage.Uncovered)
-		self.assertEqual(0.5, coverage.Coverage)
+	_coverage:           float
 
-	def test_Documented(self) -> None:
-		packageName = "MyPackage"
-		packageDirectory = Path(f"tests/packages/documented")
+	def __init__(self, name: str, file: Path, parent: Nullable["Coverage"] = None) -> None:
+		super().__init__(name, parent)
+		self._file = file
 
-		analyzer = Analyzer(packageName, packageDirectory)
-		analyzer.Analyze()
-		coverage = analyzer.Convert()
-		coverage.Aggregate()
+		self._totalStatements =    0
+		self._excludedStatements = 0
+		self._coveredStatements =  0
+		self._missingStatements =  0
 
-		self.assertEqual(0, coverage.AggregatedTotal)
-		self.assertEqual(0, coverage.AggregatedExcluded)
-		self.assertEqual(0, coverage.AggregatedIgnored)
-		self.assertEqual(12, coverage.AggregatedExpected)
-		self.assertEqual(12, coverage.AggregatedCovered)
-		self.assertEqual(0, coverage.AggregatedUncovered)
-		self.assertEqual(1.0, coverage.AggregatedCoverage)
+		self._totalBranches =      0
+		self._coveredBranches =    0
+		self._partialBranches =    0
+		self._missingBranches =    0
 
-		self.assertEqual(0, coverage.Total)
-		self.assertEqual(0, coverage.Excluded)
-		self.assertEqual(0, coverage.Ignored)
-		self.assertEqual(6, coverage.Expected)
-		self.assertEqual(6, coverage.Covered)
-		self.assertEqual(0, coverage.Uncovered)
-		self.assertEqual(1.0, coverage.Coverage)
+		self._coverage = -1.0
+
+	@readonly
+	def File(self) -> Path:
+		return self._file
+
+	@readonly
+	def TotalStatements(self) -> int:
+		return self._totalStatements
+
+	@readonly
+	def ExcludedStatements(self) -> int:
+		return self._excludedStatements
+
+	@readonly
+	def CoveredStatements(self) -> int:
+		return self._coveredStatements
+
+	@readonly
+	def MissingStatements(self) -> int:
+		return self._missingStatements
+
+	@readonly
+	def TotalBranches(self) -> int:
+		return self._totalBranches
+
+	@readonly
+	def CoveredBranches(self) -> int:
+		return self._coveredBranches
+
+	@readonly
+	def PartialBranches(self) -> int:
+		return self._partialBranches
+
+	@readonly
+	def MissingBranches(self) -> int:
+		return self._missingBranches
+
+	@readonly
+	def Coverage(self) -> float:
+		return self._coverage
+
+
+@export
+class ModuleCoverage(AggregatedCoverage):
+	def __init__(self, name: str, file: Path, parent: Nullable["PackageCoverage"] = None) -> None:
+		super().__init__(name, file, parent)
+
+		if parent is not None:
+			parent._modules[name] = self
+
+
+@export
+class PackageCoverage(AggregatedCoverage):
+	_fileCount: int
+
+	_modules:   Dict[str, ModuleCoverage]
+	_packages:  Dict[str, "PackageCoverage"]
+
+	def __init__(self, name: str, file: Path, parent: Nullable["PackageCoverage"] = None) -> None:
+		super().__init__(name, file, parent)
+
+		if parent is not None:
+			parent._packages[name] = self
+
+		self._fileCount = 1
+		self._modules =   {}
+		self._packages =  {}
+
+	@readonly
+	def FileCount(self) -> int:
+		return self._fileCount
+
+	@readonly
+	def Modules(self) -> Dict[str, ModuleCoverage]:
+		return self._modules
+
+	@readonly
+	def Packages(self) -> Dict[str, "PackageCoverage"]:
+		return self._packages
+
+	def __getitem__(self, key: str) -> Union["PackageCoverage", ModuleCoverage]:
+		try:
+			return self._modules[key]
+		except KeyError:
+			return self._packages[key]

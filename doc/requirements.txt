@@ -1,5 +1,8 @@
 -r ../requirements.txt
 
+# XXX: because of missing dependency in pyTooling
+setuptools >= 69.0.0
+
 pyTooling >= 5.0.0, < 6.0
 colorama >= 0.4.6
 

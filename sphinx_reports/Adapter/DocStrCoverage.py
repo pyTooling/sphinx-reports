@@ -49,12 +49,12 @@ class DocStrCoverageError(ReportExtensionError):
 
 @export
 class Analyzer:
-	_searchDirectory: Path
 	_packageName:     str
+	_searchDirectory: Path
 	_moduleFiles:     List[Path]
-	_coverageReport:  str
+	_coverageReport:  ResultCollection
 
-	def __init__(self, directory: Path, packageName: str) -> None:
+	def __init__(self, packageName: str, directory: Path) -> None:
 		self._searchDirectory = directory
 		self._packageName = packageName
 		self._moduleFiles = []
@@ -86,33 +86,35 @@ class Analyzer:
 		return self._coverageReport
 
 	def Convert(self) -> PackageCoverage:
-		rootPackageCoverage = PackageCoverage(self._searchDirectory / "__init__.py", self._packageName)
+		rootPackageCoverage = PackageCoverage(self._packageName, self._searchDirectory / "__init__.py")
 
 		for key, value in self._coverageReport.files():
 			path: Path = key.relative_to(self._searchDirectory)
 			perFileResult: FileCount = value.count_aggregate()
 
 			moduleName = path.stem
-			modulePath = [p.name for p in path.parents if p.name != ""]
+			modulePath = path.parent.parts
 
 			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
 			for packageName in modulePath:
 				try:
 					currentCoverageObject = currentCoverageObject[packageName]
 				except KeyError:
-					currentCoverageObject = PackageCoverage(path, packageName, currentCoverageObject)
+					currentCoverageObject = PackageCoverage(packageName, path, currentCoverageObject)
 
 			if moduleName != "__init__":
-				currentCoverageObject = ModuleCoverage(path, moduleName, currentCoverageObject)
+				currentCoverageObject = ModuleCoverage(moduleName, path, currentCoverageObject)
 
 			currentCoverageObject._expected = perFileResult.needed
 			currentCoverageObject._covered = perFileResult.found
 			currentCoverageObject._uncovered = perFileResult.missing
 
-			currentCoverageObject._uncovered = currentCoverageObject._expected - currentCoverageObject._covered
 			if currentCoverageObject._expected != 0:
 				currentCoverageObject._coverage = currentCoverageObject._covered / currentCoverageObject._expected
 			else:
 				currentCoverageObject._coverage = 1.0
+
+			if currentCoverageObject._uncovered != currentCoverageObject._expected - currentCoverageObject._covered:
+				currentCoverageObject._coverage = -2.0
 
 		return rootPackageCoverage

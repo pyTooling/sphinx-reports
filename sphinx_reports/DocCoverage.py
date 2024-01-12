@@ -32,7 +32,7 @@
 **Report documentation coverage as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict
+from typing import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union
 
 from docutils             import nodes
 from pyTooling.Decorators import export
@@ -47,7 +47,7 @@ class package_DictType(TypedDict):
 	name: str
 	directory: str
 	fail_below: int
-	levels: Dict[int, Dict[str, str]]
+	levels: Dict[Union[int, str], Dict[str, str]]
 
 
 @export
@@ -75,13 +75,13 @@ class DocCoverage(BaseDirective):
 	_packageName: str
 	_directory:   Path
 	_failBelow:   float
-	_levels:      Dict[int, Dict[str, str]]
+	_levels:      Dict[Union[int, str], Dict[str, str]]
 	_coverage:    PackageCoverage
 
 	def _CheckOptions(self) -> None:
 		# Parse all directive options or use default values
 		self._packageID = self._ParseStringOption("packageid")
-		self._legend = self._ParseLegendOption("legend", LegendPosition.Bottom)
+		self._legend = self._ParseLegendOption("legend", LegendPosition.bottom)
 
 	def _CheckConfiguration(self) -> None:
 		from sphinx_reports import ReportDomain
@@ -126,13 +126,23 @@ class DocCoverage(BaseDirective):
 		except KeyError as ex:
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Configuration is missing.") from ex
 
+		if 100 not in packageConfiguration["levels"]:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[100]: Configuration is missing.")
+
+		if "error" not in packageConfiguration["levels"]:
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[error]: Configuration is missing.")
+
 		self._levels = {}
 		for level, levelConfig in levels.items():
 			try:
-				if not (0.0 <= int(level) <= 100.0):
+				if isinstance(level, str):
+					if level != "error":
+						raise ReportExtensionError(
+							f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is a keyword, but not 'error'.")
+				elif not (0.0 <= int(level) <= 100.0):
 					raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is out of range 0..100.")
 			except ValueError as ex:
-				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not an integer in range 0..100.") from ex
+				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not a keyword or an integer in range 0..100.") from ex
 
 			try:
 				cssClass = levelConfig["class"]
@@ -147,8 +157,11 @@ class DocCoverage(BaseDirective):
 			self._levels[level] = {"class": cssClass, "desc": description}
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
+		if currentLevel < 0.0:
+			return self._levels["error"][configKey]
+
 		for levelLimit, levelConfig in self._levels.items():
-			if (currentLevel * 100) < levelLimit:
+			if isinstance(levelLimit, int) and (currentLevel * 100) < levelLimit:
 				return levelConfig[configKey]
 
 		return self._levels[100][configKey]
@@ -164,7 +177,7 @@ class DocCoverage(BaseDirective):
 				"Missing": 100,
 				"Coverage in %": 100
 			},
-			classes=["doccov-table"]
+			classes=["report-doccov-table"]
 		)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
@@ -181,7 +194,7 @@ class DocCoverage(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
-				classes=["doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
+				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
 				# style="background: rgba(  0, 200,  82, .2);"
 			)
 
@@ -191,12 +204,12 @@ class DocCoverage(BaseDirective):
 			for module in sortedValues(packageCoverage._modules):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)} {module.Name}")),
+					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
-					classes=["doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
+					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
 
@@ -212,7 +225,7 @@ class DocCoverage(BaseDirective):
 			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoverage:.1%}"),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
-			classes=["doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
+			classes=["report-doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
 		)
 
 		return table
@@ -236,12 +249,13 @@ class DocCoverage(BaseDirective):
 		tableGroup += tableBody
 
 		for level, config in self._levels.items():
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"≤{level}%")),
-				nodes.entry("", nodes.paragraph(text=config["desc"])),
-				classes=["doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
-			)
+			if isinstance(level, int):
+				tableBody += nodes.row(
+					"",
+					nodes.entry("", nodes.paragraph(text=f"≤{level}%")),
+					nodes.entry("", nodes.paragraph(text=config["desc"])),
+					classes=["report-doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
+				)
 
 		return [rubric, table]
 
@@ -253,7 +267,7 @@ class DocStrCoverage(DocCoverage):
 		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._directory, self._packageName)
+		analyzer = Analyzer(self._packageName, self._directory)
 		analyzer.Analyze()
 		self._coverage = analyzer.Convert()
 		# self._coverage.CalculateCoverage()
@@ -261,12 +275,12 @@ class DocStrCoverage(DocCoverage):
 
 		container = nodes.container()
 
-		if LegendPosition.Top in self._legend:
-			container += self._CreateLegend(identifier="legend1", classes=["doccov-legend"])
+		if LegendPosition.top in self._legend:
+			container += self._CreateLegend(identifier="legend1", classes=["report-doccov-legend"])
 
 		container += self._GenerateCoverageTable()
 
-		if LegendPosition.Bottom in self._legend:
-			container += self._CreateLegend(identifier="legend2", classes=["doccov-legend"])
+		if LegendPosition.bottom in self._legend:
+			container += self._CreateLegend(identifier="legend2", classes=["report-doccov-legend"])
 
 		return [container]

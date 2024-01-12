@@ -43,7 +43,7 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2024, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.3.1"
+__version__ =   "0.4.0"
 __keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate"]
 
 from hashlib              import md5
@@ -84,6 +84,7 @@ class ReportDomain(Domain):
 
 	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:
 
+	* ``report_codecov_packages``
 	* ``report_doccov_packages``
 
 	"""
@@ -116,7 +117,8 @@ class ReportDomain(Domain):
 	configValues: Dict[str, Tuple[Any, str, Any]] = {
 		"designs":  ({}, "env", Dict),
 		"defaults": ({}, "env", Dict),
-		**DocStrCoverage.configValues
+		**DocStrCoverage.configValues,
+		**CodeCoverage.configValues
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
 	initial_data = {

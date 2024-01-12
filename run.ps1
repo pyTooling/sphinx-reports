@@ -76,7 +76,7 @@ if ($copyall)
 if ($clean)
 { Write-Host -ForegroundColor DarkYellow "[live][DOC]  Cleaning documentation build directories ..."
   rm -Force .\doc\$PackageName\*
-  .\doc\make.bat clean
+  rm -Force .\doc\_build\*
 }
 
 if ($build)
@@ -97,7 +97,7 @@ if ($install)
   { Write-Host -ForegroundColor Cyan     "[ADMIN][UNINSTALL] Uninstalling $PackageName ..."
     py -3.12 -m pip uninstall -y $PackageName
     Write-Host -ForegroundColor Cyan     "[ADMIN][INSTALL]   Installing $PackageName from wheel ..."
-    py -3.12 -m pip install .\dist\$PackageName-0.3.1-py3-none-any.whl
+    py -3.12 -m pip install .\dist\$PackageName-0.4.0-py3-none-any.whl
 
     Write-Host -ForegroundColor Cyan     "[ADMIN][INSTALL]   Closing window in 5 seconds ..."
     Start-Sleep -Seconds 5
@@ -109,7 +109,9 @@ $jobs = @()
 if ($livedoc)
 { Write-Host -ForegroundColor DarkYellow "[live][DOC]  Building documentation using Sphinx ..."
 
-  .\doc\make.bat html --verbose
+  cd doc
+  py -3.12 -m sphinx build -v -E -a -b html -w _build/html.log . _build/html
+  cd -
 
   Write-Host -ForegroundColor DarkYellow "[live][DOC]  Documentation finished"
 }
@@ -119,7 +121,9 @@ elseif ($doc)
 
   # Compile documentation
   $compileDocFunc = {
-    .\doc\make.bat html --verbose
+    cd doc
+    py -3.12 -m sphinx build -v -E -a -b html -w _build/html.log . _build/html
+    cd -
   }
   $docJob = Start-Job -Name "Documentation" -ScriptBlock $compileDocFunc
 #  $jobs += $docJob
@@ -163,6 +167,9 @@ if ($livecov)
 
   Write-Host -ForegroundColor DarkMagenta "[live][COV]  Convert coverage report to XML (Cobertura) ..."
   coverage xml
+
+  Write-Host -ForegroundColor DarkMagenta "[live][COV]  Convert coverage report to JSON ..."
+  coverage json
 
   Write-Host -ForegroundColor DarkMagenta "[live][COV]  Write coverage report to console ..."
   coverage report
