@@ -1,7 +1,7 @@
-UnitTest Report
-###############
+Unittest Summary Report
+#######################
 
-*Placeholder for the unittest report generated with* ``pytest``.
+Code coverage report generated with ``pytest``.
 
 .. report:unittest-summary::
    :reportid: src

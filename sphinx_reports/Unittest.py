@@ -104,16 +104,16 @@ class UnittestSummary(BaseDirective):
 		if not self._xmlReport.exists():
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites:{self._reportID}.xml_report: Unittest report file '{self._xmlReport}' doesn't exist.") from FileNotFoundError(self._xmlReport)
 
-	def _GenerateCoverageTable(self) -> nodes.table:
+	def _GenerateTestSummaryTable(self) -> nodes.table:
 		# Create a table and table header with 5 columns
 		table, tableGroup = self._PrepareTable(
 			identifier=self._reportID,
 			columns={
-				"Filename": 500,
-				"Total": 100,
-				"Covered": 100,
-				"Missing": 100,
-				"Coverage in %": 100
+				"Testsuite / Testcase": 500,
+				"???": 100,
+				"????": 100,
+				"?????": 100,
+				"Status": 100
 			},
 			classes=["report-unittest-table"]
 		)
@@ -124,47 +124,47 @@ class UnittestSummary(BaseDirective):
 			for key in sorted(d.keys()):
 				yield d[key]
 
-		def renderlevel(tableBody: nodes.tbody, packageCoverage: Testsuite, level: int = 0) -> None:
+		def renderlevel(tableBody: nodes.tbody, testsuite: Testsuite, level: int = 0) -> None:
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{' '*level}{packageCoverage.Name} ({packageCoverage.File})")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
-				classes=["report-unittest-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
+				nodes.entry("", nodes.paragraph(text=f"{' '*level}{testsuite.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Coverage:.1%}")),
+				classes=["report-unittest-table-row"],
 				# style="background: rgba(  0, 200,  82, .2);"
 			)
 
-			for package in sortedValues(packageCoverage._packages):
-				renderlevel(tableBody, package, level + 1)
+			for ts in sortedValues(testsuite._testsuites):
+				renderlevel(tableBody, ts, level + 1)
 
-			for module in sortedValues(packageCoverage._modules):
+			for testcase in sortedValues(testsuite._testcases):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"{' '*level}{module.Name} ({module.File})")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
+					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}{testcase.Name}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {testcase.Expected}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {testcase.Covered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {testcase.Uncovered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {testcase.Coverage :.1%}")),
 					classes=["report-unittest-table-row"],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
 
 		renderlevel(tableBody, self._testsuite)
 
-		# Add a summary row
-		tableBody += nodes.row(
-			"",
-			nodes.entry("", nodes.paragraph(text=f"Overall ({self._testsuite.FileCount} files):")),
-			nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Expected}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Covered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Uncovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Coverage:.1%}"),
-									# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
-									),
-			classes=["report-unittest-summary-row"]
-		)
+		# # Add a summary row
+		# tableBody += nodes.row(
+		# 	"",
+		# 	nodes.entry("", nodes.paragraph(text=f"Overall ({self._testsuite.FileCount} files):")),
+		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Expected}")),
+		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Covered}")),
+		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Uncovered}")),
+		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Coverage:.1%}"),
+		# 							# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
+		# 							),
+		# 	classes=["report-unittest-summary-row"]
+		# )
 
 		return table
 
@@ -178,13 +178,6 @@ class UnittestSummary(BaseDirective):
 		# self._testsuite.Aggregate()
 
 		container = nodes.container()
-
-		if LegendPosition.top in self._legend:
-			container += self._CreateLegend(identifier="legend1", classes=["report-unittest-legend"])
-
-		container += self._GenerateCoverageTable()
-
-		if LegendPosition.bottom in self._legend:
-			container += self._CreateLegend(identifier="legend2", classes=["report-unittest-legend"])
+		container += self._GenerateTestSummaryTable()
 
 		return [container]
