@@ -66,9 +66,12 @@ jobs:
       codacy_token: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
   PublishTestResults:
-    uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@cov
+    uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@junit
     needs:
+      - UnitTestingParams
       - UnitTesting
+    with:
+      merged_junit_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}
 
   IntermediateCleanUp:
     uses: pyTooling/Actions/.github/workflows/IntermediateCleanUp.yml@cov
@@ -88,13 +91,15 @@ jobs:
 #      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
 
   HTMLDocumentation:
-    uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@cov
+    uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@junit
     needs:
       - UnitTestingParams
+      - PublishTestResults
       - PublishCoverageResults
 #      - VerifyDocs
     with:
       python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
+      unittest_xml_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}
       coverage_json_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_json }}
       html_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_html }}
       latex_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_latex }}
