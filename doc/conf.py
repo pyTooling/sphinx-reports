@@ -273,7 +273,7 @@ _coverageLevels = {
 report_codecov_packages = {
 	"src": {
 		"name":        "sphinx_reports",
-		"html_report": "../report/coverage/html",
+		"json_report": "../report/coverage/coverage.json",
 		"fail_below":  80,
 		"levels":      _coverageLevels
 	}

@@ -45,7 +45,7 @@ from sphinx_reports.Adapter.Coverage       import Analyzer
 
 class package_DictType(TypedDict):
 	name:        str
-	html_report: str
+	json_report: str
 	fail_below:  int
 	levels:      Dict[Union[int, str], Dict[str, str]]
 
@@ -73,7 +73,7 @@ class CodeCoverage(BaseDirective):
 	_packageID:   str
 	_legend:      LegendPosition
 	_packageName: str
-	_html_report: Path
+	_jsonReport:  Path
 	_failBelow:   float
 	_levels:      Dict[Union[int, str], Dict[str, str]]
 	_coverage:    PackageCoverage
@@ -103,12 +103,12 @@ class CodeCoverage(BaseDirective):
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.name: Configuration is missing.") from ex
 
 		try:
-			self._html_report = Path(packageConfiguration["html_report"])
+			self._jsonReport = Path(packageConfiguration["json_report"])
 		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.html_report: Configuration is missing.") from ex
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.json_report: Configuration is missing.") from ex
 
-		if not self._html_report.exists():
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.html_report: Report directory doesn't exist.") from FileNotFoundError(self._html_report)
+		if not self._jsonReport.exists():
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.json_report: Coverage report file '{self._jsonReport}' doesn't exist.") from FileNotFoundError(self._jsonReport)
 
 		try:
 			self._failBelow = int(packageConfiguration["fail_below"]) / 100
@@ -172,11 +172,14 @@ class CodeCoverage(BaseDirective):
 			identifier=self._packageID,
 			columns={
 				"Module": 500,
-				"Statements": 100,
-				"Excluded": 100,
-				"Missing": 100,
-				"Branches": 100,
-				"Partial": 100,
+				"Total Statements": 100,
+				"Excluded Statements": 100,
+				"Covered Statements": 100,
+				"Missing Statements": 100,
+				"Total Branches": 100,
+				"Covered Branches": 100,
+				"Partial Branches": 100,
+				"Missing Branches": 100,
 				"Coverage in %": 100
 			},
 			classes=["report-doccov-table"]
@@ -194,9 +197,12 @@ class CodeCoverage(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalStatements}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.ExcludedStatements}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredStatements}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingStatements}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalBranches}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredBranches}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.PartialBranches}")),
+				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingBranches}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
 				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
 				# style="background: rgba(  0, 200,  82, .2);"
@@ -211,9 +217,12 @@ class CodeCoverage(BaseDirective):
 					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.MissingStatements}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.TotalBranches}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.CoveredBranches}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.PartialBranches}")),
+					nodes.entry("", nodes.paragraph(text=f"{module.MissingBranches}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
 					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
 					# style="background: rgba(  0, 200,  82, .2);"
@@ -226,6 +235,9 @@ class CodeCoverage(BaseDirective):
 			"",
 			nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):")),
 			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedExpected}")),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
+			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
 			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
 			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
 			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
@@ -271,7 +283,7 @@ class CodeCoverage(BaseDirective):
 		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._packageName, self._html_report)
+		analyzer = Analyzer(self._packageName, self._jsonReport)
 		self._coverage = analyzer.Convert()
 		# self._coverage.Aggregate()
 

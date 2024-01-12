@@ -63,6 +63,7 @@ class AggregatedCoverage(Coverage):
 
 	_totalStatements:    int
 	_excludedStatements: int
+	_coveredStatements:  int
 	_missingStatements:  int
 	_totalBranches:      int
 	_partialBranches:    int
@@ -75,9 +76,13 @@ class AggregatedCoverage(Coverage):
 
 		self._totalStatements =    0
 		self._excludedStatements = 0
+		self._coveredStatements =  0
 		self._missingStatements =  0
+
 		self._totalBranches =      0
+		self._coveredBranches =    0
 		self._partialBranches =    0
+		self._missingBranches =    0
 
 		self._coverage = -1.0
 
@@ -94,6 +99,10 @@ class AggregatedCoverage(Coverage):
 		return self._excludedStatements
 
 	@readonly
+	def CoveredStatements(self) -> int:
+		return self._missingStatements
+
+	@readonly
 	def MissingStatements(self) -> int:
 		return self._missingStatements
 
@@ -102,8 +111,16 @@ class AggregatedCoverage(Coverage):
 		return self._totalBranches
 
 	@readonly
+	def CoveredBranches(self) -> int:
+		return self._coveredBranches
+
+	@readonly
 	def PartialBranches(self) -> int:
 		return self._partialBranches
+
+	@readonly
+	def MissingBranches(self) -> int:
+		return self._missingBranches
 
 	@readonly
 	def Coverage(self) -> float:

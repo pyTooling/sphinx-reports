@@ -48,43 +48,37 @@ class CodeCoverageError(ReportExtensionError):
 
 @export
 class Analyzer:
-	_packageName:          str
-	_htmlReportDirectory:  Path
-	_coverageReportStatus: Configuration
+	_packageName:    str
+	_coverageReport: Configuration
 
-	def __init__(self, packageName: str, htmlReportDirectory: Path) -> None:
+	def __init__(self, packageName: str, jsonCoverageFile: Path) -> None:
+		if not jsonCoverageFile.exists():
+			raise CodeCoverageError(f"JSON coverage report '{jsonCoverageFile}' not found.") from FileNotFoundError(jsonCoverageFile)
+
 		self._packageName = packageName
-		self._htmlReportDirectory = htmlReportDirectory
+		self._coverageReport = Configuration(jsonCoverageFile)
 
-		self._ReadReportStatus(self._htmlReportDirectory / "status.json")
+		# if int(self._coverageReport["format"]) != 2:
+		# 	raise CodeCoverageError(f"File format of '{jsonCoverageFile}' is not supported.")
 
 	@readonly
 	def PackageName(self) -> str:
 		return self._packageName
 
 	@readonly
-	def HTMLReportDirectory(self) -> Path:
-		return self._htmlReportDirectory
+	def JSONCoverageFile(self) -> Path:
+		return self._coverageReport.ConfigFile
 
 	@readonly
-	def CoverageReportStatus(self) -> Configuration:
-		return self._coverageReportStatus
-
-	def _ReadReportStatus(self, jsonFile: Path) -> None:
-		self._coverageReportStatus = Configuration(jsonFile)
-
-		if int(self._coverageReportStatus["format"]) != 2:
-			raise CodeCoverageError(f"File format of '{jsonFile}' is not supported.")
+	def CoverageReport(self) -> Configuration:
+		return self._coverageReport
 
 	def Convert(self) -> PackageCoverage:
 		rootPackageCoverage = PackageCoverage(self._packageName, Path("__init__.py"))
 
-		for statusRecord in self._coverageReportStatus["files"]:
-			fileID = statusRecord.Key
-
-			moduleFile = Path(statusRecord["index"]["relative_filename"])
-			reportFile = Path(statusRecord["index"]["html_filename"])
-			coverageStatus = Numbers(*(int(i) for i in statusRecord["index"]["nums"]))
+		for statusRecord in self._coverageReport["files"]:
+			moduleFile = Path(statusRecord.Key)
+			coverageSummary = statusRecord["summary"]
 
 			moduleName = moduleFile.stem
 			modulePath = moduleFile.parent.parts[1:]
@@ -97,13 +91,18 @@ class Analyzer:
 					currentCoverageObject = PackageCoverage(packageName, moduleFile, currentCoverageObject)
 
 			if moduleName != "__init__":
-				currentCoverageObject = ModuleCoverage(moduleFile, moduleName, currentCoverageObject)
+				currentCoverageObject = ModuleCoverage(moduleName, moduleFile, currentCoverageObject)
 
-			currentCoverageObject._totalStatements = coverageStatus.n_statements
-			currentCoverageObject._excludedStatements = coverageStatus.n_excluded
-			currentCoverageObject._missingStatements = coverageStatus.n_missing
-			currentCoverageObject._totalStatements = coverageStatus.n_branches
-			currentCoverageObject._partialBranches = coverageStatus.n_partial_branches
-			currentCoverageObject._coverage = coverageStatus.pc_covered / 100
+			currentCoverageObject._totalStatements =    int(coverageSummary["num_statements"])
+			currentCoverageObject._excludedStatements = int(coverageSummary["excluded_lines"])
+			currentCoverageObject._coveredStatements =  int(coverageSummary["covered_lines"])
+			currentCoverageObject._missingStatements =  int(coverageSummary["missing_lines"])
+
+			currentCoverageObject._totalBranches =   int(coverageSummary["num_branches"])
+			currentCoverageObject._coveredBranches = int(coverageSummary["covered_branches"])
+			currentCoverageObject._partialBranches = int(coverageSummary["num_partial_branches"])
+			currentCoverageObject._missingBranches = int(coverageSummary["missing_branches"])
+
+			currentCoverageObject._coverage = float(coverageSummary["percent_covered"]) / 100.0
 
 		return rootPackageCoverage
