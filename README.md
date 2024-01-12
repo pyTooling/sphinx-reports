@@ -30,6 +30,9 @@ Supported format reports are:
 * 🚧 Unit Test summaries (by [pytest](https://github.com/pytest-dev/pytest))
 * 🚧 Dependencies (reading `requirements.txt` files)
 
+![Code Coverage Summary Page](.github/CodeCoverage.png)
+
+
 ## Extension Configuration
 
 This README demonstrates a quick and minimal configuration for the Sphinx extension and it's provided directives. See
