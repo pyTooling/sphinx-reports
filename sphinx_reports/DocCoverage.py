@@ -108,7 +108,7 @@ class DocCoverage(BaseDirective):
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.directory: Configuration is missing.") from ex
 
 		if not self._directory.exists():
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.directory: Directory doesn't exist.") from FileNotFoundError(self._directory)
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.directory: Directory '{self._directory}' doesn't exist.") from FileNotFoundError(self._directory)
 
 		try:
 			self._failBelow = int(packageConfiguration["fail_below"]) / 100

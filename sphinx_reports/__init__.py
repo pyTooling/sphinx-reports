@@ -84,6 +84,7 @@ class ReportDomain(Domain):
 
 	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:
 
+	* ``report_unittest_testsuites``
 	* ``report_codecov_packages``
 	* ``report_doccov_packages``
 
@@ -100,10 +101,10 @@ class ReportDomain(Domain):
 	from sphinx_reports.Unittest     import UnittestSummary
 
 	directives = {
-		"code-coverage": CodeCoverage,
-		"dependecy":     DocStrCoverage,
-		"doc-coverage":  DocStrCoverage,
-		"unittest":      UnittestSummary,
+		"code-coverage":    CodeCoverage,
+		"dependecy":        DocStrCoverage,
+		"doc-coverage":     DocStrCoverage,
+		"unittest-summary": UnittestSummary,
 	}  #: A dictionary of all directives in this domain.
 
 	roles = {
@@ -115,10 +116,9 @@ class ReportDomain(Domain):
 	]  #: A list of all indices in this domain.
 
 	configValues: Dict[str, Tuple[Any, str, Any]] = {
-		"designs":  ({}, "env", Dict),
-		"defaults": ({}, "env", Dict),
 		**DocStrCoverage.configValues,
-		**CodeCoverage.configValues
+		**CodeCoverage.configValues,
+		**UnittestSummary.configValues,
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
 	initial_data = {
