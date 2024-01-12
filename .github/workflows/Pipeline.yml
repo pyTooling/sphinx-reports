@@ -24,33 +24,13 @@ jobs:
       coverage_sqlite_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}
 
   DocCoverage:
-    name: Check documentation coverage
-    runs-on: ubuntu-latest
+    uses: pyTooling/Actions/.github/workflows/CheckDocumentation.yml@cov
     needs:
       - UnitTestingParams
-    steps:
-      - name: ⏬ Checkout repository
-        uses: actions/checkout@v4
-
-      - name: 🐍 Setup Python 3.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: 🔧 Install wheel,tomli and pip dependencies (native)
-        run: |
-          python -m pip install --disable-pip-version-check -U docstr_coverage interrogate
-#          python -m pip install --disable-pip-version-check ${{ inputs.requirements }}
-
-      - name: Run 'interrogate' Documentation Coverage Check
-        continue-on-error: true
-        run: |
-          interrogate -c pyproject.toml
-
-      - name: Run 'docstr_coverage' Documentation Coverage Check
-        continue-on-error: true
-        run: |
-          docstr_coverage -v sphinx_reports
+    with:
+      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
+      directory: sphinx_reports
+#      fail_below: 70
 
   Package:
     uses: pyTooling/Actions/.github/workflows/Package.yml@cov
@@ -91,25 +71,14 @@ jobs:
       - UnitTesting
 
   IntermediateCleanUp:
-    name: 🗑️ Intermediate Artifact Cleanup
-    runs-on: ubuntu-latest
+    uses: pyTooling/Actions/.github/workflows/IntermediateCleanUp.yml@cov
     needs:
       - UnitTestingParams
       - PublishCoverageResults
       - PublishTestResults
-    steps:
-      - name: 🗑️ Delete SQLite coverage artifacts from matrix jobs
-        uses: geekyeggo/delete-artifact@v4
-        continue-on-error: true
-        with:
-          name: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}-*
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: 🗑️ Delete XML coverage artifacts from matrix jobs
-        uses: geekyeggo/delete-artifact@v4
-        continue-on-error: true
-        with:
-          name: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}-*
-          token: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      sqlite_coverage_artifacts_prefix: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).codecoverage_sqlite }}-
+      xml_unittest_artifacts_prefix: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).unittesting_xml }}-
 
 #  VerifyDocs:
 #    uses: pyTooling/Actions/.github/workflows/VerifyDocs.yml@cov
@@ -119,7 +88,7 @@ jobs:
 #      python_version: ${{ needs.UnitTestingParams.outputs.python_version }}
 
   HTMLDocumentation:
-    uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@json
+    uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@cov
     needs:
       - UnitTestingParams
       - PublishCoverageResults
@@ -131,34 +100,14 @@ jobs:
       latex_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_latex }}
 
   PDFDocumentation:
-    name: 📓 Converting LaTeX Documentation to PDF
-    runs-on: ubuntu-latest
+    uses: pyTooling/Actions/.github/workflows/LaTeXDocumentation.yml@cov
     needs:
       - UnitTestingParams
       - HTMLDocumentation
-    steps:
-      - name: 📥 Download artifacts '${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_latex }}' from 'SphinxDocumentation' job
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_latex }}
-          path: latex
-
-      - name: Debug
-        run: ls -lah . && ls -lah latex
-
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@master
-        continue-on-error: true
-        with:
-          root_file: latex/sphinx_reports.tex
-
-      - name: 📤 Upload 'PDF Documentation' artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_pdf }}
-          path: sphinx_reports.pdf
-          if-no-files-found: error
-          retention-days: 1
+    with:
+      document: sphinx_reports
+      latex_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_latex }}
+      pdf_artifact: ${{ fromJson(needs.UnitTestingParams.outputs.artifact_names).documentation_pdf }}
 
   PublishToGitHubPages:
     uses: pyTooling/Actions/.github/workflows/PublishToGitHubPages.yml@cov
