@@ -145,7 +145,7 @@ if ($liveunit)
 }
 elseif ($unit)
 { Write-Host -ForegroundColor DarkYellow "[Job2][UNIT] Running Unit Tests using pytest ..."
-  Write-Host -ForegroundColor DarkGreen  "[SCRIPT]     Starting UniTests jobs ..."
+  Write-Host -ForegroundColor DarkGreen  "[SCRIPT]     Starting UnitTests jobs ..."
 
   # Run unit tests
   $runUnitFunc = {

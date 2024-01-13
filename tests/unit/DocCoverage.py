@@ -36,7 +36,7 @@ from sphinx_reports.DataModel.DocumentationCoverage import ClassCoverage, Module
 
 if __name__ == "__main__":
 	print("ERROR: you called a testcase declaration file as an executable module.")
-	print("Use: 'python -m unitest <testcase module>'")
+	print("Use: 'python -m unittest <testcase module>'")
 	exit(1)
 
 
