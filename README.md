@@ -27,7 +27,9 @@ Supported format reports are:
 * 🚧 Code coverage (by [Coverage.py](https://github.com/nedbat/coveragepy))
   * ✅ Summary page (displaying `coverage.json`)
   * 🚧 Highlighted source code
-* 🚧 Unit Test summaries (by [pytest](https://github.com/pytest-dev/pytest))
+* ✅🚧 Unit Test summaries (by [pytest](https://github.com/pytest-dev/pytest))
+  * ✅ Summary page (displaying `unittest.xml`)
+  * 🚧 Show logging, output and error messages.
 * 🚧 Dependencies (reading `requirements.txt` files)
 
 ![Code Coverage Summary Page](.github/CodeCoverage.png)

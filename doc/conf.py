@@ -270,6 +270,12 @@ _coverageLevels = {
 	"error": {"class": "report-cov-error",    "desc": "internal error"},
 }
 
+report_unittest_testsuites = {
+	"src": {
+		"name":        "sphinx_reports",
+		"xml_report":  "../report/unit/TestReportSummary.xml",
+	}
+}
 report_codecov_packages = {
 	"src": {
 		"name":        "sphinx_reports",

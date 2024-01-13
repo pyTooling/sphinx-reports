@@ -89,7 +89,11 @@ Supported format reports are:
   * ✅ Summary page
   * 🚧 Highlighted source code
 
-* 🚧 Unit Test summaries (by `pytest`)
+* ✅🚧 Unit Test summaries (by `pytest <https://github.com/pytest-dev/pytest>`__)
+
+  * ✅ Summary page (displaying `unittest.xml`)
+  * 🚧 Show logging, output and error messages.
+
 * 🚧 Dependencies (reading `requirements.txt` files)
 
 Documentation coverage
@@ -105,20 +109,22 @@ documentation coverage can be computed.
 Code Coverage
 =============
 
-🚧 This is a work-in-progress feature. 🚧
-
 :ref:`CODECOV` checks if a source code was used during execution. Usually, testcases are run by a testcase execution
 framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the code for code
 coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually based on
 `Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage collection.
 
-.. todo:: index: Screen shot here and link to this coverage report.
+.. todo:: index: Screen shot here and link to this code coverage report.
 
 
 Unit Test Summary
 =================
 
-🚧 This is a planned feature. 🚧
+🚧 This is a work-in-progress feature. 🚧
+
+:ref:`UNITTEST`
+
+.. todo:: index: Screen shot here and link to this unitest summary.
 
 
 Dependencies
@@ -185,7 +191,7 @@ License
    :hidden:
 
    Python Class Reference <sphinx_reports/sphinx_reports>
-   Unittest Report ➚ <unittests/index>
+   unittests/index
    coverage/index
    Doc. Coverage Report <DocCoverage>
    Static Type Check Report ➚ <typing/index>

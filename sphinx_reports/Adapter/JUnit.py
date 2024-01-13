@@ -29,92 +29,88 @@
 # ==================================================================================================================== #
 #
 """
-**A Sphinx extension providing documentation coverage details embedded in documentation pages.**
+**A Sphinx extension providing uni test results embedded in documentation pages.**
 """
-from pathlib import Path
-from typing  import List
+from pathlib         import Path
+from xml.dom         import minidom, Node
+from xml.dom.minidom import Element
 
-from docstr_coverage                   import analyze, ResultCollection
-from docstr_coverage.result_collection import FileCount
-from pyTooling.Decorators              import export, readonly
+from pyTooling.Decorators         import export, readonly
 
-from sphinx_reports.Common                          import ReportExtensionError
-from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, PackageCoverage, AggregatedCoverage
+from sphinx_reports.Common             import ReportExtensionError
+from sphinx_reports.DataModel.Unittest import Testsuite, Testcase, TestsuiteSummary, Test
 
 
 @export
-class DocStrCoverageError(ReportExtensionError):
+class UnittestError(ReportExtensionError):
 	pass
 
 
 @export
 class Analyzer:
-	_packageName:     str
-	_searchDirectory: Path
-	_moduleFiles:     List[Path]
-	_coverageReport:  ResultCollection
+	_packageName:      str
+	_reportFile:       Path
+	_documentElement:  Element
+	_testsuiteSummary: TestsuiteSummary
 
-	def __init__(self, packageName: str, directory: Path) -> None:
-		self._searchDirectory = directory
+	def __init__(self, packageName: str, reportFile: Path):
 		self._packageName = packageName
-		self._moduleFiles = []
+		self._reportFile = reportFile
 
-		if directory.exists():
-			self._moduleFiles.extend(directory.glob("**/*.py"))
-		else:
-			raise DocStrCoverageError(f"Package source directory '{directory}' does not exist.") \
-				from FileNotFoundError(directory)
+		if not self._reportFile.exists():
+			# not found vs. does not exist
+			# text in inner exception needed?
+			#   FileNotFoundError(f"File '{self._path!s}' not found.")
+			raise UnittestError(f"JUnit unittest report file '{self._reportFile}' not found.") from FileNotFoundError(self._reportFile)
 
-	@readonly
-	def SearchDirectories(self) -> Path:
-		return self._searchDirectory
+		try:
+			self._documentElement = minidom.parse(str(self._reportFile)).documentElement
+		except Exception as ex:
+			raise UnittestError(f"Couldn't open '{self._reportFile}'.") from ex
 
-	@readonly
-	def PackageName(self) -> str:
-		return self._packageName
+	def Convert(self) -> TestsuiteSummary:
+		self._ParseRootElement(self._documentElement)
 
-	@readonly
-	def ModuleFiles(self) -> List[Path]:
-		return self._moduleFiles
+		return self._testsuiteSummary
 
-	@readonly
-	def CoverageReport(self) -> ResultCollection:
-		return self._coverageReport
+	def _ParseRootElement(self, root: Element) -> None:
+		self._testsuiteSummary = TestsuiteSummary("root")
 
-	def Analyze(self) -> ResultCollection:
-		self._coverageReport: ResultCollection = analyze(self._moduleFiles, show_progress=False)
-		return self._coverageReport
+		for rootNode in root.childNodes:
+			if rootNode.nodeName == "testsuite":
+				self._ParseTestsuite(rootNode)
+				# testsuite._testsuites[ts._name] = ts
 
-	def Convert(self) -> PackageCoverage:
-		rootPackageCoverage = PackageCoverage(self._packageName, self._searchDirectory / "__init__.py")
+	def _ParseTestsuite(self, testsuitesNode: Element) -> None:
+		for node in testsuitesNode.childNodes:
+			if node.nodeType == Node.ELEMENT_NODE:
+				if node.tagName == "testsuite":
+					self._ParseTestsuite(node)
+				elif node.tagName == "testcase":
+					self._ParseTestcase(node)
 
-		for key, value in self._coverageReport.files():
-			path: Path = key.relative_to(self._searchDirectory)
-			perFileResult: FileCount = value.count_aggregate()
+					# testsuite._testcases[tc._name] = tc
 
-			moduleName = path.stem
-			modulePath = path.parent.parts
+	def _ParseTestcase(self, testsuiteNode: Element) -> None:
+		className = testsuiteNode.getAttribute("classname")
+		name = testsuiteNode.getAttribute("name")
 
-			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
-			for packageName in modulePath:
-				try:
-					currentCoverageObject = currentCoverageObject[packageName]
-				except KeyError:
-					currentCoverageObject = PackageCoverage(packageName, path, currentCoverageObject)
+		concurrentSuite = self._testsuiteSummary
 
-			if moduleName != "__init__":
-				currentCoverageObject = ModuleCoverage(moduleName, path, currentCoverageObject)
+		testsuitePath = className.split(".")
+		for testsuiteName in testsuitePath[:-1]:
+			try:
+				concurrentSuite = concurrentSuite[testsuiteName]
+			except KeyError:
+				new = Testsuite(testsuiteName)
+				concurrentSuite._testsuites[testsuiteName] = new
+				concurrentSuite = new
 
-			currentCoverageObject._expected = perFileResult.needed
-			currentCoverageObject._covered = perFileResult.found
-			currentCoverageObject._uncovered = perFileResult.missing
+		testcaseName = testsuitePath[-1]
+		try:
+			testcase = concurrentSuite[testcaseName]
+		except KeyError:
+			testcase = Testcase(testcaseName)
+			concurrentSuite._testcases[testcaseName] = testcase
 
-			if currentCoverageObject._expected != 0:
-				currentCoverageObject._coverage = currentCoverageObject._covered / currentCoverageObject._expected
-			else:
-				currentCoverageObject._coverage = 1.0
-
-			if currentCoverageObject._uncovered != currentCoverageObject._expected - currentCoverageObject._covered:
-				currentCoverageObject._coverage = -2.0
-
-		return rootPackageCoverage
+		testcase._tests[name] = Test(name)

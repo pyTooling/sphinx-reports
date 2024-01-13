@@ -108,7 +108,7 @@ class DocCoverage(BaseDirective):
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.directory: Configuration is missing.") from ex
 
 		if not self._directory.exists():
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.directory: Directory doesn't exist.") from FileNotFoundError(self._directory)
+			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.directory: Directory '{self._directory}' doesn't exist.") from FileNotFoundError(self._directory)
 
 		try:
 			self._failBelow = int(packageConfiguration["fail_below"]) / 100
@@ -195,7 +195,6 @@ class DocCoverage(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
 				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
-				# style="background: rgba(  0, 200,  82, .2);"
 			)
 
 			for package in sortedValues(packageCoverage._packages):
@@ -210,7 +209,6 @@ class DocCoverage(BaseDirective):
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
 					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
-					# style="background: rgba(  0, 200,  82, .2);"
 				)
 
 		renderlevel(tableBody, self._coverage)

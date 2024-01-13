@@ -29,7 +29,7 @@
 # ==================================================================================================================== #
 #
 """
-**A Sphinx extension providing coverage details embedded in documentation pages.**
+**A Sphinx extension providing code coverage details embedded in documentation pages.**
 """
 from pathlib import Path
 

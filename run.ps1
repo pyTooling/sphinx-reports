@@ -97,7 +97,7 @@ if ($install)
   { Write-Host -ForegroundColor Cyan     "[ADMIN][UNINSTALL] Uninstalling $PackageName ..."
     py -3.12 -m pip uninstall -y $PackageName
     Write-Host -ForegroundColor Cyan     "[ADMIN][INSTALL]   Installing $PackageName from wheel ..."
-    py -3.12 -m pip install .\dist\$PackageName-0.4.0-py3-none-any.whl
+    py -3.12 -m pip install .\dist\$PackageName-0.5.0-py3-none-any.whl
 
     Write-Host -ForegroundColor Cyan     "[ADMIN][INSTALL]   Closing window in 5 seconds ..."
     Start-Sleep -Seconds 5
@@ -134,7 +134,7 @@ if ($liveunit)
 { Write-Host -ForegroundColor DarkYellow "[live][UNIT] Running Unit Tests using pytest ..."
 
   $env:ENVIRONMENT_NAME = "Windows (x86-64)"
-  pytest -raP --color=yes --junitxml=report/unit/unitests.xml --template=html1/index.html --report=report/unit/html/index.html --split-report tests/unit
+  pytest -raP --color=yes --junitxml=report/unit/unittest.xml --template=html1/index.html --report=report/unit/html/index.html --split-report tests/unit
 
   if ($copyunit)
   { cp -Recurse -Force .\report\unit\html\* .\doc\_build\html\unittests
@@ -145,12 +145,12 @@ if ($liveunit)
 }
 elseif ($unit)
 { Write-Host -ForegroundColor DarkYellow "[Job2][UNIT] Running Unit Tests using pytest ..."
-  Write-Host -ForegroundColor DarkGreen  "[SCRIPT]     Starting UniTests jobs ..."
+  Write-Host -ForegroundColor DarkGreen  "[SCRIPT]     Starting UnitTests jobs ..."
 
   # Run unit tests
   $runUnitFunc = {
     $env:ENVIRONMENT_NAME = "Windows (x86-64)"
-    pytest -raP --color=yes --junitxml=report/unit/unitests.xml --template=html1/index.html --report=report/unit/html/index.html --split-report tests/unit
+    pytest -raP --color=yes --junitxml=report/unit/unittest.xml --template=html1/index.html --report=report/unit/html/index.html --split-report tests/unit
   }
   $unitJob = Start-Job -Name "UnitTests" -ScriptBlock $runUnitFunc
   $jobs += $unitJob
