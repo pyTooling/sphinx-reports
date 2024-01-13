@@ -39,13 +39,13 @@ from pyTooling.Decorators import export
 
 from sphinx_reports.Common             import ReportExtensionError, LegendPosition
 from sphinx_reports.Sphinx             import strip, BaseDirective
-from sphinx_reports.DataModel.Unittest import Testsuite
+from sphinx_reports.DataModel.Unittest import Testsuite, TestsuiteSummary, Testcase
 from sphinx_reports.Adapter.JUnit      import Analyzer
 
 
-class package_DictType(TypedDict):
+class report_DictType(TypedDict):
 	name: str
-	directory: str
+	xml_report: str
 
 
 @export
@@ -71,7 +71,7 @@ class UnittestSummary(BaseDirective):
 	_legend:      LegendPosition
 	_packageName: str
 	_xmlReport:   Path
-	_testsuite:   Testsuite
+	_testsuite:   TestsuiteSummary
 
 	def _CheckOptions(self) -> None:
 		# Parse all directive options or use default values
@@ -82,7 +82,7 @@ class UnittestSummary(BaseDirective):
 
 		# Check configuration fields and load necessary values
 		try:
-			allTestsuites: Dict[str, package_DictType] = self.config[f"{ReportDomain.name}_{self.configPrefix}_testsuites"]
+			allTestsuites: Dict[str, report_DictType] = self.config[f"{ReportDomain.name}_{self.configPrefix}_testsuites"]
 		except (KeyError, AttributeError) as ex:
 			raise ReportExtensionError(f"Configuration option '{ReportDomain.name}_{self.configPrefix}_testsuites' is not configured.") from ex
 
@@ -124,10 +124,10 @@ class UnittestSummary(BaseDirective):
 			for key in sorted(d.keys()):
 				yield d[key]
 
-		def renderlevel(tableBody: nodes.tbody, testsuite: Testsuite, level: int = 0) -> None:
+		def renderRoot(tableBody: nodes.tbody, testsuite: TestsuiteSummary, level: int = 0) -> None:
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{' '*level}{testsuite.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"{' '*level}❌{testsuite.Name}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
@@ -137,21 +137,51 @@ class UnittestSummary(BaseDirective):
 			)
 
 			for ts in sortedValues(testsuite._testsuites):
-				renderlevel(tableBody, ts, level + 1)
+				renderTestsuite(tableBody, ts, level + 1)
+
+		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
+			tableBody += nodes.row(
+				"",
+				nodes.entry("", nodes.paragraph(text=f"{' '*level}✅{testsuite.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Coverage:.1%}")),
+				classes=["report-unittest-table-row"],
+				# style="background: rgba(  0, 200,  82, .2);"
+			)
+
+			for ts in sortedValues(testsuite._testsuites):
+				renderTestsuite(tableBody, ts, level + 1)
 
 			for testcase in sortedValues(testsuite._testcases):
+				renderTestcase(tableBody, testcase, level + 1)
+
+		def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
+			tableBody += nodes.row(
+				"",
+				nodes.entry("", nodes.paragraph(text=f"{' '*level}✅{testcase.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Coverage:.1%}")),
+				classes=["report-unittest-table-row"],
+				# style="background: rgba(  0, 200,  82, .2);"
+			)
+
+			for test in sortedValues(testcase._tests):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}{testcase.Name}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {testcase.Expected}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {testcase.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {testcase.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {testcase.Coverage :.1%}")),
+					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}✅{test.Name}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Expected}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Uncovered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Coverage :.1%}")),
 					classes=["report-unittest-table-row"],
 					# style="background: rgba(  0, 200,  82, .2);"
 				)
 
-		renderlevel(tableBody, self._testsuite)
+		renderRoot(tableBody, self._testsuite)
 
 		# # Add a summary row
 		# tableBody += nodes.row(

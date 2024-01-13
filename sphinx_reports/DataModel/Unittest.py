@@ -59,26 +59,67 @@ class Base:
 
 
 @export
-class Testcase(Base):
+class Test(Base):
 	def __init__(self, name: str) -> None:
 		super().__init__(name)
 
 
 @export
-class Testsuite(Base):
-	_testcases:  Dict[str, Testcase]
+class Testcase(Base):
+	_tests: Dict[str, Test]
+
+	def __init__(self, name: str) -> None:
+		super().__init__(name)
+
+		self._tests = {}
+
+
+@export
+class TestsuiteBase(Base):
 	_testsuites: Dict[str, "Testsuite"]
 
 	def __init__(self, name: str) -> None:
 		super().__init__(name)
 
-		self._testcases =  {}
 		self._testsuites = {}
+
+	def __getitem__(self, key: str) -> "Testsuite":
+		return self._testsuites[key]
+
+	def __contains__(self, key: str) -> bool:
+		return key in self._testsuites
+
+	@readonly
+	def Testsuites(self) -> Dict[str, "Testsuite"]:
+		return self._testsuites
+
+
+@export
+class Testsuite(TestsuiteBase):
+	_testcases:  Dict[str, Testcase]
+
+	def __init__(self, name: str) -> None:
+		super().__init__(name)
+
+		self._testcases =  {}
+
+	def __getitem__(self, key: str) -> Union["Testsuite", Testcase]:
+		try:
+			return self._testsuites[key]
+		except KeyError:
+			return self._testcases[key]
+
+	def __contains__(self, key: str) -> bool:
+		if key not in self._testsuites:
+			return key in self._testcases
+
+		return False
 
 	@readonly
 	def Testcases(self) -> Dict[str, Testcase]:
 		return self._testcases
 
-	@readonly
-	def Testsuites(self) -> Dict[str, "Testsuite"]:
-		return self._testsuites
+
+@export
+class TestsuiteSummary(TestsuiteBase):
+	pass
