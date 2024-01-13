@@ -273,7 +273,7 @@ _coverageLevels = {
 report_unittest_testsuites = {
 	"src": {
 		"name":        "sphinx_reports",
-		"xml_report":  "../report/unit/unittest.xml",
+		"xml_report":  "../report/unit/TestReportSummary.xml",
 	}
 }
 report_codecov_packages = {
