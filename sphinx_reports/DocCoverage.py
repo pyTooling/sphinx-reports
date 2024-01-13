@@ -195,7 +195,6 @@ class DocCoverage(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
 				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
-				# style="background: rgba(  0, 200,  82, .2);"
 			)
 
 			for package in sortedValues(packageCoverage._packages):
@@ -210,7 +209,6 @@ class DocCoverage(BaseDirective):
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
 					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
-					# style="background: rgba(  0, 200,  82, .2);"
 				)
 
 		renderlevel(tableBody, self._coverage)

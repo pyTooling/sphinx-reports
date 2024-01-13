@@ -94,7 +94,7 @@ bar.
          :hidden:
 
          sphinx_reports/sphinx_reports
-         Unittest Report ➚ <unittests/index>
+         unittests/index
          coverage/index
          Doc. Coverage Report <DocCoverage>
          Static Type Check Report ➚ <typing/index>
