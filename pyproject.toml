@@ -30,7 +30,6 @@ filterwarnings = [
 	"error::PendingDeprecationWarning"
 ]
 junit_logging = "all"
-junit_suite_name = "sphinx_reports"
 
 [tool.interrogate]
 color = true

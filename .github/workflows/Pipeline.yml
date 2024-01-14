@@ -3,6 +3,9 @@ name: Pipeline
 on:
   push:
   workflow_dispatch:
+  schedule:
+# Every Friday at 22:00 - rerun pipeline to check for dependency-based issues
+    - cron: '0 22 * * 5'
 
 jobs:
   UnitTestingParams:

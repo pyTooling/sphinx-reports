@@ -37,7 +37,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
    .. code-block:: Python
 
       # ==============================================================================
-      # Sphinx-reports - DocCov
+      # Sphinx-reports - CodeCov
       # ==============================================================================
       report_codecov_packages = {
          "src": {
