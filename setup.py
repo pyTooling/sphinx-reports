@@ -28,7 +28,9 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Package installer for 'Write version information for any programming language as source file'."""
+"""Package installer for 'A Sphinx extension providing reports and summaries embedded in documentation pages'."""
+from setuptools          import setup
+
 from pathlib             import Path
 from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub, DEFAULT_CLASSIFIERS
 
@@ -37,9 +39,9 @@ packageName =            "sphinx_reports"
 packageDirectory =       packageName.replace(".", "/")
 packageInformationFile = Path(f"{packageDirectory}/__init__.py")
 
-DescribePythonPackageHostedOnGitHub(
+setup(**DescribePythonPackageHostedOnGitHub(
 	packageName=packageName,
-	description="A Sphinx extension providing coverage details embedded in documentation pages.",
+	description="A Sphinx extension providing reports and summaries embedded in documentation pages.",
 	gitHubNamespace=gitHubNamespace,
 	sourceFileWithVersion=packageInformationFile,
 	classifiers=list(DEFAULT_CLASSIFIERS) + [
@@ -55,4 +57,4 @@ DescribePythonPackageHostedOnGitHub(
 	dataFiles={
 		"sphinx_reports": ["static/*.css"]
 	}
-)
+))
