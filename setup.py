@@ -51,6 +51,7 @@ setup(**DescribePythonPackageHostedOnGitHub(
 		"Topic :: Documentation :: Sphinx",
 		"Topic :: Software Development :: Documentation",
 		"Topic :: Software Development :: Quality Assurance",
+		"Topic :: Software Development :: Testing :: Unit",
 	],
 	developmentStatus="beta",
 	pythonVersions=("3.9", "3.10", "3.11", "3.12"),
