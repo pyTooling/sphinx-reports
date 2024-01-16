@@ -48,17 +48,15 @@ class UnittestError(ReportExtensionError):
 
 @export
 class Analyzer:
-	_packageName:      str
 	_reportFile:       Path
 	_documentElement:  Element
 	_testsuiteSummary: TestsuiteSummary
 
-	def __init__(self, packageName: str, reportFile: Path):
-		self._packageName = packageName
+	def __init__(self, reportFile: Path):
 		self._reportFile = reportFile
 
 		if not self._reportFile.exists():
-			# not found vs. does not exist
+			# FIXME: not found vs. does not exist
 			# text in inner exception needed?
 			#   FileNotFoundError(f"File '{self._path!s}' not found.")
 			raise UnittestError(f"JUnit unittest report file '{self._reportFile}' not found.") from FileNotFoundError(self._reportFile)
@@ -79,7 +77,6 @@ class Analyzer:
 		for rootNode in root.childNodes:
 			if rootNode.nodeName == "testsuite":
 				self._ParseTestsuite(rootNode)
-				# testsuite._testsuites[ts._name] = ts
 
 	def _ParseTestsuite(self, testsuitesNode: Element) -> None:
 		for node in testsuitesNode.childNodes:
@@ -89,8 +86,6 @@ class Analyzer:
 				elif node.tagName == "testcase":
 					self._ParseTestcase(node)
 
-					# testsuite._testcases[tc._name] = tc
-
 	def _ParseTestcase(self, testsuiteNode: Element) -> None:
 		className = testsuiteNode.getAttribute("classname")
 		name = testsuiteNode.getAttribute("name")
@@ -98,7 +93,7 @@ class Analyzer:
 		concurrentSuite = self._testsuiteSummary
 
 		testsuitePath = className.split(".")
-		for testsuiteName in testsuitePath[:-1]:
+		for testsuiteName in testsuitePath:
 			try:
 				concurrentSuite = concurrentSuite[testsuiteName]
 			except KeyError:
@@ -106,11 +101,4 @@ class Analyzer:
 				concurrentSuite._testsuites[testsuiteName] = new
 				concurrentSuite = new
 
-		testcaseName = testsuitePath[-1]
-		try:
-			testcase = concurrentSuite[testcaseName]
-		except KeyError:
-			testcase = Testcase(testcaseName)
-			concurrentSuite._testcases[testcaseName] = testcase
-
-		testcase._tests[name] = Test(name)
+		concurrentSuite._testcases[name] = Testcase(name)

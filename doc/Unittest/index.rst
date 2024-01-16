@@ -3,10 +3,14 @@
 Unit Test Summary
 #################
 
-🚧 This is a planned feature. 🚧
+🚧 This is a work-in-progress feature. 🚧
 
 .. #:term:`Unittests` checks if a source code was used during execution. Usually, testcases are run by a testcase
 execution framework like `pytest <https://github.com/pytest-dev/pytest>`__.
+
+.. rubric:: Supported report generators
+
+* `pytest <https://github.com/pytest-dev/pytest>`__
 
 
 .. _UNITTEST/Quick:
@@ -31,7 +35,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
    .. code-block:: Python
 
       # ==============================================================================
-      # Sphinx-reports - DocCov
+      # Sphinx-reports - Unittest
       # ==============================================================================
       report_codecov_packages = {
          "src": {
@@ -65,7 +69,7 @@ bar.
       Unittest Summary Report
       #######################
 
-      Code coverage report generated with ``pytest``.
+      Code coverage report generated with `pytest <https://github.com/pytest-dev/pytest>`__.
 
       .. report:unittest-summary::
          :reportid: src

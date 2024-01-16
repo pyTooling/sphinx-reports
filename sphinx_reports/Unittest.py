@@ -44,7 +44,6 @@ from sphinx_reports.Adapter.JUnit      import Analyzer
 
 
 class report_DictType(TypedDict):
-	name: str
 	xml_report: str
 
 
@@ -68,8 +67,6 @@ class UnittestSummary(BaseDirective):
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
 	_reportID:   str
-	_legend:      LegendPosition
-	_packageName: str
 	_xmlReport:   Path
 	_testsuite:   TestsuiteSummary
 
@@ -90,11 +87,6 @@ class UnittestSummary(BaseDirective):
 			testsuiteConfiguration = allTestsuites[self._reportID]
 		except KeyError as ex:
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites: No configuration found for '{self._reportID}'.") from ex
-
-		try:
-			self._packageName = testsuiteConfiguration["name"]
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites:{self._reportID}.name: Configuration is missing.") from ex
 
 		try:
 			self._xmlReport = Path(testsuiteConfiguration["xml_report"])
@@ -124,24 +116,14 @@ class UnittestSummary(BaseDirective):
 			for key in sorted(d.keys()):
 				yield d[key]
 
-		def renderRoot(tableBody: nodes.tbody, testsuite: TestsuiteSummary, level: int = 0) -> None:
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}❌{testsuite.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Coverage:.1%}")),
-				classes=["report-unittest-table-row"],
-			)
-
+		def renderRoot(tableBody: nodes.tbody, testsuite: TestsuiteSummary) -> None:
 			for ts in sortedValues(testsuite._testsuites):
-				renderTestsuite(tableBody, ts, level + 1)
+				renderTestsuite(tableBody, ts, 0)
 
 		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}✅{testsuite.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"{'  '*level}❌{testsuite.Name}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
@@ -199,7 +181,7 @@ class UnittestSummary(BaseDirective):
 		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._packageName, self._xmlReport)
+		analyzer = Analyzer(self._xmlReport)
 		self._testsuite = analyzer.Convert()
 		# self._testsuite.Aggregate()
 

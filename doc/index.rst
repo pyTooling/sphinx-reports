@@ -83,27 +83,28 @@ Supported Report Formats
 
 Supported format reports are:
 
-* ✅ Documentation coverage (by `docstr_coverage <https://github.com/HunterMcGushion/docstr_coverage>`__ (or `interrogate`?))
-* 🚧 Code coverage (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
-
-  * ✅ Summary page
-  * 🚧 Highlighted source code
-
 * ✅🚧 Unit Test summaries (by `pytest <https://github.com/pytest-dev/pytest>`__)
 
   * ✅ Summary page (displaying `unittest.xml`)
   * 🚧 Show logging, output and error messages.
 
+* 🚧 Code coverage (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
+
+  * ✅ Summary page
+  * 🚧 Highlighted source code
+
+* ✅ Documentation coverage (by `docstr_coverage <https://github.com/HunterMcGushion/docstr_coverage>`__ (or `interrogate`?))
 * 🚧 Dependencies (reading `requirements.txt` files)
 
-Documentation coverage
-======================
 
-:ref:`DOCCOV` counts how many publicly accessible members are documented using a Python :term:`doc-string`. Based on the
-count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage of
-documentation coverage can be computed.
+Unit Test Summary
+=================
 
-.. todo:: index: Screen shot here and link to this documentations report.
+🚧 This is a work-in-progress feature. 🚧
+
+:ref:`UNITTEST`
+
+.. todo:: index: Screen shot here and link to this unitest summary.
 
 
 Code Coverage
@@ -117,14 +118,14 @@ coverage collection using the ``pytest-cov`` plugin. For Python, coverage collec
 .. todo:: index: Screen shot here and link to this code coverage report.
 
 
-Unit Test Summary
-=================
+Documentation coverage
+======================
 
-🚧 This is a work-in-progress feature. 🚧
+:ref:`DOCCOV` counts how many publicly accessible members are documented using a Python :term:`doc-string`. Based on the
+count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage of
+documentation coverage can be computed.
 
-:ref:`UNITTEST`
-
-.. todo:: index: Screen shot here and link to this unitest summary.
+.. todo:: index: Screen shot here and link to this documentations report.
 
 
 Dependencies
@@ -178,9 +179,9 @@ License
    :hidden:
 
    Overview
-   DocCov/index
-   CodeCov/index
    Unittest/index
+   CodeCov/index
+   DocCov/index
 
 .. raw:: latex
 

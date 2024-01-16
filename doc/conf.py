@@ -259,7 +259,7 @@ todo_link_only = True
 
 
 # ==============================================================================
-# Sphinx-reports - DocCov
+# Sphinx-reports
 # ==============================================================================
 _coverageLevels = {
 	30:      {"class": "report-cov-below30",  "desc": "almost undocumented"},
@@ -271,10 +271,7 @@ _coverageLevels = {
 }
 
 report_unittest_testsuites = {
-	"src": {
-		"name":        "sphinx_reports",
-		"xml_report":  "../report/unit/TestReportSummary.xml",
-	}
+	"src":                    {"xml_report": "../report/unit/TestReportSummary.xml"},
 }
 report_codecov_packages = {
 	"src": {
