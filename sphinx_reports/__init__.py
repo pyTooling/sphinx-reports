@@ -43,11 +43,10 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2024, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.5.1"
+__version__ =   "0.5.2"
 __keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate"]
 
 from hashlib              import md5
-from importlib.resources  import files
 from pathlib              import Path
 from typing               import Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable
 
