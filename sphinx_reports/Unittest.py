@@ -32,14 +32,14 @@
 **Report unit test results as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict
+from typing  import Dict, Tuple, Any, List, Mapping, Generator, TypedDict
 
 from docutils             import nodes
 from pyTooling.Decorators import export
 
-from sphinx_reports.Common             import ReportExtensionError, LegendPosition
+from sphinx_reports.Common             import ReportExtensionError
 from sphinx_reports.Sphinx             import strip, BaseDirective
-from sphinx_reports.DataModel.Unittest import Testsuite, TestsuiteSummary, Testcase
+from sphinx_reports.DataModel.Unittest import Testsuite, TestsuiteSummary, Testcase, TestcaseState
 from sphinx_reports.Adapter.JUnit      import Analyzer
 
 
@@ -102,10 +102,13 @@ class UnittestSummary(BaseDirective):
 			identifier=self._reportID,
 			columns={
 				"Testsuite / Testcase": 500,
-				"???": 100,
-				"????": 100,
-				"?????": 100,
-				"Status": 100
+				"Testcases": 100,
+				"Skipped": 100,
+				"Errored": 100,
+				"Failed": 100,
+				"Passed": 100,
+				"Assertions": 100,
+				"Runtime (H:MM:SS.sss)": 100
 			},
 			classes=["report-unittest-table"]
 		)
@@ -116,18 +119,31 @@ class UnittestSummary(BaseDirective):
 			for key in sorted(d.keys()):
 				yield d[key]
 
+		def stateToSymbol(state: TestcaseState) -> str:
+			if state is TestcaseState.Passed:
+				return "✅"
+			elif state is TestcaseState.Unknown:
+				return "❓"
+			else:
+				return "❌"
+
 		def renderRoot(tableBody: nodes.tbody, testsuite: TestsuiteSummary) -> None:
 			for ts in sortedValues(testsuite._testsuites):
 				renderTestsuite(tableBody, ts, 0)
 
 		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
+			state = stateToSymbol(testsuite._state)
+
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}❌{testsuite.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
+				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testsuite.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Tests}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Coverage:.1%}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Time}")),
 				classes=["report-unittest-table-row"],
 			)
 
@@ -138,21 +154,29 @@ class UnittestSummary(BaseDirective):
 				renderTestcase(tableBody, testcase, level + 1)
 
 		def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
+			state = stateToSymbol(testcase._state)
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}✅{testcase.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testcase.Name}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Coverage:.1%}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"{testcase.Assertions}")),
+				nodes.entry("", nodes.paragraph(text=f"{testcase.Time}")),
 				classes=["report-unittest-table-row"],
 			)
 
 			for test in sortedValues(testcase._tests):
+				state = stateToSymbol(test._state)
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"{'  '*(level+1)}✅{test.Name}")),
+					nodes.entry("", nodes.paragraph(text=f"{'  '*(level+1)}{state}{test.Name}")),
 					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Expected}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Uncovered}")),
 					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Coverage :.1%}")),
@@ -183,7 +207,7 @@ class UnittestSummary(BaseDirective):
 		# Assemble a list of Python source files
 		analyzer = Analyzer(self._xmlReport)
 		self._testsuite = analyzer.Convert()
-		# self._testsuite.Aggregate()
+		self._testsuite.Aggregate()
 
 		container = nodes.container()
 		container += self._GenerateTestSummaryTable()
