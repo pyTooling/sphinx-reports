@@ -31,8 +31,9 @@
 """
 **Report unit test results as Sphinx documentation page(s).**
 """
-from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Mapping, Generator, TypedDict
+from datetime import timedelta
+from pathlib  import Path
+from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict
 
 from docutils             import nodes
 from pyTooling.Decorators import export
@@ -108,7 +109,7 @@ class UnittestSummary(BaseDirective):
 				("Failed", None, 100),
 				("Passed", None, 100),
 				("Assertions", None, 100),
-				("Runtime (H:MM:SS.sss)", None, 100),
+				("Runtime (HH:MM:SS.sss)", None, 100),
 			],
 			classes=["report-unittest-table"]
 		)
@@ -127,13 +128,21 @@ class UnittestSummary(BaseDirective):
 			else:
 				return "❌"
 
+		def timeformat(delta: timedelta) -> str:
+			# Compute by hand, because timedelta._to_microseconds is not officially documented
+			microseconds = (delta.days * 86_400 + delta.seconds) * 1_000_000 + delta.microseconds
+			milliseconds = (microseconds + 500) // 1000
+			seconds = milliseconds // 1000
+			minutes = seconds // 60
+			hours = minutes // 60
+			return f"{hours:02}:{minutes % 60:02}:{seconds % 60:02}.{milliseconds % 1000:03}"
+
 		def renderRoot(tableBody: nodes.tbody, testsuite: TestsuiteSummary) -> None:
 			for ts in sortedValues(testsuite._testsuites):
 				renderTestsuite(tableBody, ts, 0)
 
 		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
 			state = stateToSymbol(testsuite._state)
-
 			tableBody += nodes.row(
 				"",
 				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testsuite.Name}")),
@@ -143,7 +152,7 @@ class UnittestSummary(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}")),
 				nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Time}")),
+				nodes.entry("", nodes.paragraph(text=f"{timeformat(testsuite.Time)}")),
 				classes=["report-unittest-table-row"],
 			)
 
@@ -164,7 +173,7 @@ class UnittestSummary(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
 				nodes.entry("", nodes.paragraph(text=f"{testcase.Assertions}")),
-				nodes.entry("", nodes.paragraph(text=f"{testcase.Time}")),
+				nodes.entry("", nodes.paragraph(text=f"{timeformat(testcase.Time)}")),
 				classes=["report-unittest-table-row"],
 			)
 
