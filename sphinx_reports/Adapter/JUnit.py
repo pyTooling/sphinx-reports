@@ -31,14 +31,15 @@
 """
 **A Sphinx extension providing uni test results embedded in documentation pages.**
 """
+from datetime        import datetime, timedelta
 from pathlib         import Path
 from xml.dom         import minidom, Node
 from xml.dom.minidom import Element
 
-from pyTooling.Decorators         import export, readonly
+from pyTooling.Decorators              import export, readonly
 
 from sphinx_reports.Common             import ReportExtensionError
-from sphinx_reports.DataModel.Unittest import Testsuite, Testcase, TestsuiteSummary, Test
+from sphinx_reports.DataModel.Unittest import Testsuite, Testcase, TestsuiteSummary, Test, TestcaseState
 
 
 @export
@@ -72,7 +73,17 @@ class Analyzer:
 		return self._testsuiteSummary
 
 	def _ParseRootElement(self, root: Element) -> None:
-		self._testsuiteSummary = TestsuiteSummary("root")
+		name = root.getAttribute("name") if root.hasAttribute("name") else "root"
+		testsuiteRuntime = float(root.getAttribute("time")) if root.hasAttribute("time") else -1.0
+		timestamp = datetime.fromisoformat(root.getAttribute("timestamp")) if root.hasAttribute("timestamp") else None
+
+		self._testsuiteSummary = TestsuiteSummary(name, timedelta(seconds=testsuiteRuntime))
+
+		tests = root.getAttribute("tests")
+		skipped = root.getAttribute("skipped")
+		errors = root.getAttribute("errors")
+		failures = root.getAttribute("failures")
+		assertions = root.getAttribute("assertions")
 
 		for rootNode in root.childNodes:
 			if rootNode.nodeName == "testsuite":
@@ -89,6 +100,7 @@ class Analyzer:
 	def _ParseTestcase(self, testsuiteNode: Element) -> None:
 		className = testsuiteNode.getAttribute("classname")
 		name = testsuiteNode.getAttribute("name")
+		time = float(testsuiteNode.getAttribute("time"))
 
 		concurrentSuite = self._testsuiteSummary
 
@@ -97,8 +109,30 @@ class Analyzer:
 			try:
 				concurrentSuite = concurrentSuite[testsuiteName]
 			except KeyError:
-				new = Testsuite(testsuiteName)
+				new = Testsuite(testsuiteName, timedelta(seconds=time))
 				concurrentSuite._testsuites[testsuiteName] = new
 				concurrentSuite = new
 
-		concurrentSuite._testcases[name] = Testcase(name)
+		testcase = Testcase(name, timedelta(seconds=time))
+		concurrentSuite._testcases[name] = testcase
+
+		for node in testsuiteNode.childNodes:
+			if node.nodeType == Node.ELEMENT_NODE:
+				if node.tagName == "skipped":
+					testcase._state = TestcaseState.Skipped
+				elif node.tagName == "failure":
+					testcase._state = TestcaseState.Failed
+				elif node.tagName == "error":
+					testcase._state = TestcaseState.Error
+				elif node.tagName == "system-out":
+					pass
+				elif node.tagName == "system-err":
+					pass
+				elif node.tagName == "properties":
+					pass
+				else:
+					raise UnittestError(f"Unknown element '{node.tagName}' in junit file.")
+
+		if testcase._state is TestcaseState.Unknown:
+			testcase._state = TestcaseState.Passed
+

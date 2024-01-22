@@ -31,10 +31,8 @@
 """
 **Abstract documentation coverage data model for Python code.**
 """
-
-from enum    import Flag
 from pathlib import Path
-from typing import Optional as Nullable, Iterable, Dict, Union, Tuple
+from typing  import Optional as Nullable, Dict, Union
 
 from pyTooling.Decorators import export, readonly
 

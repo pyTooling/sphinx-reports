@@ -4,7 +4,6 @@
 setuptools >= 69.0.0
 
 pyTooling ~= 6.0
-colorama >= 0.4.6
 
 # Enforce latest version on ReadTheDocs
 sphinx >= 7.2, < 8.0

@@ -31,15 +31,16 @@
 """
 **Report unit test results as Sphinx documentation page(s).**
 """
-from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict
+from datetime import timedelta
+from pathlib  import Path
+from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict
 
 from docutils             import nodes
 from pyTooling.Decorators import export
 
-from sphinx_reports.Common             import ReportExtensionError, LegendPosition
+from sphinx_reports.Common             import ReportExtensionError
 from sphinx_reports.Sphinx             import strip, BaseDirective
-from sphinx_reports.DataModel.Unittest import Testsuite, TestsuiteSummary, Testcase
+from sphinx_reports.DataModel.Unittest import Testsuite, TestsuiteSummary, Testcase, TestcaseState
 from sphinx_reports.Adapter.JUnit      import Analyzer
 
 
@@ -97,16 +98,19 @@ class UnittestSummary(BaseDirective):
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites:{self._reportID}.xml_report: Unittest report file '{self._xmlReport}' doesn't exist.") from FileNotFoundError(self._xmlReport)
 
 	def _GenerateTestSummaryTable(self) -> nodes.table:
-		# Create a table and table header with 5 columns
+		# Create a table and table header with 8 columns
 		table, tableGroup = self._PrepareTable(
 			identifier=self._reportID,
-			columns={
-				"Testsuite / Testcase": 500,
-				"???": 100,
-				"????": 100,
-				"?????": 100,
-				"Status": 100
-			},
+			columns=[
+				("Testsuite / Testcase", None, 500),
+				("Testcases", None, 100),
+				("Skipped", None, 100),
+				("Errored", None, 100),
+				("Failed", None, 100),
+				("Passed", None, 100),
+				("Assertions", None, 100),
+				("Runtime (HH:MM:SS.sss)", None, 100),
+			],
 			classes=["report-unittest-table"]
 		)
 		tableBody = nodes.tbody()
@@ -116,18 +120,39 @@ class UnittestSummary(BaseDirective):
 			for key in sorted(d.keys()):
 				yield d[key]
 
+		def stateToSymbol(state: TestcaseState) -> str:
+			if state is TestcaseState.Passed:
+				return "✅"
+			elif state is TestcaseState.Unknown:
+				return "❓"
+			else:
+				return "❌"
+
+		def timeformat(delta: timedelta) -> str:
+			# Compute by hand, because timedelta._to_microseconds is not officially documented
+			microseconds = (delta.days * 86_400 + delta.seconds) * 1_000_000 + delta.microseconds
+			milliseconds = (microseconds + 500) // 1000
+			seconds = milliseconds // 1000
+			minutes = seconds // 60
+			hours = minutes // 60
+			return f"{hours:02}:{minutes % 60:02}:{seconds % 60:02}.{milliseconds % 1000:03}"
+
 		def renderRoot(tableBody: nodes.tbody, testsuite: TestsuiteSummary) -> None:
 			for ts in sortedValues(testsuite._testsuites):
 				renderTestsuite(tableBody, ts, 0)
 
 		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
+			state = stateToSymbol(testsuite._state)
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}❌{testsuite.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
+				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testsuite.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Tests}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}")),
+				nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Coverage:.1%}")),
+				nodes.entry("", nodes.paragraph(text=f"{timeformat(testsuite.Time)}")),
 				classes=["report-unittest-table-row"],
 			)
 
@@ -138,21 +163,29 @@ class UnittestSummary(BaseDirective):
 				renderTestcase(tableBody, testcase, level + 1)
 
 		def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
+			state = stateToSymbol(testcase._state)
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}✅{testcase.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testcase.Name}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Coverage:.1%}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"{testcase.Assertions}")),
+				nodes.entry("", nodes.paragraph(text=f"{timeformat(testcase.Time)}")),
 				classes=["report-unittest-table-row"],
 			)
 
 			for test in sortedValues(testcase._tests):
+				state = stateToSymbol(test._state)
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"{'  '*(level+1)}✅{test.Name}")),
+					nodes.entry("", nodes.paragraph(text=f"{'  '*(level+1)}{state}{test.Name}")),
 					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Expected}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
+					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Uncovered}")),
 					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Coverage :.1%}")),
@@ -183,7 +216,7 @@ class UnittestSummary(BaseDirective):
 		# Assemble a list of Python source files
 		analyzer = Analyzer(self._xmlReport)
 		self._testsuite = analyzer.Convert()
-		# self._testsuite.Aggregate()
+		self._testsuite.Aggregate()
 
 		container = nodes.container()
 		container += self._GenerateTestSummaryTable()

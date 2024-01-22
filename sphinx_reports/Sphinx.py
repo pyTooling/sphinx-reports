@@ -122,17 +122,53 @@ class BaseDirective(ObjectDescription):
 		except KeyError as ex:
 			raise ReportExtensionError(f"{self.directiveName}::{optionName}: Value '{option}' is not a valid member of 'LegendPosition'.") from ex
 
-	def _PrepareTable(self, columns: Dict[str, int], identifier: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
+	def _PrepareTable(self, columns: List[Tuple[str, Nullable[List[Tuple[str, int]]], Nullable[int]]], identifier: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
 		table = nodes.table("", identifier=identifier, classes=classes)
 
-		tableGroup = nodes.tgroup(cols=(len(columns)))
+		hasSecondHeaderRow = False
+		columnCount = 0
+		for groupColumn in columns:
+			if groupColumn[1] is not None:
+				columnCount += len(groupColumn[1])
+				hasSecondHeaderRow = True
+			else:
+				columnCount += 1
+
+		tableGroup = nodes.tgroup(cols=columnCount)
 		table += tableGroup
 
-		tableRow = nodes.row()
-		for columnTitle, width in columns.items():
-			tableGroup += nodes.colspec(colwidth=width)
-			tableRow += nodes.entry("", nodes.paragraph(text=columnTitle))
+		# Setup column specifications
+		for _, more, width in columns:
+			if more is None:
+				tableGroup += nodes.colspec(colwidth=width)
+			else:
+				for _, width in more:
+					tableGroup += nodes.colspec(colwidth=width)
 
-		tableGroup += nodes.thead("", tableRow)
+		# Setup primary header row
+		headerRow = nodes.row()
+		for columnTitle, more, _ in columns:
+			if more is None:
+				headerRow += nodes.entry("", nodes.paragraph(text=columnTitle), morerows=1)
+			else:
+				morecols = len(more) - 1
+				headerRow += nodes.entry("", nodes.paragraph(text=columnTitle), morecols=morecols)
+				for i in range(morecols):
+					headerRow += None
+
+		tableHeader = nodes.thead("", headerRow)
+		tableGroup += tableHeader
+
+		# If present, setup secondary header row
+		if hasSecondHeaderRow:
+			tableRow = nodes.row()
+			for columnTitle, more, _ in columns:
+				if more is None:
+					tableRow += None
+				else:
+					for columnTitle, _ in more:
+						tableRow += nodes.entry("", nodes.paragraph(text=columnTitle))
+
+			tableHeader += tableRow
 
 		return table, tableGroup
