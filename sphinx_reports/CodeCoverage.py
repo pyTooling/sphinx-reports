@@ -32,7 +32,7 @@
 **Report code coverage as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union
+from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union, Optional as Nullable
 
 from docutils             import nodes
 from pyTooling.Decorators import export
@@ -167,22 +167,30 @@ class CodeCoverage(BaseDirective):
 		return self._levels[100][configKey]
 
 	def _GenerateCoverageTable(self) -> nodes.table:
-		# Create a table and table header with 5 columns
+		# Create a table and table header with 10 columns
 		table, tableGroup = self._PrepareTable(
 			identifier=self._packageID,
-			columns={
-				"Module": 500,
-				"Total Statements": 100,
-				"Excluded Statements": 100,
-				"Covered Statements": 100,
-				"Missing Statements": 100,
-				"Total Branches": 100,
-				"Covered Branches": 100,
-				"Partial Branches": 100,
-				"Missing Branches": 100,
-				"Coverage in %": 100
-			},
-			classes=["report-doccov-table"]
+			columns=[
+				("Package", [
+					(" Module", 500)
+				], None),
+				("Statments", [
+					("Total", 100),
+					("Excluded", 100),
+					("Covered", 100),
+					("Missing", 100)
+				], None),
+				("Branches", [
+					("Total", 100),
+					("Covered", 100),
+					("Partial", 100),
+					("Missing", 100)
+				], None),
+				("Coverage", [
+					("in %", 100)
+				], None)
+			],
+			classes=["report-codecov-table"]
 		)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody

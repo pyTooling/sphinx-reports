@@ -97,19 +97,19 @@ class UnittestSummary(BaseDirective):
 			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites:{self._reportID}.xml_report: Unittest report file '{self._xmlReport}' doesn't exist.") from FileNotFoundError(self._xmlReport)
 
 	def _GenerateTestSummaryTable(self) -> nodes.table:
-		# Create a table and table header with 5 columns
+		# Create a table and table header with 8 columns
 		table, tableGroup = self._PrepareTable(
 			identifier=self._reportID,
-			columns={
-				"Testsuite / Testcase": 500,
-				"Testcases": 100,
-				"Skipped": 100,
-				"Errored": 100,
-				"Failed": 100,
-				"Passed": 100,
-				"Assertions": 100,
-				"Runtime (H:MM:SS.sss)": 100
-			},
+			columns=[
+				("Testsuite / Testcase", None, 500),
+				("Testcases", None, 100),
+				("Skipped", None, 100),
+				("Errored", None, 100),
+				("Failed", None, 100),
+				("Passed", None, 100),
+				("Assertions", None, 100),
+				("Runtime (H:MM:SS.sss)", None, 100),
+			],
 			classes=["report-unittest-table"]
 		)
 		tableBody = nodes.tbody()

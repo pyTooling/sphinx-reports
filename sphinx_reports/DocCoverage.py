@@ -170,13 +170,13 @@ class DocCoverage(BaseDirective):
 		# Create a table and table header with 5 columns
 		table, tableGroup = self._PrepareTable(
 			identifier=self._packageID,
-			columns={
-				"Filename": 500,
-				"Total": 100,
-				"Covered": 100,
-				"Missing": 100,
-				"Coverage in %": 100
-			},
+			columns=[
+				("Filename", None, 500),
+				("Total", None, 100),
+				("Covered", None, 100),
+				("Missing", None, 100),
+				("Coverage in %", None, 100)
+			],
 			classes=["report-doccov-table"]
 		)
 		tableBody = nodes.tbody()
