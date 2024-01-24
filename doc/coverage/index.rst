@@ -5,3 +5,4 @@ Code coverage report generated with `pytest <https://github.com/pytest-dev/pytes
 
 .. report:code-coverage::
    :packageid: src
+   :no-branch-coverage:

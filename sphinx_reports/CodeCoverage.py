@@ -35,11 +35,13 @@ from pathlib import Path
 from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union, Optional as Nullable
 
 from docutils             import nodes
+from docutils.parsers.rst.directives import flag
 from pyTooling.Decorators import export
+from sphinx.util.docutils import new_document
 
 from sphinx_reports.Common                 import ReportExtensionError, LegendPosition
 from sphinx_reports.Sphinx                 import strip, BaseDirective
-from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, AggregatedCoverage
+from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, AggregatedCoverage, ModuleCoverage
 from sphinx_reports.Adapter.Coverage       import Analyzer
 
 
@@ -60,8 +62,9 @@ class CodeCoverage(BaseDirective):
 	optional_arguments = 2
 
 	option_spec = {
-		"packageid": strip,
-		"legend":    strip,
+		"packageid":          strip,
+		"legend":             strip,
+		"no-branch-coverage": flag
 	}
 
 	directiveName: str = "code-coverage"
@@ -70,18 +73,20 @@ class CodeCoverage(BaseDirective):
 		f"{configPrefix}_packages": ({}, "env", Dict)
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
-	_packageID:   str
-	_legend:      LegendPosition
-	_packageName: str
-	_jsonReport:  Path
-	_failBelow:   float
-	_levels:      Dict[Union[int, str], Dict[str, str]]
-	_coverage:    PackageCoverage
+	_packageID:        str
+	_legend:           LegendPosition
+	_noBranchCoverage: bool
+	_packageName:      str
+	_jsonReport:       Path
+	_failBelow:        float
+	_levels:           Dict[Union[int, str], Dict[str, str]]
+	_coverage:         PackageCoverage
 
 	def _CheckOptions(self) -> None:
 		# Parse all directive options or use default values
 		self._packageID = self._ParseStringOption("packageid")
 		self._legend = self._ParseLegendOption("legend", LegendPosition.bottom)
+		self._noBranchCoverage = "no-branch-coverage" in self.options
 
 	def _CheckConfiguration(self) -> None:
 		from sphinx_reports import ReportDomain
@@ -168,28 +173,19 @@ class CodeCoverage(BaseDirective):
 
 	def _GenerateCoverageTable(self) -> nodes.table:
 		# Create a table and table header with 10 columns
+		columns = [
+			("Package", [(" Module", 500)], None),
+			("Statments", [("Total", 100), ("Excluded", 100), ("Covered", 100), ("Missing", 100)], None),
+			("Branches", [("Total", 100), ("Covered", 100), ("Partial", 100), ("Missing", 100)], None),
+			("Coverage", [("in %", 100)], None)
+		]
+
+		if self._noBranchCoverage:
+			columns.pop(2)
+
 		table, tableGroup = self._PrepareTable(
 			identifier=self._packageID,
-			columns=[
-				("Package", [
-					(" Module", 500)
-				], None),
-				("Statments", [
-					("Total", 100),
-					("Excluded", 100),
-					("Covered", 100),
-					("Missing", 100)
-				], None),
-				("Branches", [
-					("Total", 100),
-					("Covered", 100),
-					("Partial", 100),
-					("Missing", 100)
-				], None),
-				("Coverage", [
-					("in %", 100)
-				], None)
-			],
+			columns=columns,
 			classes=["report-codecov-table"]
 		)
 		tableBody = nodes.tbody()
@@ -200,58 +196,69 @@ class CodeCoverage(BaseDirective):
 				yield d[key]
 
 		def renderlevel(tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalStatements}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.ExcludedStatements}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredStatements}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingStatements}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalBranches}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredBranches}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.PartialBranches}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingBranches}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
-				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
-			)
+			tableRow = nodes.row("", classes=[
+				"report-codecov-table-row",
+				"report-codecov-package",
+				self._ConvertToColor(packageCoverage.Coverage, "class")
+			])
+			tableBody += tableRow
+
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * level}📦{packageCoverage.Name}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalStatements}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.ExcludedStatements}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredStatements}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingStatements}"))
+			if not self._noBranchCoverage:
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalBranches}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredBranches}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.PartialBranches}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}"))
 
 			for package in sortedValues(packageCoverage._packages):
 				renderlevel(tableBody, package, level + 1)
 
 			for module in sortedValues(packageCoverage._modules):
-				tableBody += nodes.row(
-					"",
-					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.MissingStatements}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.TotalBranches}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.CoveredBranches}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.PartialBranches}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.MissingBranches}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
-					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
-				)
+				tableRow = nodes.row("", classes=[
+					"report-codecov-table-row",
+					"report-codecov-module",
+					self._ConvertToColor(module.Coverage, "class")
+				])
+				tableBody += tableRow
+
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * (level + 1)}  {module.Name}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingStatements}"))
+				if not self._noBranchCoverage:
+					tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalBranches}"))
+					tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredBranches}"))
+					tableRow += nodes.entry("", nodes.paragraph(text=f"{module.PartialBranches}"))
+					tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingBranches}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}"))
 
 		renderlevel(tableBody, self._coverage)
 
 		# Add a summary row
-		tableBody += nodes.row(
-			"",
-			nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedExpected}")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCovered}")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedUncovered}")),
-			nodes.entry("", nodes.paragraph(text=f"")),  # {self._coverage.AggregatedCoverage:.1%}")),
-				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
-			classes=["report-doccov-summary-row", self._ConvertToColor(self._coverage.Coverage, "class")]  # self._coverage.AggregatedCoverage, "class")]
-		)
+		tableRow = nodes.row("", classes=[
+			"report-codecov-table-row",
+			"report-codecov-summary",
+			self._ConvertToColor(self._coverage.Coverage, "class")
+		])
+		tableBody += tableRow
+
+		tableRow += nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedExpected}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
+		if not self._noBranchCoverage:
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedUncovered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCoverage:.1%}")),
 
 		return table
 
