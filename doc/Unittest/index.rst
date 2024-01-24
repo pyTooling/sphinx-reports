@@ -107,6 +107,10 @@ Directives
       An identifier referencing a dictionary entry in the configuration variable ``report_unittest_testsuites`` defined
       in :file:`conf.py`.
 
+   .. rst:directive:option:: no-assertions
+
+      If flag is present, no assertions column with be shown.
+
 
 .. _UNITTEST/Roles:
 

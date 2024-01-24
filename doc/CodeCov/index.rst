@@ -122,6 +122,10 @@ Directives
 
       Describes if and where to add a legend. Possible values: ``no_legend``, ``top``, ``bottom``, ``both``.
 
+   .. rst:directive:option:: no-branch-coverage
+
+      If flag is present, no branch coverage columns are shown. Only statement coverage columns are present.
+
 
 .. _CODECOV/Roles:
 

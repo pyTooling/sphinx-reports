@@ -303,11 +303,11 @@ class CodeCoverage(BaseDirective):
 		container = nodes.container()
 
 		if LegendPosition.top in self._legend:
-			container += self._CreateLegend(identifier="legend1", classes=["report-doccov-legend"])
+			container += self._CreateLegend(identifier=f"{self._packageID}-top-legend", classes=["report-codecov-legend"])
 
 		container += self._GenerateCoverageTable()
 
 		if LegendPosition.bottom in self._legend:
-			container += self._CreateLegend(identifier="legend2", classes=["report-doccov-legend"])
+			container += self._CreateLegend(identifier=f"{self._packageID}-bottom-legend", classes=["report-codecov-legend"])
 
 		return [container]

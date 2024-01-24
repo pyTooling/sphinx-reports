@@ -194,7 +194,11 @@ class DocCoverage(BaseDirective):
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
 				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
-				classes=["report-doccov-table-row", self._ConvertToColor(packageCoverage.Coverage, "class")],
+				classes=[
+					"report-doccov-table-row",
+					"report-doccov-package",
+					self._ConvertToColor(packageCoverage.Coverage, "class")
+				],
 			)
 
 			for package in sortedValues(packageCoverage._packages):
@@ -208,7 +212,11 @@ class DocCoverage(BaseDirective):
 					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
 					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
-					classes=["report-doccov-table-row", self._ConvertToColor(module.Coverage, "class")],
+					classes=[
+						"report-doccov-table-row",
+						"report-doccov-module",
+						self._ConvertToColor(module.Coverage, "class")
+					],
 				)
 
 		renderlevel(tableBody, self._coverage)
@@ -223,7 +231,11 @@ class DocCoverage(BaseDirective):
 			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoverage:.1%}"),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
-			classes=["report-doccov-summary-row", self._ConvertToColor(self._coverage.AggregatedCoverage, "class")]
+			classes=[
+				"report-doccov-table-row",
+				"report-doccov-summary",
+				self._ConvertToColor(self._coverage.AggregatedCoverage, "class")
+			]
 		)
 
 		return table
@@ -274,11 +286,11 @@ class DocStrCoverage(DocCoverage):
 		container = nodes.container()
 
 		if LegendPosition.top in self._legend:
-			container += self._CreateLegend(identifier="legend1", classes=["report-doccov-legend"])
+			container += self._CreateLegend(identifier=f"{self._packageID}-top-legend", classes=["report-doccov-legend"])
 
 		container += self._GenerateCoverageTable()
 
 		if LegendPosition.bottom in self._legend:
-			container += self._CreateLegend(identifier="legend2", classes=["report-doccov-legend"])
+			container += self._CreateLegend(identifier=f"{self._packageID}-bottom-legend", classes=["report-doccov-legend"])
 
 		return [container]
