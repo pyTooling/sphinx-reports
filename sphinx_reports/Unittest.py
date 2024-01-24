@@ -36,6 +36,7 @@ from pathlib  import Path
 from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict
 
 from docutils             import nodes
+from docutils.parsers.rst.directives import flag
 from pyTooling.Decorators import export
 
 from sphinx_reports.Common             import ReportExtensionError
@@ -55,10 +56,11 @@ class UnittestSummary(BaseDirective):
 	"""
 	has_content = False
 	required_arguments = 0
-	optional_arguments = 1
+	optional_arguments = 2
 
 	option_spec = {
-		"reportid": strip,
+		"reportid":      strip,
+		"no-assertions": flag
 	}
 
 	directiveName: str = "unittest-summary"
@@ -67,13 +69,15 @@ class UnittestSummary(BaseDirective):
 		f"{configPrefix}_testsuites": ({}, "env", Dict)
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
-	_reportID:   str
-	_xmlReport:   Path
-	_testsuite:   TestsuiteSummary
+	_reportID:     str
+	_noAssertions: bool
+	_xmlReport:    Path
+	_testsuite:    TestsuiteSummary
 
 	def _CheckOptions(self) -> None:
 		# Parse all directive options or use default values
 		self._reportID = self._ParseStringOption("reportid")
+		self._noAssertions = "without-assertions" in self.options
 
 	def _CheckConfiguration(self) -> None:
 		from sphinx_reports import ReportDomain
@@ -99,18 +103,24 @@ class UnittestSummary(BaseDirective):
 
 	def _GenerateTestSummaryTable(self) -> nodes.table:
 		# Create a table and table header with 8 columns
+		columns = [
+			("Testsuite / Testcase", None, 500),
+			("Testcases", None, 100),
+			("Skipped", None, 100),
+			("Errored", None, 100),
+			("Failed", None, 100),
+			("Passed", None, 100),
+			("Assertions", None, 100),
+			("Runtime (HH:MM:SS.sss)", None, 100),
+		]
+
+		# If assertions shouldn't be displayed, remove column from columns list
+		if self._noAssertions:
+			columns.pop(6)
+
 		table, tableGroup = self._PrepareTable(
 			identifier=self._reportID,
-			columns=[
-				("Testsuite / Testcase", None, 500),
-				("Testcases", None, 100),
-				("Skipped", None, 100),
-				("Errored", None, 100),
-				("Failed", None, 100),
-				("Passed", None, 100),
-				("Assertions", None, 100),
-				("Runtime (HH:MM:SS.sss)", None, 100),
-			],
+			columns=columns,
 			classes=["report-unittest-table"]
 		)
 		tableBody = nodes.tbody()
@@ -143,18 +153,19 @@ class UnittestSummary(BaseDirective):
 
 		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
 			state = stateToSymbol(testsuite._state)
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testsuite.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Tests}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{timeformat(testsuite.Time)}")),
-				classes=["report-unittest-table-row"],
-			)
+
+			tableRow = nodes.row("", classes=["report-unittest-table-row", "report-testsuite"])
+			tableBody += tableRow
+
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testsuite.Name}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Tests}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}"))
+			if not self._noAssertions:
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{timeformat(testsuite.Time)}"))
 
 			for ts in sortedValues(testsuite._testsuites):
 				renderTestsuite(tableBody, ts, level + 1)
@@ -164,48 +175,38 @@ class UnittestSummary(BaseDirective):
 
 		def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
 			state = stateToSymbol(testcase._state)
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testcase.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{testcase.Assertions}")),
-				nodes.entry("", nodes.paragraph(text=f"{timeformat(testcase.Time)}")),
-				classes=["report-unittest-table-row"],
-			)
+
+			tableRow =	nodes.row("", classes=["report-unittest-table-row", "report-testcase"])
+			tableBody += tableRow
+
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testcase.Name}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Expected}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Covered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			if not self._noAssertions:
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{testcase.Assertions}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{timeformat(testcase.Time)}"))
 
 			for test in sortedValues(testcase._tests):
 				state = stateToSymbol(test._state)
-				tableBody += nodes.row(
-					"",
-					nodes.entry("", nodes.paragraph(text=f"{'  '*(level+1)}{state}{test.Name}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Expected}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Coverage :.1%}")),
-					classes=["report-unittest-table-row"],
-				)
+				tableRow = nodes.row("", classes=["report-unittest-table-row", "report-test"])
+				tableBody += tableRow
+
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * (level + 1)}{state}{test.Name}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Expected}")),
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
+				if not self._noAssertions:
+					tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Uncovered}")),
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Coverage :.1%}")),
 
 		renderRoot(tableBody, self._testsuite)
 
 		# # Add a summary row
-		# tableBody += nodes.row(
-		# 	"",
-		# 	nodes.entry("", nodes.paragraph(text=f"Overall ({self._testsuite.FileCount} files):")),
-		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Expected}")),
-		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Covered}")),
-		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Uncovered}")),
-		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Coverage:.1%}"),
-		# 							# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
-		# 							),
-		# 	classes=["report-unittest-summary-row"]
-		# )
 
 		return table
 
