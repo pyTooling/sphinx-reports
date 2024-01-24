@@ -31,7 +31,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
    the report directive. Here, the ID is called ``src`` (dictionary key). Each package needs 4 configuration entries:
 
    ``name``
-     Name of the Python package[#PkgNameVsPkgDir]_.
+     Name of the Python package [#PkgNameVsPkgDir]_.
 
    ``directory``
      The directory of the package to analyze.

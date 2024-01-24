@@ -6,7 +6,7 @@ Unit Test Summary
 🚧 This is a work-in-progress feature. 🚧
 
 .. #:term:`Unittests` checks if a source code was used during execution. Usually, testcases are run by a testcase
-execution framework like `pytest <https://github.com/pytest-dev/pytest>`__.
+   execution framework like `pytest <https://github.com/pytest-dev/pytest>`__.
 
 .. rubric:: Supported report generators
 
