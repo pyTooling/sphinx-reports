@@ -261,7 +261,28 @@ todo_link_only = True
 # ==============================================================================
 # Sphinx-reports
 # ==============================================================================
-_coverageLevels = {
+report_unittest_testsuites = {
+	"src":                    {"xml_report": "../report/unit/TestReportSummary.xml"},
+}
+
+_codeCovLevels = {
+	30:      {"class": "report-cov-below30",  "desc": "almost unused"},
+	50:      {"class": "report-cov-below50",  "desc": "poorly used"},
+	80:      {"class": "report-cov-below80",  "desc": "somehow used"},
+	90:      {"class": "report-cov-below90",  "desc": "well used"},
+	100:     {"class": "report-cov-below100", "desc": "excellently used"},
+	"error": {"class": "report-cov-error",    "desc": "internal error"},
+}
+report_codecov_packages = {
+	"src": {
+		"name":        "sphinx_reports",
+		"json_report": "../report/coverage/coverage.json",
+		"fail_below":  80,
+		"levels":      _codeCovLevels
+	}
+}
+
+_docCovLevels = {
 	30:      {"class": "report-cov-below30",  "desc": "almost undocumented"},
 	50:      {"class": "report-cov-below50",  "desc": "poorly documented"},
 	80:      {"class": "report-cov-below80",  "desc": "roughly documented"},
@@ -269,42 +290,30 @@ _coverageLevels = {
 	100:     {"class": "report-cov-below100", "desc": "excellent documented"},
 	"error": {"class": "report-cov-error",    "desc": "internal error"},
 }
-
-report_unittest_testsuites = {
-	"src":                    {"xml_report": "../report/unit/TestReportSummary.xml"},
-}
-report_codecov_packages = {
-	"src": {
-		"name":        "sphinx_reports",
-		"json_report": "../report/coverage/coverage.json",
-		"fail_below":  80,
-		"levels":      _coverageLevels
-	}
-}
 report_doccov_packages = {
 	"src": {
 		"name":       "sphinx_reports",
 		"directory":  "../sphinx_reports",
 		"fail_below": 80,
-		"levels":     _coverageLevels
+		"levels":     _docCovLevels
 	},
 	"undocumented": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/undocumented",
 		"fail_below": 80,
-		"levels":     _coverageLevels
+		"levels":     _docCovLevels
 	},
 	"partially": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/partially",
 		"fail_below": 80,
-		"levels":     _coverageLevels
+		"levels":     _docCovLevels
 	},
 	"documented": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/documented",
 		"fail_below": 80,
-		"levels":     _coverageLevels
+		"levels":     _docCovLevels
 	}
 }
 

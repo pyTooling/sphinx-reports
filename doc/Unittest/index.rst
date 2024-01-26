@@ -11,6 +11,7 @@ Unit Test Summary
 .. rubric:: Supported report generators
 
 * `pytest <https://github.com/pytest-dev/pytest>`__
+* `OSVVM-Scripts <https://github.com/OSVVM/OSVVM-Scripts>`__
 
 
 .. _UNITTEST/Quick:
