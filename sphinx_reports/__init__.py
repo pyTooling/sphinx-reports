@@ -70,12 +70,12 @@ class ReportDomain(Domain):
 
 	.. rubric:: New directives:
 
-	* :rst:dir:`code-coverage`
-	* :rst:dir:`code-coverage-legend`
-	* :rst:dir:`doc-coverage`
-	* :rst:dir:`doc-coverage-legend`
-	* :rst:dir:`dependency`
-	* :rst:dir:`unittest-summary`
+	* :rst:dir:`report:code-coverage`
+	* :rst:dir:`report:code-coverage-legend`
+	* :rst:dir:`report:doc-coverage`
+	* :rst:dir:`report:doc-coverage-legend`
+	* :rst:dir:`report:dependency`
+	* :rst:dir:`report:unittest-summary`
 
 	.. rubric:: New roles:
 
@@ -89,9 +89,9 @@ class ReportDomain(Domain):
 
 	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:
 
-	* ``report_unittest_testsuites``
 	* ``report_codecov_packages``
 	* ``report_doccov_packages``
+	* ``report_unittest_testsuites``
 
 	"""
 

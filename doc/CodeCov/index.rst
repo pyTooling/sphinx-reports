@@ -109,7 +109,7 @@ bar.
 Directives
 **********
 
-.. rst:directive:: code-coverage
+.. rst:directive:: report:code-coverage
 
    Add a table summarizing the code coverage per Python source code file (packages and/or modules).
 
@@ -122,7 +122,7 @@ Directives
 
       If flag is present, no branch coverage columns are shown. Only statement coverage columns are present.
 
-.. rst:directive:: code-coverage-legend
+.. rst:directive:: report:code-coverage-legend
 
    .. rst:directive:option:: style
 

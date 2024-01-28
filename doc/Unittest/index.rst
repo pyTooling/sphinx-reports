@@ -99,7 +99,7 @@ bar.
 Directives
 **********
 
-.. rst:directive:: unittest-summary
+.. rst:directive:: report:unittest-summary
 
    Add a table summarizing the unittest results.
 
