@@ -117,7 +117,7 @@ bar.
 Directives
 **********
 
-.. rst:directive:: doc-coverage
+.. rst:directive:: report:doc-coverage
 
    Add a table summarizing the documentation coverage per Python source code file (packages and/or modules).
 
@@ -129,6 +129,18 @@ Directives
    .. rst:directive:option:: legend
 
       Describes if and where to add a legend. Possible values: ``no_legend``, ``top``, ``bottom``, ``both``.
+
+.. rst:directive:: report:doc-coverage-legend
+
+   .. rst:directive:option:: style
+
+      Specifies the legend style. Default is ``horizontal-table``.
+
+      Possible values:
+
+      * ``default``
+      * ``horizontal-table``
+      * ``vertical-table``
 
 
 .. _DOCCOV/Roles:

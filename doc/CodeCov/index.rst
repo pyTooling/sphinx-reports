@@ -118,13 +118,22 @@ Directives
       An identifier referencing a dictionary entry in the configuration variable ``report_codecov_packages`` defined in
       :file:`conf.py`.
 
-   .. rst:directive:option:: legend
-
-      Describes if and where to add a legend. Possible values: ``no_legend``, ``top``, ``bottom``, ``both``.
-
    .. rst:directive:option:: no-branch-coverage
 
       If flag is present, no branch coverage columns are shown. Only statement coverage columns are present.
+
+.. rst:directive:: code-coverage-legend
+
+   .. rst:directive:option:: style
+
+      Specifies the legend style. Default is ``horizontal-table``.
+
+      Possible values:
+
+      * ``default``
+      * ``horizontal-table``
+      * ``vertical-table``
+
 
 
 .. _CODECOV/Roles:
