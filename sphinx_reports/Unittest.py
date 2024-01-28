@@ -33,11 +33,13 @@
 """
 from datetime import timedelta
 from pathlib  import Path
-from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict
+from typing import Dict, Tuple, Any, List, Mapping, Generator, TypedDict, ClassVar
 
-from docutils             import nodes
-from docutils.parsers.rst.directives import flag
-from pyTooling.Decorators import export
+from docutils                          import nodes
+from docutils.parsers.rst.directives   import flag
+from pyTooling.Decorators              import export
+from sphinx.application import Sphinx
+from sphinx.config import Config
 
 from sphinx_reports.Common             import ReportExtensionError
 from sphinx_reports.Sphinx             import strip, BaseDirective
@@ -46,7 +48,7 @@ from sphinx_reports.Adapter.JUnit      import Analyzer
 
 
 class report_DictType(TypedDict):
-	xml_report: str
+	xml_report: Path
 
 
 @export
@@ -67,7 +69,9 @@ class UnittestSummary(BaseDirective):
 	configPrefix:  str = "unittest"
 	configValues:  Dict[str, Tuple[Any, str, Any]] = {
 		f"{configPrefix}_testsuites": ({}, "env", Dict)
-	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
+	}  #: A dictionary of all configuration values used by unittest directives.
+
+	_testSummaries: ClassVar[Dict[str, report_DictType]] = {}
 
 	_reportID:     str
 	_noAssertions: bool
@@ -75,31 +79,55 @@ class UnittestSummary(BaseDirective):
 	_testsuite:    TestsuiteSummary
 
 	def _CheckOptions(self) -> None:
-		# Parse all directive options or use default values
+		"""
+		Parse all directive options or use default values.
+		"""
 		self._reportID = self._ParseStringOption("reportid")
 		self._noAssertions = "without-assertions" in self.options
 
-	def _CheckConfiguration(self) -> None:
+		testSummary = self._testSummaries[self._reportID]
+		self._xmlReport = testSummary["xml_report"]
+
+	@classmethod
+	def CheckConfiguration(cls, sphinxApplication: Sphinx, sphinxConfiguration: Config) -> None:
+		"""
+		Check configuration fields and load necessary values.
+
+		:param sphinxApplication:   Sphinx application instance.
+		:param sphinxConfiguration: Sphinx configuration instance.
+		"""
+		cls._CheckConfiguration(sphinxConfiguration)
+
+	@classmethod
+	def _CheckConfiguration(cls, sphinxConfiguration: Config) -> None:
 		from sphinx_reports import ReportDomain
 
-		# Check configuration fields and load necessary values
+		variableName = f"{ReportDomain.name}_{cls.configPrefix}_testsuites"
+
 		try:
-			allTestsuites: Dict[str, report_DictType] = self.config[f"{ReportDomain.name}_{self.configPrefix}_testsuites"]
+			allTestsuites: Dict[str, report_DictType] = sphinxConfiguration[f"{ReportDomain.name}_{cls.configPrefix}_testsuites"]
 		except (KeyError, AttributeError) as ex:
-			raise ReportExtensionError(f"Configuration option '{ReportDomain.name}_{self.configPrefix}_testsuites' is not configured.") from ex
+			raise ReportExtensionError(f"Configuration option '{variableName}' is not configured.") from ex
 
-		try:
-			testsuiteConfiguration = allTestsuites[self._reportID]
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites: No configuration found for '{self._reportID}'.") from ex
+		# try:
+		# 	testsuiteConfiguration = allTestsuites[self._reportID]
+		# except KeyError as ex:
+		# 	raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites: No configuration found for '{self._reportID}'.") from ex
 
-		try:
-			self._xmlReport = Path(testsuiteConfiguration["xml_report"])
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites:{self._reportID}.xml_report: Configuration is missing.") from ex
+		for reportID, testSummary in allTestsuites.items():
+			summaryName = f"conf.py: {variableName}:[{reportID}]"
 
-		if not self._xmlReport.exists():
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites:{self._reportID}.xml_report: Unittest report file '{self._xmlReport}' doesn't exist.") from FileNotFoundError(self._xmlReport)
+			try:
+				xmlReport = Path(testSummary["xml_report"])
+			except KeyError as ex:
+				raise ReportExtensionError(f"{summaryName}.xml_report: Configuration is missing.") from ex
+
+			if not xmlReport.exists():
+				raise ReportExtensionError(f"{summaryName}.xml_report: Unittest report file '{xmlReport}' doesn't exist.") from FileNotFoundError(xmlReport)
+
+			cls._testSummaries[reportID] = {
+				"xml_report": xmlReport
+			}
 
 	def _GenerateTestSummaryTable(self) -> nodes.table:
 		# Create a table and table header with 8 columns
@@ -118,7 +146,7 @@ class UnittestSummary(BaseDirective):
 		if self._noAssertions:
 			columns.pop(6)
 
-		table, tableGroup = self._PrepareTable(
+		table, tableGroup = self._CreateTableHeader(
 			identifier=self._reportID,
 			columns=columns,
 			classes=["report-unittest-table"]
@@ -212,7 +240,6 @@ class UnittestSummary(BaseDirective):
 
 	def run(self) -> List[nodes.Node]:
 		self._CheckOptions()
-		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
 		analyzer = Analyzer(self._xmlReport)

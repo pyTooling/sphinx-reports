@@ -55,11 +55,15 @@ class ReportExtensionError(ExtensionError):
 
 
 @export
-class LegendPosition(Flag):
-	no_legend = 0
-	top = 1
-	bottom = 2
-	both = 3
+class LegendStyle(Flag):
+	Default = 0
+	Table = 1
+
+	Horizontal = 1024
+	Vertical = 2048
+
+	horizontal_table = Table | Horizontal
+	vertical_table =   Table | Vertical
 
 
 @export

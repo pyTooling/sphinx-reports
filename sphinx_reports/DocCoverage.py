@@ -31,130 +31,185 @@
 """
 **Report documentation coverage as Sphinx documentation page(s).**
 """
-from pathlib import Path
-from typing import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union
+from pathlib              import Path
+from typing               import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union, ClassVar
 
 from docutils             import nodes
+from sphinx.application   import Sphinx
+from sphinx.config        import Config
 from pyTooling.Decorators import export
 
-from sphinx_reports.Common                          import ReportExtensionError, LegendPosition
+from sphinx_reports.Common                          import ReportExtensionError, LegendStyle
 from sphinx_reports.Sphinx                          import strip, BaseDirective
 from sphinx_reports.DataModel.DocumentationCoverage import PackageCoverage, AggregatedCoverage
 from sphinx_reports.Adapter.DocStrCoverage          import Analyzer
 
 
 class package_DictType(TypedDict):
-	name: str
-	directory: str
+	name:       str
+	directory:  Path
 	fail_below: int
-	levels: Dict[Union[int, str], Dict[str, str]]
+	levels:     Union[str, Dict[Union[int, str], Dict[str, str]]]
 
 
 @export
-class DocCoverage(BaseDirective):
-	"""
-	This directive will be replaced by a table representing documentation coverage.
-	"""
-	has_content = False
-	required_arguments = 0
-	optional_arguments = 2
-
+class DocCoverageBase(BaseDirective):
 	option_spec = {
 		"packageid": strip,
-		"legend":    strip,
 	}
 
-	directiveName: str = "docstr-coverage"
+	defaultCoverageDefinitions = {
+		"default": {
+			30:      {"class": "report-cov-below30",  "desc": "almost undocumented"},
+			50:      {"class": "report-cov-below50",  "desc": "poorly documented"},
+			80:      {"class": "report-cov-below80",  "desc": "roughly documented"},
+			90:      {"class": "report-cov-below90",  "desc": "well documented"},
+			100:     {"class": "report-cov-below100", "desc": "excellent documented"},
+			"error": {"class": "report-cov-error",    "desc": "internal error"},
+		}
+	}
+
 	configPrefix:  str = "doccov"
 	configValues:  Dict[str, Tuple[Any, str, Any]] = {
-		f"{configPrefix}_packages": ({}, "env", Dict)
-	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
+		f"{configPrefix}_packages": ({}, "env", Dict),
+		f"{configPrefix}_levels": (defaultCoverageDefinitions, "env", Dict),
+	}  #: A dictionary of all configuration values used by documentation coverage directives.
+
+	_coverageLevelDefinitions: ClassVar[Dict[str, Dict[Union[int, str], Dict[str, str]]]] = {}
+	_packageConfigurations:    ClassVar[Dict[str, package_DictType]] = {}
 
 	_packageID:   str
-	_legend:      LegendPosition
-	_packageName: str
-	_directory:   Path
-	_failBelow:   float
 	_levels:      Dict[Union[int, str], Dict[str, str]]
-	_coverage:    PackageCoverage
 
 	def _CheckOptions(self) -> None:
 		# Parse all directive options or use default values
 		self._packageID = self._ParseStringOption("packageid")
-		self._legend = self._ParseLegendOption("legend", LegendPosition.bottom)
 
-	def _CheckConfiguration(self) -> None:
+	@classmethod
+	def CheckConfiguration(cls, sphinxApplication: Sphinx, sphinxConfiguration: Config) -> None:
+		"""
+		Check configuration fields and load necessary values.
+
+		:param sphinxApplication:   Sphinx application instance.
+		:param sphinxConfiguration: Sphinx configuration instance.
+		"""
+		cls._CheckLevelsConfiguration(sphinxConfiguration)
+		cls._CheckPackagesConfiguration(sphinxConfiguration)
+
+	@classmethod
+	def _CheckLevelsConfiguration(cls, sphinxConfiguration: Config) -> None:
 		from sphinx_reports import ReportDomain
 
-		# Check configuration fields and load necessary values
+		variableName = f"{ReportDomain.name}_{cls.configPrefix}_levels"
+
 		try:
-			allPackages: Dict[str, package_DictType] = self.config[f"{ReportDomain.name}_{self.configPrefix}_packages"]
+			coverageLevelDefinitions: Dict[str, package_DictType] = sphinxConfiguration[f"{ReportDomain.name}_{cls.configPrefix}_levels"]
 		except (KeyError, AttributeError) as ex:
-			raise ReportExtensionError(f"Configuration option '{ReportDomain.name}_{self.configPrefix}_packages' is not configured.") from ex
+			raise ReportExtensionError(f"Configuration option '{variableName}' is not configured.") from ex
+
+		if "default" not in coverageLevelDefinitions:
+			cls._coverageLevelDefinitions["default"] = cls.defaultCoverageDefinitions["default"]
+
+		for key, coverageLevelDefinition in coverageLevelDefinitions.items():
+			configurationName = f"conf.py: {variableName}:[{key}]"
+
+			if 100 not in coverageLevelDefinition:
+				raise ReportExtensionError(f"{configurationName}[100]: Configuration is missing.")
+			elif "error" not in coverageLevelDefinition:
+				raise ReportExtensionError(f"{configurationName}[error]: Configuration is missing.")
+
+			cls._coverageLevelDefinitions[key] = {}
+
+			for level, levelConfig in coverageLevelDefinition.items():
+				try:
+					if isinstance(level, str):
+						if level != "error":
+							raise ReportExtensionError(f"{configurationName}[{level}]: Level is a keyword, but not 'error'.")
+					elif not (0.0 <= int(level) <= 100.0):
+						raise ReportExtensionError(f"{configurationName}[{level}]: Level is out of range 0..100.")
+				except ValueError as ex:
+					raise ReportExtensionError(f"{configurationName}[{level}]: Level is not a keyword or an integer in range 0..100.") from ex
+
+				try:
+					cssClass = levelConfig["class"]
+				except KeyError as ex:
+					raise ReportExtensionError(f"{configurationName}[{level}].class: CSS class is missing.") from ex
+
+				try:
+					description = levelConfig["desc"]
+				except KeyError as ex:
+					raise ReportExtensionError(f"{configurationName}[{level}].desc: Description is missing.") from ex
+
+				cls._coverageLevelDefinitions[key][level] = {
+					"class": cssClass,
+					"desc": description
+				}
+
+	@classmethod
+	def _CheckPackagesConfiguration(cls, sphinxConfiguration: Config) -> None:
+		from sphinx_reports import ReportDomain
+
+		variableName = f"{ReportDomain.name}_{cls.configPrefix}_packages"
 
 		try:
-			packageConfiguration = allPackages[self._packageID]
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages: No configuration found for '{self._packageID}'.") from ex
+			allPackages: Dict[str, package_DictType] = sphinxConfiguration[f"{ReportDomain.name}_{cls.configPrefix}_packages"]
+		except (KeyError, AttributeError) as ex:
+			raise ReportExtensionError(f"Configuration option '{variableName}' is not configured.") from ex
 
-		try:
-			self._packageName = packageConfiguration["name"]
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.name: Configuration is missing.") from ex
+		for packageID, packageConfiguration in allPackages.items():
+			configurationName = f"conf.py: {variableName}:[{packageID}]"
 
-		try:
-			self._directory = Path(packageConfiguration["directory"])
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.directory: Configuration is missing.") from ex
-
-		if not self._directory.exists():
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.directory: Directory '{self._directory}' doesn't exist.") from FileNotFoundError(self._directory)
-
-		try:
-			self._failBelow = int(packageConfiguration["fail_below"]) / 100
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: Configuration is missing.") from ex
-		except ValueError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: '{packageConfiguration['fail_below']}' is not an integer in range 0..100.") from ex
-
-		if not (0.0 <= self._failBelow <= 100.0):
-			raise ReportExtensionError(
-				f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.fail_below: Is out of range 0..100.")
-
-		try:
-			levels = packageConfiguration["levels"]
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Configuration is missing.") from ex
-
-		if 100 not in packageConfiguration["levels"]:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[100]: Configuration is missing.")
-
-		if "error" not in packageConfiguration["levels"]:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[error]: Configuration is missing.")
-
-		self._levels = {}
-		for level, levelConfig in levels.items():
 			try:
-				if isinstance(level, str):
-					if level != "error":
-						raise ReportExtensionError(
-							f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is a keyword, but not 'error'.")
-				elif not (0.0 <= int(level) <= 100.0):
-					raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is out of range 0..100.")
+				packageName = packageConfiguration["name"]
+			except KeyError as ex:
+				raise ReportExtensionError(f"{configurationName}.name: Configuration is missing.") from ex
+
+			try:
+				directory = Path(packageConfiguration["directory"])
+			except KeyError as ex:
+				raise ReportExtensionError(f"{configurationName}.directory: Configuration is missing.") from ex
+
+			if not directory.exists():
+				raise ReportExtensionError(f"{configurationName}.directory: Directory '{directory}' doesn't exist.") from FileNotFoundError(directory)
+
+			try:
+				failBelow = int(packageConfiguration["fail_below"]) / 100
+			except KeyError as ex:
+				raise ReportExtensionError(f"{configurationName}.fail_below: Configuration is missing.") from ex
 			except ValueError as ex:
-				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels: Level is not a keyword or an integer in range 0..100.") from ex
+				raise ReportExtensionError(f"{configurationName}.fail_below: '{packageConfiguration['fail_below']}' is not an integer in range 0..100.") from ex
+
+			if not (0.0 <= failBelow <= 100.0):
+				raise ReportExtensionError(f"{configurationName}.fail_below: Is out of range 0..100.")
 
 			try:
-				cssClass = levelConfig["class"]
+				levels = packageConfiguration["levels"]
 			except KeyError as ex:
-				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[level].class: CSS class is missing.") from ex
+				raise ReportExtensionError(f"{configurationName}.levels: Configuration is missing.") from ex
 
-			try:
-				description = levelConfig["desc"]
-			except KeyError as ex:
-				raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_packages:{self._packageID}.levels[level].desc: Description is missing.") from ex
+			if isinstance(levels, str):
+				try:
+					levelDefinition = cls._coverageLevelDefinitions[levels]
+				except KeyError as ex:
+					raise ReportExtensionError(f"{configurationName}.levels: Referenced coverage levels '{levels}' are not defined in conf.py variable '{variableName}'.") from ex
+			elif isinstance(levels, dict):
+				if 100 not in packageConfiguration["levels"]:
+					raise ReportExtensionError(f"{configurationName}.levels[100]: Configuration is missing.")
+				elif "error" not in packageConfiguration["levels"]:
+					raise ReportExtensionError(f"{configurationName}.levels[error]: Configuration is missing.")
 
-			self._levels[level] = {"class": cssClass, "desc": description}
+				levelDefinition = {}
+				for x, y in packageConfiguration["levels"].items():
+					pass
+			else:
+				raise ReportExtensionError(f"")
+
+			cls._packageConfigurations[packageID] = {
+				"name": packageName,
+				"directory": directory,
+				"fail_below": failBelow,
+				"levels": levelDefinition
+			}
 
 	def _ConvertToColor(self, currentLevel: float, configKey: str) -> str:
 		if currentLevel < 0.0:
@@ -166,9 +221,40 @@ class DocCoverage(BaseDirective):
 
 		return self._levels[100][configKey]
 
+
+@export
+class DocCoverage(DocCoverageBase):
+	"""
+	This directive will be replaced by a table representing documentation coverage.
+	"""
+	directiveName: str = "docstr-coverage"
+
+	has_content = False
+	required_arguments = 0
+	optional_arguments = 2
+
+	option_spec = DocCoverageBase.option_spec
+
+	_packageName: str
+	_directory:   Path
+	_failBelow:   float
+	_coverage:    PackageCoverage
+
+	def _CheckOptions(self) -> None:
+		"""
+		Parse all directive options or use default values.
+		"""
+		super()._CheckOptions()
+
+		packageConfiguration = self._packageConfigurations[self._packageID]
+		self._packageName = packageConfiguration["name"]
+		self._directory =   packageConfiguration["directory"]
+		self._failBelow =   packageConfiguration["fail_below"]
+		self._levels =      packageConfiguration["levels"]
+
 	def _GenerateCoverageTable(self) -> nodes.table:
 		# Create a table and table header with 5 columns
-		table, tableGroup = self._PrepareTable(
+		table, tableGroup = self._CreateTableHeader(
 			identifier=self._packageID,
 			columns=[
 				("Filename", None, 500),
@@ -240,6 +326,50 @@ class DocCoverage(BaseDirective):
 
 		return table
 
+
+@export
+class DocStrCoverage(DocCoverage):
+	def run(self) -> List[nodes.Node]:
+		self._CheckOptions()
+
+		# Assemble a list of Python source files
+		analyzer = Analyzer(self._packageName, self._directory)
+		analyzer.Analyze()
+		self._coverage = analyzer.Convert()
+		# self._coverage.CalculateCoverage()
+		self._coverage.Aggregate()
+
+		container = nodes.container()
+		container += self._GenerateCoverageTable()
+
+		return [container]
+
+@export
+class DocCoverageLegend(DocCoverageBase):
+	"""
+	This directive will be replaced by a legend table representing coverage levels.
+	"""
+	has_content = False
+	required_arguments = 0
+	optional_arguments = 2
+
+	option_spec = DocCoverageBase.option_spec | {
+		"style": strip
+	}
+
+	directiveName: str = "doc-coverage-legend"
+
+	_style: LegendStyle
+
+	def _CheckOptions(self) -> None:
+		# Parse all directive options or use default values
+		super()._CheckOptions()
+
+		self._style = self._ParseLegendStyle("style", LegendStyle.Horizontal)
+
+		packageConfiguration = self._packageConfigurations[self._packageID]
+		self._levels =      packageConfiguration["levels"]
+
 	def _CreateLegend(self, identifier: str, classes: Iterable[str]) -> List[nodes.Element]:
 		rubric = nodes.rubric("", text="Legend")
 
@@ -269,28 +399,18 @@ class DocCoverage(BaseDirective):
 
 		return [rubric, table]
 
-
-@export
-class DocStrCoverage(DocCoverage):
 	def run(self) -> List[nodes.Node]:
 		self._CheckOptions()
-		self._CheckConfiguration()
-
-		# Assemble a list of Python source files
-		analyzer = Analyzer(self._packageName, self._directory)
-		analyzer.Analyze()
-		self._coverage = analyzer.Convert()
-		# self._coverage.CalculateCoverage()
-		self._coverage.Aggregate()
 
 		container = nodes.container()
-
-		if LegendPosition.top in self._legend:
-			container += self._CreateLegend(identifier=f"{self._packageID}-top-legend", classes=["report-doccov-legend"])
-
-		container += self._GenerateCoverageTable()
-
-		if LegendPosition.bottom in self._legend:
-			container += self._CreateLegend(identifier=f"{self._packageID}-bottom-legend", classes=["report-doccov-legend"])
+		if LegendStyle.Table in self._style:
+			if LegendStyle.Horizontal in self._style:
+				container += self._CreateLegend(identifier=f"{self._packageID}-legend", classes=["report-doccov-legend"])
+			elif LegendStyle.Vertical in self._style:
+				container += self._CreateLegend(identifier=f"{self._packageID}-legend", classes=["report-doccov-legend"])
+			else:
+				container += nodes.paragraph(text=f"Unsupported legend style.")
+		else:
+			container += nodes.paragraph(text=f"Unsupported legend style.")
 
 		return [container]

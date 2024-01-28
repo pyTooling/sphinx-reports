@@ -278,7 +278,7 @@ report_codecov_packages = {
 		"name":        "sphinx_reports",
 		"json_report": "../report/coverage/coverage.json",
 		"fail_below":  80,
-		"levels":      _codeCovLevels
+		"levels":      "default"
 	}
 }
 
@@ -295,25 +295,25 @@ report_doccov_packages = {
 		"name":       "sphinx_reports",
 		"directory":  "../sphinx_reports",
 		"fail_below": 80,
-		"levels":     _docCovLevels
+		"levels":     "default"
 	},
 	"undocumented": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/undocumented",
 		"fail_below": 80,
-		"levels":     _docCovLevels
+		"levels":     "default"
 	},
 	"partially": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/partially",
 		"fail_below": 80,
-		"levels":     _docCovLevels
+		"levels":     "default"
 	},
 	"documented": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/documented",
 		"fail_below": 80,
-		"levels":     _docCovLevels
+		"levels":     "default"
 	}
 }
 

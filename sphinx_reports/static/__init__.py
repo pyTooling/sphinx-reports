@@ -29,5 +29,9 @@
 # ==================================================================================================================== #
 #
 """
-**Package for static resources.**
+Package for static resources.
+
+**Resources:**
+
+* ``sphinx_reports.css``
 """
