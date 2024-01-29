@@ -132,6 +132,14 @@ class ReportDomain(Domain):
 		**UnittestSummary.configValues,
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
+	del CodeCoverageBase
+	del CodeCoverage
+	del CodeCoverageLegend
+	del DocCoverageBase
+	del DocStrCoverage
+	del DocCoverageLegend
+	del UnittestSummary
+
 	initial_data = {
 		"reports": {}
 	}  #: A dictionary of all global data fields used by this domain.
