@@ -5,10 +5,10 @@ Code coverage report generated with `pytest <https://github.com/pytest-dev/pytes
 
 .. report:code-coverage-legend::
    :packageid: src
-   :style: horizontal-table
 
 .. report:code-coverage::
    :packageid: src
 
 .. report:code-coverage-legend::
    :packageid: src
+   :style: vertical-table

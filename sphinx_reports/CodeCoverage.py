@@ -422,25 +422,38 @@ class CodeCoverageLegend(CodeCoverageBase):
 		# Parse all directive options or use default values
 		super()._CheckOptions()
 
-		self._style = self._ParseLegendStyle("style", LegendStyle.Horizontal)
+		self._style = self._ParseLegendStyle("style", LegendStyle.horizontal_table)
 
 		packageConfiguration = self._packageConfigurations[self._packageID]
-		self._levels =      packageConfiguration["levels"]
+		self._levels = packageConfiguration["levels"]
 
-	def _CreateLegend(self, identifier: str, classes: Iterable[str]) -> List[nodes.Element]:
-		rubric = nodes.rubric("", text="Legend")
+	def _CreateHorizontalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
+		columns = [("Code Coverage:", None, 300)]
+		for level in self._levels:
+			if isinstance(level, int):
+				columns.append((f"≤{level} %", None, 200))
 
-		table = nodes.table("", id=identifier, classes=classes)
+		table, tableGroup = self._CreateTableHeader(columns, identifier=identifier, classes=classes)
+		tableBody = nodes.tbody()
+		tableGroup += tableBody
 
-		tableGroup = nodes.tgroup(cols=2)
-		table += tableGroup
+		legendRow = nodes.row("", classes=["report-codecov-legend-row"])
+		legendRow += nodes.entry("", nodes.paragraph(text="Coverage Level:"))
+		tableBody += legendRow
+		for level, config in self._levels.items():
+			if isinstance(level, int):
+				legendRow += nodes.entry("", nodes.paragraph(text=config["desc"]), classes=[self._ConvertToColor((level - 1) / 100, "class")])
 
-		tableRow = nodes.row()
-		tableGroup += nodes.colspec(colwidth=300)
-		tableRow += nodes.entry("", nodes.paragraph(text="%"))
-		tableGroup += nodes.colspec(colwidth=300)
-		tableRow += nodes.entry("", nodes.paragraph(text="Coverage Level"))
-		tableGroup += nodes.thead("", tableRow)
+		return table
+
+	def _CreateVerticalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
+		table, tableGroup = self._CreateTableHeader([
+				("Code Coverage", None, 300),
+				("Coverage Level", None, 300)
+			],
+			identifier=identifier,
+			classes=classes
+		)
 
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
@@ -449,12 +462,12 @@ class CodeCoverageLegend(CodeCoverageBase):
 			if isinstance(level, int):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"≤{level}%")),
+					nodes.entry("", nodes.paragraph(text=f"≤{level} %")),
 					nodes.entry("", nodes.paragraph(text=config["desc"])),
-					classes=["report-doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
+					classes=["report-codecov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
 				)
 
-		return [rubric, table]
+		return table
 
 	def run(self) -> List[nodes.Node]:
 		self._CheckOptions()
@@ -462,9 +475,9 @@ class CodeCoverageLegend(CodeCoverageBase):
 		container = nodes.container()
 		if LegendStyle.Table in self._style:
 			if LegendStyle.Horizontal in self._style:
-				container += self._CreateLegend(identifier=f"{self._packageID}-legend", classes=["report-codecov-legend"])
+				container += self._CreateHorizontalLegendTable(identifier=f"{self._packageID}-legend", classes=["report-codecov-legend"])
 			elif LegendStyle.Vertical in self._style:
-				container += self._CreateLegend(identifier=f"{self._packageID}-legend", classes=["report-codecov-legend"])
+				container += self._CreateVerticalLegendTable(identifier=f"{self._packageID}-legend", classes=["report-codecov-legend"])
 			else:
 				container += nodes.paragraph(text=f"Unsupported legend style.")
 		else:
