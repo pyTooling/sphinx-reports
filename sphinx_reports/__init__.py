@@ -74,7 +74,7 @@ class ReportDomain(Domain):
 	* :rst:dir:`report:code-coverage-legend`
 	* :rst:dir:`report:doc-coverage`
 	* :rst:dir:`report:doc-coverage-legend`
-	* :rst:dir:`report:dependency`
+	* :rst:dir:`report:dependency-table`
 	* :rst:dir:`report:unittest-summary`
 
 	.. rubric:: New roles:
@@ -103,6 +103,7 @@ class ReportDomain(Domain):
 
 	from sphinx_reports.CodeCoverage import CodeCoverage, CodeCoverageLegend, ModuleCoverage
 	from sphinx_reports.DocCoverage  import DocStrCoverage, DocCoverageLegend
+	from sphinx_reports.Dependency   import DependencyTable
 	from sphinx_reports.Unittest     import UnittestSummary
 
 	directives = {
@@ -111,7 +112,7 @@ class ReportDomain(Domain):
 		"module-coverage":      ModuleCoverage,
 		"doc-coverage":         DocStrCoverage,
 		"doc-coverage-legend":  DocCoverageLegend,
-		"dependency":           DocStrCoverage,
+		"dependency-table":     DependencyTable,
 		"unittest-summary":     UnittestSummary,
 	}  #: A dictionary of all directives in this domain.
 
@@ -125,12 +126,14 @@ class ReportDomain(Domain):
 
 	from sphinx_reports.CodeCoverage import CodeCoverageBase
 	from sphinx_reports.DocCoverage  import DocCoverageBase
+	from sphinx_reports.Dependency   import DependencyTable
 	from sphinx_reports.Unittest     import UnittestSummary
 
 	configValues: Dict[str, Tuple[Any, str, Any]] = {
 		**CodeCoverageBase.configValues,
 		**DocCoverageBase.configValues,
 		**UnittestSummary.configValues,
+		**DependencyTable.configValues,
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
 	del CodeCoverageBase
@@ -140,6 +143,7 @@ class ReportDomain(Domain):
 	del DocCoverageBase
 	del DocStrCoverage
 	del DocCoverageLegend
+	del DependencyTable
 	del UnittestSummary
 
 	initial_data = {

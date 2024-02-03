@@ -171,6 +171,7 @@ License
    :hidden:
 
    Examples/Documentation
+   Examples/Dependency
 
 .. toctree::
    :caption: Supported Reports
