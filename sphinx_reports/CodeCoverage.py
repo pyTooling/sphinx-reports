@@ -40,6 +40,7 @@ from docutils.parsers.rst.directives       import flag
 from sphinx.addnodes                       import toctree
 from sphinx.application                    import Sphinx
 from sphinx.config                         import Config
+from sphinx.directives.code                import LiteralIncludeReader
 from sphinx.util.docutils                  import new_document
 from pyTooling.Decorators                  import export
 
@@ -572,8 +573,24 @@ class ModuleCoverage(CodeCoverageBase):
 		analyzer = Analyzer(self._packageName, self._jsonReport)
 		self._coverage = analyzer.Convert()
 
+		sourceFile = "../../sphinx_reports/__init__.py"
 
 		container = nodes.container()
 		container += nodes.paragraph(text=f"Code coverage of {self._moduleName}")
+
+		location = self.state_machine.get_source_and_line(self.lineno)
+		rel_filename, filename = self.env.relfn2path(sourceFile)
+		self.env.note_dependency(rel_filename)
+
+		reader = LiteralIncludeReader(filename, {"tab-width": 2}, self.config)
+		text, lines = reader.read(location=location)
+
+		literalBlock: nodes.Element = nodes.literal_block(text, text, source=filename)
+		literalBlock["language"] = "codecov"
+		literalBlock['highlight_args'] = extra_args = {}
+		extra_args['hl_lines'] = [i for i in range(10, 20)]
+		self.set_source_info(literalBlock)
+
+		container += literalBlock
 
 		return [container]
