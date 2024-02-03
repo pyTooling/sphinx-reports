@@ -63,7 +63,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
          }
       }
 
-2. Add the :rst:dir:`doc-coverage` directive into your Restructured Text (ReST) document.
+2. Add the :rst:dir:`report:doc-coverage` directive into your Restructured Text (ReST) document.
 
    .. code-block:: ReST
 
@@ -76,7 +76,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
 Example Document
 ****************
 
-The following ``DocCoverage`` document is an example on how this documentation uses the :rst:dir:`doc-coverage`
+The following ``DocCoverage`` document is an example on how this documentation uses the :rst:dir:`report:doc-coverage`
 directive. The first file consists of three parts: At first, a headline; at second second a short introduction paragraph
 and at third, the report generating directive. The second file shows how to integrate that document into the navigation
 bar.
