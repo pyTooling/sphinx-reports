@@ -101,13 +101,14 @@ class ReportDomain(Domain):
 	dependencies: List[str] = [
 	]  #: A list of other extensions this domain depends on.
 
-	from sphinx_reports.CodeCoverage import CodeCoverage, CodeCoverageLegend
+	from sphinx_reports.CodeCoverage import CodeCoverage, CodeCoverageLegend, ModuleCoverage
 	from sphinx_reports.DocCoverage  import DocStrCoverage, DocCoverageLegend
 	from sphinx_reports.Unittest     import UnittestSummary
 
 	directives = {
 		"code-coverage":        CodeCoverage,
 		"code-coverage-legend": CodeCoverageLegend,
+		"module-coverage":      ModuleCoverage,
 		"doc-coverage":         DocStrCoverage,
 		"doc-coverage-legend":  DocCoverageLegend,
 		"dependency":           DocStrCoverage,
@@ -135,18 +136,19 @@ class ReportDomain(Domain):
 	del CodeCoverageBase
 	del CodeCoverage
 	del CodeCoverageLegend
+	del ModuleCoverage
 	del DocCoverageBase
 	del DocStrCoverage
 	del DocCoverageLegend
 	del UnittestSummary
 
 	initial_data = {
-		"reports": {}
+		# "reports": {}
 	}  #: A dictionary of all global data fields used by this domain.
 
-	@property
-	def Reports(self) -> Dict[str, Any]:
-		return self.data["reports"]
+	# @property
+	# def Reports(self) -> Dict[str, Any]:
+	# 	return self.data["reports"]
 
 	@staticmethod
 	def CheckConfigurationVariables(sphinxApplication: Sphinx, config: Config) -> None:

@@ -37,6 +37,7 @@ from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedD
 
 from docutils                              import nodes
 from docutils.parsers.rst.directives       import flag
+from sphinx.addnodes                       import toctree
 from sphinx.application                    import Sphinx
 from sphinx.config                         import Config
 from sphinx.util.docutils                  import new_document
@@ -398,7 +399,53 @@ class CodeCoverage(CodeCoverageBase):
 		container = nodes.container()
 		container += self._GenerateCoverageTable()
 
-		return [container]
+		docName = self.env.docname
+		docParent = docName[:docName.rindex("/")]
+
+		subnode = toctree()
+		subnode['parent'] = docName
+
+		# (title, ref) pairs, where ref may be a document, or an external link,
+		# and title may be None if the document's title is to be used
+		subnode['entries'] =       []
+		subnode['includefiles'] =  []
+		subnode['maxdepth'] =      -1  # self.options.get('maxdepth', -1)
+		subnode['caption'] =       None  # self.options.get('caption')
+		subnode['glob'] =          None  # 'glob' in self.options
+		subnode['hidden'] =        True  # 'hidden' in self.options
+		subnode['includehidden'] = False  # 'includehidden' in self.options
+		subnode['numbered'] =      0  # self.options.get('numbered', 0)
+		subnode['titlesonly'] =    False  # 'titlesonly' in self.options
+		self.set_source_info(subnode)
+
+		wrappernode = nodes.compound(classes=['toctree-wrapper'])
+		wrappernode.append(subnode)
+		self.add_name(wrappernode)
+
+		for entry in (
+			"sphinx_reports",
+			"sphinx_reports.Adapter",
+			"sphinx_reports.Adapter.Coverage",
+			"sphinx_reports.Adapter.DocStrCoverage",
+			"sphinx_reports.Adapter.JUnit",
+			"sphinx_reports.DataModel",
+			"sphinx_reports.DataModel.CodeCoverage",
+			"sphinx_reports.DataModel.DocumentationCoverage",
+			"sphinx_reports.DataModel.Unittest",
+			"sphinx_reports.static",
+			"sphinx_reports.CodeCoverage",
+			"sphinx_reports.Common",
+			"sphinx_reports.DocCoverage",
+			"sphinx_reports.Sphinx",
+			"sphinx_reports.Unittest",
+		):
+			moduleDocumentName = f"{docParent}/{entry}"
+			moduleDocumentTitle = entry
+
+			subnode["entries"].append((moduleDocumentTitle, moduleDocumentName))
+			subnode["includefiles"].append(moduleDocumentName)
+
+		return [container, wrappernode]
 
 
 @export
@@ -482,5 +529,51 @@ class CodeCoverageLegend(CodeCoverageBase):
 				container += nodes.paragraph(text=f"Unsupported legend style.")
 		else:
 			container += nodes.paragraph(text=f"Unsupported legend style.")
+
+		return [container]
+
+
+
+@export
+class ModuleCoverage(CodeCoverageBase):
+	"""
+	This directive will be replaced by highlighted source code.
+	"""
+	directiveName: str = "module-coverage"
+
+	has_content = False
+	required_arguments = 0
+	optional_arguments = 2
+
+	option_spec = CodeCoverageBase.option_spec | {
+		"module": strip
+	}
+
+	_packageName:      str
+	_moduleName:       str
+	_jsonReport:       Path
+
+	def _CheckOptions(self) -> None:
+		"""
+		Parse all directive options or use default values.
+		"""
+		super()._CheckOptions()
+
+		self._moduleName = self._ParseStringOption("module")
+
+		packageConfiguration = self._packageConfigurations[self._packageID]
+		self._packageName = packageConfiguration["name"]
+		self._jsonReport =  packageConfiguration["json_report"]
+
+	def run(self) -> List[nodes.Node]:
+		self._CheckOptions()
+
+		# Assemble a list of Python source files
+		analyzer = Analyzer(self._packageName, self._jsonReport)
+		self._coverage = analyzer.Convert()
+
+
+		container = nodes.container()
+		container += nodes.paragraph(text=f"Code coverage of {self._moduleName}")
 
 		return [container]
