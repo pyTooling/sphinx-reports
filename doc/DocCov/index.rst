@@ -31,7 +31,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
    the report directive. Here, the ID is called ``src`` (dictionary key). Each package needs 4 configuration entries:
 
    ``name``
-     Name of the Python package[#PkgNameVsPkgDir]_.
+     Name of the Python package [#PkgNameVsPkgDir]_.
 
    ``directory``
      The directory of the package to analyze.
@@ -63,7 +63,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
          }
       }
 
-2. Add the :rst:dir:`doc-coverage` directive into your Restructured Text (ReST) document.
+2. Add the :rst:dir:`report:doc-coverage` directive into your Restructured Text (ReST) document.
 
    .. code-block:: ReST
 
@@ -76,7 +76,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
 Example Document
 ****************
 
-The following ``DocCoverage`` document is an example on how this documentation uses the :rst:dir:`doc-coverage`
+The following ``DocCoverage`` document is an example on how this documentation uses the :rst:dir:`report:doc-coverage`
 directive. The first file consists of three parts: At first, a headline; at second second a short introduction paragraph
 and at third, the report generating directive. The second file shows how to integrate that document into the navigation
 bar.
@@ -117,7 +117,7 @@ bar.
 Directives
 **********
 
-.. rst:directive:: doc-coverage
+.. rst:directive:: report:doc-coverage
 
    Add a table summarizing the documentation coverage per Python source code file (packages and/or modules).
 
@@ -129,6 +129,18 @@ Directives
    .. rst:directive:option:: legend
 
       Describes if and where to add a legend. Possible values: ``no_legend``, ``top``, ``bottom``, ``both``.
+
+.. rst:directive:: report:doc-coverage-legend
+
+   .. rst:directive:option:: style
+
+      Specifies the legend style. Default is ``horizontal-table``.
+
+      Possible values:
+
+      * ``default``
+      * ``horizontal-table``
+      * ``vertical-table``
 
 
 .. _DOCCOV/Roles:

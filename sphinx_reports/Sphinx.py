@@ -32,13 +32,13 @@
 **Helper functions and derived classes from Sphinx.**
 """
 from re     import match as re_match
-from typing import Optional as Nullable, Tuple, List, Dict
+from typing import Optional as Nullable, Tuple, List
 
-from docutils import nodes
-from pyTooling.Decorators import export
-from sphinx.directives    import ObjectDescription
+from docutils              import nodes
+from sphinx.directives     import ObjectDescription
+from pyTooling.Decorators  import export
 
-from sphinx_reports.Common import ReportExtensionError, LegendPosition
+from sphinx_reports.Common import ReportExtensionError, LegendStyle
 
 
 @export
@@ -108,21 +108,23 @@ class BaseDirective(ObjectDescription):
 		else:
 			raise ReportExtensionError(f"{self.directiveName}::{optionName}: '{option}' not an accepted value for regexp '{regexp}'.")
 
-	def _ParseLegendOption(self, optionName: str, default: Nullable[LegendPosition] = None) -> LegendPosition:
+	def _ParseLegendStyle(self, optionName: str, default: Nullable[LegendStyle] = None) -> LegendStyle:
 		try:
-			option = self.options[optionName].lower()
+			option: str = self.options[optionName]
 		except KeyError as ex:
 			if default is not None:
 				return default
 			else:
 				raise ReportExtensionError(f"{self.directiveName}: Required option '{optionName}' not found for directive.") from ex
 
-		try:
-			return LegendPosition[option]
-		except KeyError as ex:
-			raise ReportExtensionError(f"{self.directiveName}::{optionName}: Value '{option}' is not a valid member of 'LegendPosition'.") from ex
+		identifier = option.lower().replace("-", "_")
 
-	def _PrepareTable(self, columns: List[Tuple[str, Nullable[List[Tuple[str, int]]], Nullable[int]]], identifier: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
+		try:
+			return LegendStyle[identifier]
+		except KeyError as ex:
+			raise ReportExtensionError(f"{self.directiveName}::{optionName}: Value '{option}' (transformed: '{identifier}') is not a valid member of 'LegendStyle'.") from ex
+
+	def _CreateTableHeader(self, columns: List[Tuple[str, Nullable[List[Tuple[str, int]]], Nullable[int]]], identifier: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
 		table = nodes.table("", identifier=identifier, classes=classes)
 
 		hasSecondHeaderRow = False

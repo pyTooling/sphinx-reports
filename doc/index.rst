@@ -170,9 +170,8 @@ License
    :caption: Examples
    :hidden:
 
-   Examples/Undocumented
-   Examples/PartiallyDocumented
-   Examples/FullyDocumented
+   Examples/Documentation
+   Examples/Dependency
 
 .. toctree::
    :caption: Supported Reports

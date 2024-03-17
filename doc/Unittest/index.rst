@@ -6,11 +6,12 @@ Unit Test Summary
 🚧 This is a work-in-progress feature. 🚧
 
 .. #:term:`Unittests` checks if a source code was used during execution. Usually, testcases are run by a testcase
-execution framework like `pytest <https://github.com/pytest-dev/pytest>`__.
+   execution framework like `pytest <https://github.com/pytest-dev/pytest>`__.
 
 .. rubric:: Supported report generators
 
 * `pytest <https://github.com/pytest-dev/pytest>`__
+* `OSVVM-Scripts <https://github.com/OSVVM/OSVVM-Scripts>`__
 
 
 .. _UNITTEST/Quick:
@@ -44,7 +45,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
          }
       }
 
-2. Add the :rst:dir:`unittest-summary` directive into your Restructured Text (ReST) document.
+2. Add the :rst:dir:`report:unittest-summary` directive into your Restructured Text (ReST) document.
 
    .. code-block:: ReST
 
@@ -57,7 +58,7 @@ See the :ref:`overview page <OVER>` on how to setup and enable the Sphinx extens
 Example Document
 ****************
 
-The following ``unittest/index`` document is an example on how this documentation uses the :rst:dir:`unittest-summary`
+The following ``unittest/index`` document is an example on how this documentation uses the :rst:dir:`report:unittest-summary`
 directive. The first file consists of three parts: At first, a headline; at second second a short introduction paragraph
 and at third, the report generating directive. The second file shows how to integrate that document into the navigation
 bar.
@@ -98,7 +99,7 @@ bar.
 Directives
 **********
 
-.. rst:directive:: unittest-summary
+.. rst:directive:: report:unittest-summary
 
    Add a table summarizing the unittest results.
 
@@ -106,6 +107,10 @@ Directives
 
       An identifier referencing a dictionary entry in the configuration variable ``report_unittest_testsuites`` defined
       in :file:`conf.py`.
+
+   .. rst:directive:option:: no-assertions
+
+      If flag is present, no assertions column with be shown.
 
 
 .. _UNITTEST/Roles:
