@@ -32,17 +32,17 @@
 **Report documentation coverage as Sphinx documentation page(s).**
 """
 from pathlib              import Path
-from typing               import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union, ClassVar
+from typing               import Dict, Tuple, Any, List, Mapping, Generator, TypedDict, Union, ClassVar
 
 from docutils             import nodes
 from sphinx.application   import Sphinx
 from sphinx.config        import Config
 from pyTooling.Decorators import export
+from pyEDAA.Reports.DocumentationCoverage.Python import DocStrCoverage as DocStrCovAnalyzer
+from pyEDAA.Reports.DocumentationCoverage.Python import PackageCoverage, AggregatedCoverage
 
 from sphinx_reports.Common                          import ReportExtensionError, LegendStyle
 from sphinx_reports.Sphinx                          import strip, BaseDirective
-from sphinx_reports.DataModel.DocumentationCoverage import PackageCoverage, AggregatedCoverage
-from sphinx_reports.Adapter.DocStrCoverage          import Analyzer
 
 
 class package_DictType(TypedDict):
@@ -333,9 +333,9 @@ class DocStrCoverage(DocCoverage):
 		self._CheckOptions()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._packageName, self._directory)
-		analyzer.Analyze()
-		self._coverage = analyzer.Convert()
+		docStrCov = DocStrCovAnalyzer(self._packageName, self._directory)
+		docStrCov.Analyze()
+		self._coverage = docStrCov.Convert()
 		# self._coverage.CalculateCoverage()
 		self._coverage.Aggregate()
 
@@ -343,6 +343,7 @@ class DocStrCoverage(DocCoverage):
 		container += self._GenerateCoverageTable()
 
 		return [container]
+
 
 @export
 class DocCoverageLegend(DocCoverageBase):

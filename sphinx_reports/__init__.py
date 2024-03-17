@@ -48,7 +48,7 @@ __keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "inte
 
 from hashlib               import md5
 from pathlib               import Path
-from typing                import Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable
+from typing                import TYPE_CHECKING, Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable
 
 from docutils              import nodes
 from sphinx.addnodes       import pending_xref
@@ -156,6 +156,19 @@ class ReportDomain(Domain):
 
 	@staticmethod
 	def CheckConfigurationVariables(sphinxApplication: Sphinx, config: Config) -> None:
+		"""
+		Call back for Sphinx ``config-inited`` event.
+
+		This callback will verify configuration variables used by that domain.
+
+		.. seealso::
+
+		   Sphinx *builder-inited* event
+		     See https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events
+
+		:param sphinxApplication: The Sphinx application.
+		:param config:            Sphinx configuration parsed from ``conf.py``.
+		"""
 		from sphinx_reports.CodeCoverage import CodeCoverageBase
 		from sphinx_reports.DocCoverage  import DocCoverageBase
 		from sphinx_reports.Unittest     import UnittestSummary
@@ -207,7 +220,7 @@ class ReportDomain(Domain):
 		"""
 		Call back for Sphinx ``builder-inited`` event.
 
-		This callback will read the configuration variable ``vhdl_designs`` and parse the found VHDL source files.
+		This callback will read the linked report files
 
 		.. seealso::
 
@@ -216,8 +229,11 @@ class ReportDomain(Domain):
 
 		:param sphinxApplication: The Sphinx application.
 		"""
-		print(f"Callback: builder-inited -> ReadReports")
-		print(f"[REPORT] Reading reports ...")
+		from sphinx_reports.CodeCoverage import CodeCoverageBase
+		from sphinx_reports.Unittest     import UnittestSummary
+
+		CodeCoverageBase.ReadReports(sphinxApplication)
+		UnittestSummary.ReadReports(sphinxApplication)
 
 	callbacks: Dict[str, List[Callable]] = {
 		"config-inited":    [CheckConfigurationVariables],    # (app, config)
@@ -237,15 +253,16 @@ class ReportDomain(Domain):
 		raise NotImplementedError()
 
 
-class setup_ReturnType(TypedDict):
-	version: str
-	env_version: int
-	parallel_read_safe: bool
-	parallel_write_safe: bool
+if TYPE_CHECKING:
+	class setup_ReturnType(TypedDict):
+		version: str
+		env_version: int
+		parallel_read_safe: bool
+		parallel_write_safe: bool
 
 
 @export
-def setup(sphinxApplication: Sphinx) -> setup_ReturnType:
+def setup(sphinxApplication: Sphinx) -> "setup_ReturnType":
 	"""
 	Extension setup function registering the ``report`` domain in Sphinx.
 
