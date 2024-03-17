@@ -102,6 +102,15 @@ class CodeCoverageBase(BaseDirective):
 		cls._CheckPackagesConfiguration(sphinxConfiguration)
 
 	@classmethod
+	def ReadReports(cls, sphinxApplication: Sphinx) -> None:
+		"""
+		Read code coverage report files.
+
+		:param sphinxApplication:   Sphinx application instance.
+		"""
+		print(f"[REPORT] Reading code coverage reports ...")
+
+	@classmethod
 	def _CheckLevelsConfiguration(cls, sphinxConfiguration: Config) -> None:
 		from sphinx_reports import ReportDomain
 
@@ -484,6 +493,13 @@ class CodeCoverageLegend(CodeCoverageBase):
 		table, tableGroup = self._CreateTableHeader(columns, identifier=identifier, classes=classes)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
+
+		legendRow = nodes.row("", classes=["report-codecov-legend-row"])
+		legendRow += nodes.entry("", nodes.paragraph(text="Coverage Level:"))
+		tableBody += legendRow
+		for level, config in self._levels.items():
+			if isinstance(level, int):
+				legendRow += nodes.entry("", nodes.paragraph(text=config["desc"]), classes=[self._ConvertToColor((level - 1) / 100, "class")])
 
 		legendRow = nodes.row("", classes=["report-codecov-legend-row"])
 		legendRow += nodes.entry("", nodes.paragraph(text="Coverage Level:"))

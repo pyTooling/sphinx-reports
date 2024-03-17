@@ -1,4 +1,5 @@
 pyTooling ~= 6.0
+pyEDAA.Reports ~= 0.4.1
 
 sphinx >= 6.0, < 8.0
 

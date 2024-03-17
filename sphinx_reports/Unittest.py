@@ -33,18 +33,18 @@
 """
 from datetime import timedelta
 from pathlib  import Path
-from typing import Dict, Tuple, Any, List, Mapping, Generator, TypedDict, ClassVar
+from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict, ClassVar
 
 from docutils                          import nodes
 from docutils.parsers.rst.directives   import flag
 from pyTooling.Decorators              import export
-from sphinx.application import Sphinx
-from sphinx.config import Config
+from pyEDAA.Reports.Unittesting        import TestcaseStatus, TestsuiteStatus
+from pyEDAA.Reports.Unittesting.JUnit  import Testsuite, TestsuiteSummary, Testcase, JUnitDocument
+from sphinx.application                import Sphinx
+from sphinx.config                     import Config
 
 from sphinx_reports.Common             import ReportExtensionError
 from sphinx_reports.Sphinx             import strip, BaseDirective
-from sphinx_reports.DataModel.Unittest import Testsuite, TestsuiteSummary, Testcase, TestcaseState
-from sphinx_reports.Adapter.JUnit      import Analyzer
 
 
 class report_DictType(TypedDict):
@@ -97,6 +97,15 @@ class UnittestSummary(BaseDirective):
 		:param sphinxConfiguration: Sphinx configuration instance.
 		"""
 		cls._CheckConfiguration(sphinxConfiguration)
+
+	@classmethod
+	def ReadReports(cls, sphinxApplication: Sphinx) -> None:
+		"""
+		Read unittest report files.
+
+		:param sphinxApplication:   Sphinx application instance.
+		"""
+		print(f"[REPORT] Reading unittest reports ...")
 
 	@classmethod
 	def _CheckConfiguration(cls, sphinxConfiguration: Config) -> None:
@@ -158,15 +167,26 @@ class UnittestSummary(BaseDirective):
 			for key in sorted(d.keys()):
 				yield d[key]
 
-		def stateToSymbol(state: TestcaseState) -> str:
-			if state is TestcaseState.Passed:
+		def convertTestcaseStatusToSymbol(state: TestcaseStatus) -> str:
+			if state is TestcaseStatus.Passed:
 				return "✅"
-			elif state is TestcaseState.Unknown:
+			elif state is TestcaseStatus.Unknown:
 				return "❓"
 			else:
 				return "❌"
 
-		def timeformat(delta: timedelta) -> str:
+		def convertTestsuiteStatusToSymbol(state: TestsuiteStatus) -> str:
+			if state is TestsuiteStatus.Passed:
+				return "✅"
+			elif state is TestsuiteStatus.Unknown:
+				return "❓"
+			else:
+				return "❌"
+
+		def formatTimedelta(delta: timedelta) -> str:
+			if delta is None:
+				return ""
+
 			# Compute by hand, because timedelta._to_microseconds is not officially documented
 			microseconds = (delta.days * 86_400 + delta.seconds) * 1_000_000 + delta.microseconds
 			milliseconds = (microseconds + 500) // 1000
@@ -180,20 +200,20 @@ class UnittestSummary(BaseDirective):
 				renderTestsuite(tableBody, ts, 0)
 
 		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
-			state = stateToSymbol(testsuite._state)
+			state = convertTestsuiteStatusToSymbol(testsuite._status)
 
 			tableRow = nodes.row("", classes=["report-unittest-table-row", "report-testsuite"])
 			tableBody += tableRow
 
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testsuite.Name}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Tests}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.TestcaseCount}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}"))
 			if not self._noAssertions:
 				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{timeformat(testsuite.Time)}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{formatTimedelta(testsuite.TotalDuration)}"))
 
 			for ts in sortedValues(testsuite._testsuites):
 				renderTestsuite(tableBody, ts, level + 1)
@@ -202,7 +222,7 @@ class UnittestSummary(BaseDirective):
 				renderTestcase(tableBody, testcase, level + 1)
 
 		def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
-			state = stateToSymbol(testcase._state)
+			state = convertTestcaseStatusToSymbol(testcase._status)
 
 			tableRow =	nodes.row("", classes=["report-unittest-table-row", "report-testcase"])
 			tableBody += tableRow
@@ -214,23 +234,8 @@ class UnittestSummary(BaseDirective):
 			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
 			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
 			if not self._noAssertions:
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{testcase.Assertions}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{timeformat(testcase.Time)}"))
-
-			for test in sortedValues(testcase._tests):
-				state = stateToSymbol(test._state)
-				tableRow = nodes.row("", classes=["report-unittest-table-row", "report-test"])
-				tableBody += tableRow
-
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * (level + 1)}{state}{test.Name}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Expected}")),
-				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
-				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
-				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
-				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
-				if not self._noAssertions:
-					tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Uncovered}")),
-				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Coverage :.1%}")),
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{testcase.AssertionCount}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{formatTimedelta(testcase.TotalDuration)}"))
 
 		renderRoot(tableBody, self._testsuite)
 
@@ -242,8 +247,7 @@ class UnittestSummary(BaseDirective):
 		self._CheckOptions()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._xmlReport)
-		self._testsuite = analyzer.Convert()
+		self._testsuite = JUnitDocument(self._xmlReport, parse=True)
 		self._testsuite.Aggregate()
 
 		container = nodes.container()
