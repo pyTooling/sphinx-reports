@@ -1,0 +1,52 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==========================
+sphinx_reports.DocCoverage
+==========================
+
+.. automodule:: sphinx_reports.DocCoverage
+
+
+.. currentmodule:: sphinx_reports.DocCoverage
+
+
+**Classes**
+
+- :py:class:`DocCoverage`:
+  This directive will be replaced by a table representing documentation coverage.
+
+- :py:class:`DocStrCoverage`:
+  This directive will be replaced by a table representing documentation coverage.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: DocCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DocCoverage
+      :parts: 1
+
+.. autoclass:: DocStrCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DocStrCoverage
+      :parts: 1

@@ -1,0 +1,143 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=================================
+sphinx_reports.DataModel.Unittest
+=================================
+
+.. automodule:: sphinx_reports.DataModel.Unittest
+
+
+.. currentmodule:: sphinx_reports.DataModel.Unittest
+
+
+**Exceptions**
+
+- :py:exc:`UnittestError`:
+  Extension error.
+
+
+
+**Classes**
+
+- :py:class:`TestcaseState`:
+  Support for flags
+
+- :py:class:`Base`:
+  Undocumented.
+
+- :py:class:`Test`:
+  Undocumented.
+
+- :py:class:`Testcase`:
+  Undocumented.
+
+- :py:class:`TestsuiteBase`:
+  Undocumented.
+
+- :py:class:`Testsuite`:
+  Undocumented.
+
+- :py:class:`TestsuiteSummary`:
+  Undocumented.
+
+
+
+---------------------
+
+**Exceptions**
+
+
+
+
+.. autoexception:: UnittestError
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: UnittestError
+      :parts: 1
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: TestcaseState
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: TestcaseState
+      :parts: 1
+
+.. autoclass:: Base
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Base
+      :parts: 1
+
+.. autoclass:: Test
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Test
+      :parts: 1
+
+.. autoclass:: Testcase
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Testcase
+      :parts: 1
+
+.. autoclass:: TestsuiteBase
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: TestsuiteBase
+      :parts: 1
+
+.. autoclass:: Testsuite
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Testsuite
+      :parts: 1
+
+.. autoclass:: TestsuiteSummary
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: TestsuiteSummary
+      :parts: 1

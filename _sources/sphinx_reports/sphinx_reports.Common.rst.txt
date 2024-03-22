@@ -1,0 +1,74 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=====================
+sphinx_reports.Common
+=====================
+
+.. automodule:: sphinx_reports.Common
+
+
+.. currentmodule:: sphinx_reports.Common
+
+
+**Functions**
+
+- :py:func:`ReadResourceFile`:
+  Undocumented.
+
+
+
+**Exceptions**
+
+- :py:exc:`ReportExtensionError`:
+  Extension error.
+
+
+
+**Classes**
+
+- :py:class:`LegendPosition`:
+  Support for flags
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: ReadResourceFile
+
+
+---------------------
+
+**Exceptions**
+
+
+
+
+.. autoexception:: ReportExtensionError
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ReportExtensionError
+      :parts: 1
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: LegendPosition
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: LegendPosition
+      :parts: 1

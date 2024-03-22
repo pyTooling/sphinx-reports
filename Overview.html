@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; sphinx_reports 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=77553476" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-reports.e44b1595f1e09d5e109d001839ba3f42.css?v=0b41afa8" />
+      <link rel="stylesheet" type="text/css" href="_static/css/override.css?v=d48d1b8b" />
+
+  
+    <link rel="shortcut icon" href="_static/icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Unit Test Summary" href="Unittest/index.html" />
+    <link rel="prev" title="Fully Undocumented" href="Examples/FullyDocumented.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples/Undocumented.html">Undocumented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/PartiallyDocumented.html">Partially Documented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/FullyDocumented.html">Fully Undocumented</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-extension-setup">General Extension Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coverage/index.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="overview">
+<span id="over"></span><h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<section id="general-extension-setup">
+<span id="over-setup"></span><h2>General Extension Setup<a class="headerlink" href="#general-extension-setup" title="Link to this heading"></a></h2>
+<p>To use the <em>sphinx-reports</em> extension in your Sphinx documentation project, the <code class="docutils literal notranslate"><span class="pre">sphinx_reports</span></code> package must be
+downloaded and <a class="reference internal" href="Installation.html#install-pip-install"><span class="std std-ref">installed from PyPI</span></a> in your environment. The installation page also shows,
+how to <a class="reference internal" href="Installation.html#install-pip-update"><span class="std std-ref">update</span></a> the package from PyPI using <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<p>At next, it’s recommended to add <code class="docutils literal notranslate"><span class="pre">sphinx_reports</span></code> to your documentation’s <code class="file docutils literal notranslate"><span class="pre">doc/requirements.txt</span></code>. As
+modification to the package might bring braking changes, it’s recommended to specify a package version (range/limit).</p>
+<p>See the following <code class="file docutils literal notranslate"><span class="pre">doc/requirements.txt</span></code> file as an example with commonly used extensions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">r</span> <span class="o">../</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># Enforce latest version on ReadTheDocs</span>
+<span class="n">sphinx</span> <span class="o">~=</span> <span class="mi">7</span>
+<span class="n">docutils</span> <span class="o">~=</span> <span class="mf">0.18</span>
+
+<span class="c1"># ReadTheDocs Theme</span>
+<span class="n">sphinx_rtd_theme</span> <span class="o">~=</span> <span class="mf">2.0</span>
+
+<span class="c1"># Sphinx Extenstions</span>
+<span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">mermaid</span> <span class="o">~=</span> <span class="mf">0.9.2</span>
+<span class="n">autoapi</span> <span class="o">~=</span> <span class="mf">2.0.1</span>
+<span class="n">sphinx_design</span> <span class="o">~=</span> <span class="mf">0.5.0</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">copybutton</span> <span class="o">~=</span> <span class="mf">0.5.2</span>
+<span class="n">sphinx_autodoc_typehints</span> <span class="o">~=</span> <span class="mf">1.25.2</span>
+<span class="n">sphinx_reports</span> <span class="o">~=</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>Finally, the extension needs to be enabled in Sphinx’s <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>, so the extension is loaded by Sphinx.</p>
+<p>The following code snippets shows a list of commonly enabled extensions, including <code class="docutils literal notranslate"><span class="pre">sphinx_report</span></code>:</p>
+<blockquote>
+<div><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># Extensions</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="c1"># Standard Sphinx extensions</span>
+  <span class="s2">&quot;sphinx.ext.autodoc&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx.ext.extlinks&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx.ext.intersphinx&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx.ext.inheritance_diagram&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx.ext.todo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx.ext.graphviz&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx.ext.mathjax&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx.ext.ifconfig&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx.ext.viewcode&quot;</span><span class="p">,</span>
+<span class="c1"># SphinxContrib extensions</span>
+  <span class="s2">&quot;sphinxcontrib.mermaid&quot;</span><span class="p">,</span>
+<span class="c1"># Other extensions</span>
+  <span class="s2">&quot;autoapi.sphinx&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx_design&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx_copybutton&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx_autodoc_typehints&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sphinx_reports&quot;</span><span class="p">,</span>
+<span class="c1"># User defined extensions</span>
+  <span class="c1"># ...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Examples/FullyDocumented.html" class="btn btn-neutral float-left" title="Fully Undocumented" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Unittest/index.html" class="btn btn-neutral float-right" title="Unit Test Summary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 22.03.2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

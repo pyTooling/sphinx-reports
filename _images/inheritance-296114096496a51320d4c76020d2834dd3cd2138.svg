@@ -1,0 +1,14 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="67pt" height="27pt" viewBox="0.00 0.00 67.00 27.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 23)">
+<ns0:title>inheritance3ac5f154f4</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>Analyzer</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.Analyzer" ns1:title="Analyzer" target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="59,-19 0,-19 0,0 59,0 59,-19" />
+<ns0:text text-anchor="middle" x="29.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Analyzer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>

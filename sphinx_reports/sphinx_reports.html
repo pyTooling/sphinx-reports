@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports &mdash; sphinx_reports 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=77553476" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.e44b1595f1e09d5e109d001839ba3f42.css?v=0b41afa8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=d48d1b8b" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8fa8b3e9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sphinx_reports.Adapter" href="sphinx_reports.Adapter.html" />
+    <link rel="prev" title="Documentation Coverage" href="../DocCov/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Undocumented.html">Undocumented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/PartiallyDocumented.html">Partially Documented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/FullyDocumented.html">Fully Undocumented</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python Class Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Adapter.html">sphinx_reports.Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.CodeCoverage.html">sphinx_reports.CodeCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Common.html">sphinx_reports.Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DataModel.html">sphinx_reports.DataModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DocCoverage.html">sphinx_reports.DocCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Sphinx.html">sphinx_reports.Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Unittest.html">sphinx_reports.Unittest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.static.html">sphinx_reports.static</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx_reports.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx_reports.ReportDomain"><code class="docutils literal notranslate"><span class="pre">ReportDomain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.label"><code class="docutils literal notranslate"><span class="pre">ReportDomain.label</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.dependencies"><code class="docutils literal notranslate"><span class="pre">ReportDomain.dependencies</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.__class_getitem__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.__init__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.__init_subclass__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.__init_subclass__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage._object_hierarchy_parts"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage._object_hierarchy_parts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage._toc_entry_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage._toc_entry_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.add_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.add_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.add_target_and_index"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.add_target_and_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.after_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.after_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.assert_has_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.assert_has_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.before_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.before_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.config"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.configValues"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.configValues</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.directive_error"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.directive_error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.env"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.env</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.final_argument_whitespace"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.final_argument_whitespace</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.get_location"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.get_location()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.get_signatures"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.get_signatures()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.get_source_info"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.get_source_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.handle_signature"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.handle_signature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.has_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.has_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.option_spec"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.option_spec</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.optional_arguments"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.optional_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.required_arguments"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.required_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.run"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.set_source_info"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.set_source_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.transform_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CodeCoverage.transform_content()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.__class_getitem__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.__init__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.__init_subclass__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.__init_subclass__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage._object_hierarchy_parts"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage._object_hierarchy_parts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage._toc_entry_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage._toc_entry_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.add_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.add_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.add_target_and_index"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.add_target_and_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.after_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.after_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.assert_has_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.assert_has_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.before_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.before_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.config"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.configValues"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.configValues</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.directive_error"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.directive_error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.env"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.env</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.final_argument_whitespace"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.final_argument_whitespace</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.get_location"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.get_location()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.get_signatures"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.get_signatures()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.get_source_info"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.get_source_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.handle_signature"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.handle_signature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.has_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.has_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.option_spec"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.option_spec</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.optional_arguments"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.optional_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.required_arguments"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.required_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.run"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.set_source_info"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.set_source_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.transform_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.DocStrCoverage.transform_content()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.__class_getitem__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.__init__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.__init_subclass__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.__init_subclass__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary._object_hierarchy_parts"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary._object_hierarchy_parts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary._toc_entry_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary._toc_entry_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.add_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.add_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.add_target_and_index"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.add_target_and_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.after_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.after_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.assert_has_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.assert_has_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.before_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.before_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.config"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.configValues"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.configValues</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.directive_error"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.directive_error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.env"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.env</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.final_argument_whitespace"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.final_argument_whitespace</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.get_location"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.get_location()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.get_signatures"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.get_signatures()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.get_source_info"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.get_source_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.handle_signature"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.handle_signature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.has_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.has_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.option_spec"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.option_spec</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.optional_arguments"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.optional_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.required_arguments"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.required_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.run"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.set_source_info"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.set_source_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.transform_content"><code class="docutils literal notranslate"><span class="pre">ReportDomain.UnittestSummary.transform_content()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.directives"><code class="docutils literal notranslate"><span class="pre">ReportDomain.directives</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.roles"><code class="docutils literal notranslate"><span class="pre">ReportDomain.roles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.indices"><code class="docutils literal notranslate"><span class="pre">ReportDomain.indices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.configValues"><code class="docutils literal notranslate"><span class="pre">ReportDomain.configValues</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.initial_data"><code class="docutils literal notranslate"><span class="pre">ReportDomain.initial_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.AddCSSFiles"><code class="docutils literal notranslate"><span class="pre">ReportDomain.AddCSSFiles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.ReadReports"><code class="docutils literal notranslate"><span class="pre">ReportDomain.ReadReports()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.callbacks"><code class="docutils literal notranslate"><span class="pre">ReportDomain.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.resolve_xref"><code class="docutils literal notranslate"><span class="pre">ReportDomain.resolve_xref()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.__init__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.add_object_type"><code class="docutils literal notranslate"><span class="pre">ReportDomain.add_object_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.check_consistency"><code class="docutils literal notranslate"><span class="pre">ReportDomain.check_consistency()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.clear_doc"><code class="docutils literal notranslate"><span class="pre">ReportDomain.clear_doc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.dangling_warnings"><code class="docutils literal notranslate"><span class="pre">ReportDomain.dangling_warnings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.data_version"><code class="docutils literal notranslate"><span class="pre">ReportDomain.data_version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.directive"><code class="docutils literal notranslate"><span class="pre">ReportDomain.directive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.enumerable_nodes"><code class="docutils literal notranslate"><span class="pre">ReportDomain.enumerable_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.get_enumerable_node_type"><code class="docutils literal notranslate"><span class="pre">ReportDomain.get_enumerable_node_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.get_full_qualified_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.get_full_qualified_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.get_objects"><code class="docutils literal notranslate"><span class="pre">ReportDomain.get_objects()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.get_type_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.get_type_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.merge_domaindata"><code class="docutils literal notranslate"><span class="pre">ReportDomain.merge_domaindata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.object_types"><code class="docutils literal notranslate"><span class="pre">ReportDomain.object_types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.process_doc"><code class="docutils literal notranslate"><span class="pre">ReportDomain.process_doc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.process_field_xref"><code class="docutils literal notranslate"><span class="pre">ReportDomain.process_field_xref()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.resolve_any_xref"><code class="docutils literal notranslate"><span class="pre">ReportDomain.resolve_any_xref()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.role"><code class="docutils literal notranslate"><span class="pre">ReportDomain.role()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.setup"><code class="docutils literal notranslate"><span class="pre">ReportDomain.setup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.data"><code class="docutils literal notranslate"><span class="pre">ReportDomain.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">sphinx_reports</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sphinx_reports/sphinx_reports.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="module-sphinx_reports">
+<span id="sphinx-reports"></span><h1>sphinx_reports<a class="headerlink" href="#module-sphinx_reports" title="Link to this heading"></a></h1>
+<p><strong>A Sphinx domain providing directives to add reports to the Sphinx-based documentation.</strong></p>
+<p>Supported reports:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../DocCov/index.html#doccov"><span class="std std-ref">Documentation Coverage</span></a></p></li>
+<li><p><a class="reference internal" href="../CodeCov/index.html#codecov"><span class="std std-ref">Code Coverage</span></a></p></li>
+<li><p><a class="reference internal" href="../Unittest/index.html#unittest"><span class="std std-ref">Unit Test Summary</span></a></p></li>
+<li><p><a class="reference internal" href="../Dependency.html#dep"><span class="std std-ref">Dependencies</span></a></p></li>
+</ul>
+<p><strong>Submodules</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Adapter.html">sphinx_reports.Adapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.CodeCoverage.html">sphinx_reports.CodeCoverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Common.html">sphinx_reports.Common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.DataModel.html">sphinx_reports.DataModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.DocCoverage.html">sphinx_reports.DocCoverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Sphinx.html">sphinx_reports.Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Unittest.html">sphinx_reports.Unittest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.static.html">sphinx_reports.static</a></li>
+</ul>
+</div>
+<p><strong>Functions</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sphinx_reports.setup" title="sphinx_reports.setup"><code class="xref py py-func docutils literal notranslate"><span class="pre">setup()</span></code></a>:
+Extension setup function registering the <code class="docutils literal notranslate"><span class="pre">report</span></code> domain in Sphinx.</p></li>
+</ul>
+<p><strong>Classes</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sphinx_reports.ReportDomain" title="sphinx_reports.ReportDomain"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReportDomain</span></code></a>:
+A Sphinx extension providing a <code class="docutils literal notranslate"><span class="pre">report</span></code> domain to integrate reports and summaries into a Sphinx-based documentation.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Functions</strong></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_reports.setup">
+<span class="sig-prename descclassname"><span class="pre">sphinx_reports.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.setup" title="Link to this definition"></a></dt>
+<dd><p>Extension setup function registering the <code class="docutils literal notranslate"><span class="pre">report</span></code> domain in Sphinx.</p>
+<p>It will execute these steps:</p>
+<ul class="simple">
+<li><p>register domains, directives and roles.</p></li>
+<li><p>connect events (register callbacks)</p></li>
+<li><p>register configuration variables for <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span>) – The Sphinx application.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary containing the extension version and some properties.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<p><strong>Classes</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.</span></span><span class="sig-name descname"><span class="pre">ReportDomain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain" title="Link to this definition"></a></dt>
+<dd><p>A Sphinx extension providing a <code class="docutils literal notranslate"><span class="pre">report</span></code> domain to integrate reports and summaries into a Sphinx-based documentation.</p>
+<p class="rubric">New directives:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../DocCov/index.html#directive-doc-coverage" title="doc-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">doc-coverage</span></code></a></p></li>
+</ul>
+<p class="rubric">New roles:</p>
+<ul class="simple">
+<li><p><em>None</em></p></li>
+</ul>
+<p class="rubric">New indices:</p>
+<ul class="simple">
+<li><p><em>None</em></p></li>
+</ul>
+<p class="rubric">Configuration variables</p>
+<p>All configuration variables in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> are prefixed with <code class="docutils literal notranslate"><span class="pre">report_*</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">report_unittest_testsuites</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">report_codecov_packages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">report_doccov_packages</span></code></p></li>
+</ul>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-a6b96c732fd7e4f2c96521ed2db8d2366e692fbe.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of ReportDomain</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>BuildEnvironment</em>) – </p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'report'</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.name" title="Link to this definition"></a></dt>
+<dd><p>The name of this domain</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rpt'</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.label" title="Link to this definition"></a></dt>
+<dd><p>The label of this domain</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.dependencies" title="Link to this definition"></a></dt>
+<dd><p>A list of other extensions this domain depends on.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CodeCoverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage" title="Link to this definition"></a></dt>
+<dd><p>This directive will be replaced by a table representing code coverage.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.__class_getitem__">
+<span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.__class_getitem__" title="Link to this definition"></a></dt>
+<dd><p>Parameterizes a generic class.</p>
+<p>At least, parameterizing a generic class is the <em>main</em> thing this
+method does. For example, for some generic class <cite>Foo</cite>, this is called
+when we do <cite>Foo[int]</cite> - there, with <cite>cls=Foo</cite> and <cite>params=int</cite>.</p>
+<p>However, note that this method is also called when defining generic
+classes in the first place with <cite>class Foo[T]: …</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.__init_subclass__">
+<span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.__init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>Function to initialize subclasses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage._object_hierarchy_parts">
+<span class="sig-name descname"><span class="pre">_object_hierarchy_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage._object_hierarchy_parts" title="Link to this definition"></a></dt>
+<dd><p>Returns a tuple of strings, one entry for each part of the object’s
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>hierarchy (e.g. <code class="docutils literal notranslate"><span class="pre">('module',</span> <span class="pre">'submodule',</span> <span class="pre">'Class',</span> <span class="pre">'method')</span></code>). The
+returned tuple is used to properly nest children within parents in the
+table of contents, and can also be used within the
+<a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage._toc_entry_name" title="sphinx_reports.ReportDomain.CodeCoverage._toc_entry_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_toc_entry_name()</span></code></a> method.</p>
+<p>This method must not be used outwith table of contents generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sig_node</strong> (<em>desc_signature</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage._toc_entry_name">
+<span class="sig-name descname"><span class="pre">_toc_entry_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage._toc_entry_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the text of the table of contents entry for the object.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>This function is called once, in <a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.run" title="sphinx_reports.ReportDomain.CodeCoverage.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, to set the name for the
+table of contents entry (a special attribute <code class="docutils literal notranslate"><span class="pre">_toc_name</span></code> is set on the
+object node, later used in
+<code class="docutils literal notranslate"><span class="pre">environment.collectors.toctree.TocTreeCollector.process_doc().build_toc()</span></code>
+when the table of contents entries are collected).</p>
+<p>To support table of contents entries for their objects, domains must
+override this method, also respecting the configuration setting
+<code class="docutils literal notranslate"><span class="pre">toc_object_entries_show_parents</span></code>. Domains must also override
+<a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage._object_hierarchy_parts" title="sphinx_reports.ReportDomain.CodeCoverage._object_hierarchy_parts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_object_hierarchy_parts()</span></code></a>, with one (string) entry for each part of the
+object’s hierarchy. The result of this method is set on the signature
+node, and can be accessed as <code class="docutils literal notranslate"><span class="pre">sig_node['_toc_parts']</span></code> for use within
+this method. The resulting tuple is also used to properly nest children
+within parents in the table of contents.</p>
+<p>An example implementations of this method is within the python domain
+(<code class="xref py py-meth docutils literal notranslate"><span class="pre">PyObject._toc_entry_name()</span></code>). The python domain sets the
+<code class="docutils literal notranslate"><span class="pre">_toc_parts</span></code> attribute within the <a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.handle_signature" title="sphinx_reports.ReportDomain.CodeCoverage.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a>
+method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sig_node</strong> (<em>desc_signature</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.add_name">
+<span class="sig-name descname"><span class="pre">add_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.add_name" title="Link to this definition"></a></dt>
+<dd><p>Append self.options[‘name’] to node[‘names’] if it exists.</p>
+<p>Also normalize the name string and register it as explicit target.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.add_target_and_index">
+<span class="sig-name descname"><span class="pre">add_target_and_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.add_target_and_index" title="Link to this definition"></a></dt>
+<dd><p>Add cross-reference IDs and entries to self.indexnode, if applicable.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p><em>name</em> is whatever <a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.handle_signature" title="sphinx_reports.ReportDomain.CodeCoverage.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a> returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>ObjDescT</em>) – </p></li>
+<li><p><strong>sig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>signode</strong> (<em>desc_signature</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.after_content">
+<span class="sig-name descname"><span class="pre">after_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.after_content" title="Link to this definition"></a></dt>
+<dd><p>Called after parsing content. Used to reset information about the
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>current directive context on the build environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.assert_has_content">
+<span class="sig-name descname"><span class="pre">assert_has_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.assert_has_content" title="Link to this definition"></a></dt>
+<dd><p>Throw an ERROR-level DirectiveError if the directive doesn’t
+have contents.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.before_content">
+<span class="sig-name descname"><span class="pre">before_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.before_content" title="Link to this definition"></a></dt>
+<dd><p>Called before parsing content. Used to set information about the current
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>directive context on the build environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Config</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.config" title="Link to this definition"></a></dt>
+<dd><p>Reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code> object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.configValues">
+<span class="sig-name descname"><span class="pre">configValues</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'codecov_packages':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict)}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.configValues" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.directive_error">
+<span class="sig-name descname"><span class="pre">directive_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.directive_error" title="Link to this definition"></a></dt>
+<dd><p>Return a DirectiveError suitable for being thrown as an exception.</p>
+<p>Call “raise self.directive_error(level, message)” from within
+a directive implementation to return one single system message
+at level <cite>level</cite>, which automatically gets the directive block
+and the line number added.</p>
+<p>Preferably use the <cite>debug</cite>, <cite>info</cite>, <cite>warning</cite>, <cite>error</cite>, or <cite>severe</cite>
+wrapper methods, e.g. <code class="docutils literal notranslate"><span class="pre">self.error(message)</span></code> to generate an
+ERROR-level directive error.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.env">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">env</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BuildEnvironment</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.env" title="Link to this definition"></a></dt>
+<dd><p>Reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code> object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.final_argument_whitespace">
+<span class="sig-name descname"><span class="pre">final_argument_whitespace</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.final_argument_whitespace" title="Link to this definition"></a></dt>
+<dd><p>A boolean, indicating if the final argument may contain whitespace.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.get_location">
+<span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.get_location" title="Link to this definition"></a></dt>
+<dd><p>Get current location info for logging.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.get_signatures">
+<span class="sig-name descname"><span class="pre">get_signatures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.get_signatures" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the signatures to document from the directive arguments.  By
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>default, signatures are given as arguments, one per line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.get_source_info">
+<span class="sig-name descname"><span class="pre">get_source_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.get_source_info" title="Link to this definition"></a></dt>
+<dd><p>Get source and line number.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.handle_signature">
+<span class="sig-name descname"><span class="pre">handle_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.handle_signature" title="Link to this definition"></a></dt>
+<dd><p>Parse the signature <em>sig</em> into individual nodes and append them to
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p><em>signode</em>. If ValueError is raised, parsing is aborted and the whole
+<em>sig</em> is put into a single desc_name node.</p>
+<p>The return value should be a value that identifies the object.  It is
+passed to <a class="reference internal" href="#sphinx_reports.ReportDomain.CodeCoverage.add_target_and_index" title="sphinx_reports.ReportDomain.CodeCoverage.add_target_and_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_target_and_index()</span></code></a> unchanged, and otherwise only
+used to skip duplicates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>signode</strong> (<em>desc_signature</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>ObjDescT</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.has_content" title="Link to this definition"></a></dt>
+<dd><p>A boolean; <code class="docutils literal notranslate"><span class="pre">True</span></code> if content is allowed.</p>
+<p>Client code must handle the case where content is required but not supplied (an empty content list will be supplied).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.option_spec">
+<span class="sig-name descname"><span class="pre">option_spec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'legend':</span> <span class="pre">&lt;function</span> <span class="pre">strip&gt;,</span> <span class="pre">'packageid':</span> <span class="pre">&lt;function</span> <span class="pre">strip&gt;}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.option_spec" title="Link to this definition"></a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+<p>A dictionary, mapping known option names to conversion functions such as <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>
+(default: {}, no options). Several conversion functions are defined in the <code class="docutils literal notranslate"><span class="pre">directives/__init__.py</span></code> module.</p>
+<p>Option conversion functions take a single parameter, the option argument (a string or <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code>), validate it
+and/or convert it to the appropriate form. Conversion functions may raise <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> and
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exceptions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.optional_arguments">
+<span class="sig-name descname"><span class="pre">optional_arguments</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.optional_arguments" title="Link to this definition"></a></dt>
+<dd><p>Number of optional arguments after the required arguments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.required_arguments">
+<span class="sig-name descname"><span class="pre">required_arguments</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.required_arguments" title="Link to this definition"></a></dt>
+<dd><p>Number of required directive arguments.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.run" title="Link to this definition"></a></dt>
+<dd><p>Main directive entry function, called by docutils upon encountering the
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>directive.</p>
+<p>This directive is meant to be quite easily subclassable, so it delegates
+to several additional methods.  What it does:</p>
+<ul class="simple">
+<li><p>find out if called as a domain-specific directive, set self.domain</p></li>
+<li><p>create a <cite>desc</cite> node to fit all description inside</p></li>
+<li><p>parse standard options, currently <cite>no-index</cite></p></li>
+<li><p>create an index node if needed as self.indexnode</p></li>
+<li><p>parse all given signatures (as returned by self.get_signatures())
+using self.handle_signature(), which should either return a name
+or raise ValueError</p></li>
+<li><p>add index entries using self.add_target_and_index()</p></li>
+<li><p>parse the content and handle doc fields in it</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><em>List</em></a>[<em>Node</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.set_source_info">
+<span class="sig-name descname"><span class="pre">set_source_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.set_source_info" title="Link to this definition"></a></dt>
+<dd><p>Set source and line number to the node.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Node</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CodeCoverage.transform_content">
+<span class="sig-name descname"><span class="pre">transform_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contentnode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.CodeCoverage.transform_content" title="Link to this definition"></a></dt>
+<dd><p>Called after creating the content through nested parsing,
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>but before the <code class="docutils literal notranslate"><span class="pre">object-description-transform</span></code> event is emitted,
+and before the info-fields are transformed.
+Can be used to manipulate the content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>contentnode</strong> (<em>desc_content</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DocStrCoverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.__class_getitem__">
+<span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.__class_getitem__" title="Link to this definition"></a></dt>
+<dd><p>Parameterizes a generic class.</p>
+<p>At least, parameterizing a generic class is the <em>main</em> thing this
+method does. For example, for some generic class <cite>Foo</cite>, this is called
+when we do <cite>Foo[int]</cite> - there, with <cite>cls=Foo</cite> and <cite>params=int</cite>.</p>
+<p>However, note that this method is also called when defining generic
+classes in the first place with <cite>class Foo[T]: …</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.__init_subclass__">
+<span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.__init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>Function to initialize subclasses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage._object_hierarchy_parts">
+<span class="sig-name descname"><span class="pre">_object_hierarchy_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage._object_hierarchy_parts" title="Link to this definition"></a></dt>
+<dd><p>Returns a tuple of strings, one entry for each part of the object’s
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>hierarchy (e.g. <code class="docutils literal notranslate"><span class="pre">('module',</span> <span class="pre">'submodule',</span> <span class="pre">'Class',</span> <span class="pre">'method')</span></code>). The
+returned tuple is used to properly nest children within parents in the
+table of contents, and can also be used within the
+<a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage._toc_entry_name" title="sphinx_reports.ReportDomain.DocStrCoverage._toc_entry_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_toc_entry_name()</span></code></a> method.</p>
+<p>This method must not be used outwith table of contents generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sig_node</strong> (<em>desc_signature</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage._toc_entry_name">
+<span class="sig-name descname"><span class="pre">_toc_entry_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage._toc_entry_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the text of the table of contents entry for the object.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>This function is called once, in <a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.run" title="sphinx_reports.ReportDomain.DocStrCoverage.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, to set the name for the
+table of contents entry (a special attribute <code class="docutils literal notranslate"><span class="pre">_toc_name</span></code> is set on the
+object node, later used in
+<code class="docutils literal notranslate"><span class="pre">environment.collectors.toctree.TocTreeCollector.process_doc().build_toc()</span></code>
+when the table of contents entries are collected).</p>
+<p>To support table of contents entries for their objects, domains must
+override this method, also respecting the configuration setting
+<code class="docutils literal notranslate"><span class="pre">toc_object_entries_show_parents</span></code>. Domains must also override
+<a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage._object_hierarchy_parts" title="sphinx_reports.ReportDomain.DocStrCoverage._object_hierarchy_parts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_object_hierarchy_parts()</span></code></a>, with one (string) entry for each part of the
+object’s hierarchy. The result of this method is set on the signature
+node, and can be accessed as <code class="docutils literal notranslate"><span class="pre">sig_node['_toc_parts']</span></code> for use within
+this method. The resulting tuple is also used to properly nest children
+within parents in the table of contents.</p>
+<p>An example implementations of this method is within the python domain
+(<code class="xref py py-meth docutils literal notranslate"><span class="pre">PyObject._toc_entry_name()</span></code>). The python domain sets the
+<code class="docutils literal notranslate"><span class="pre">_toc_parts</span></code> attribute within the <a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.handle_signature" title="sphinx_reports.ReportDomain.DocStrCoverage.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a>
+method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sig_node</strong> (<em>desc_signature</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.add_name">
+<span class="sig-name descname"><span class="pre">add_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.add_name" title="Link to this definition"></a></dt>
+<dd><p>Append self.options[‘name’] to node[‘names’] if it exists.</p>
+<p>Also normalize the name string and register it as explicit target.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.add_target_and_index">
+<span class="sig-name descname"><span class="pre">add_target_and_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.add_target_and_index" title="Link to this definition"></a></dt>
+<dd><p>Add cross-reference IDs and entries to self.indexnode, if applicable.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p><em>name</em> is whatever <a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.handle_signature" title="sphinx_reports.ReportDomain.DocStrCoverage.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a> returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>ObjDescT</em>) – </p></li>
+<li><p><strong>sig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>signode</strong> (<em>desc_signature</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.after_content">
+<span class="sig-name descname"><span class="pre">after_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.after_content" title="Link to this definition"></a></dt>
+<dd><p>Called after parsing content. Used to reset information about the
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>current directive context on the build environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.assert_has_content">
+<span class="sig-name descname"><span class="pre">assert_has_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.assert_has_content" title="Link to this definition"></a></dt>
+<dd><p>Throw an ERROR-level DirectiveError if the directive doesn’t
+have contents.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.before_content">
+<span class="sig-name descname"><span class="pre">before_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.before_content" title="Link to this definition"></a></dt>
+<dd><p>Called before parsing content. Used to set information about the current
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>directive context on the build environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Config</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.config" title="Link to this definition"></a></dt>
+<dd><p>Reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code> object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.configValues">
+<span class="sig-name descname"><span class="pre">configValues</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'doccov_packages':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict)}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.configValues" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.directive_error">
+<span class="sig-name descname"><span class="pre">directive_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.directive_error" title="Link to this definition"></a></dt>
+<dd><p>Return a DirectiveError suitable for being thrown as an exception.</p>
+<p>Call “raise self.directive_error(level, message)” from within
+a directive implementation to return one single system message
+at level <cite>level</cite>, which automatically gets the directive block
+and the line number added.</p>
+<p>Preferably use the <cite>debug</cite>, <cite>info</cite>, <cite>warning</cite>, <cite>error</cite>, or <cite>severe</cite>
+wrapper methods, e.g. <code class="docutils literal notranslate"><span class="pre">self.error(message)</span></code> to generate an
+ERROR-level directive error.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.env">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">env</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BuildEnvironment</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.env" title="Link to this definition"></a></dt>
+<dd><p>Reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code> object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.final_argument_whitespace">
+<span class="sig-name descname"><span class="pre">final_argument_whitespace</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.final_argument_whitespace" title="Link to this definition"></a></dt>
+<dd><p>A boolean, indicating if the final argument may contain whitespace.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.get_location">
+<span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.get_location" title="Link to this definition"></a></dt>
+<dd><p>Get current location info for logging.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.get_signatures">
+<span class="sig-name descname"><span class="pre">get_signatures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.get_signatures" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the signatures to document from the directive arguments.  By
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>default, signatures are given as arguments, one per line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.get_source_info">
+<span class="sig-name descname"><span class="pre">get_source_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.get_source_info" title="Link to this definition"></a></dt>
+<dd><p>Get source and line number.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.handle_signature">
+<span class="sig-name descname"><span class="pre">handle_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.handle_signature" title="Link to this definition"></a></dt>
+<dd><p>Parse the signature <em>sig</em> into individual nodes and append them to
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p><em>signode</em>. If ValueError is raised, parsing is aborted and the whole
+<em>sig</em> is put into a single desc_name node.</p>
+<p>The return value should be a value that identifies the object.  It is
+passed to <a class="reference internal" href="#sphinx_reports.ReportDomain.DocStrCoverage.add_target_and_index" title="sphinx_reports.ReportDomain.DocStrCoverage.add_target_and_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_target_and_index()</span></code></a> unchanged, and otherwise only
+used to skip duplicates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>signode</strong> (<em>desc_signature</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>ObjDescT</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.has_content" title="Link to this definition"></a></dt>
+<dd><p>A boolean; <code class="docutils literal notranslate"><span class="pre">True</span></code> if content is allowed.</p>
+<p>Client code must handle the case where content is required but not supplied (an empty content list will be supplied).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.option_spec">
+<span class="sig-name descname"><span class="pre">option_spec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'legend':</span> <span class="pre">&lt;function</span> <span class="pre">strip&gt;,</span> <span class="pre">'packageid':</span> <span class="pre">&lt;function</span> <span class="pre">strip&gt;}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.option_spec" title="Link to this definition"></a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+<p>A dictionary, mapping known option names to conversion functions such as <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>
+(default: {}, no options). Several conversion functions are defined in the <code class="docutils literal notranslate"><span class="pre">directives/__init__.py</span></code> module.</p>
+<p>Option conversion functions take a single parameter, the option argument (a string or <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code>), validate it
+and/or convert it to the appropriate form. Conversion functions may raise <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> and
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exceptions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.optional_arguments">
+<span class="sig-name descname"><span class="pre">optional_arguments</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.optional_arguments" title="Link to this definition"></a></dt>
+<dd><p>Number of optional arguments after the required arguments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.required_arguments">
+<span class="sig-name descname"><span class="pre">required_arguments</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.required_arguments" title="Link to this definition"></a></dt>
+<dd><p>Number of required directive arguments.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.run" title="Link to this definition"></a></dt>
+<dd><p>Main directive entry function, called by docutils upon encountering the
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>directive.</p>
+<p>This directive is meant to be quite easily subclassable, so it delegates
+to several additional methods.  What it does:</p>
+<ul class="simple">
+<li><p>find out if called as a domain-specific directive, set self.domain</p></li>
+<li><p>create a <cite>desc</cite> node to fit all description inside</p></li>
+<li><p>parse standard options, currently <cite>no-index</cite></p></li>
+<li><p>create an index node if needed as self.indexnode</p></li>
+<li><p>parse all given signatures (as returned by self.get_signatures())
+using self.handle_signature(), which should either return a name
+or raise ValueError</p></li>
+<li><p>add index entries using self.add_target_and_index()</p></li>
+<li><p>parse the content and handle doc fields in it</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><em>List</em></a>[<em>Node</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.set_source_info">
+<span class="sig-name descname"><span class="pre">set_source_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.set_source_info" title="Link to this definition"></a></dt>
+<dd><p>Set source and line number to the node.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Node</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.DocStrCoverage.transform_content">
+<span class="sig-name descname"><span class="pre">transform_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contentnode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.DocStrCoverage.transform_content" title="Link to this definition"></a></dt>
+<dd><p>Called after creating the content through nested parsing,
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>but before the <code class="docutils literal notranslate"><span class="pre">object-description-transform</span></code> event is emitted,
+and before the info-fields are transformed.
+Can be used to manipulate the content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>contentnode</strong> (<em>desc_content</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UnittestSummary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary" title="Link to this definition"></a></dt>
+<dd><p>This directive will be replaced by a table representing unit test results.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.__class_getitem__">
+<span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.__class_getitem__" title="Link to this definition"></a></dt>
+<dd><p>Parameterizes a generic class.</p>
+<p>At least, parameterizing a generic class is the <em>main</em> thing this
+method does. For example, for some generic class <cite>Foo</cite>, this is called
+when we do <cite>Foo[int]</cite> - there, with <cite>cls=Foo</cite> and <cite>params=int</cite>.</p>
+<p>However, note that this method is also called when defining generic
+classes in the first place with <cite>class Foo[T]: …</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.__init_subclass__">
+<span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.__init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>Function to initialize subclasses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary._object_hierarchy_parts">
+<span class="sig-name descname"><span class="pre">_object_hierarchy_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary._object_hierarchy_parts" title="Link to this definition"></a></dt>
+<dd><p>Returns a tuple of strings, one entry for each part of the object’s
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>hierarchy (e.g. <code class="docutils literal notranslate"><span class="pre">('module',</span> <span class="pre">'submodule',</span> <span class="pre">'Class',</span> <span class="pre">'method')</span></code>). The
+returned tuple is used to properly nest children within parents in the
+table of contents, and can also be used within the
+<a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary._toc_entry_name" title="sphinx_reports.ReportDomain.UnittestSummary._toc_entry_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_toc_entry_name()</span></code></a> method.</p>
+<p>This method must not be used outwith table of contents generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sig_node</strong> (<em>desc_signature</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary._toc_entry_name">
+<span class="sig-name descname"><span class="pre">_toc_entry_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary._toc_entry_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the text of the table of contents entry for the object.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>This function is called once, in <a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.run" title="sphinx_reports.ReportDomain.UnittestSummary.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, to set the name for the
+table of contents entry (a special attribute <code class="docutils literal notranslate"><span class="pre">_toc_name</span></code> is set on the
+object node, later used in
+<code class="docutils literal notranslate"><span class="pre">environment.collectors.toctree.TocTreeCollector.process_doc().build_toc()</span></code>
+when the table of contents entries are collected).</p>
+<p>To support table of contents entries for their objects, domains must
+override this method, also respecting the configuration setting
+<code class="docutils literal notranslate"><span class="pre">toc_object_entries_show_parents</span></code>. Domains must also override
+<a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary._object_hierarchy_parts" title="sphinx_reports.ReportDomain.UnittestSummary._object_hierarchy_parts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_object_hierarchy_parts()</span></code></a>, with one (string) entry for each part of the
+object’s hierarchy. The result of this method is set on the signature
+node, and can be accessed as <code class="docutils literal notranslate"><span class="pre">sig_node['_toc_parts']</span></code> for use within
+this method. The resulting tuple is also used to properly nest children
+within parents in the table of contents.</p>
+<p>An example implementations of this method is within the python domain
+(<code class="xref py py-meth docutils literal notranslate"><span class="pre">PyObject._toc_entry_name()</span></code>). The python domain sets the
+<code class="docutils literal notranslate"><span class="pre">_toc_parts</span></code> attribute within the <a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.handle_signature" title="sphinx_reports.ReportDomain.UnittestSummary.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a>
+method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sig_node</strong> (<em>desc_signature</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.add_name">
+<span class="sig-name descname"><span class="pre">add_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.add_name" title="Link to this definition"></a></dt>
+<dd><p>Append self.options[‘name’] to node[‘names’] if it exists.</p>
+<p>Also normalize the name string and register it as explicit target.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.add_target_and_index">
+<span class="sig-name descname"><span class="pre">add_target_and_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.add_target_and_index" title="Link to this definition"></a></dt>
+<dd><p>Add cross-reference IDs and entries to self.indexnode, if applicable.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p><em>name</em> is whatever <a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.handle_signature" title="sphinx_reports.ReportDomain.UnittestSummary.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a> returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>ObjDescT</em>) – </p></li>
+<li><p><strong>sig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>signode</strong> (<em>desc_signature</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.after_content">
+<span class="sig-name descname"><span class="pre">after_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.after_content" title="Link to this definition"></a></dt>
+<dd><p>Called after parsing content. Used to reset information about the
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>current directive context on the build environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.assert_has_content">
+<span class="sig-name descname"><span class="pre">assert_has_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.assert_has_content" title="Link to this definition"></a></dt>
+<dd><p>Throw an ERROR-level DirectiveError if the directive doesn’t
+have contents.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.before_content">
+<span class="sig-name descname"><span class="pre">before_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.before_content" title="Link to this definition"></a></dt>
+<dd><p>Called before parsing content. Used to set information about the current
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>directive context on the build environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Config</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.config" title="Link to this definition"></a></dt>
+<dd><p>Reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code> object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.configValues">
+<span class="sig-name descname"><span class="pre">configValues</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'unittest_testsuites':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict)}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.configValues" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.directive_error">
+<span class="sig-name descname"><span class="pre">directive_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.directive_error" title="Link to this definition"></a></dt>
+<dd><p>Return a DirectiveError suitable for being thrown as an exception.</p>
+<p>Call “raise self.directive_error(level, message)” from within
+a directive implementation to return one single system message
+at level <cite>level</cite>, which automatically gets the directive block
+and the line number added.</p>
+<p>Preferably use the <cite>debug</cite>, <cite>info</cite>, <cite>warning</cite>, <cite>error</cite>, or <cite>severe</cite>
+wrapper methods, e.g. <code class="docutils literal notranslate"><span class="pre">self.error(message)</span></code> to generate an
+ERROR-level directive error.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.env">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">env</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BuildEnvironment</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.env" title="Link to this definition"></a></dt>
+<dd><p>Reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code> object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.final_argument_whitespace">
+<span class="sig-name descname"><span class="pre">final_argument_whitespace</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.final_argument_whitespace" title="Link to this definition"></a></dt>
+<dd><p>A boolean, indicating if the final argument may contain whitespace.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.get_location">
+<span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.get_location" title="Link to this definition"></a></dt>
+<dd><p>Get current location info for logging.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.get_signatures">
+<span class="sig-name descname"><span class="pre">get_signatures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.get_signatures" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the signatures to document from the directive arguments.  By
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>default, signatures are given as arguments, one per line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.get_source_info">
+<span class="sig-name descname"><span class="pre">get_source_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.get_source_info" title="Link to this definition"></a></dt>
+<dd><p>Get source and line number.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.handle_signature">
+<span class="sig-name descname"><span class="pre">handle_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.handle_signature" title="Link to this definition"></a></dt>
+<dd><p>Parse the signature <em>sig</em> into individual nodes and append them to
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p><em>signode</em>. If ValueError is raised, parsing is aborted and the whole
+<em>sig</em> is put into a single desc_name node.</p>
+<p>The return value should be a value that identifies the object.  It is
+passed to <a class="reference internal" href="#sphinx_reports.ReportDomain.UnittestSummary.add_target_and_index" title="sphinx_reports.ReportDomain.UnittestSummary.add_target_and_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_target_and_index()</span></code></a> unchanged, and otherwise only
+used to skip duplicates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>signode</strong> (<em>desc_signature</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>ObjDescT</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.has_content" title="Link to this definition"></a></dt>
+<dd><p>A boolean; <code class="docutils literal notranslate"><span class="pre">True</span></code> if content is allowed.</p>
+<p>Client code must handle the case where content is required but not supplied (an empty content list will be supplied).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.option_spec">
+<span class="sig-name descname"><span class="pre">option_spec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'reportid':</span> <span class="pre">&lt;function</span> <span class="pre">strip&gt;}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.option_spec" title="Link to this definition"></a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+<p>A dictionary, mapping known option names to conversion functions such as <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>
+(default: {}, no options). Several conversion functions are defined in the <code class="docutils literal notranslate"><span class="pre">directives/__init__.py</span></code> module.</p>
+<p>Option conversion functions take a single parameter, the option argument (a string or <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code>), validate it
+and/or convert it to the appropriate form. Conversion functions may raise <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> and
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exceptions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.optional_arguments">
+<span class="sig-name descname"><span class="pre">optional_arguments</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.optional_arguments" title="Link to this definition"></a></dt>
+<dd><p>Number of optional arguments after the required arguments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.required_arguments">
+<span class="sig-name descname"><span class="pre">required_arguments</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.required_arguments" title="Link to this definition"></a></dt>
+<dd><p>Number of required directive arguments.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.run" title="Link to this definition"></a></dt>
+<dd><p>Main directive entry function, called by docutils upon encountering the
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>directive.</p>
+<p>This directive is meant to be quite easily subclassable, so it delegates
+to several additional methods.  What it does:</p>
+<ul class="simple">
+<li><p>find out if called as a domain-specific directive, set self.domain</p></li>
+<li><p>create a <cite>desc</cite> node to fit all description inside</p></li>
+<li><p>parse standard options, currently <cite>no-index</cite></p></li>
+<li><p>create an index node if needed as self.indexnode</p></li>
+<li><p>parse all given signatures (as returned by self.get_signatures())
+using self.handle_signature(), which should either return a name
+or raise ValueError</p></li>
+<li><p>add index entries using self.add_target_and_index()</p></li>
+<li><p>parse the content and handle doc fields in it</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><em>List</em></a>[<em>Node</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.set_source_info">
+<span class="sig-name descname"><span class="pre">set_source_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.set_source_info" title="Link to this definition"></a></dt>
+<dd><p>Set source and line number to the node.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Node</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.UnittestSummary.transform_content">
+<span class="sig-name descname"><span class="pre">transform_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contentnode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.UnittestSummary.transform_content" title="Link to this definition"></a></dt>
+<dd><p>Called after creating the content through nested parsing,
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>but before the <code class="docutils literal notranslate"><span class="pre">object-description-transform</span></code> event is emitted,
+and before the info-fields are transformed.
+Can be used to manipulate the content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>contentnode</strong> (<em>desc_content</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.directives">
+<span class="sig-name descname"><span class="pre">directives</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'code-coverage':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.CodeCoverage.CodeCoverage'&gt;,</span> <span class="pre">'dependecy':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.DocCoverage.DocStrCoverage'&gt;,</span> <span class="pre">'doc-coverage':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.DocCoverage.DocStrCoverage'&gt;,</span> <span class="pre">'unittest-summary':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.Unittest.UnittestSummary'&gt;}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.directives" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all directives in this domain.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.roles">
+<span class="sig-name descname"><span class="pre">roles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.roles" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all roles in this domain.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.indices">
+<span class="sig-name descname"><span class="pre">indices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.indices" title="Link to this definition"></a></dt>
+<dd><p>A list of all indices in this domain.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.configValues">
+<span class="sig-name descname"><span class="pre">configValues</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'codecov_packages':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict),</span> <span class="pre">'doccov_packages':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict),</span> <span class="pre">'unittest_testsuites':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict)}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.configValues" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.initial_data">
+<span class="sig-name descname"><span class="pre">initial_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'reports':</span> <span class="pre">{}}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.initial_data" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all global data fields used by this domain.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.AddCSSFiles">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddCSSFiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain.AddCSSFiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain.AddCSSFiles" title="Link to this definition"></a></dt>
+<dd><p>Call back for Sphinx <code class="docutils literal notranslate"><span class="pre">builder-inited</span></code> event.</p>
+<p>This callback will copy the CSS file(s) to the build directory.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt>Sphinx <em>builder-inited</em> event</dt><dd><p>See <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events">https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</a></p>
+</dd>
+</dl>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span>) – The Sphinx application.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.ReadReports">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadReports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain.ReadReports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain.ReadReports" title="Link to this definition"></a></dt>
+<dd><p>Call back for Sphinx <code class="docutils literal notranslate"><span class="pre">builder-inited</span></code> event.</p>
+<p>This callback will read the configuration variable <code class="docutils literal notranslate"><span class="pre">vhdl_designs</span></code> and parse the found VHDL source files.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt>Sphinx <em>builder-inited</em> event</dt><dd><p>See <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events">https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</a></p>
+</dd>
+</dl>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span>) – The Sphinx application.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.callbacks">
+<span class="sig-name descname"><span class="pre">callbacks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'builder-inited':</span> <span class="pre">[&lt;staticmethod(&lt;function</span> <span class="pre">ReportDomain.AddCSSFiles&gt;)&gt;,</span> <span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">ReportDomain.ReadReports&gt;)&gt;]}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.callbacks" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events">events/callbacks</a> used by this domain.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.resolve_xref">
+<span class="sig-name descname"><span class="pre">resolve_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fromdocname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contnode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain.resolve_xref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain.resolve_xref" title="Link to this definition"></a></dt>
+<dd><p>Resolve the pending_xref <em>node</em> with the given <em>typ</em> and <em>target</em>.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>This method should return a new node, to replace the xref node,
+containing the <em>contnode</em> which is the markup content of the
+cross-reference.</p>
+<p>If no resolution can be found, None can be returned; the xref node will
+then given to the <a href="#id1"><span class="problematic" id="id2">:event:`missing-reference`</span></a> event, and if that yields no
+resolution, replaced by <em>contnode</em>.</p>
+<p>The method can also raise <code class="xref py py-exc docutils literal notranslate"><span class="pre">sphinx.environment.NoUri</span></code> to suppress
+the <a href="#id3"><span class="problematic" id="id4">:event:`missing-reference`</span></a> event being emitted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>BuildEnvironment</em>) – </p></li>
+<li><p><strong>fromdocname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>builder</strong> (<em>Builder</em>) – </p></li>
+<li><p><strong>typ</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>node</strong> (<em>pending_xref</em>) – </p></li>
+<li><p><strong>contnode</strong> (<em>Element</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Element</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>BuildEnvironment</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.add_object_type">
+<span class="sig-name descname"><span class="pre">add_object_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objtype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.add_object_type" title="Link to this definition"></a></dt>
+<dd><p>Add an object type.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>objtype</strong> (<em>ObjType</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.check_consistency">
+<span class="sig-name descname"><span class="pre">check_consistency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.check_consistency" title="Link to this definition"></a></dt>
+<dd><p>Do consistency checks (<strong>experimental</strong>).
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.clear_doc">
+<span class="sig-name descname"><span class="pre">clear_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.clear_doc" title="Link to this definition"></a></dt>
+<dd><p>Remove traces of a document in the domain-specific inventories.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>docname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.dangling_warnings">
+<span class="sig-name descname"><span class="pre">dangling_warnings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.dangling_warnings" title="Link to this definition"></a></dt>
+<dd><p>role name -&gt; a warning message if reference is missing</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.data_version">
+<span class="sig-name descname"><span class="pre">data_version</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.data_version" title="Link to this definition"></a></dt>
+<dd><p>data version, bump this when the format of <cite>self.data</cite> changes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.directive">
+<span class="sig-name descname"><span class="pre">directive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.directive" title="Link to this definition"></a></dt>
+<dd><p>Return a directive adapter class that always gives the registered
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>directive its full name (‘domain:name’) as <code class="docutils literal notranslate"><span class="pre">self.name</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><em>Callable</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.enumerable_nodes">
+<span class="sig-name descname"><span class="pre">enumerable_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.enumerable_nodes" title="Link to this definition"></a></dt>
+<dd><p>node_class -&gt; (enum_node_type, title_getter)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.get_enumerable_node_type">
+<span class="sig-name descname"><span class="pre">get_enumerable_node_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.get_enumerable_node_type" title="Link to this definition"></a></dt>
+<dd><p>Get type of enumerable nodes (experimental).
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Node</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.get_full_qualified_name">
+<span class="sig-name descname"><span class="pre">get_full_qualified_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.get_full_qualified_name" title="Link to this definition"></a></dt>
+<dd><p>Return full qualified name for given node.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Element</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.get_objects">
+<span class="sig-name descname"><span class="pre">get_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.get_objects" title="Link to this definition"></a></dt>
+<dd><p>Return an iterable of “object descriptions”.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>Object descriptions are tuples with six items:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Fully qualified name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dispname</span></code></dt><dd><p>Name to display when searching/linking.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>Object type, a key in <code class="docutils literal notranslate"><span class="pre">self.object_types</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">docname</span></code></dt><dd><p>The document where it is to be found.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">anchor</span></code></dt><dd><p>The anchor name for the object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">priority</span></code></dt><dd><p>How “important” the object is (determines placement in search
+results). One of:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">1</span></code></dt><dd><p>Default priority (placed before full-text matches).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">0</span></code></dt><dd><p>Object is important (placed before default-priority objects).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">2</span></code></dt><dd><p>Object is unimportant (placed after full-text matches).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-1</span></code></dt><dd><p>Object should not show up in search at all.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.12)"><em>Iterable</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.get_type_name">
+<span class="sig-name descname"><span class="pre">get_type_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.get_type_name" title="Link to this definition"></a></dt>
+<dd><p>Return full name for given ObjType.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> (<em>ObjType</em>) – </p></li>
+<li><p><strong>primary</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.merge_domaindata">
+<span class="sig-name descname"><span class="pre">merge_domaindata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">otherdata</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.merge_domaindata" title="Link to this definition"></a></dt>
+<dd><p>Merge in data regarding <em>docnames</em> from a different domaindata
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>inventory (coming from a subprocess in parallel builds).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>docnames</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – </p></li>
+<li><p><strong>otherdata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.object_types">
+<span class="sig-name descname"><span class="pre">object_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.object_types" title="Link to this definition"></a></dt>
+<dd><p>type (usually directive) name -&gt; ObjType instance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.process_doc">
+<span class="sig-name descname"><span class="pre">process_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.process_doc" title="Link to this definition"></a></dt>
+<dd><p>Process a document after it is read by the environment.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>BuildEnvironment</em>) – </p></li>
+<li><p><strong>docname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>document</strong> (<em>document</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.process_field_xref">
+<span class="sig-name descname"><span class="pre">process_field_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pnode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.process_field_xref" title="Link to this definition"></a></dt>
+<dd><p>Process a pending xref created in a doc field.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>For example, attach information about the current scope.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pnode</strong> (<em>pending_xref</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.resolve_any_xref">
+<span class="sig-name descname"><span class="pre">resolve_any_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fromdocname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contnode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.resolve_any_xref" title="Link to this definition"></a></dt>
+<dd><p>Resolve the pending_xref <em>node</em> with the given <em>target</em>.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>The reference comes from an “any” or similar role, which means that we
+don’t know the type.  Otherwise, the arguments are the same as for
+<a class="reference internal" href="#sphinx_reports.ReportDomain.resolve_xref" title="sphinx_reports.ReportDomain.resolve_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resolve_xref()</span></code></a>.</p>
+<p>The method must return a list (potentially empty) of tuples
+<code class="docutils literal notranslate"><span class="pre">('domain:role',</span> <span class="pre">newnode)</span></code>, where <code class="docutils literal notranslate"><span class="pre">'domain:role'</span></code> is the name of a
+role that could have created the same reference, e.g. <code class="docutils literal notranslate"><span class="pre">'py:func'</span></code>.
+<code class="docutils literal notranslate"><span class="pre">newnode</span></code> is what <a class="reference internal" href="#sphinx_reports.ReportDomain.resolve_xref" title="sphinx_reports.ReportDomain.resolve_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resolve_xref()</span></code></a> would return.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>BuildEnvironment</em>) – </p></li>
+<li><p><strong>fromdocname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>builder</strong> (<em>Builder</em>) – </p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>node</strong> (<em>pending_xref</em>) – </p></li>
+<li><p><strong>contnode</strong> (<em>Element</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <em>Element</em>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.role">
+<span class="sig-name descname"><span class="pre">role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.role" title="Link to this definition"></a></dt>
+<dd><p>Return a role adapter function that always gives the registered
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<p>role its full name (‘domain:name’) as the first argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><em>Callable</em></a>[[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>, <em>Inliner</em>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><em>Any</em></a>], <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.12)"><em>Sequence</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>]], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[<em>Node</em>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[<em>system_message</em>]]] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up domain object.
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">#</span> <span class="pre">Load</span> <span class="pre">pre-defined</span> <span class="pre">aliases</span> <span class="pre">and</span> <span class="pre">graphical</span> <span class="pre">characters</span> <span class="pre">like</span> <span class="pre">©</span> <span class="pre">from</span> <span class="pre">docutils</span>
+<span class="pre">#</span> <span class="pre">&lt;file&gt;</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">denote</span> <span class="pre">the</span> <span class="pre">special</span> <span class="pre">path</span>
+<span class="pre">#</span> <span class="pre">&lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.data" title="Link to this definition"></a></dt>
+<dd><p>data value</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../DocCov/index.html" class="btn btn-neutral float-left" title="Documentation Coverage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sphinx_reports.Adapter.html" class="btn btn-neutral float-right" title="sphinx_reports.Adapter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 22.03.2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

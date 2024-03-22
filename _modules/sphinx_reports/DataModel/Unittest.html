@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports.DataModel.Unittest &mdash; sphinx_reports 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=77553476" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-reports.e44b1595f1e09d5e109d001839ba3f42.css?v=0b41afa8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/override.css?v=d48d1b8b" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8fa8b3e9"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Examples/Undocumented.html">Undocumented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Examples/PartiallyDocumented.html">Partially Documented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Examples/FullyDocumented.html">Fully Undocumented</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coverage/index.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../sphinx_reports.html">sphinx_reports</a></li>
+      <li class="breadcrumb-item active">sphinx_reports.DataModel.Unittest</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for sphinx_reports.DataModel.Unittest</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#            _     _                                           _                                                       #</span>
+<span class="c1">#  ___ _ __ | |__ (_)_ __ __  __     _ __ ___ _ __   ___  _ __| |_ ___                                                 #</span>
+<span class="c1"># / __| &#39;_ \| &#39;_ \| | &#39;_ \\ \/ /____| &#39;__/ _ \ &#39;_ \ / _ \| &#39;__| __/ __|                                                #</span>
+<span class="c1"># \__ \ |_) | | | | | | | |&gt;  &lt;_____| | |  __/ |_) | (_) | |  | |_\__ \                                                #</span>
+<span class="c1"># |___/ .__/|_| |_|_|_| |_/_/\_\    |_|  \___| .__/ \___/|_|   \__|___/                                                #</span>
+<span class="c1">#     |_|                                    |_|                                                                       #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Authors:                                                                                                             #</span>
+<span class="c1">#   Patrick Lehmann                                                                                                    #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># License:                                                                                                             #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Copyright 2023-2024 Patrick Lehmann - Bötzingen, Germany                                                             #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);                                                      #</span>
+<span class="c1"># you may not use this file except in compliance with the License.                                                     #</span>
+<span class="c1"># You may obtain a copy of the License at                                                                              #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software                                                  #</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,                                                    #</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #</span>
+<span class="c1"># See the License for the specific language governing permissions and                                                  #</span>
+<span class="c1"># limitations under the License.                                                                                       #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0                                                                                  #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">**Abstract documentation coverage data model for Python code.**</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">enum</span>     <span class="kn">import</span> <span class="n">Flag</span>
+<span class="kn">from</span> <span class="nn">typing</span>   <span class="kn">import</span> <span class="n">Optional</span> <span class="k">as</span> <span class="n">Nullable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">pyTooling.Decorators</span> <span class="kn">import</span> <span class="n">export</span><span class="p">,</span> <span class="n">readonly</span>
+
+<span class="kn">from</span> <span class="nn">sphinx_reports.Common</span> <span class="kn">import</span> <span class="n">ReportExtensionError</span>
+
+
+<div class="viewcode-block" id="UnittestError">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.UnittestError">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">UnittestError</span><span class="p">(</span><span class="n">ReportExtensionError</span><span class="p">):</span>
+	<span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="TestcaseState">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.TestcaseState">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">TestcaseState</span><span class="p">(</span><span class="n">Flag</span><span class="p">):</span>
+	<span class="n">Unknown</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="n">Failed</span> <span class="o">=</span> <span class="mi">1</span>
+	<span class="n">Error</span> <span class="o">=</span> <span class="mi">2</span>
+	<span class="n">Skipped</span> <span class="o">=</span> <span class="mi">3</span>
+	<span class="n">Passed</span> <span class="o">=</span> <span class="mi">4</span></div>
+
+
+
+<div class="viewcode-block" id="Base">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.Base">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">Base</span><span class="p">:</span>
+	<span class="n">_name</span><span class="p">:</span>  <span class="nb">str</span>
+	<span class="n">_state</span><span class="p">:</span> <span class="n">TestcaseState</span>
+	<span class="n">_time</span><span class="p">:</span>  <span class="n">timedelta</span>
+
+<div class="viewcode-block" id="Base.__init__">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.Base.__init__">[docs]</a>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">timedelta</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Unknown</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="n">time</span></div>
+
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">State</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TestcaseState</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">timedelta</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span></div>
+
+
+
+<div class="viewcode-block" id="Test">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.Test">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="Test.__init__">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.Test.__init__">[docs]</a>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Testcase">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.Testcase">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">Testcase</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+	<span class="n">_tests</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Test</span><span class="p">]</span>
+
+	<span class="n">_assertions</span><span class="p">:</span> <span class="nb">int</span>
+
+<div class="viewcode-block" id="Testcase.__init__">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.Testcase.__init__">[docs]</a>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">timedelta</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_tests</span> <span class="o">=</span> <span class="p">{}</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_assertions</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Assertions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assertions</span></div>
+
+
+
+<div class="viewcode-block" id="TestsuiteBase">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.TestsuiteBase">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">TestsuiteBase</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+	<span class="n">_testsuites</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Testsuite&quot;</span><span class="p">]</span>
+
+	<span class="n">_tests</span><span class="p">:</span>   <span class="nb">int</span>
+	<span class="n">_skipped</span><span class="p">:</span> <span class="nb">int</span>
+	<span class="n">_errored</span><span class="p">:</span> <span class="nb">int</span>
+	<span class="n">_failed</span><span class="p">:</span>  <span class="nb">int</span>
+	<span class="n">_passed</span><span class="p">:</span>  <span class="nb">int</span>
+
+<div class="viewcode-block" id="TestsuiteBase.__init__">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.TestsuiteBase.__init__">[docs]</a>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">timedelta</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_testsuites</span> <span class="o">=</span> <span class="p">{}</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_tests</span> <span class="o">=</span>   <span class="mi">0</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_skipped</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_errored</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_failed</span> <span class="o">=</span>  <span class="mi">0</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_passed</span> <span class="o">=</span>  <span class="mi">0</span></div>
+
+
+	<span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Testsuite&quot;</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testsuites</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+	<span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+		<span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testsuites</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Testsuites</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Testsuite&quot;</span><span class="p">]:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testsuites</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Tests</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tests</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Skipped</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_skipped</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Errored</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_errored</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Failed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_failed</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Passed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_passed</span>
+
+	<span class="k">def</span> <span class="nf">Aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+		<span class="n">tests</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">skipped</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">errored</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">failed</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">passed</span> <span class="o">=</span> <span class="mi">0</span>
+
+		<span class="k">for</span> <span class="n">testsuite</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testsuites</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+			<span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">testsuite</span><span class="o">.</span><span class="n">Aggregate</span><span class="p">()</span>
+			<span class="n">tests</span> <span class="o">+=</span> <span class="n">t</span>
+			<span class="n">skipped</span> <span class="o">+=</span> <span class="n">s</span>
+			<span class="n">errored</span> <span class="o">+=</span> <span class="n">e</span>
+			<span class="n">failed</span> <span class="o">+=</span> <span class="n">f</span>
+			<span class="n">passed</span> <span class="o">+=</span> <span class="n">p</span>
+
+		<span class="k">return</span> <span class="n">tests</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">errored</span><span class="p">,</span> <span class="n">failed</span><span class="p">,</span> <span class="n">passed</span></div>
+
+
+
+<div class="viewcode-block" id="Testsuite">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.Testsuite">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">Testsuite</span><span class="p">(</span><span class="n">TestsuiteBase</span><span class="p">):</span>
+	<span class="n">_testcases</span><span class="p">:</span>  <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Testcase</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Testsuite.__init__">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.Testsuite.__init__">[docs]</a>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">timedelta</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_testcases</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+	<span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Testsuite&quot;</span><span class="p">,</span> <span class="n">Testcase</span><span class="p">]:</span>
+		<span class="k">try</span><span class="p">:</span>
+			<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testsuites</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+		<span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+			<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testcases</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+	<span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+		<span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testsuites</span><span class="p">:</span>
+			<span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testcases</span>
+
+		<span class="k">return</span> <span class="kc">False</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span> <span class="nf">Testcases</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Testcase</span><span class="p">]:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testcases</span>
+
+	<span class="k">def</span> <span class="nf">Aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+		<span class="n">tests</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">errored</span><span class="p">,</span> <span class="n">failed</span><span class="p">,</span> <span class="n">passed</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">Aggregate</span><span class="p">()</span>
+
+		<span class="k">for</span> <span class="n">testcase</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testcases</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+			<span class="k">if</span> <span class="n">testcase</span><span class="o">.</span><span class="n">_state</span> <span class="ow">is</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Passed</span><span class="p">:</span>
+				<span class="n">tests</span> <span class="o">+=</span> <span class="mi">1</span>
+				<span class="n">passed</span> <span class="o">+=</span> <span class="mi">1</span>
+			<span class="k">elif</span> <span class="n">testcase</span><span class="o">.</span><span class="n">_state</span> <span class="ow">is</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Failed</span><span class="p">:</span>
+				<span class="n">tests</span> <span class="o">+=</span> <span class="mi">1</span>
+				<span class="n">failed</span> <span class="o">+=</span> <span class="mi">1</span>
+			<span class="k">elif</span> <span class="n">testcase</span><span class="o">.</span><span class="n">_state</span> <span class="ow">is</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Skipped</span><span class="p">:</span>
+				<span class="n">tests</span> <span class="o">+=</span> <span class="mi">1</span>
+				<span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
+			<span class="k">elif</span> <span class="n">testcase</span><span class="o">.</span><span class="n">_state</span> <span class="ow">is</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Error</span><span class="p">:</span>
+				<span class="n">tests</span> <span class="o">+=</span> <span class="mi">1</span>
+				<span class="n">errored</span> <span class="o">+=</span> <span class="mi">1</span>
+			<span class="k">elif</span> <span class="n">testcase</span><span class="o">.</span><span class="n">_state</span> <span class="ow">is</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Unknown</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">UnittestError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found testcase &#39;</span><span class="si">{</span><span class="n">testcase</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&#39; with unknown state.&quot;</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_tests</span> <span class="o">=</span> <span class="n">tests</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_skipped</span> <span class="o">=</span> <span class="n">skipped</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_errored</span> <span class="o">=</span> <span class="n">errored</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_failed</span> <span class="o">=</span> <span class="n">failed</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_passed</span> <span class="o">=</span> <span class="n">passed</span>
+
+		<span class="k">if</span> <span class="n">errored</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Error</span>
+		<span class="k">elif</span> <span class="n">failed</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Failed</span>
+		<span class="k">elif</span> <span class="n">tests</span> <span class="o">-</span> <span class="n">skipped</span> <span class="o">==</span> <span class="n">passed</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Passed</span>
+		<span class="k">elif</span> <span class="n">tests</span> <span class="o">==</span> <span class="n">skipped</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Skipped</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Unknown</span>
+
+		<span class="k">return</span> <span class="n">tests</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">errored</span><span class="p">,</span> <span class="n">failed</span><span class="p">,</span> <span class="n">passed</span></div>
+
+
+
+<div class="viewcode-block" id="TestsuiteSummary">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.TestsuiteSummary">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">TestsuiteSummary</span><span class="p">(</span><span class="n">TestsuiteBase</span><span class="p">):</span>
+	<span class="n">_time</span><span class="p">:</span> <span class="nb">float</span>
+
+<div class="viewcode-block" id="TestsuiteSummary.__init__">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.DataModel.Unittest.html#sphinx_reports.DataModel.Unittest.TestsuiteSummary.__init__">[docs]</a>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">timedelta</span><span class="p">):</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span></div>
+
+
+	<span class="k">def</span> <span class="nf">Aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+		<span class="n">tests</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">errored</span><span class="p">,</span> <span class="n">failed</span><span class="p">,</span> <span class="n">passed</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">Aggregate</span><span class="p">()</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_tests</span> <span class="o">=</span> <span class="n">tests</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_skipped</span> <span class="o">=</span> <span class="n">skipped</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_errored</span> <span class="o">=</span> <span class="n">errored</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_failed</span> <span class="o">=</span> <span class="n">failed</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_passed</span> <span class="o">=</span> <span class="n">passed</span>
+
+		<span class="k">if</span> <span class="n">errored</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Error</span>
+		<span class="k">elif</span> <span class="n">failed</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Failed</span>
+		<span class="k">elif</span> <span class="n">tests</span> <span class="o">-</span> <span class="n">skipped</span> <span class="o">==</span> <span class="n">passed</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Passed</span>
+		<span class="k">elif</span> <span class="n">tests</span> <span class="o">==</span> <span class="n">skipped</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Skipped</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">TestcaseState</span><span class="o">.</span><span class="n">Unknown</span>
+
+		<span class="k">return</span> <span class="n">tests</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">errored</span><span class="p">,</span> <span class="n">failed</span><span class="p">,</span> <span class="n">passed</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 22.03.2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

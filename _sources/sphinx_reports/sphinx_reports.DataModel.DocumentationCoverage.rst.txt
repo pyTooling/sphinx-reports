@@ -1,0 +1,108 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==============================================
+sphinx_reports.DataModel.DocumentationCoverage
+==============================================
+
+.. automodule:: sphinx_reports.DataModel.DocumentationCoverage
+
+
+.. currentmodule:: sphinx_reports.DataModel.DocumentationCoverage
+
+
+**Classes**
+
+- :py:class:`CoverageState`:
+  Support for flags
+
+- :py:class:`Coverage`:
+  Undocumented.
+
+- :py:class:`AggregatedCoverage`:
+  Undocumented.
+
+- :py:class:`ClassCoverage`:
+  Undocumented.
+
+- :py:class:`ModuleCoverage`:
+  Undocumented.
+
+- :py:class:`PackageCoverage`:
+  Undocumented.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: CoverageState
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: CoverageState
+      :parts: 1
+
+.. autoclass:: Coverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Coverage
+      :parts: 1
+
+.. autoclass:: AggregatedCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AggregatedCoverage
+      :parts: 1
+
+.. autoclass:: ClassCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ClassCoverage
+      :parts: 1
+
+.. autoclass:: ModuleCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ModuleCoverage
+      :parts: 1
+
+.. autoclass:: PackageCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PackageCoverage
+      :parts: 1

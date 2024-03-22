@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports.DataModel.DocumentationCoverage &mdash; sphinx_reports 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=77553476" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.e44b1595f1e09d5e109d001839ba3f42.css?v=0b41afa8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=d48d1b8b" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8fa8b3e9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sphinx_reports.DataModel.Unittest" href="sphinx_reports.DataModel.Unittest.html" />
+    <link rel="prev" title="sphinx_reports.DataModel.CodeCoverage" href="sphinx_reports.DataModel.CodeCoverage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Undocumented.html">Undocumented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/PartiallyDocumented.html">Partially Documented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/FullyDocumented.html">Fully Undocumented</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sphinx_reports.html">Python Class Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Adapter.html">sphinx_reports.Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.CodeCoverage.html">sphinx_reports.CodeCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Common.html">sphinx_reports.Common</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="sphinx_reports.DataModel.html">sphinx_reports.DataModel</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sphinx_reports.DataModel.CodeCoverage.html">sphinx_reports.DataModel.CodeCoverage</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sphinx_reports.DataModel.DocumentationCoverage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState"><code class="docutils literal notranslate"><span class="pre">CoverageState</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__contains__"><code class="docutils literal notranslate"><span class="pre">CoverageState.__contains__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__iter__"><code class="docutils literal notranslate"><span class="pre">CoverageState.__iter__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__len__"><code class="docutils literal notranslate"><span class="pre">CoverageState.__len__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage"><code class="docutils literal notranslate"><span class="pre">Coverage</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage.__init__"><code class="docutils literal notranslate"><span class="pre">Coverage.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.AggregatedCoverage"><code class="docutils literal notranslate"><span class="pre">AggregatedCoverage</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.AggregatedCoverage.__init__"><code class="docutils literal notranslate"><span class="pre">AggregatedCoverage.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage"><code class="docutils literal notranslate"><span class="pre">ClassCoverage</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage.__init__"><code class="docutils literal notranslate"><span class="pre">ClassCoverage.__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage.__str__"><code class="docutils literal notranslate"><span class="pre">ClassCoverage.__str__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage"><code class="docutils literal notranslate"><span class="pre">ModuleCoverage</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage.__init__"><code class="docutils literal notranslate"><span class="pre">ModuleCoverage.__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage.__str__"><code class="docutils literal notranslate"><span class="pre">ModuleCoverage.__str__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage"><code class="docutils literal notranslate"><span class="pre">PackageCoverage</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage.__init__"><code class="docutils literal notranslate"><span class="pre">PackageCoverage.__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage.__str__"><code class="docutils literal notranslate"><span class="pre">PackageCoverage.__str__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sphinx_reports.DataModel.Unittest.html">sphinx_reports.DataModel.Unittest</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DocCoverage.html">sphinx_reports.DocCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Sphinx.html">sphinx_reports.Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Unittest.html">sphinx_reports.Unittest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.static.html">sphinx_reports.static</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.html#sphinx_reports.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.html#sphinx_reports.ReportDomain"><code class="docutils literal notranslate"><span class="pre">ReportDomain</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="sphinx_reports.html">sphinx_reports</a></li>
+          <li class="breadcrumb-item"><a href="sphinx_reports.DataModel.html">sphinx_reports.DataModel</a></li>
+      <li class="breadcrumb-item active">sphinx_reports.DataModel.DocumentationCoverage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sphinx_reports/sphinx_reports.DataModel.DocumentationCoverage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="module-sphinx_reports.DataModel.DocumentationCoverage">
+<span id="sphinx-reports-datamodel-documentationcoverage"></span><h1>sphinx_reports.DataModel.DocumentationCoverage<a class="headerlink" href="#module-sphinx_reports.DataModel.DocumentationCoverage" title="Link to this heading"></a></h1>
+<p><strong>Abstract documentation coverage data model for Python code.</strong></p>
+<p><strong>Classes</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState" title="sphinx_reports.DataModel.DocumentationCoverage.CoverageState"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoverageState</span></code></a>:
+Support for flags</p></li>
+<li><p><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage" title="sphinx_reports.DataModel.DocumentationCoverage.Coverage"><code class="xref py py-class docutils literal notranslate"><span class="pre">Coverage</span></code></a>:
+Undocumented.</p></li>
+<li><p><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.AggregatedCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.AggregatedCoverage"><code class="xref py py-class docutils literal notranslate"><span class="pre">AggregatedCoverage</span></code></a>:
+Undocumented.</p></li>
+<li><p><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassCoverage</span></code></a>:
+Undocumented.</p></li>
+<li><p><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModuleCoverage</span></code></a>:
+Undocumented.</p></li>
+<li><p><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage"><code class="xref py py-class docutils literal notranslate"><span class="pre">PackageCoverage</span></code></a>:
+Undocumented.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Classes</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.CoverageState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.DataModel.DocumentationCoverage.</span></span><span class="sig-name descname"><span class="pre">CoverageState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#CoverageState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-1c88a1615e45ab2fd117a42143345c9d8b16ad42.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of CoverageState</p></object></div>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__contains__" title="Link to this definition"></a></dt>
+<dd><p>Returns True if self has at least the same flags set as other.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__iter__" title="Link to this definition"></a></dt>
+<dd><p>Returns flags in definition order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.CoverageState.__len__" title="Link to this definition"></a></dt>
+<dd><p>Return the number of members (no aliases)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.Coverage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.DataModel.DocumentationCoverage.</span></span><span class="sig-name descname"><span class="pre">Coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#Coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-41debb8d1ed1326dde6abb6366c77de3f1a1c460.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of Coverage</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage" title="sphinx_reports.DataModel.DocumentationCoverage.Coverage"><em>Coverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.Coverage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#Coverage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage" title="sphinx_reports.DataModel.DocumentationCoverage.Coverage"><em>Coverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.AggregatedCoverage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.DataModel.DocumentationCoverage.</span></span><span class="sig-name descname"><span class="pre">AggregatedCoverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#AggregatedCoverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.AggregatedCoverage" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-b3ab8866a38a3bf7108973a06bfc11e1c490f16d.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of AggregatedCoverage</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><em>Path</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage" title="sphinx_reports.DataModel.DocumentationCoverage.Coverage"><em>Coverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.AggregatedCoverage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#AggregatedCoverage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.AggregatedCoverage.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><em>Path</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.Coverage" title="sphinx_reports.DataModel.DocumentationCoverage.Coverage"><em>Coverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.DataModel.DocumentationCoverage.</span></span><span class="sig-name descname"><span class="pre">ClassCoverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#ClassCoverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-004bb9fac14041b3756a4c9c42e547ed7a6e60e1.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of ClassCoverage</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage"><em>PackageCoverage</em></a><em> | </em><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage"><em>ClassCoverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#ClassCoverage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage"><em>PackageCoverage</em></a><em> | </em><a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage"><em>ClassCoverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#ClassCoverage.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.ClassCoverage.__str__" title="Link to this definition"></a></dt>
+<dd><p>Return str(self).
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.DataModel.DocumentationCoverage.</span></span><span class="sig-name descname"><span class="pre">ModuleCoverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#ModuleCoverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-0b5cc61e7e3dcbdf74e7980b644d46af49a241e0.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of ModuleCoverage</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><em>Path</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage"><em>PackageCoverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#ModuleCoverage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><em>Path</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage"><em>PackageCoverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#ModuleCoverage.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.ModuleCoverage.__str__" title="Link to this definition"></a></dt>
+<dd><p>Return str(self).
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.DataModel.DocumentationCoverage.</span></span><span class="sig-name descname"><span class="pre">PackageCoverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#PackageCoverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-eb2a0d2f33730f7fcd601445c982b9840c33b307.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of PackageCoverage</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><em>Path</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage"><em>PackageCoverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#PackageCoverage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><em>Path</em></a>) – </p></li>
+<li><p><strong>parent</strong> (<a class="reference internal" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage" title="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage"><em>PackageCoverage</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/DataModel/DocumentationCoverage.html#PackageCoverage.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.DataModel.DocumentationCoverage.PackageCoverage.__str__" title="Link to this definition"></a></dt>
+<dd><p>Return str(self).
+:rtype: <span class="sphinx_autodoc_typehints-type"># Load pre-defined aliases and graphical characters like © from docutils
+# &lt;file&gt; is used to denote the special path
+# &lt;Python&gt;\Lib\site-packages\docutils\parsers\rst\include</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sphinx_reports.DataModel.CodeCoverage.html" class="btn btn-neutral float-left" title="sphinx_reports.DataModel.CodeCoverage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sphinx_reports.DataModel.Unittest.html" class="btn btn-neutral float-right" title="sphinx_reports.DataModel.Unittest" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 22.03.2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

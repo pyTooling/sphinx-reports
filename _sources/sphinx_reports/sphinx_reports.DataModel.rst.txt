@@ -1,0 +1,22 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+========================
+sphinx_reports.DataModel
+========================
+
+.. automodule:: sphinx_reports.DataModel
+
+
+
+**Submodules**
+
+.. toctree::
+   :maxdepth: 1
+
+   sphinx_reports.DataModel.CodeCoverage
+   sphinx_reports.DataModel.DocumentationCoverage
+   sphinx_reports.DataModel.Unittest
+
+.. currentmodule:: sphinx_reports.DataModel
