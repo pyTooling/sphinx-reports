@@ -34,6 +34,7 @@ from unittest import TestCase
 
 from sphinx_reports.DataModel.CodeCoverage import ModuleCoverage, PackageCoverage
 
+
 if __name__ == "__main__":
 	print("ERROR: you called a testcase declaration file as an executable module.")
 	print("Use: 'python -m unittest <testcase module>'")

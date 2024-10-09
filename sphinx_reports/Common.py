@@ -64,8 +64,3 @@ class LegendStyle(Flag):
 
 	horizontal_table = Table | Horizontal
 	vertical_table =   Table | Vertical
-
-
-@export
-def ReadResourceFile(module: Union[str, ModuleType], filename: str) -> str:
-	return files(module).joinpath(filename).read_text()

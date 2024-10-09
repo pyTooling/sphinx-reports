@@ -58,9 +58,9 @@ from sphinx.config         import Config
 from sphinx.domains        import Domain
 from sphinx.environment    import BuildEnvironment
 from pyTooling.Decorators  import export
+from pyTooling.Common      import readResourceFile
 
-from sphinx_reports        import static as ResourcePackage
-from sphinx_reports.Common import ReadResourceFile
+from sphinx_reports import static as ResourcePackage
 
 
 @export

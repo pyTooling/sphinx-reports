@@ -39,7 +39,7 @@ from docutils                          import nodes
 from docutils.parsers.rst.directives   import flag
 from pyTooling.Decorators              import export
 from pyEDAA.Reports.Unittesting        import TestcaseStatus, TestsuiteStatus
-from pyEDAA.Reports.Unittesting.JUnit  import Testsuite, TestsuiteSummary, Testcase, JUnitDocument
+from pyEDAA.Reports.Unittesting.JUnit  import Testsuite, TestsuiteSummary, Testcase, Document
 from sphinx.application                import Sphinx
 from sphinx.config                     import Config
 
