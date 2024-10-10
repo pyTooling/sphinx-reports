@@ -247,10 +247,30 @@ class UnittestSummary(BaseDirective):
 		self._CheckOptions()
 
 		# Assemble a list of Python source files
-		self._testsuite = JUnitDocument(self._xmlReport, parse=True)
+		try:
+			doc = Document(self._xmlReport, parse=True)
+		except Exception as ex:
+			logger = logging.getLogger(__name__)
+			logger.error(f"Caught {ex.__class__.__name__} when reading and parsing '{self._xmlReport}'.\n  {ex}")
+			return []
+
+		doc.Aggregate()
+
+		try:
+			self._testsuite = doc.ToTestsuiteSummary()
+		except Exception as ex:
+			logger = logging.getLogger(__name__)
+			logger.error(f"Caught {ex.__class__.__name__} when converting to a TestsuiteSummary for JUnit document '{self._xmlReport}'.\n  {ex}")
+			return []
+
 		self._testsuite.Aggregate()
 
-		container = nodes.container()
-		container += self._GenerateTestSummaryTable()
+		try:
+			container = nodes.container()
+			container += self._GenerateTestSummaryTable()
+		except Exception as ex:
+			logger = logging.getLogger(__name__)
+			logger.error(f"Caught {ex.__class__.__name__} when generating the document structure for JUnit document '{self._xmlReport}'.\n  {ex}")
+			return []
 
 		return [container]

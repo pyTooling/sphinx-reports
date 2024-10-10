@@ -198,7 +198,7 @@ class ReportDomain(Domain):
 
 		# Read the CSS content from package resources and hash it
 		cssFilename = "sphinx-reports.css"
-		cssContent = ReadResourceFile(ResourcePackage, cssFilename)
+		cssContent = readResourceFile(ResourcePackage, cssFilename)
 
 		# Compute md5 hash of CSS file
 		hash = md5(cssContent.encode("utf8")).hexdigest()
