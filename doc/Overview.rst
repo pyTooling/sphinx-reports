@@ -23,7 +23,7 @@ See the following :file:`doc/requirements.txt` file as an example with commonly 
    -r ../requirements.txt
 
    # Enforce latest version on ReadTheDocs
-   sphinx ~= 8.0
+   sphinx ~= 8.1
    docutils ~= 0.21
 
    # ReadTheDocs Theme
