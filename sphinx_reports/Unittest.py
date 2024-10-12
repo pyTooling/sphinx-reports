@@ -42,6 +42,7 @@ from pyEDAA.Reports.Unittesting        import TestcaseStatus, TestsuiteStatus
 from pyEDAA.Reports.Unittesting.JUnit  import Testsuite, TestsuiteSummary, Testcase, Document
 from sphinx.application                import Sphinx
 from sphinx.config                     import Config
+from sphinx.util.logging               import getLogger
 
 from sphinx_reports.Common             import ReportExtensionError
 from sphinx_reports.Sphinx             import strip, BaseDirective
@@ -250,7 +251,7 @@ class UnittestSummary(BaseDirective):
 		try:
 			doc = Document(self._xmlReport, parse=True)
 		except Exception as ex:
-			logger = logging.getLogger(__name__)
+			logger = getLogger(__name__)
 			logger.error(f"Caught {ex.__class__.__name__} when reading and parsing '{self._xmlReport}'.\n  {ex}")
 			return []
 
@@ -259,7 +260,7 @@ class UnittestSummary(BaseDirective):
 		try:
 			self._testsuite = doc.ToTestsuiteSummary()
 		except Exception as ex:
-			logger = logging.getLogger(__name__)
+			logger = getLogger(__name__)
 			logger.error(f"Caught {ex.__class__.__name__} when converting to a TestsuiteSummary for JUnit document '{self._xmlReport}'.\n  {ex}")
 			return []
 
@@ -269,7 +270,7 @@ class UnittestSummary(BaseDirective):
 			container = nodes.container()
 			container += self._GenerateTestSummaryTable()
 		except Exception as ex:
-			logger = logging.getLogger(__name__)
+			logger = getLogger(__name__)
 			logger.error(f"Caught {ex.__class__.__name__} when generating the document structure for JUnit document '{self._xmlReport}'.\n  {ex}")
 			return []
 

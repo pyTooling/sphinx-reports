@@ -54,7 +54,7 @@ setup(**DescribePythonPackageHostedOnGitHub(
 		"Topic :: Software Development :: Testing :: Unit",
 	],
 	developmentStatus="beta",
-	pythonVersions=("3.9", "3.10", "3.11", "3.12"),
+	pythonVersions=("3.10", "3.11", "3.12"),
 	dataFiles={
 		"sphinx_reports": ["static/*.css"]
 	}
