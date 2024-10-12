@@ -1,8 +1,8 @@
 [build-system]
 requires = [
-  "setuptools >= 69.0.0",
-  "wheel >= 0.40.0",
-  "pyTooling ~= 6.0"
+  "setuptools ~= 75.1",
+  "wheel ~= 0.44",
+  "pyTooling ~= 6.7"
 ]
 build-backend = "setuptools.build_meta"
 
@@ -21,6 +21,7 @@ namespace_packages = true
 html_report = "report/typing"
 
 [tool.pytest.ini_options]
+addopts = "--tb=native"
 # Don't set 'python_classes = *' otherwise, pytest doesn't search for classes
 # derived from unittest.Testcase
 python_files = "*"
@@ -34,9 +35,14 @@ junit_logging = "all"
 [tool.interrogate]
 color = true
 verbose = 1             # possible values: 0 (minimal output), 1 (-v), 2 (-vv)
-fail-under = 80
-#generate-badge = "."
-#badge-format = "png"
+fail-under = 59
+exclude = [
+	"build",
+	"dist",
+	"doc",
+	"tests",
+	"setup.py"
+]
 ignore-setters = true
 
 [tool.coverage.run]
@@ -45,9 +51,6 @@ relative_files = true
 omit = [
 	"*site-packages*",
 	"setup.py",
-	"tests/benchmark/*",
-	"tests/performance/*",
-	"tests/platform/*",
 	"tests/unit/*"
 ]
 

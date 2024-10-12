@@ -60,10 +60,10 @@ pygments_style = "manni"
 # ==============================================================================
 # Restructured Text settings
 # ==============================================================================
-prologPath = "prolog.inc"
+prologPath = Path("prolog.inc")
 try:
-	with open(prologPath, "r") as prologFile:
-		rst_prolog = prologFile.read()
+	with prologPath.open("r", encoding="utf-8") as fileHandle:
+		rst_prolog = fileHandle.read()
 except Exception as ex:
 	print(f"[ERROR:] While reading '{prologPath}'.")
 	print(ex)
@@ -191,7 +191,8 @@ extensions = [
 # Sphinx.Ext.InterSphinx
 # ==============================================================================
 intersphinx_mapping = {
-	"python":   ("https://docs.python.org/3", None),
+	"python": ("https://docs.python.org/3", None),
+	"pyTool": ("https://pyTooling.github.io/pyTooling/", None),
 }
 
 
@@ -261,7 +262,28 @@ todo_link_only = True
 # ==============================================================================
 # Sphinx-reports
 # ==============================================================================
-_coverageLevels = {
+report_unittest_testsuites = {
+	"src":                    {"xml_report": "../report/unit/TestReportSummary.xml"},
+}
+
+_codeCovLevels = {
+	30:      {"class": "report-cov-below30",  "desc": "almost unused"},
+	50:      {"class": "report-cov-below50",  "desc": "poorly used"},
+	80:      {"class": "report-cov-below80",  "desc": "somehow used"},
+	90:      {"class": "report-cov-below90",  "desc": "well used"},
+	100:     {"class": "report-cov-below100", "desc": "excellently used"},
+	"error": {"class": "report-cov-error",    "desc": "internal error"},
+}
+report_codecov_packages = {
+	"src": {
+		"name":        "sphinx_reports",
+		"json_report": "../report/coverage/coverage.json",
+		"fail_below":  80,
+		"levels":      "default"
+	}
+}
+
+_docCovLevels = {
 	30:      {"class": "report-cov-below30",  "desc": "almost undocumented"},
 	50:      {"class": "report-cov-below50",  "desc": "poorly documented"},
 	80:      {"class": "report-cov-below80",  "desc": "roughly documented"},
@@ -269,42 +291,30 @@ _coverageLevels = {
 	100:     {"class": "report-cov-below100", "desc": "excellent documented"},
 	"error": {"class": "report-cov-error",    "desc": "internal error"},
 }
-
-report_unittest_testsuites = {
-	"src":                    {"xml_report": "../report/unit/TestReportSummary.xml"},
-}
-report_codecov_packages = {
-	"src": {
-		"name":        "sphinx_reports",
-		"json_report": "../report/coverage/coverage.json",
-		"fail_below":  80,
-		"levels":      _coverageLevels
-	}
-}
 report_doccov_packages = {
 	"src": {
 		"name":       "sphinx_reports",
 		"directory":  "../sphinx_reports",
 		"fail_below": 80,
-		"levels":     _coverageLevels
+		"levels":     "default"
 	},
 	"undocumented": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/undocumented",
 		"fail_below": 80,
-		"levels":     _coverageLevels
+		"levels":     "default"
 	},
 	"partially": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/partially",
 		"fail_below": 80,
-		"levels":     _coverageLevels
+		"levels":     "default"
 	},
 	"documented": {
 		"name":       "MyPackage",
 		"directory":  "../tests/packages/documented",
 		"fail_below": 80,
-		"levels":     _coverageLevels
+		"levels":     "default"
 	}
 }
 

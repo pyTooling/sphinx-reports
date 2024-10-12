@@ -134,12 +134,16 @@ Dependencies
 🚧 This is a planned feature. 🚧
 
 
+.. _CONTRIBUTORS:
+
 Contributors
 ************
 
 * `Patrick Lehmann <https://GitHub.com/pyTooling>`__ (Maintainer)
 * `and more... <https://GitHub.com/pyTooling/sphinx-reports/graphs/contributors>`__
 
+
+.. _LICENSE:
 
 License
 *******
@@ -170,9 +174,8 @@ License
    :caption: Examples
    :hidden:
 
-   Examples/Undocumented
-   Examples/PartiallyDocumented
-   Examples/FullyDocumented
+   Examples/Documentation
+   Examples/Dependency
 
 .. toctree::
    :caption: Supported Reports

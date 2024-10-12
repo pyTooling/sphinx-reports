@@ -1,6 +1,8 @@
-pyTooling ~= 6.0
+pyTooling ~= 6.7
+pyEDAA.Reports ~= 0.12.1
 
-sphinx >= 6.0, < 8.0
+sphinx ~= 8.0, <8.1
+docutils ~= 0.21
 
-coverage >= 7.4
-docstr_coverage >= 2.3.0
+Coverage ~= 7.6
+docstr_coverage ~= 2.3.2

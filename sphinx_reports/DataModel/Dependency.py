@@ -28,93 +28,52 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""
-**A Sphinx extension providing documentation coverage details embedded in documentation pages.**
-"""
-from pathlib import Path
-from typing  import List
+""""""
+from typing import List, Iterable
 
-from docstr_coverage                   import analyze, ResultCollection
-from docstr_coverage.result_collection import FileCount
-from pyTooling.Decorators              import export, readonly
-
-from sphinx_reports.Common                          import ReportExtensionError
-from sphinx_reports.DataModel.DocumentationCoverage import ModuleCoverage, PackageCoverage, AggregatedCoverage
+from pyTooling.Decorators import export, readonly
 
 
 @export
-class DocStrCoverageError(ReportExtensionError):
-	pass
+class VersionSpecifier:
+	_spec: str
+
+	def __init__(self, spec: str):
+		self._spec = spec
 
 
 @export
-class Analyzer:
-	_packageName:     str
-	_searchDirectory: Path
-	_moduleFiles:     List[Path]
-	_coverageReport:  ResultCollection
+class License:
+	_name: str
 
-	def __init__(self, packageName: str, directory: Path) -> None:
-		self._searchDirectory = directory
-		self._packageName = packageName
-		self._moduleFiles = []
+	def __init__(self, name: str):
+		self._name = name
 
-		if directory.exists():
-			self._moduleFiles.extend(directory.glob("**/*.py"))
-		else:
-			raise DocStrCoverageError(f"Package source directory '{directory}' does not exist.") \
-				from FileNotFoundError(directory)
 
-	@readonly
-	def SearchDirectories(self) -> Path:
-		return self._searchDirectory
+@export
+class Distribution:
+	_name:         str
+	_packages:     List[str]
+	_version:      VersionSpecifier
+	_licenses:     List[License]
+	_dependencies: List["Distribution"]
 
-	@readonly
-	def PackageName(self) -> str:
-		return self._packageName
+	def __init__(self, name: str):
+		self._name = name
+
+		self._packages = []
+		self._version = None
+		self._licenses = []
+		self._dependencies = []
 
 	@readonly
-	def ModuleFiles(self) -> List[Path]:
-		return self._moduleFiles
+	def Name(self) -> str:
+		return self._name
 
 	@readonly
-	def CoverageReport(self) -> ResultCollection:
-		return self._coverageReport
+	def Version(self) -> VersionSpecifier:
+		return self._version
 
-	def Analyze(self) -> ResultCollection:
-		self._coverageReport: ResultCollection = analyze(self._moduleFiles, show_progress=False)
-		return self._coverageReport
-
-	def Convert(self) -> PackageCoverage:
-		rootPackageCoverage = PackageCoverage(self._packageName, self._searchDirectory / "__init__.py")
-
-		for key, value in self._coverageReport.files():
-			path: Path = key.relative_to(self._searchDirectory)
-			perFileResult: FileCount = value.count_aggregate()
-
-			moduleName = path.stem
-			modulePath = path.parent.parts
-
-			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
-			for packageName in modulePath:
-				try:
-					currentCoverageObject = currentCoverageObject[packageName]
-				except KeyError:
-					currentCoverageObject = PackageCoverage(packageName, path, currentCoverageObject)
-
-			if moduleName != "__init__":
-				currentCoverageObject = ModuleCoverage(moduleName, path, currentCoverageObject)
-
-			currentCoverageObject._expected = perFileResult.needed
-			currentCoverageObject._covered = perFileResult.found
-			currentCoverageObject._uncovered = perFileResult.missing
-
-			if currentCoverageObject._expected != 0:
-				currentCoverageObject._coverage = currentCoverageObject._covered / currentCoverageObject._expected
-			else:
-				currentCoverageObject._coverage = 1.0
-
-			if currentCoverageObject._uncovered != currentCoverageObject._expected - currentCoverageObject._covered:
-				currentCoverageObject._coverage = -2.0
-
-		return rootPackageCoverage
+	@readonly
+	def Licenses(self) -> Iterable[License]:
+		return self._licenses

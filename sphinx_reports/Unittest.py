@@ -33,19 +33,22 @@
 """
 from datetime import timedelta
 from pathlib  import Path
-from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict
+from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict, ClassVar
 
-from docutils             import nodes
-from pyTooling.Decorators import export
+from docutils                          import nodes
+from docutils.parsers.rst.directives   import flag
+from pyTooling.Decorators              import export
+from pyEDAA.Reports.Unittesting        import TestcaseStatus, TestsuiteStatus
+from pyEDAA.Reports.Unittesting.JUnit  import Testsuite, TestsuiteSummary, Testcase, Document
+from sphinx.application                import Sphinx
+from sphinx.config                     import Config
 
 from sphinx_reports.Common             import ReportExtensionError
 from sphinx_reports.Sphinx             import strip, BaseDirective
-from sphinx_reports.DataModel.Unittest import Testsuite, TestsuiteSummary, Testcase, TestcaseState
-from sphinx_reports.Adapter.JUnit      import Analyzer
 
 
 class report_DictType(TypedDict):
-	xml_report: str
+	xml_report: Path
 
 
 @export
@@ -55,62 +58,106 @@ class UnittestSummary(BaseDirective):
 	"""
 	has_content = False
 	required_arguments = 0
-	optional_arguments = 1
+	optional_arguments = 2
 
 	option_spec = {
-		"reportid": strip,
+		"reportid":      strip,
+		"no-assertions": flag
 	}
 
 	directiveName: str = "unittest-summary"
 	configPrefix:  str = "unittest"
 	configValues:  Dict[str, Tuple[Any, str, Any]] = {
 		f"{configPrefix}_testsuites": ({}, "env", Dict)
-	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
+	}  #: A dictionary of all configuration values used by unittest directives.
 
-	_reportID:   str
-	_xmlReport:   Path
-	_testsuite:   TestsuiteSummary
+	_testSummaries: ClassVar[Dict[str, report_DictType]] = {}
+
+	_reportID:     str
+	_noAssertions: bool
+	_xmlReport:    Path
+	_testsuite:    TestsuiteSummary
 
 	def _CheckOptions(self) -> None:
-		# Parse all directive options or use default values
+		"""
+		Parse all directive options or use default values.
+		"""
 		self._reportID = self._ParseStringOption("reportid")
+		self._noAssertions = "without-assertions" in self.options
 
-	def _CheckConfiguration(self) -> None:
+		testSummary = self._testSummaries[self._reportID]
+		self._xmlReport = testSummary["xml_report"]
+
+	@classmethod
+	def CheckConfiguration(cls, sphinxApplication: Sphinx, sphinxConfiguration: Config) -> None:
+		"""
+		Check configuration fields and load necessary values.
+
+		:param sphinxApplication:   Sphinx application instance.
+		:param sphinxConfiguration: Sphinx configuration instance.
+		"""
+		cls._CheckConfiguration(sphinxConfiguration)
+
+	@classmethod
+	def ReadReports(cls, sphinxApplication: Sphinx) -> None:
+		"""
+		Read unittest report files.
+
+		:param sphinxApplication:   Sphinx application instance.
+		"""
+		print(f"[REPORT] Reading unittest reports ...")
+
+	@classmethod
+	def _CheckConfiguration(cls, sphinxConfiguration: Config) -> None:
 		from sphinx_reports import ReportDomain
 
-		# Check configuration fields and load necessary values
+		variableName = f"{ReportDomain.name}_{cls.configPrefix}_testsuites"
+
 		try:
-			allTestsuites: Dict[str, report_DictType] = self.config[f"{ReportDomain.name}_{self.configPrefix}_testsuites"]
+			allTestsuites: Dict[str, report_DictType] = sphinxConfiguration[f"{ReportDomain.name}_{cls.configPrefix}_testsuites"]
 		except (KeyError, AttributeError) as ex:
-			raise ReportExtensionError(f"Configuration option '{ReportDomain.name}_{self.configPrefix}_testsuites' is not configured.") from ex
+			raise ReportExtensionError(f"Configuration option '{variableName}' is not configured.") from ex
 
-		try:
-			testsuiteConfiguration = allTestsuites[self._reportID]
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites: No configuration found for '{self._reportID}'.") from ex
+		# try:
+		# 	testsuiteConfiguration = allTestsuites[self._reportID]
+		# except KeyError as ex:
+		# 	raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites: No configuration found for '{self._reportID}'.") from ex
 
-		try:
-			self._xmlReport = Path(testsuiteConfiguration["xml_report"])
-		except KeyError as ex:
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites:{self._reportID}.xml_report: Configuration is missing.") from ex
+		for reportID, testSummary in allTestsuites.items():
+			summaryName = f"conf.py: {variableName}:[{reportID}]"
 
-		if not self._xmlReport.exists():
-			raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{self.configPrefix}_testsuites:{self._reportID}.xml_report: Unittest report file '{self._xmlReport}' doesn't exist.") from FileNotFoundError(self._xmlReport)
+			try:
+				xmlReport = Path(testSummary["xml_report"])
+			except KeyError as ex:
+				raise ReportExtensionError(f"{summaryName}.xml_report: Configuration is missing.") from ex
+
+			if not xmlReport.exists():
+				raise ReportExtensionError(f"{summaryName}.xml_report: Unittest report file '{xmlReport}' doesn't exist.") from FileNotFoundError(xmlReport)
+
+			cls._testSummaries[reportID] = {
+				"xml_report": xmlReport
+			}
 
 	def _GenerateTestSummaryTable(self) -> nodes.table:
 		# Create a table and table header with 8 columns
-		table, tableGroup = self._PrepareTable(
+		columns = [
+			("Testsuite / Testcase", None, 500),
+			("Testcases", None, 100),
+			("Skipped", None, 100),
+			("Errored", None, 100),
+			("Failed", None, 100),
+			("Passed", None, 100),
+			("Assertions", None, 100),
+			("Runtime (HH:MM:SS.sss)", None, 100),
+		]
+
+		# If assertions shouldn't be displayed, remove column from columns list
+		if self._noAssertions:
+			columns.pop(6)
+
+		table, tableGroup = self._CreateTableHeader(
 			identifier=self._reportID,
-			columns=[
-				("Testsuite / Testcase", None, 500),
-				("Testcases", None, 100),
-				("Skipped", None, 100),
-				("Errored", None, 100),
-				("Failed", None, 100),
-				("Passed", None, 100),
-				("Assertions", None, 100),
-				("Runtime (HH:MM:SS.sss)", None, 100),
-			],
+			columns=columns,
 			classes=["report-unittest-table"]
 		)
 		tableBody = nodes.tbody()
@@ -120,15 +167,26 @@ class UnittestSummary(BaseDirective):
 			for key in sorted(d.keys()):
 				yield d[key]
 
-		def stateToSymbol(state: TestcaseState) -> str:
-			if state is TestcaseState.Passed:
+		def convertTestcaseStatusToSymbol(state: TestcaseStatus) -> str:
+			if state is TestcaseStatus.Passed:
 				return "✅"
-			elif state is TestcaseState.Unknown:
+			elif state is TestcaseStatus.Unknown:
 				return "❓"
 			else:
 				return "❌"
 
-		def timeformat(delta: timedelta) -> str:
+		def convertTestsuiteStatusToSymbol(state: TestsuiteStatus) -> str:
+			if state is TestsuiteStatus.Passed:
+				return "✅"
+			elif state is TestsuiteStatus.Unknown:
+				return "❓"
+			else:
+				return "❌"
+
+		def formatTimedelta(delta: timedelta) -> str:
+			if delta is None:
+				return ""
+
 			# Compute by hand, because timedelta._to_microseconds is not officially documented
 			microseconds = (delta.days * 86_400 + delta.seconds) * 1_000_000 + delta.microseconds
 			milliseconds = (microseconds + 500) // 1000
@@ -142,19 +200,20 @@ class UnittestSummary(BaseDirective):
 				renderTestsuite(tableBody, ts, 0)
 
 		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
-			state = stateToSymbol(testsuite._state)
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testsuite.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Tests}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}")),
-				nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{timeformat(testsuite.Time)}")),
-				classes=["report-unittest-table-row"],
-			)
+			state = convertTestsuiteStatusToSymbol(testsuite._status)
+
+			tableRow = nodes.row("", classes=["report-unittest-table-row", "report-testsuite"])
+			tableBody += tableRow
+
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testsuite.Name}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.TestcaseCount}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}"))
+			if not self._noAssertions:
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{formatTimedelta(testsuite.TotalDuration)}"))
 
 			for ts in sortedValues(testsuite._testsuites):
 				renderTestsuite(tableBody, ts, level + 1)
@@ -163,62 +222,55 @@ class UnittestSummary(BaseDirective):
 				renderTestcase(tableBody, testcase, level + 1)
 
 		def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
-			state = stateToSymbol(testcase._state)
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"{'  '*level}{state}{testcase.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Covered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"")),  # {testsuite.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{testcase.Assertions}")),
-				nodes.entry("", nodes.paragraph(text=f"{timeformat(testcase.Time)}")),
-				classes=["report-unittest-table-row"],
-			)
+			state = convertTestcaseStatusToSymbol(testcase._status)
 
-			for test in sortedValues(testcase._tests):
-				state = stateToSymbol(test._state)
-				tableBody += nodes.row(
-					"",
-					nodes.entry("", nodes.paragraph(text=f"{'  '*(level+1)}{state}{test.Name}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Expected}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"")),  # {test.Coverage :.1%}")),
-					classes=["report-unittest-table-row"],
-				)
+			tableRow =	nodes.row("", classes=["report-unittest-table-row", "report-testcase"])
+			tableBody += tableRow
+
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testcase.Name}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Expected}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Covered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			if not self._noAssertions:
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{testcase.AssertionCount}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{formatTimedelta(testcase.TotalDuration)}"))
 
 		renderRoot(tableBody, self._testsuite)
 
 		# # Add a summary row
-		# tableBody += nodes.row(
-		# 	"",
-		# 	nodes.entry("", nodes.paragraph(text=f"Overall ({self._testsuite.FileCount} files):")),
-		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Expected}")),
-		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Covered}")),
-		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Uncovered}")),
-		# 	nodes.entry("", nodes.paragraph(text=f"{self._testsuite.Coverage:.1%}"),
-		# 							# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
-		# 							),
-		# 	classes=["report-unittest-summary-row"]
-		# )
 
 		return table
 
 	def run(self) -> List[nodes.Node]:
 		self._CheckOptions()
-		self._CheckConfiguration()
 
 		# Assemble a list of Python source files
-		analyzer = Analyzer(self._xmlReport)
-		self._testsuite = analyzer.Convert()
+		try:
+			doc = Document(self._xmlReport, parse=True)
+		except Exception as ex:
+			logger = logging.getLogger(__name__)
+			logger.error(f"Caught {ex.__class__.__name__} when reading and parsing '{self._xmlReport}'.\n  {ex}")
+			return []
+
+		doc.Aggregate()
+
+		try:
+			self._testsuite = doc.ToTestsuiteSummary()
+		except Exception as ex:
+			logger = logging.getLogger(__name__)
+			logger.error(f"Caught {ex.__class__.__name__} when converting to a TestsuiteSummary for JUnit document '{self._xmlReport}'.\n  {ex}")
+			return []
+
 		self._testsuite.Aggregate()
 
-		container = nodes.container()
-		container += self._GenerateTestSummaryTable()
+		try:
+			container = nodes.container()
+			container += self._GenerateTestSummaryTable()
+		except Exception as ex:
+			logger = logging.getLogger(__name__)
+			logger.error(f"Caught {ex.__class__.__name__} when generating the document structure for JUnit document '{self._xmlReport}'.\n  {ex}")
+			return []
 
 		return [container]

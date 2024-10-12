@@ -43,23 +43,24 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2024, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.6.0"
+__version__ =   "0.7.0"
 __keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate"]
 
-from hashlib              import md5
-from pathlib              import Path
-from typing               import Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable
+from hashlib               import md5
+from pathlib               import Path
+from typing                import TYPE_CHECKING, Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable
 
-from docutils             import nodes
-from sphinx.addnodes      import pending_xref
-from sphinx.application   import Sphinx
-from sphinx.builders      import Builder
-from sphinx.domains       import Domain
-from sphinx.environment   import BuildEnvironment
-from pyTooling.Decorators import export
+from docutils              import nodes
+from sphinx.addnodes       import pending_xref
+from sphinx.application    import Sphinx
+from sphinx.builders       import Builder
+from sphinx.config         import Config
+from sphinx.domains        import Domain
+from sphinx.environment    import BuildEnvironment
+from pyTooling.Decorators  import export
+from pyTooling.Common      import readResourceFile
 
-from .                    import static as ResourcePackage
-from .Common              import ReadResourceFile
+from sphinx_reports import static as ResourcePackage
 
 
 @export
@@ -69,7 +70,12 @@ class ReportDomain(Domain):
 
 	.. rubric:: New directives:
 
-	* :rst:dir:`doc-coverage`
+	* :rst:dir:`report:code-coverage`
+	* :rst:dir:`report:code-coverage-legend`
+	* :rst:dir:`report:doc-coverage`
+	* :rst:dir:`report:doc-coverage-legend`
+	* :rst:dir:`report:dependency-table`
+	* :rst:dir:`report:unittest-summary`
 
 	.. rubric:: New roles:
 
@@ -83,9 +89,9 @@ class ReportDomain(Domain):
 
 	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:
 
-	* ``report_unittest_testsuites``
 	* ``report_codecov_packages``
 	* ``report_doccov_packages``
+	* ``report_unittest_testsuites``
 
 	"""
 
@@ -95,15 +101,19 @@ class ReportDomain(Domain):
 	dependencies: List[str] = [
 	]  #: A list of other extensions this domain depends on.
 
-	from sphinx_reports.CodeCoverage import CodeCoverage
-	from sphinx_reports.DocCoverage  import DocStrCoverage
+	from sphinx_reports.CodeCoverage import CodeCoverage, CodeCoverageLegend, ModuleCoverage
+	from sphinx_reports.DocCoverage  import DocStrCoverage, DocCoverageLegend
+	from sphinx_reports.Dependency   import DependencyTable
 	from sphinx_reports.Unittest     import UnittestSummary
 
 	directives = {
-		"code-coverage":    CodeCoverage,
-		"dependecy":        DocStrCoverage,
-		"doc-coverage":     DocStrCoverage,
-		"unittest-summary": UnittestSummary,
+		"code-coverage":        CodeCoverage,
+		"code-coverage-legend": CodeCoverageLegend,
+		"module-coverage":      ModuleCoverage,
+		"doc-coverage":         DocStrCoverage,
+		"doc-coverage-legend":  DocCoverageLegend,
+		"dependency-table":     DependencyTable,
+		"unittest-summary":     UnittestSummary,
 	}  #: A dictionary of all directives in this domain.
 
 	roles = {
@@ -114,19 +124,58 @@ class ReportDomain(Domain):
 		# LibraryIndex,
 	]  #: A list of all indices in this domain.
 
+	from sphinx_reports.CodeCoverage import CodeCoverageBase
+	from sphinx_reports.DocCoverage  import DocCoverageBase
+	from sphinx_reports.Dependency   import DependencyTable
+	from sphinx_reports.Unittest     import UnittestSummary
+
 	configValues: Dict[str, Tuple[Any, str, Any]] = {
-		**DocStrCoverage.configValues,
-		**CodeCoverage.configValues,
+		**CodeCoverageBase.configValues,
+		**DocCoverageBase.configValues,
 		**UnittestSummary.configValues,
+		**DependencyTable.configValues,
 	}  #: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))
 
+	del CodeCoverageBase
+	del CodeCoverage
+	del CodeCoverageLegend
+	del ModuleCoverage
+	del DocCoverageBase
+	del DocStrCoverage
+	del DocCoverageLegend
+	del DependencyTable
+	del UnittestSummary
+
 	initial_data = {
-		"reports": {}
+		# "reports": {}
 	}  #: A dictionary of all global data fields used by this domain.
 
-	@property
-	def Reports(self) -> Dict[str, Any]:
-		return self.data["reports"]
+	# @property
+	# def Reports(self) -> Dict[str, Any]:
+	# 	return self.data["reports"]
+
+	@staticmethod
+	def CheckConfigurationVariables(sphinxApplication: Sphinx, config: Config) -> None:
+		"""
+		Call back for Sphinx ``config-inited`` event.
+
+		This callback will verify configuration variables used by that domain.
+
+		.. seealso::
+
+		   Sphinx *builder-inited* event
+		     See https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events
+
+		:param sphinxApplication: The Sphinx application.
+		:param config:            Sphinx configuration parsed from ``conf.py``.
+		"""
+		from sphinx_reports.CodeCoverage import CodeCoverageBase
+		from sphinx_reports.DocCoverage  import DocCoverageBase
+		from sphinx_reports.Unittest     import UnittestSummary
+
+		CodeCoverageBase.CheckConfiguration(sphinxApplication, config)
+		DocCoverageBase.CheckConfiguration(sphinxApplication, config)
+		UnittestSummary.CheckConfiguration(sphinxApplication, config)
 
 	@staticmethod
 	def AddCSSFiles(sphinxApplication: Sphinx) -> None:
@@ -149,7 +198,7 @@ class ReportDomain(Domain):
 
 		# Read the CSS content from package resources and hash it
 		cssFilename = "sphinx-reports.css"
-		cssContent = ReadResourceFile(ResourcePackage, cssFilename)
+		cssContent = readResourceFile(ResourcePackage, cssFilename)
 
 		# Compute md5 hash of CSS file
 		hash = md5(cssContent.encode("utf8")).hexdigest()
@@ -171,7 +220,7 @@ class ReportDomain(Domain):
 		"""
 		Call back for Sphinx ``builder-inited`` event.
 
-		This callback will read the configuration variable ``vhdl_designs`` and parse the found VHDL source files.
+		This callback will read the linked report files
 
 		.. seealso::
 
@@ -180,13 +229,16 @@ class ReportDomain(Domain):
 
 		:param sphinxApplication: The Sphinx application.
 		"""
-		print(f"Callback: builder-inited -> ReadReports")
-		print(f"[REPORT] Reading reports ...")
+		from sphinx_reports.CodeCoverage import CodeCoverageBase
+		from sphinx_reports.Unittest     import UnittestSummary
 
+		CodeCoverageBase.ReadReports(sphinxApplication)
+		UnittestSummary.ReadReports(sphinxApplication)
 
 	callbacks: Dict[str, List[Callable]] = {
-		"builder-inited": [AddCSSFiles, ReadReports],
-	}  #: A dictionary of all `events/callbacks <https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events>`__ used by this domain.
+		"config-inited":    [CheckConfigurationVariables],    # (app, config)
+		"builder-inited":   [AddCSSFiles, ReadReports],       # (app)
+	}  #: A dictionary of all events/callbacks <https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events>`__ used by this domain.
 
 	def resolve_xref(
 		self,
@@ -201,15 +253,16 @@ class ReportDomain(Domain):
 		raise NotImplementedError()
 
 
-class setup_ReturnType(TypedDict):
-	version: str
-	env_version: int
-	parallel_read_safe: bool
-	parallel_write_safe: bool
+if TYPE_CHECKING:
+	class setup_ReturnType(TypedDict):
+		version: str
+		env_version: int
+		parallel_read_safe: bool
+		parallel_write_safe: bool
 
 
 @export
-def setup(sphinxApplication: Sphinx) -> setup_ReturnType:
+def setup(sphinxApplication: Sphinx) -> "setup_ReturnType":
 	"""
 	Extension setup function registering the ``report`` domain in Sphinx.
 
