@@ -59,6 +59,9 @@ from sphinx.domains        import Domain
 from sphinx.environment    import BuildEnvironment
 from pyTooling.Decorators  import export
 from pyTooling.Common      import readResourceFile
+from sphinx.util.logging import getLogger
+
+from sphinx_reports.Common import ReportExtensionError
 
 from sphinx_reports import static as ResourcePackage
 
@@ -173,9 +176,18 @@ class ReportDomain(Domain):
 		from sphinx_reports.DocCoverage  import DocCoverageBase
 		from sphinx_reports.Unittest     import UnittestSummary
 
-		CodeCoverageBase.CheckConfiguration(sphinxApplication, config)
-		DocCoverageBase.CheckConfiguration(sphinxApplication, config)
-		UnittestSummary.CheckConfiguration(sphinxApplication, config)
+		checkConfigurations = (
+			CodeCoverageBase.CheckConfiguration,
+			DocCoverageBase.CheckConfiguration,
+			UnittestSummary.CheckConfiguration,
+		)
+
+		for checkConfiguration in checkConfigurations:
+			try:
+				checkConfiguration(sphinxApplication, config)
+			except ReportExtensionError as ex:
+				logger = getLogger(__name__)
+				logger.error(f"Caught {ex.__class__.__name__} when checking configuration variables.\n  {ex}")
 
 	@staticmethod
 	def AddCSSFiles(sphinxApplication: Sphinx) -> None:

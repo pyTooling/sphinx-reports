@@ -271,7 +271,11 @@ class CodeCoverage(CodeCoverageBase):
 
 		self._noBranchCoverage = "no-branch-coverage" in self.options
 
-		packageConfiguration = self._packageConfigurations[self._packageID]
+		try:
+			packageConfiguration = self._packageConfigurations[self._packageID]
+		except KeyError as ex:
+			raise ReportExtensionError(f"No configuration for '{self._packageID}'") from ex
+
 		self._packageName = packageConfiguration["name"]
 		self._jsonReport =  packageConfiguration["json_report"]
 		self._failBelow =   packageConfiguration["fail_below"]
@@ -372,11 +376,11 @@ class CodeCoverage(CodeCoverageBase):
 		def handlePackage(package: PackageCoverage) -> None:
 			for pack in package._packages.values():
 				if handlePackage(pack):
-					return True
+					return
 
 			for module in package._modules.values():
 				if handleModule(module):
-					return True
+					return
 
 		def handleModule(module: ModuleCoverage) -> None:
 			doc = new_document("dummy")
@@ -392,12 +396,18 @@ class CodeCoverage(CodeCoverageBase):
 			self.env.titles[docname] = title
 			self.env.longtitles[docname] = title
 
-			return True
+			return
 
 		handlePackage(self._coverage)
 
 	def run(self) -> List[nodes.Node]:
-		self._CheckOptions()
+		container = nodes.container()
+
+		try:
+			self._CheckOptions()
+		except ReportExtensionError as ex:
+			message = f"Caught {ex.__class__.__name__} when checking options for directive '{self.directiveName}'."
+			return self._internalError(container, __name__, message, ex)
 
 		# Assemble a list of Python source files
 		analyzer = Analyzer(self._packageName, self._jsonReport)
@@ -406,7 +416,6 @@ class CodeCoverage(CodeCoverageBase):
 
 		self._CreatePages()
 
-		container = nodes.container()
 		container += self._GenerateCoverageTable()
 
 		docName = self.env.docname
@@ -481,7 +490,11 @@ class CodeCoverageLegend(CodeCoverageBase):
 
 		self._style = self._ParseLegendStyle("style", LegendStyle.horizontal_table)
 
-		packageConfiguration = self._packageConfigurations[self._packageID]
+		try:
+			packageConfiguration = self._packageConfigurations[self._packageID]
+		except KeyError as ex:
+			raise ReportExtensionError(f"No configuration for '{self._packageID}'") from ex
+
 		self._levels = packageConfiguration["levels"]
 
 	def _CreateHorizontalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
@@ -534,9 +547,14 @@ class CodeCoverageLegend(CodeCoverageBase):
 		return table
 
 	def run(self) -> List[nodes.Node]:
-		self._CheckOptions()
-
 		container = nodes.container()
+
+		try:
+			self._CheckOptions()
+		except ReportExtensionError as ex:
+			message = f"Caught {ex.__class__.__name__} when checking options for directive '{self.directiveName}'."
+			return self._internalError(container, __name__, message, ex)
+
 		if LegendStyle.Table in self._style:
 			if LegendStyle.Horizontal in self._style:
 				container += self._CreateHorizontalLegendTable(identifier=f"{self._packageID}-legend", classes=["report-codecov-legend"])
@@ -578,12 +596,22 @@ class ModuleCoverage(CodeCoverageBase):
 
 		self._moduleName = self._ParseStringOption("module")
 
-		packageConfiguration = self._packageConfigurations[self._packageID]
+		try:
+			packageConfiguration = self._packageConfigurations[self._packageID]
+		except KeyError as ex:
+			raise ReportExtensionError(f"No configuration for '{self._packageID}'") from ex
+
 		self._packageName = packageConfiguration["name"]
 		self._jsonReport =  packageConfiguration["json_report"]
 
 	def run(self) -> List[nodes.Node]:
-		self._CheckOptions()
+		container = nodes.container()
+
+		try:
+			self._CheckOptions()
+		except ReportExtensionError as ex:
+			message = f"Caught {ex.__class__.__name__} when checking options for directive '{self.directiveName}'."
+			return self._internalError(container, __name__, message, ex)
 
 		# Assemble a list of Python source files
 		analyzer = Analyzer(self._packageName, self._jsonReport)
@@ -591,8 +619,13 @@ class ModuleCoverage(CodeCoverageBase):
 
 		sourceFile = "../../sphinx_reports/__init__.py"
 
-		container = nodes.container()
 		container += nodes.paragraph(text=f"Code coverage of {self._moduleName}")
+
+		# lexer = get_lexer_by_name("python", tabsize=2)
+		# tokens = lex(code, lexer)
+
+		# htmlFormatter = HtmlFormatter(linenos=True, cssclass="source")
+		# highlight()
 
 		location = self.state_machine.get_source_and_line(self.lineno)
 		rel_filename, filename = self.env.relfn2path(sourceFile)
