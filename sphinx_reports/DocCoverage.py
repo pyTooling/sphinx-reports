@@ -330,7 +330,13 @@ class DocCoverage(DocCoverageBase):
 @export
 class DocStrCoverage(DocCoverage):
 	def run(self) -> List[nodes.Node]:
-		self._CheckOptions()
+		container = nodes.container()
+
+		try:
+			self._CheckOptions()
+		except ReportExtensionError as ex:
+			message = f"Caught {ex.__class__.__name__} when checking options for directive '{self.directiveName}'."
+			return self._internalError(container, __name__, message, ex)
 
 		# Assemble a list of Python source files
 		docStrCov = DocStrCovAnalyzer(self._packageName, self._directory)
@@ -339,7 +345,6 @@ class DocStrCoverage(DocCoverage):
 		# self._coverage.CalculateCoverage()
 		self._coverage.Aggregate()
 
-		container = nodes.container()
 		container += self._GenerateCoverageTable()
 
 		return [container]
@@ -414,9 +419,14 @@ class DocCoverageLegend(DocCoverageBase):
 		return table
 
 	def run(self) -> List[nodes.Node]:
-		self._CheckOptions()
-
 		container = nodes.container()
+
+		try:
+			self._CheckOptions()
+		except ReportExtensionError as ex:
+			message = f"Caught {ex.__class__.__name__} when checking options for directive '{self.directiveName}'."
+			return self._internalError(container, __name__, message, ex)
+
 		if LegendStyle.Table in self._style:
 			if LegendStyle.Horizontal in self._style:
 				container += self._CreateHorizontalLegendTable(identifier=f"{self._packageID}-legend", classes=["report-doccov-legend"])

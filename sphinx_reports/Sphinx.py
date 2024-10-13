@@ -37,6 +37,7 @@ from typing import Optional as Nullable, Tuple, List
 from docutils              import nodes
 from sphinx.directives     import ObjectDescription
 from pyTooling.Decorators  import export
+from sphinx.util.logging   import getLogger
 
 from sphinx_reports.Common import ReportExtensionError, LegendStyle
 
@@ -174,3 +175,11 @@ class BaseDirective(ObjectDescription):
 			tableHeader += tableRow
 
 		return table, tableGroup
+
+	def _internalError(self, container: nodes.container, location: str, message: str, exception: Exception) -> List[nodes.Node]:
+		logger = getLogger(location)
+		logger.error(f"{message}\n  {exception}")
+
+		container += nodes.paragraph(text=message)
+
+		return [container]

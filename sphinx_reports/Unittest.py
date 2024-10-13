@@ -42,7 +42,6 @@ from pyEDAA.Reports.Unittesting        import TestcaseStatus, TestsuiteStatus
 from pyEDAA.Reports.Unittesting.JUnit  import Testsuite, TestsuiteSummary, Testcase, Document
 from sphinx.application                import Sphinx
 from sphinx.config                     import Config
-from sphinx.util.logging               import getLogger
 
 from sphinx_reports.Common             import ReportExtensionError
 from sphinx_reports.Sphinx             import strip, BaseDirective
@@ -245,33 +244,35 @@ class UnittestSummary(BaseDirective):
 		return table
 
 	def run(self) -> List[nodes.Node]:
-		self._CheckOptions()
+		container = nodes.container()
+
+		try:
+			self._CheckOptions()
+		except ReportExtensionError as ex:
+			message = f"Caught {ex.__class__.__name__} when checking options for directive '{self.directiveName}'."
+			return self._internalError(container, __name__, message, ex)
 
 		# Assemble a list of Python source files
 		try:
-			doc = Document(self._xmlReport, parse=True)
+			doc = Document(self._xmlReport, analyzeAndConvert=True)
 		except Exception as ex:
-			logger = getLogger(__name__)
-			logger.error(f"Caught {ex.__class__.__name__} when reading and parsing '{self._xmlReport}'.\n  {ex}")
-			return []
+			message = f"Caught {ex.__class__.__name__} when reading and parsing '{self._xmlReport}'."
+			return self._internalError(container, __name__, message, ex)
 
 		doc.Aggregate()
 
 		try:
 			self._testsuite = doc.ToTestsuiteSummary()
 		except Exception as ex:
-			logger = getLogger(__name__)
-			logger.error(f"Caught {ex.__class__.__name__} when converting to a TestsuiteSummary for JUnit document '{self._xmlReport}'.\n  {ex}")
-			return []
+			message = f"Caught {ex.__class__.__name__} when converting to a TestsuiteSummary for JUnit document '{self._xmlReport}'."
+			return self._internalError(container, __name__, message, ex)
 
 		self._testsuite.Aggregate()
 
 		try:
-			container = nodes.container()
 			container += self._GenerateTestSummaryTable()
 		except Exception as ex:
-			logger = getLogger(__name__)
-			logger.error(f"Caught {ex.__class__.__name__} when generating the document structure for JUnit document '{self._xmlReport}'.\n  {ex}")
-			return []
+			message = f"Caught {ex.__class__.__name__} when generating the document structure for JUnit document '{self._xmlReport}'."
+			return self._internalError(container, __name__, message, ex)
 
 		return [container]
