@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation Coverage &mdash; sphinx_reports 0.8.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=77553476" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.e44b1595f1e09d5e109d001839ba3f42.css?v=0b41afa8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=486e5634"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sphinx_reports" href="../sphinx_reports/sphinx_reports.html" />
+    <link rel="prev" title="Code Coverage" href="../CodeCov/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Dependency.html">Dependency Trees</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation Coverage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-configuration">Quick Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-document">Example Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directives">Directives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#directive-report-doc-coverage"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">report:doc-coverage::</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-doc-coverage-packageid"><code class="docutils literal notranslate"><span class="pre">:packageid:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-doc-coverage-legend"><code class="docutils literal notranslate"><span class="pre">:legend:</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#directive-report-doc-coverage-legend"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">report:doc-coverage-legend::</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-doc-coverage-legend-style"><code class="docutils literal notranslate"><span class="pre">:style:</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#roles">Roles</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Documentation Coverage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/DocCov/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="documentation-coverage">
+<span id="doccov"></span><h1>Documentation Coverage<a class="headerlink" href="#documentation-coverage" title="Link to this heading"></a></h1>
+<p><a class="reference internal" href="../Glossary.html#term-Documentation-Coverage"><span class="xref std std-term">Documentation coverage</span></a> counts how many publicly accessible members (packages, modules, classes, methods,
+functions, variables, …) are documented using a Python <a class="reference internal" href="../Glossary.html#term-doc-string"><span class="xref std std-term">doc-string</span></a>. Based on the count of possibly documented
+public members and the actual number of non-empty <em>doc-strings</em>, a percentage of documentation coverage can be computed.</p>
+<p>Documentation coverage is a measure of code quality, which expresses how well documented (completeness or documentation,
+but not necessarily quality/helpfulness of documentation) source code is. Well documented code helps to use and maintain
+the existing code base. It also allows for automated documentation generation.</p>
+<p>Depending on quality standards, a coverage goal (or limit) like 90% might be defined, which considers an overall
+documentation coverage less then 90% as FAILED. Such a limit might be enforced by maintainers or merge rules (via CI
+jobs). This ensures new code introduced by merge requests (pull requests) cannot decrease the once achieved overall
+project’s code quality.</p>
+<section id="quick-configuration">
+<span id="doccov-quick"></span><h2>Quick Configuration<a class="headerlink" href="#quick-configuration" title="Link to this heading"></a></h2>
+<p>See the <a class="reference internal" href="../Overview.html#over"><span class="std std-ref">overview page</span></a> on how to setup and enable the Sphinx extension in general.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a quick and minimal configuration. See below detailed explanations.</p>
+</div>
+<ol class="arabic">
+<li><p>Configure one or more Python packages for documentation coverage analysis in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> by adding a new
+‘section’ defining some configuration variables. Each package is identified by an ID, which is later referred to by
+the report directive. Here, the ID is called <code class="docutils literal notranslate"><span class="pre">src</span></code> (dictionary key). Each package needs 4 configuration entries:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Name of the Python package <a class="footnote-reference brackets" href="#pkgnamevspkgdir" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">directory</span></code></dt><dd><p>The directory of the package to analyze.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fail_below</span></code></dt><dd><p>An integer value in range 0..100, for when a documentation coverage is considered FAILED.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">levels</span></code></dt><dd><p>A dictionary of coverage limits, their description and CSS style classes.</p>
+</dd>
+</dl>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># Sphinx-reports - DocCov</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">report_doccov_packages</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span>       <span class="s2">&quot;myPackage&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;directory&quot;</span><span class="p">:</span>  <span class="s2">&quot;../myPackage&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;fail_below&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+      <span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="mi">30</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below30&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;almost undocumented&quot;</span><span class="p">},</span>
+         <span class="mi">50</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below50&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;poorly documented&quot;</span><span class="p">},</span>
+         <span class="mi">80</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below80&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;roughly documented&quot;</span><span class="p">},</span>
+         <span class="mi">90</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below90&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;well documented&quot;</span><span class="p">},</span>
+         <span class="mi">100</span><span class="p">:</span>     <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below100&quot;</span><span class="p">,</span> <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;excellent documented&quot;</span><span class="p">},</span>
+         <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-error&quot;</span><span class="p">,</span>    <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;internal error&quot;</span><span class="p">},</span>
+      <span class="p">},</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add the <a class="reference internal" href="#directive-report-doc-coverage" title="report:doc-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:doc-coverage</span></code></a> directive into your Restructured Text (ReST) document.</p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">report:doc-coverage</span><span class="p">::</span>
+   <span class="nc">:packageid:</span> src
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="example-document">
+<span id="doccov-example"></span><h2>Example Document<a class="headerlink" href="#example-document" title="Link to this heading"></a></h2>
+<p>The following <code class="docutils literal notranslate"><span class="pre">DocCoverage</span></code> document is an example on how this documentation uses the <a class="reference internal" href="#directive-report-doc-coverage" title="report:doc-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:doc-coverage</span></code></a>
+directive. The first file consists of three parts: At first, a headline; at second second a short introduction paragraph
+and at third, the report generating directive. The second file shows how to integrate that document into the navigation
+bar.</p>
+<div class="admonition-file-doccoverage-rst admonition">
+<p class="admonition-title"><code class="file docutils literal notranslate"><span class="pre">DocCoverage.rst</span></code></p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="gh">Documentation Coverage Report</span>
+<span class="gh">#############################</span>
+
+Documentation coverage generated by <span class="s">`docstr-coverage </span><span class="si">&lt;https://github.com/HunterMcGushion/docstr_coverage&gt;</span><span class="s">`__</span>.
+
+<span class="p">..</span> <span class="ow">report:doc-coverage</span><span class="p">::</span>
+   <span class="nc">:packageid:</span> src
+</pre></div>
+</div>
+</div>
+<div class="admonition-file-index-rst admonition">
+<p class="admonition-title"><code class="file docutils literal notranslate"><span class="pre">index.rst</span></code></p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:caption:</span> References and Reports
+   <span class="nc">:hidden:</span>
+
+   sphinx_reports/sphinx_reports
+   unittests/index
+   coverage/index
+   Doc. Coverage Report &lt;DocCoverage&gt;
+   Static Type Check Report ➚ &lt;typing/index&gt;
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:caption:</span> Appendix
+   <span class="nc">:hidden:</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="directives">
+<span id="doccov-directives"></span><h2>Directives<a class="headerlink" href="#directives" title="Link to this heading"></a></h2>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-report-doc-coverage">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">report:doc-coverage::</span></span><a class="headerlink" href="#directive-report-doc-coverage" title="Link to this definition"></a></dt>
+<dd><p>Add a table summarizing the documentation coverage per Python source code file (packages and/or modules).</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-doc-coverage-packageid">
+<span class="sig-name descname"><span class="pre">:packageid:</span></span><a class="headerlink" href="#directive-option-report-doc-coverage-packageid" title="Link to this definition"></a></dt>
+<dd><p>An identifier referencing a dictionary entry in the configuration variable <code class="docutils literal notranslate"><span class="pre">report_doccov_packages</span></code> defined in
+<code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-doc-coverage-legend">
+<span class="sig-name descname"><span class="pre">:legend:</span></span><a class="headerlink" href="#directive-option-report-doc-coverage-legend" title="Link to this definition"></a></dt>
+<dd><p>Describes if and where to add a legend. Possible values: <code class="docutils literal notranslate"><span class="pre">no_legend</span></code>, <code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, <code class="docutils literal notranslate"><span class="pre">both</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-report-doc-coverage-legend">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">report:doc-coverage-legend::</span></span><a class="headerlink" href="#directive-report-doc-coverage-legend" title="Link to this definition"></a></dt>
+<dd><dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-doc-coverage-legend-style">
+<span class="sig-name descname"><span class="pre">:style:</span></span><a class="headerlink" href="#directive-option-report-doc-coverage-legend-style" title="Link to this definition"></a></dt>
+<dd><p>Specifies the legend style. Default is <code class="docutils literal notranslate"><span class="pre">horizontal-table</span></code>.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">default</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">horizontal-table</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vertical-table</span></code></p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="roles">
+<span id="doccov-roles"></span><h2>Roles<a class="headerlink" href="#roles" title="Link to this heading"></a></h2>
+<p><em>There are no roles defined.</em></p>
+<hr class="docutils" />
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="pkgnamevspkgdir" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Toplevel Python packages can reside in a directory not matching the package name. This is possible
+because the toplevel package name is set in the package installation description. This is not good practice, but
+possible and unfortunately widely used. E.g. <code class="docutils literal notranslate"><span class="pre">src</span></code> as directory name. See setuptools, etc. for more details.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../CodeCov/index.html" class="btn btn-neutral float-left" title="Code Coverage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../sphinx_reports/sphinx_reports.html" class="btn btn-neutral float-right" title="sphinx_reports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 14.10.2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

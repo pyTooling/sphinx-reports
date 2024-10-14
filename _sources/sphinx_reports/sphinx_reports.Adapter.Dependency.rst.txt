@@ -1,0 +1,38 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=================================
+sphinx_reports.Adapter.Dependency
+=================================
+
+.. automodule:: sphinx_reports.Adapter.Dependency
+
+
+.. currentmodule:: sphinx_reports.Adapter.Dependency
+
+
+**Classes**
+
+- :py:class:`DependencyScanner`:
+  Undocumented.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: DependencyScanner
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DependencyScanner
+      :parts: 1
