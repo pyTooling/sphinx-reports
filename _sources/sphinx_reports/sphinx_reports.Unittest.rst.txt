@@ -1,0 +1,38 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=======================
+sphinx_reports.Unittest
+=======================
+
+.. automodule:: sphinx_reports.Unittest
+
+
+.. currentmodule:: sphinx_reports.Unittest
+
+
+**Classes**
+
+- :py:class:`UnittestSummary`:
+  This directive will be replaced by a table representing unit test results.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: UnittestSummary
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: UnittestSummary
+      :parts: 1

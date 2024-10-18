@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx-reports Documentation &mdash; sphinx_reports 0.7.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=77553476" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-reports.e44b1595f1e09d5e109d001839ba3f42.css?v=0b41afa8" />
+      <link rel="stylesheet" type="text/css" href="_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="_static/icon.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=6dfdf7c3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation/Updates" href="Installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/Dependency.html">Dependency Trees</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coverage/index.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">sphinx-reports Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><p><a class="reference external" href="https://github.com/pyTooling/sphinx-reports"><img alt="Sourcecode on GitHub" src="https://img.shields.io/badge/pyTooling-sphinx--reports-323131.svg?logo=github&amp;longCache=true" style="height: 22px;" /></a> <a class="reference external" href="https://github.com/pyTooling/sphinx-reports/tags"><img alt="GitHub tag (latest SemVer incl. pre-release" src="https://img.shields.io/github/v/tag/pyTooling/sphinx-reports?logo=GitHub&amp;include_prereleases" style="height: 22px;" /></a> <a class="reference external" href="https://github.com/pyTooling/sphinx-reports/releases/latest"><img alt="GitHub release (latest SemVer incl. including pre-releases" src="https://img.shields.io/github/v/release/pyTooling/sphinx-reports?logo=GitHub&amp;include_prereleases" style="height: 22px;" /></a> <a class="reference external" href="https://github.com/pyTooling/sphinx-reports/releases"><img alt="GitHub release date" src="https://img.shields.io/github/release-date/pyTooling/sphinx-reports?logo=GitHub" style="height: 22px;" /></a> <br />
+<a class="reference external" href="https://libraries.io/github/pyTooling/sphinx-reports"><img alt="Libraries.io status for latest release" src="https://img.shields.io/librariesio/release/pypi/sphinx-reports" style="height: 22px;" /></a> <a class="reference external" href="https://requires.io/github/pyTooling/sphinx-reports/requirements/?branch=master"><img alt="Requires.io" src="https://img.shields.io/requires/github/pyTooling/sphinx-reports" style="height: 22px;" /></a> <a class="reference external" href="https://github.com/pyTooling/sphinx-reports/network/dependents"><img alt="Dependent repos (via libraries.io)" src="https://img.shields.io/librariesio/dependent-repos/pypi/sphinx-reports" style="height: 22px;" /></a> <br />
+<a class="reference external" href="https://travis-ci.com/pyTooling/sphinx-reports"><img alt="Travis - Build on 'master'" src="https://img.shields.io/travis/com/pyTooling/sphinx-reports?logo=Travis" style="height: 22px;" /></a> <a class="reference external" href="https://pypi.org/project/sphinx-reports/"><img alt="PyPI - Tag" src="https://img.shields.io/pypi/v/sphinx-reports?logo=PyPI" style="height: 22px;" /></a> <a class="reference internal" href="https://img.shields.io/pypi/status/sphinx-reports?logo=PyPI"><img alt="PyPI - Status" src="https://img.shields.io/pypi/status/sphinx-reports?logo=PyPI" style="height: 22px;" /></a> <a class="reference internal" href="https://img.shields.io/pypi/pyversions/sphinx-reports?logo=PyPI"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/sphinx-reports?logo=PyPI" style="height: 22px;" /></a> <br />
+<a class="reference external" href="https://www.codacy.com/manual/pyTooling/sphinx-reports"><img alt="Codacy - Quality" src="https://img.shields.io/codacy/grade/9a89bbc1d2c04a699ea14abea75588c7?logo=codacy" style="height: 22px;" /></a> <a class="reference external" href="https://www.codacy.com/manual/pyTooling/sphinx-reports"><img alt="Codacy - Line Coverage" src="https://img.shields.io/codacy/coverage/9a89bbc1d2c04a699ea14abea75588c7?logo=codacy" style="height: 22px;" /></a> <a class="reference external" href="https://codecov.io/gh/pyTooling/sphinx-reports"><img alt="Codecov - Branch Coverage" src="https://codecov.io/gh/pyTooling/sphinx-reports/branch/master/graph/badge.svg" style="height: 22px;" /></a> <a class="reference external" href="https://libraries.io/github/pyTooling/sphinx-reports/sourcerank"><img alt="Libraries.io SourceRank" src="https://img.shields.io/librariesio/sourcerank/pypi/sphinx-reports" style="height: 22px;" /></a> <br />
+<a class="reference external" href="https://sphinx-reports.readthedocs.io/en/latest/"><img alt="Read the Docs" src="https://img.shields.io/readthedocs/sphinx-reports" style="height: 22px;" /></a> <a class="reference internal" href="https://img.shields.io/badge/Apache%20License,%202.0-bd0000.svg?longCache=true&amp;label=license&amp;logo=Apache&amp;logoColor=D22128"><img alt="License" src="https://img.shields.io/badge/Apache%20License,%202.0-bd0000.svg?longCache=true&amp;label=license&amp;logo=Apache&amp;logoColor=D22128" style="height: 22px;" /></a></p>
+<section id="sphinx-reports-documentation">
+<h1>sphinx-reports Documentation<a class="headerlink" href="#sphinx-reports-documentation" title="Link to this heading"></a></h1>
+<p>The Sphinx extension <cite>sphinx_reports</cite> offers a set of directives to integrate reports and summaries into the
+documentation generated by Sphinx.</p>
+<section id="supported-report-formats">
+<h2>Supported Report Formats<a class="headerlink" href="#supported-report-formats" title="Link to this heading"></a></h2>
+<p>Supported format reports are:</p>
+<ul class="simple">
+<li><p>✅🚧 Unit Test summaries (by <a class="reference external" href="https://github.com/pytest-dev/pytest">pytest</a>)</p>
+<ul>
+<li><p>✅ Summary page (displaying <cite>unittest.xml</cite>)</p></li>
+<li><p>🚧 Show logging, output and error messages.</p></li>
+</ul>
+</li>
+<li><p>🚧 Code coverage (by <a class="reference external" href="https://github.com/nedbat/coveragepy/tree/master">Coverage.py</a>)</p>
+<ul>
+<li><p>✅ Summary page</p></li>
+<li><p>🚧 Highlighted source code</p></li>
+</ul>
+</li>
+<li><p>✅ Documentation coverage (by <a class="reference external" href="https://github.com/HunterMcGushion/docstr_coverage">docstr_coverage</a> (or <cite>interrogate</cite>?))</p></li>
+<li><p>🚧 Dependencies (reading <cite>requirements.txt</cite> files)</p></li>
+</ul>
+<section id="unit-test-summary">
+<h3>Unit Test Summary<a class="headerlink" href="#unit-test-summary" title="Link to this heading"></a></h3>
+<p>🚧 This is a work-in-progress feature. 🚧</p>
+<p><a class="reference internal" href="Unittest/index.html#unittest"><span class="std std-ref">Unit Test Summary</span></a></p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>index: Screen shot here and link to this unitest summary.</p>
+</div>
+</section>
+<section id="code-coverage">
+<h3>Code Coverage<a class="headerlink" href="#code-coverage" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="CodeCov/index.html#codecov"><span class="std std-ref">Code Coverage</span></a> checks if a source code was used during execution. Usually, testcases are run by a testcase execution
+framework like <a class="reference external" href="https://github.com/pytest-dev/pytest">pytest</a>, which also offers to instrument the code for code
+coverage collection using the <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code> plugin. For Python, coverage collection is usually based on
+<a class="reference external" href="https://github.com/nedbat/coveragepy">Coverage.py</a>, which supports statement and branch coverage collection.</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>index: Screen shot here and link to this code coverage report.</p>
+</div>
+</section>
+<section id="documentation-coverage">
+<h3>Documentation coverage<a class="headerlink" href="#documentation-coverage" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="DocCov/index.html#doccov"><span class="std std-ref">Documentation Coverage</span></a> counts how many publicly accessible members are documented using a Python <a class="reference internal" href="Glossary.html#term-doc-string"><span class="xref std std-term">doc-string</span></a>. Based on the
+count of possibly documented public members and the actual number of non-empty <em>doc-strings</em>, a percentage of
+documentation coverage can be computed.</p>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>index: Screen shot here and link to this documentations report.</p>
+</div>
+</section>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h3>
+<p>🚧 This is a planned feature. 🚧</p>
+</section>
+</section>
+<section id="contributors">
+<span id="id4"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://GitHub.com/pyTooling">Patrick Lehmann</a> (Maintainer)</p></li>
+<li><p><a class="reference external" href="https://GitHub.com/pyTooling/sphinx-reports/graphs/contributors">and more…</a></p></li>
+</ul>
+</section>
+<section id="license">
+<span id="id5"></span><h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>This Python package (source code) is licensed under <a class="reference external" href="Code-License.html">Apache License 2.0</a>. <br />
+The accompanying documentation is licensed under <a class="reference external" href="Doc-License.html">Creative Commons - Attribution 4.0 (CC-BY 4.0)</a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Installation.html" class="btn btn-neutral float-right" title="Installation/Updates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 18.10.2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

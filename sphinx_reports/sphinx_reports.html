@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports &mdash; sphinx_reports 0.7.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=77553476" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.e44b1595f1e09d5e109d001839ba3f42.css?v=0b41afa8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=6dfdf7c3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sphinx_reports.Adapter" href="sphinx_reports.Adapter.html" />
+    <link rel="prev" title="Documentation Coverage" href="../DocCov/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Dependency.html">Dependency Trees</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python Class Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Adapter.html">sphinx_reports.Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.CodeCoverage.html">sphinx_reports.CodeCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Common.html">sphinx_reports.Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DataModel.html">sphinx_reports.DataModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Dependency.html">sphinx_reports.Dependency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DocCoverage.html">sphinx_reports.DocCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Sphinx.html">sphinx_reports.Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Unittest.html">sphinx_reports.Unittest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.static.html">sphinx_reports.static</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx_reports.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx_reports.ReportDomain"><code class="docutils literal notranslate"><span class="pre">ReportDomain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.label"><code class="docutils literal notranslate"><span class="pre">ReportDomain.label</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.dependencies"><code class="docutils literal notranslate"><span class="pre">ReportDomain.dependencies</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.directives"><code class="docutils literal notranslate"><span class="pre">ReportDomain.directives</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.roles"><code class="docutils literal notranslate"><span class="pre">ReportDomain.roles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.indices"><code class="docutils literal notranslate"><span class="pre">ReportDomain.indices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.configValues"><code class="docutils literal notranslate"><span class="pre">ReportDomain.configValues</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.initial_data"><code class="docutils literal notranslate"><span class="pre">ReportDomain.initial_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.CheckConfigurationVariables"><code class="docutils literal notranslate"><span class="pre">ReportDomain.CheckConfigurationVariables()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.AddCSSFiles"><code class="docutils literal notranslate"><span class="pre">ReportDomain.AddCSSFiles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.ReadReports"><code class="docutils literal notranslate"><span class="pre">ReportDomain.ReadReports()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.callbacks"><code class="docutils literal notranslate"><span class="pre">ReportDomain.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.resolve_xref"><code class="docutils literal notranslate"><span class="pre">ReportDomain.resolve_xref()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.__init__"><code class="docutils literal notranslate"><span class="pre">ReportDomain.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.add_object_type"><code class="docutils literal notranslate"><span class="pre">ReportDomain.add_object_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.check_consistency"><code class="docutils literal notranslate"><span class="pre">ReportDomain.check_consistency()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.clear_doc"><code class="docutils literal notranslate"><span class="pre">ReportDomain.clear_doc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.dangling_warnings"><code class="docutils literal notranslate"><span class="pre">ReportDomain.dangling_warnings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.data_version"><code class="docutils literal notranslate"><span class="pre">ReportDomain.data_version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.directive"><code class="docutils literal notranslate"><span class="pre">ReportDomain.directive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.enumerable_nodes"><code class="docutils literal notranslate"><span class="pre">ReportDomain.enumerable_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.get_enumerable_node_type"><code class="docutils literal notranslate"><span class="pre">ReportDomain.get_enumerable_node_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.get_full_qualified_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.get_full_qualified_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.get_objects"><code class="docutils literal notranslate"><span class="pre">ReportDomain.get_objects()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.get_type_name"><code class="docutils literal notranslate"><span class="pre">ReportDomain.get_type_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.merge_domaindata"><code class="docutils literal notranslate"><span class="pre">ReportDomain.merge_domaindata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.object_types"><code class="docutils literal notranslate"><span class="pre">ReportDomain.object_types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.process_doc"><code class="docutils literal notranslate"><span class="pre">ReportDomain.process_doc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.process_field_xref"><code class="docutils literal notranslate"><span class="pre">ReportDomain.process_field_xref()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.resolve_any_xref"><code class="docutils literal notranslate"><span class="pre">ReportDomain.resolve_any_xref()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.role"><code class="docutils literal notranslate"><span class="pre">ReportDomain.role()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.setup"><code class="docutils literal notranslate"><span class="pre">ReportDomain.setup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.ReportDomain.data"><code class="docutils literal notranslate"><span class="pre">ReportDomain.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">sphinx_reports</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sphinx_reports/sphinx_reports.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="module-sphinx_reports">
+<span id="sphinx-reports"></span><h1>sphinx_reports<a class="headerlink" href="#module-sphinx_reports" title="Link to this heading"></a></h1>
+<p><strong>A Sphinx domain providing directives to add reports to the Sphinx-based documentation.</strong></p>
+<p>Supported reports:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../DocCov/index.html#doccov"><span class="std std-ref">Documentation Coverage</span></a></p></li>
+<li><p><a class="reference internal" href="../CodeCov/index.html#codecov"><span class="std std-ref">Code Coverage</span></a></p></li>
+<li><p><a class="reference internal" href="../Unittest/index.html#unittest"><span class="std std-ref">Unit Test Summary</span></a></p></li>
+<li><p><a class="reference internal" href="../Dependency.html#dep"><span class="std std-ref">Dependencies</span></a></p></li>
+</ul>
+<p><strong>Submodules</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Adapter.html">sphinx_reports.Adapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.CodeCoverage.html">sphinx_reports.CodeCoverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Common.html">sphinx_reports.Common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.DataModel.html">sphinx_reports.DataModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Dependency.html">sphinx_reports.Dependency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.DocCoverage.html">sphinx_reports.DocCoverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Sphinx.html">sphinx_reports.Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.Unittest.html">sphinx_reports.Unittest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports.static.html">sphinx_reports.static</a></li>
+</ul>
+</div>
+<p><strong>Functions</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sphinx_reports.setup" title="sphinx_reports.setup"><code class="xref py py-func docutils literal notranslate"><span class="pre">setup()</span></code></a>:
+Extension setup function registering the <code class="docutils literal notranslate"><span class="pre">report</span></code> domain in Sphinx.</p></li>
+</ul>
+<p><strong>Classes</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sphinx_reports.ReportDomain" title="sphinx_reports.ReportDomain"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReportDomain</span></code></a>:
+A Sphinx extension providing a <code class="docutils literal notranslate"><span class="pre">report</span></code> domain to integrate reports and summaries into a Sphinx-based documentation.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Functions</strong></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_reports.setup">
+<span class="sig-prename descclassname"><span class="pre">sphinx_reports.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.setup" title="Link to this definition"></a></dt>
+<dd><p>Extension setup function registering the <code class="docutils literal notranslate"><span class="pre">report</span></code> domain in Sphinx.</p>
+<p>It will execute these steps:</p>
+<ul class="simple">
+<li><p>register domains, directives and roles.</p></li>
+<li><p>connect events (register callbacks)</p></li>
+<li><p>register configuration variables for <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type">&lt;module ‘sphinx_reports.Sphinx’ from ‘/home/runner/work/sphinx-reports/sphinx-reports/sphinx_reports/Sphinx.py’&gt;</span>) – The Sphinx application.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">setup_ReturnType</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary containing the extension version and some properties.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<p><strong>Classes</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.</span></span><span class="sig-name descname"><span class="pre">ReportDomain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain" title="Link to this definition"></a></dt>
+<dd><p>A Sphinx extension providing a <code class="docutils literal notranslate"><span class="pre">report</span></code> domain to integrate reports and summaries into a Sphinx-based documentation.</p>
+<p class="rubric">New directives:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../CodeCov/index.html#directive-report-code-coverage" title="report:code-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:code-coverage</span></code></a></p></li>
+<li><p><a class="reference internal" href="../CodeCov/index.html#directive-report-code-coverage-legend" title="report:code-coverage-legend directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:code-coverage-legend</span></code></a></p></li>
+<li><p><a class="reference internal" href="../DocCov/index.html#directive-report-doc-coverage" title="report:doc-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:doc-coverage</span></code></a></p></li>
+<li><p><a class="reference internal" href="../DocCov/index.html#directive-report-doc-coverage-legend" title="report:doc-coverage-legend directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:doc-coverage-legend</span></code></a></p></li>
+<li><p><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:dependency-table</span></code></p></li>
+<li><p><a class="reference internal" href="../Unittest/index.html#directive-report-unittest-summary" title="report:unittest-summary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:unittest-summary</span></code></a></p></li>
+</ul>
+<p class="rubric">New roles:</p>
+<ul class="simple">
+<li><p><em>None</em></p></li>
+</ul>
+<p class="rubric">New indices:</p>
+<ul class="simple">
+<li><p><em>None</em></p></li>
+</ul>
+<p class="rubric">Configuration variables</p>
+<p>All configuration variables in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> are prefixed with <code class="docutils literal notranslate"><span class="pre">report_*</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">report_codecov_packages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">report_doccov_packages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">report_unittest_testsuites</span></code></p></li>
+</ul>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-a6b96c732fd7e4f2c96521ed2db8d2366e692fbe.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of ReportDomain</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>BuildEnvironment</em>)</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'report'</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.name" title="Link to this definition"></a></dt>
+<dd><p>The name of this domain</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rpt'</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.label" title="Link to this definition"></a></dt>
+<dd><p>The label of this domain</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.dependencies" title="Link to this definition"></a></dt>
+<dd><p>A list of other extensions this domain depends on.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.directives">
+<span class="sig-name descname"><span class="pre">directives</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict[str,</span> <span class="pre">type[Directive]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'code-coverage':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.CodeCoverage.CodeCoverage'&gt;,</span> <span class="pre">'code-coverage-legend':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.CodeCoverage.CodeCoverageLegend'&gt;,</span> <span class="pre">'dependency-table':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.Dependency.DependencyTable'&gt;,</span> <span class="pre">'doc-coverage':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.DocCoverage.DocStrCoverage'&gt;,</span> <span class="pre">'doc-coverage-legend':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.DocCoverage.DocCoverageLegend'&gt;,</span> <span class="pre">'module-coverage':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.CodeCoverage.ModuleCoverage'&gt;,</span> <span class="pre">'unittest-summary':</span> <span class="pre">&lt;class</span> <span class="pre">'sphinx_reports.Unittest.UnittestSummary'&gt;}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.directives" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all directives in this domain.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.roles">
+<span class="sig-name descname"><span class="pre">roles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict[str,</span> <span class="pre">RoleFunction</span> <span class="pre">|</span> <span class="pre">XRefRole]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.roles" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all roles in this domain.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.indices">
+<span class="sig-name descname"><span class="pre">indices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list[type[Index]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.indices" title="Link to this definition"></a></dt>
+<dd><p>A list of all indices in this domain.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.configValues">
+<span class="sig-name descname"><span class="pre">configValues</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a><span class="pre">]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'codecov_levels':</span> <span class="pre">({'default':</span> <span class="pre">{'error':</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-error',</span> <span class="pre">'desc':</span> <span class="pre">'internal</span> <span class="pre">error'},</span> <span class="pre">100:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below100',</span> <span class="pre">'desc':</span> <span class="pre">'excellently</span> <span class="pre">used'},</span> <span class="pre">30:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below30',</span> <span class="pre">'desc':</span> <span class="pre">'almost</span> <span class="pre">unused'},</span> <span class="pre">50:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below50',</span> <span class="pre">'desc':</span> <span class="pre">'poorly</span> <span class="pre">used'},</span> <span class="pre">80:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below80',</span> <span class="pre">'desc':</span> <span class="pre">'somehow</span> <span class="pre">used'},</span> <span class="pre">90:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below90',</span> <span class="pre">'desc':</span> <span class="pre">'well</span> <span class="pre">used'}}},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict),</span> <span class="pre">'codecov_packages':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict),</span> <span class="pre">'doccov_levels':</span> <span class="pre">({'default':</span> <span class="pre">{'error':</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-error',</span> <span class="pre">'desc':</span> <span class="pre">'internal</span> <span class="pre">error'},</span> <span class="pre">100:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below100',</span> <span class="pre">'desc':</span> <span class="pre">'excellent</span> <span class="pre">documented'},</span> <span class="pre">30:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below30',</span> <span class="pre">'desc':</span> <span class="pre">'almost</span> <span class="pre">undocumented'},</span> <span class="pre">50:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below50',</span> <span class="pre">'desc':</span> <span class="pre">'poorly</span> <span class="pre">documented'},</span> <span class="pre">80:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below80',</span> <span class="pre">'desc':</span> <span class="pre">'roughly</span> <span class="pre">documented'},</span> <span class="pre">90:</span> <span class="pre">{'class':</span> <span class="pre">'report-cov-below90',</span> <span class="pre">'desc':</span> <span class="pre">'well</span> <span class="pre">documented'}}},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict),</span> <span class="pre">'doccov_packages':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict),</span> <span class="pre">'unittest_testsuites':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict)}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.configValues" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.initial_data">
+<span class="sig-name descname"><span class="pre">initial_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.initial_data" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all global data fields used by this domain.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.CheckConfigurationVariables">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CheckConfigurationVariables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain.CheckConfigurationVariables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain.CheckConfigurationVariables" title="Link to this definition"></a></dt>
+<dd><p>Call back for Sphinx <code class="docutils literal notranslate"><span class="pre">config-inited</span></code> event.</p>
+<p>This callback will verify configuration variables used by that domain.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt>Sphinx <em>builder-inited</em> event</dt><dd><p>See <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events">https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</a></p>
+</dd>
+</dl>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type">&lt;module ‘sphinx_reports.Sphinx’ from ‘/home/runner/work/sphinx-reports/sphinx-reports/sphinx_reports/Sphinx.py’&gt;</span>) – The Sphinx application.</p></li>
+<li><p><strong>config</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></span>) – Sphinx configuration parsed from <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.AddCSSFiles">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddCSSFiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain.AddCSSFiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain.AddCSSFiles" title="Link to this definition"></a></dt>
+<dd><p>Call back for Sphinx <code class="docutils literal notranslate"><span class="pre">builder-inited</span></code> event.</p>
+<p>This callback will copy the CSS file(s) to the build directory.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt>Sphinx <em>builder-inited</em> event</dt><dd><p>See <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events">https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</a></p>
+</dd>
+</dl>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type">&lt;module ‘sphinx_reports.Sphinx’ from ‘/home/runner/work/sphinx-reports/sphinx-reports/sphinx_reports/Sphinx.py’&gt;</span>) – The Sphinx application.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.ReadReports">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadReports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain.ReadReports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain.ReadReports" title="Link to this definition"></a></dt>
+<dd><p>Call back for Sphinx <code class="docutils literal notranslate"><span class="pre">builder-inited</span></code> event.</p>
+<p>This callback will read the linked report files</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt>Sphinx <em>builder-inited</em> event</dt><dd><p>See <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events">https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</a></p>
+</dd>
+</dl>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type">&lt;module ‘sphinx_reports.Sphinx’ from ‘/home/runner/work/sphinx-reports/sphinx-reports/sphinx_reports/Sphinx.py’&gt;</span>) – The Sphinx application.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.callbacks">
+<span class="sig-name descname"><span class="pre">callbacks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a><span class="pre">]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'builder-inited':</span> <span class="pre">[&lt;staticmethod(&lt;function</span> <span class="pre">ReportDomain.AddCSSFiles&gt;)&gt;,</span> <span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">ReportDomain.ReadReports&gt;)&gt;],</span> <span class="pre">'config-inited':</span> <span class="pre">[&lt;staticmethod(&lt;function</span> <span class="pre">ReportDomain.CheckConfigurationVariables&gt;)&gt;]}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.callbacks" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all events/callbacks &lt;<a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events">https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</a>&gt;`__ used by this domain.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.resolve_xref">
+<span class="sig-name descname"><span class="pre">resolve_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fromdocname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contnode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports.html#ReportDomain.resolve_xref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.ReportDomain.resolve_xref" title="Link to this definition"></a></dt>
+<dd><p>Resolve the pending_xref <em>node</em> with the given <em>typ</em> and <em>target</em>.</p>
+<p>This method should return a new node, to replace the xref node,
+containing the <em>contnode</em> which is the markup content of the
+cross-reference.</p>
+<p>If no resolution can be found, None can be returned; the xref node will
+:rtype: <span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code>]</span></p>
+<p>then given to the <a href="#id1"><span class="problematic" id="id2">:event:`missing-reference`</span></a> event, and if that yields no
+resolution, replaced by <em>contnode</em>.</p>
+<p>The method can also raise <code class="xref py py-exc docutils literal notranslate"><span class="pre">sphinx.environment.NoUri</span></code> to suppress
+the <a href="#id3"><span class="problematic" id="id4">:event:`missing-reference`</span></a> event being emitted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>BuildEnvironment</em>)</p></li>
+<li><p><strong>fromdocname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>builder</strong> (<em>Builder</em>)</p></li>
+<li><p><strong>typ</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>node</strong> (<em>pending_xref</em>)</p></li>
+<li><p><strong>contnode</strong> (<em>Element</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Element</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>BuildEnvironment</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.add_object_type">
+<span class="sig-name descname"><span class="pre">add_object_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objtype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.add_object_type" title="Link to this definition"></a></dt>
+<dd><p>Add an object type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>objtype</strong> (<em>ObjType</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.check_consistency">
+<span class="sig-name descname"><span class="pre">check_consistency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.check_consistency" title="Link to this definition"></a></dt>
+<dd><p>Do consistency checks (<strong>experimental</strong>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.clear_doc">
+<span class="sig-name descname"><span class="pre">clear_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.clear_doc" title="Link to this definition"></a></dt>
+<dd><p>Remove traces of a document in the domain-specific inventories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>docname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.dangling_warnings">
+<span class="sig-name descname"><span class="pre">dangling_warnings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict[str,</span> <span class="pre">str]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.dangling_warnings" title="Link to this definition"></a></dt>
+<dd><p>role name -&gt; a warning message if reference is missing</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.data_version">
+<span class="sig-name descname"><span class="pre">data_version</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.data_version" title="Link to this definition"></a></dt>
+<dd><p>data version, bump this when the format of <cite>self.data</cite> changes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.directive">
+<span class="sig-name descname"><span class="pre">directive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.directive" title="Link to this definition"></a></dt>
+<dd><p>Return a directive adapter class that always gives the registered
+directive its full name (‘domain:name’) as <code class="docutils literal notranslate"><span class="pre">self.name</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.enumerable_nodes">
+<span class="sig-name descname"><span class="pre">enumerable_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict[type[Node],</span> <span class="pre">tuple[str,</span> <span class="pre">TitleGetter</span> <span class="pre">|</span> <span class="pre">None]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.enumerable_nodes" title="Link to this definition"></a></dt>
+<dd><p>node_class -&gt; (enum_node_type, title_getter)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.get_enumerable_node_type">
+<span class="sig-name descname"><span class="pre">get_enumerable_node_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.get_enumerable_node_type" title="Link to this definition"></a></dt>
+<dd><p>Get type of enumerable nodes (experimental).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>node</strong> (<em>Node</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.get_full_qualified_name">
+<span class="sig-name descname"><span class="pre">get_full_qualified_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.get_full_qualified_name" title="Link to this definition"></a></dt>
+<dd><p>Return full qualified name for given node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>node</strong> (<em>Element</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.get_objects">
+<span class="sig-name descname"><span class="pre">get_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.get_objects" title="Link to this definition"></a></dt>
+<dd><p>Return an iterable of “object descriptions”.</p>
+<p>Object descriptions are tuples with six items:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span></p>
+</dd>
+</dl>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Fully qualified name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dispname</span></code></dt><dd><p>Name to display when searching/linking.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>Object type, a key in <code class="docutils literal notranslate"><span class="pre">self.object_types</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">docname</span></code></dt><dd><p>The document where it is to be found.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">anchor</span></code></dt><dd><p>The anchor name for the object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">priority</span></code></dt><dd><p>How “important” the object is (determines placement in search
+results). One of:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">1</span></code></dt><dd><p>Default priority (placed before full-text matches).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">0</span></code></dt><dd><p>Object is important (placed before default-priority objects).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">2</span></code></dt><dd><p>Object is unimportant (placed after full-text matches).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-1</span></code></dt><dd><p>Object should not show up in search at all.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.get_type_name">
+<span class="sig-name descname"><span class="pre">get_type_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.get_type_name" title="Link to this definition"></a></dt>
+<dd><p>Return full name for given ObjType.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>type</strong> (<em>ObjType</em>)</p></li>
+<li><p><strong>primary</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.merge_domaindata">
+<span class="sig-name descname"><span class="pre">merge_domaindata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">otherdata</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.merge_domaindata" title="Link to this definition"></a></dt>
+<dd><p>Merge in data regarding <em>docnames</em> from a different domaindata
+inventory (coming from a subprocess in parallel builds).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>docnames</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Set" title="(in Python v3.13)"><em>Set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>)</p></li>
+<li><p><strong>otherdata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.object_types">
+<span class="sig-name descname"><span class="pre">object_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict[str,</span> <span class="pre">ObjType]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.object_types" title="Link to this definition"></a></dt>
+<dd><p>type (usually directive) name -&gt; ObjType instance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.process_doc">
+<span class="sig-name descname"><span class="pre">process_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.process_doc" title="Link to this definition"></a></dt>
+<dd><p>Process a document after it is read by the environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>env</strong> (<em>BuildEnvironment</em>)</p></li>
+<li><p><strong>docname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>document</strong> (<em>document</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.process_field_xref">
+<span class="sig-name descname"><span class="pre">process_field_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pnode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.process_field_xref" title="Link to this definition"></a></dt>
+<dd><p>Process a pending xref created in a doc field.
+For example, attach information about the current scope.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pnode</strong> (<em>pending_xref</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.resolve_any_xref">
+<span class="sig-name descname"><span class="pre">resolve_any_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fromdocname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contnode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.resolve_any_xref" title="Link to this definition"></a></dt>
+<dd><p>Resolve the pending_xref <em>node</em> with the given <em>target</em>.</p>
+<p>The reference comes from an “any” or similar role, which means that we
+don’t know the type.  Otherwise, the arguments are the same as for
+<a class="reference internal" href="#sphinx_reports.ReportDomain.resolve_xref" title="sphinx_reports.ReportDomain.resolve_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resolve_xref()</span></code></a>.</p>
+<p>The method must return a list (potentially empty) of tuples
+<code class="docutils literal notranslate"><span class="pre">('domain:role',</span> <span class="pre">newnode)</span></code>, where <code class="docutils literal notranslate"><span class="pre">'domain:role'</span></code> is the name of a
+role that could have created the same reference, e.g. <code class="docutils literal notranslate"><span class="pre">'py:func'</span></code>.
+<code class="docutils literal notranslate"><span class="pre">newnode</span></code> is what <a class="reference internal" href="#sphinx_reports.ReportDomain.resolve_xref" title="sphinx_reports.ReportDomain.resolve_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resolve_xref()</span></code></a> would return.
+:rtype: <span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code>]]</span></p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>BuildEnvironment</em>)</p></li>
+<li><p><strong>fromdocname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>builder</strong> (<em>Builder</em>)</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>node</strong> (<em>pending_xref</em>)</p></li>
+<li><p><strong>contnode</strong> (<em>Element</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, <em>Element</em>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.role">
+<span class="sig-name descname"><span class="pre">role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.role" title="Link to this definition"></a></dt>
+<dd><p>Return a role adapter function that always gives the registered
+role its full name (‘domain:name’) as the first argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Inliner</span></code>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">system_message</span></code>]]] | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.ReportDomain.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up domain object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.ReportDomain.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict[str,</span> <span class="pre">Any]</span></em><a class="headerlink" href="#sphinx_reports.ReportDomain.data" title="Link to this definition"></a></dt>
+<dd><p>data value</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../DocCov/index.html" class="btn btn-neutral float-left" title="Documentation Coverage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sphinx_reports.Adapter.html" class="btn btn-neutral float-right" title="sphinx_reports.Adapter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 18.10.2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
