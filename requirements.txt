@@ -1,4 +1,4 @@
-pyTooling ~= 6.7
+pyTooling ~= 7.0
 pyEDAA.Reports ~= 0.14
 
 sphinx ~= 8.0
