@@ -10,7 +10,8 @@
       <excludeFolder url="file://$MODULE_DIR$/sphinx_reports.egg-info" />
       <excludeFolder url="file://$MODULE_DIR$/doc/_build/html" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.13" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="pyTooling.Common" />
   </component>
 </module>
