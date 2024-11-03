@@ -1,10 +1,5 @@
 -r ../requirements.txt
 
-# XXX: because of missing dependency in pyTooling
-setuptools ~= 75.1
-
-pyTooling ~= 6.7
-
 # Enforce latest version on ReadTheDocs
 sphinx ~= 8.1
 docutils ~= 0.21

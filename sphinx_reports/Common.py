@@ -32,10 +32,8 @@
 **Common exceptions, classes and helper functions.**
 """
 from enum                        import Flag
-from importlib.resources         import files
 from sys                         import version_info
-from types                       import ModuleType
-from typing                      import List, Union
+from typing                      import List
 
 from pyTooling.Decorators        import export
 from sphinx.errors               import ExtensionError
