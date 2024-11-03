@@ -85,7 +85,10 @@ class UnittestSummary(BaseDirective):
 		self._reportID = self._ParseStringOption("reportid")
 		self._noAssertions = "without-assertions" in self.options
 
-		testSummary = self._testSummaries[self._reportID]
+		try:
+			testSummary = self._testSummaries[self._reportID]
+		except KeyError as ex:
+			raise ReportExtensionError(f"No unit testing configuration item for '{self._reportID}'.") from ex
 		self._xmlReport = testSummary["xml_report"]
 
 	@classmethod
