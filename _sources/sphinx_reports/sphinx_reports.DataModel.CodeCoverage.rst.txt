@@ -1,0 +1,80 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=====================================
+sphinx_reports.DataModel.CodeCoverage
+=====================================
+
+.. automodule:: sphinx_reports.DataModel.CodeCoverage
+
+
+.. currentmodule:: sphinx_reports.DataModel.CodeCoverage
+
+
+**Classes**
+
+- :py:class:`Coverage`:
+  Undocumented.
+
+- :py:class:`AggregatedCoverage`:
+  Undocumented.
+
+- :py:class:`ModuleCoverage`:
+  Undocumented.
+
+- :py:class:`PackageCoverage`:
+  Undocumented.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Coverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Coverage
+      :parts: 1
+
+.. autoclass:: AggregatedCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AggregatedCoverage
+      :parts: 1
+
+.. autoclass:: ModuleCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ModuleCoverage
+      :parts: 1
+
+.. autoclass:: PackageCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PackageCoverage
+      :parts: 1

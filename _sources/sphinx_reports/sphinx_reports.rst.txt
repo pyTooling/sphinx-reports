@@ -1,0 +1,69 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==============
+sphinx_reports
+==============
+
+.. automodule:: sphinx_reports
+
+
+
+**Submodules**
+
+.. toctree::
+   :maxdepth: 1
+
+   sphinx_reports.Adapter
+   sphinx_reports.CodeCoverage
+   sphinx_reports.Common
+   sphinx_reports.DataModel
+   sphinx_reports.Dependency
+   sphinx_reports.DocCoverage
+   sphinx_reports.Sphinx
+   sphinx_reports.Unittest
+   sphinx_reports.static
+
+.. currentmodule:: sphinx_reports
+
+
+**Functions**
+
+- :py:func:`setup`:
+  Extension setup function registering the ``report`` domain in Sphinx.
+
+
+
+**Classes**
+
+- :py:class:`ReportDomain`:
+  A Sphinx extension providing a ``report`` domain to integrate reports and summaries into a Sphinx-based documentation.
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: setup
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: ReportDomain
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ReportDomain
+      :parts: 1

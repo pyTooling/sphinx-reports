@@ -1,0 +1,80 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+==========================
+sphinx_reports.DocCoverage
+==========================
+
+.. automodule:: sphinx_reports.DocCoverage
+
+
+.. currentmodule:: sphinx_reports.DocCoverage
+
+
+**Classes**
+
+- :py:class:`DocCoverageBase`:
+  Directive to describe a class, function or similar object.  Not used
+
+- :py:class:`DocCoverage`:
+  This directive will be replaced by a table representing documentation coverage.
+
+- :py:class:`DocStrCoverage`:
+  This directive will be replaced by a table representing documentation coverage.
+
+- :py:class:`DocCoverageLegend`:
+  This directive will be replaced by a legend table representing coverage levels.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: DocCoverageBase
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DocCoverageBase
+      :parts: 1
+
+.. autoclass:: DocCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DocCoverage
+      :parts: 1
+
+.. autoclass:: DocStrCoverage
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DocStrCoverage
+      :parts: 1
+
+.. autoclass:: DocCoverageLegend
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: DocCoverageLegend
+      :parts: 1

@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports &mdash; sphinx_reports 0.7.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=77553476" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.e44b1595f1e09d5e109d001839ba3f42.css?v=0b41afa8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a674670e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Dependency.html">Dependency Trees</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">sphinx_reports</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for sphinx_reports</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#            _     _                                           _                                                       #</span>
+<span class="c1">#  ___ _ __ | |__ (_)_ __ __  __     _ __ ___ _ __   ___  _ __| |_ ___                                                 #</span>
+<span class="c1"># / __| &#39;_ \| &#39;_ \| | &#39;_ \\ \/ /____| &#39;__/ _ \ &#39;_ \ / _ \| &#39;__| __/ __|                                                #</span>
+<span class="c1"># \__ \ |_) | | | | | | | |&gt;  &lt;_____| | |  __/ |_) | (_) | |  | |_\__ \                                                #</span>
+<span class="c1"># |___/ .__/|_| |_|_|_| |_/_/\_\    |_|  \___| .__/ \___/|_|   \__|___/                                                #</span>
+<span class="c1">#     |_|                                    |_|                                                                       #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Authors:                                                                                                             #</span>
+<span class="c1">#   Patrick Lehmann                                                                                                    #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># License:                                                                                                             #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Copyright 2023-2024 Patrick Lehmann - Bötzingen, Germany                                                             #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);                                                      #</span>
+<span class="c1"># you may not use this file except in compliance with the License.                                                     #</span>
+<span class="c1"># You may obtain a copy of the License at                                                                              #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software                                                  #</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,                                                    #</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #</span>
+<span class="c1"># See the License for the specific language governing permissions and                                                  #</span>
+<span class="c1"># limitations under the License.                                                                                       #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0                                                                                  #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">**A Sphinx domain providing directives to add reports to the Sphinx-based documentation.**</span>
+
+<span class="sd">Supported reports:</span>
+
+<span class="sd">* :ref:`DOCCOV`</span>
+<span class="sd">* :ref:`CODECOV`</span>
+<span class="sd">* :ref:`UNITTEST`</span>
+<span class="sd">* :ref:`DEP`</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span>    <span class="s2">&quot;Patrick Lehmann&quot;</span>
+<span class="n">__email__</span> <span class="o">=</span>     <span class="s2">&quot;Paebbels@gmail.com&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;2023-2024, Patrick Lehmann&quot;</span>
+<span class="n">__license__</span> <span class="o">=</span>   <span class="s2">&quot;Apache License, Version 2.0&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span>   <span class="s2">&quot;0.7.5&quot;</span>
+<span class="n">__keywords__</span> <span class="o">=</span>  <span class="p">[</span><span class="s2">&quot;Python3&quot;</span><span class="p">,</span> <span class="s2">&quot;Sphinx&quot;</span><span class="p">,</span> <span class="s2">&quot;Extension&quot;</span><span class="p">,</span> <span class="s2">&quot;Report&quot;</span><span class="p">,</span> <span class="s2">&quot;doc-string&quot;</span><span class="p">,</span> <span class="s2">&quot;interrogate&quot;</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">hashlib</span>               <span class="kn">import</span> <span class="n">md5</span>
+<span class="kn">from</span> <span class="nn">pathlib</span>               <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span>                <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span> <span class="k">as</span> <span class="n">Nullable</span><span class="p">,</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span>
+
+<span class="kn">from</span> <span class="nn">docutils</span>              <span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span> <span class="nn">sphinx.addnodes</span>       <span class="kn">import</span> <span class="n">pending_xref</span>
+<span class="kn">from</span> <span class="nn">sphinx.application</span>    <span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span> <span class="nn">sphinx.builders</span>       <span class="kn">import</span> <span class="n">Builder</span>
+<span class="kn">from</span> <span class="nn">sphinx.config</span>         <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">sphinx.domains</span>        <span class="kn">import</span> <span class="n">Domain</span>
+<span class="kn">from</span> <span class="nn">sphinx.environment</span>    <span class="kn">import</span> <span class="n">BuildEnvironment</span>
+<span class="kn">from</span> <span class="nn">pyTooling.Decorators</span>  <span class="kn">import</span> <span class="n">export</span>
+<span class="kn">from</span> <span class="nn">pyTooling.Common</span>      <span class="kn">import</span> <span class="n">readResourceFile</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+
+<span class="kn">from</span> <span class="nn">sphinx_reports.Common</span> <span class="kn">import</span> <span class="n">ReportExtensionError</span>
+
+<span class="kn">from</span> <span class="nn">sphinx_reports</span> <span class="kn">import</span> <span class="n">static</span> <span class="k">as</span> <span class="n">ResourcePackage</span>
+
+
+<div class="viewcode-block" id="ReportDomain">
+<a class="viewcode-back" href="../sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ReportDomain</span><span class="p">(</span><span class="n">Domain</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	A Sphinx extension providing a ``report`` domain to integrate reports and summaries into a Sphinx-based documentation.</span>
+
+<span class="sd">	.. rubric:: New directives:</span>
+
+<span class="sd">	* :rst:dir:`report:code-coverage`</span>
+<span class="sd">	* :rst:dir:`report:code-coverage-legend`</span>
+<span class="sd">	* :rst:dir:`report:doc-coverage`</span>
+<span class="sd">	* :rst:dir:`report:doc-coverage-legend`</span>
+<span class="sd">	* :rst:dir:`report:dependency-table`</span>
+<span class="sd">	* :rst:dir:`report:unittest-summary`</span>
+
+<span class="sd">	.. rubric:: New roles:</span>
+
+<span class="sd">	* *None*</span>
+
+<span class="sd">	.. rubric:: New indices:</span>
+
+<span class="sd">	* *None*</span>
+
+<span class="sd">	.. rubric:: Configuration variables</span>
+
+<span class="sd">	All configuration variables in :file:`conf.py` are prefixed with ``report_*``:</span>
+
+<span class="sd">	* ``report_codecov_packages``</span>
+<span class="sd">	* ``report_doccov_packages``</span>
+<span class="sd">	* ``report_unittest_testsuites``</span>
+
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="n">name</span> <span class="o">=</span>  <span class="s2">&quot;report&quot;</span>  <span class="c1">#: The name of this domain</span>
+	<span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;rpt&quot;</span>     <span class="c1">#: The label of this domain</span>
+
+	<span class="n">dependencies</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="p">]</span>  <span class="c1">#: A list of other extensions this domain depends on.</span>
+
+	<span class="kn">from</span> <span class="nn">sphinx_reports.CodeCoverage</span> <span class="kn">import</span> <span class="n">CodeCoverage</span><span class="p">,</span> <span class="n">CodeCoverageLegend</span><span class="p">,</span> <span class="n">ModuleCoverage</span>
+	<span class="kn">from</span> <span class="nn">sphinx_reports.DocCoverage</span>  <span class="kn">import</span> <span class="n">DocStrCoverage</span><span class="p">,</span> <span class="n">DocCoverageLegend</span>
+	<span class="kn">from</span> <span class="nn">sphinx_reports.Dependency</span>   <span class="kn">import</span> <span class="n">DependencyTable</span>
+	<span class="kn">from</span> <span class="nn">sphinx_reports.Unittest</span>     <span class="kn">import</span> <span class="n">UnittestSummary</span>
+
+	<span class="n">directives</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s2">&quot;code-coverage&quot;</span><span class="p">:</span>        <span class="n">CodeCoverage</span><span class="p">,</span>
+		<span class="s2">&quot;code-coverage-legend&quot;</span><span class="p">:</span> <span class="n">CodeCoverageLegend</span><span class="p">,</span>
+		<span class="s2">&quot;module-coverage&quot;</span><span class="p">:</span>      <span class="n">ModuleCoverage</span><span class="p">,</span>
+		<span class="s2">&quot;doc-coverage&quot;</span><span class="p">:</span>         <span class="n">DocStrCoverage</span><span class="p">,</span>
+		<span class="s2">&quot;doc-coverage-legend&quot;</span><span class="p">:</span>  <span class="n">DocCoverageLegend</span><span class="p">,</span>
+		<span class="s2">&quot;dependency-table&quot;</span><span class="p">:</span>     <span class="n">DependencyTable</span><span class="p">,</span>
+		<span class="s2">&quot;unittest-summary&quot;</span><span class="p">:</span>     <span class="n">UnittestSummary</span><span class="p">,</span>
+	<span class="p">}</span>  <span class="c1">#: A dictionary of all directives in this domain.</span>
+
+	<span class="n">roles</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="c1"># &quot;design&quot;:   DesignRole,</span>
+	<span class="p">}</span>  <span class="c1">#: A dictionary of all roles in this domain.</span>
+
+	<span class="n">indices</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="c1"># LibraryIndex,</span>
+	<span class="p">]</span>  <span class="c1">#: A list of all indices in this domain.</span>
+
+	<span class="kn">from</span> <span class="nn">sphinx_reports.CodeCoverage</span> <span class="kn">import</span> <span class="n">CodeCoverageBase</span>
+	<span class="kn">from</span> <span class="nn">sphinx_reports.DocCoverage</span>  <span class="kn">import</span> <span class="n">DocCoverageBase</span>
+	<span class="kn">from</span> <span class="nn">sphinx_reports.Dependency</span>   <span class="kn">import</span> <span class="n">DependencyTable</span>
+	<span class="kn">from</span> <span class="nn">sphinx_reports.Unittest</span>     <span class="kn">import</span> <span class="n">UnittestSummary</span>
+
+	<span class="n">configValues</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="o">**</span><span class="n">CodeCoverageBase</span><span class="o">.</span><span class="n">configValues</span><span class="p">,</span>
+		<span class="o">**</span><span class="n">DocCoverageBase</span><span class="o">.</span><span class="n">configValues</span><span class="p">,</span>
+		<span class="o">**</span><span class="n">UnittestSummary</span><span class="o">.</span><span class="n">configValues</span><span class="p">,</span>
+		<span class="o">**</span><span class="n">DependencyTable</span><span class="o">.</span><span class="n">configValues</span><span class="p">,</span>
+	<span class="p">}</span>  <span class="c1">#: A dictionary of all configuration values used by this domain. (name: (default, rebuilt, type))</span>
+
+	<span class="k">del</span> <span class="n">CodeCoverageBase</span>
+	<span class="k">del</span> <span class="n">CodeCoverage</span>
+	<span class="k">del</span> <span class="n">CodeCoverageLegend</span>
+	<span class="k">del</span> <span class="n">ModuleCoverage</span>
+	<span class="k">del</span> <span class="n">DocCoverageBase</span>
+	<span class="k">del</span> <span class="n">DocStrCoverage</span>
+	<span class="k">del</span> <span class="n">DocCoverageLegend</span>
+	<span class="k">del</span> <span class="n">DependencyTable</span>
+	<span class="k">del</span> <span class="n">UnittestSummary</span>
+
+	<span class="n">initial_data</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="c1"># &quot;reports&quot;: {}</span>
+	<span class="p">}</span>  <span class="c1">#: A dictionary of all global data fields used by this domain.</span>
+
+	<span class="c1"># @property</span>
+	<span class="c1"># def Reports(self) -&gt; Dict[str, Any]:</span>
+	<span class="c1"># 	return self.data[&quot;reports&quot;]</span>
+
+<div class="viewcode-block" id="ReportDomain.CheckConfigurationVariables">
+<a class="viewcode-back" href="../sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.CheckConfigurationVariables">[docs]</a>
+	<span class="nd">@staticmethod</span>
+	<span class="k">def</span> <span class="nf">CheckConfigurationVariables</span><span class="p">(</span><span class="n">sphinxApplication</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Call back for Sphinx ``config-inited`` event.</span>
+
+<span class="sd">		This callback will verify configuration variables used by that domain.</span>
+
+<span class="sd">		.. seealso::</span>
+
+<span class="sd">		   Sphinx *builder-inited* event</span>
+<span class="sd">		     See https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</span>
+
+<span class="sd">		:param sphinxApplication: The Sphinx application.</span>
+<span class="sd">		:param config:            Sphinx configuration parsed from ``conf.py``.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="kn">from</span> <span class="nn">sphinx_reports.CodeCoverage</span> <span class="kn">import</span> <span class="n">CodeCoverageBase</span>
+		<span class="kn">from</span> <span class="nn">sphinx_reports.DocCoverage</span>  <span class="kn">import</span> <span class="n">DocCoverageBase</span>
+		<span class="kn">from</span> <span class="nn">sphinx_reports.Unittest</span>     <span class="kn">import</span> <span class="n">UnittestSummary</span>
+
+		<span class="n">checkConfigurations</span> <span class="o">=</span> <span class="p">(</span>
+			<span class="n">CodeCoverageBase</span><span class="o">.</span><span class="n">CheckConfiguration</span><span class="p">,</span>
+			<span class="n">DocCoverageBase</span><span class="o">.</span><span class="n">CheckConfiguration</span><span class="p">,</span>
+			<span class="n">UnittestSummary</span><span class="o">.</span><span class="n">CheckConfiguration</span><span class="p">,</span>
+		<span class="p">)</span>
+
+		<span class="k">for</span> <span class="n">checkConfiguration</span> <span class="ow">in</span> <span class="n">checkConfigurations</span><span class="p">:</span>
+			<span class="k">try</span><span class="p">:</span>
+				<span class="n">checkConfiguration</span><span class="p">(</span><span class="n">sphinxApplication</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+			<span class="k">except</span> <span class="n">ReportExtensionError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+				<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+				<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Caught </span><span class="si">{</span><span class="n">ex</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> when checking configuration variables.</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ReportDomain.AddCSSFiles">
+<a class="viewcode-back" href="../sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.AddCSSFiles">[docs]</a>
+	<span class="nd">@staticmethod</span>
+	<span class="k">def</span> <span class="nf">AddCSSFiles</span><span class="p">(</span><span class="n">sphinxApplication</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Call back for Sphinx ``builder-inited`` event.</span>
+
+<span class="sd">		This callback will copy the CSS file(s) to the build directory.</span>
+
+<span class="sd">		.. seealso::</span>
+
+<span class="sd">		   Sphinx *builder-inited* event</span>
+<span class="sd">		     See https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</span>
+
+<span class="sd">		:param sphinxApplication: The Sphinx application.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="c1"># Create a new static path for this extension</span>
+		<span class="n">staticDirectory</span> <span class="o">=</span> <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">sphinxApplication</span><span class="o">.</span><span class="n">outdir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;_report_static&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+		<span class="n">staticDirectory</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+		<span class="n">sphinxApplication</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">html_static_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">staticDirectory</span><span class="p">))</span>
+
+		<span class="c1"># Read the CSS content from package resources and hash it</span>
+		<span class="n">cssFilename</span> <span class="o">=</span> <span class="s2">&quot;sphinx-reports.css&quot;</span>
+		<span class="n">cssContent</span> <span class="o">=</span> <span class="n">readResourceFile</span><span class="p">(</span><span class="n">ResourcePackage</span><span class="p">,</span> <span class="n">cssFilename</span><span class="p">)</span>
+
+		<span class="c1"># Compute md5 hash of CSS file</span>
+		<span class="nb">hash</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span><span class="n">cssContent</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf8&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+		<span class="c1"># Write the CSS file into output directory</span>
+		<span class="n">cssFile</span> <span class="o">=</span> <span class="n">staticDirectory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sphinx-reports.</span><span class="si">{</span><span class="nb">hash</span><span class="si">}</span><span class="s2">.css&quot;</span>
+		<span class="n">sphinxApplication</span><span class="o">.</span><span class="n">add_css_file</span><span class="p">(</span><span class="n">cssFile</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+		<span class="k">if</span> <span class="ow">not</span> <span class="n">cssFile</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+			<span class="c1"># Purge old CSS files</span>
+			<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">staticDirectory</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.css&quot;</span><span class="p">):</span>
+				<span class="n">file</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+
+			<span class="c1"># Write CSS content</span>
+			<span class="n">cssFile</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">cssContent</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ReportDomain.ReadReports">
+<a class="viewcode-back" href="../sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.ReadReports">[docs]</a>
+	<span class="nd">@staticmethod</span>
+	<span class="k">def</span> <span class="nf">ReadReports</span><span class="p">(</span><span class="n">sphinxApplication</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Call back for Sphinx ``builder-inited`` event.</span>
+
+<span class="sd">		This callback will read the linked report files</span>
+
+<span class="sd">		.. seealso::</span>
+
+<span class="sd">		   Sphinx *builder-inited* event</span>
+<span class="sd">		     See https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events</span>
+
+<span class="sd">		:param sphinxApplication: The Sphinx application.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="kn">from</span> <span class="nn">sphinx_reports.CodeCoverage</span> <span class="kn">import</span> <span class="n">CodeCoverageBase</span>
+		<span class="kn">from</span> <span class="nn">sphinx_reports.Unittest</span>     <span class="kn">import</span> <span class="n">UnittestSummary</span>
+
+		<span class="n">CodeCoverageBase</span><span class="o">.</span><span class="n">ReadReports</span><span class="p">(</span><span class="n">sphinxApplication</span><span class="p">)</span>
+		<span class="n">UnittestSummary</span><span class="o">.</span><span class="n">ReadReports</span><span class="p">(</span><span class="n">sphinxApplication</span><span class="p">)</span></div>
+
+
+	<span class="n">callbacks</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s2">&quot;config-inited&quot;</span><span class="p">:</span>    <span class="p">[</span><span class="n">CheckConfigurationVariables</span><span class="p">],</span>    <span class="c1"># (app, config)</span>
+		<span class="s2">&quot;builder-inited&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="n">AddCSSFiles</span><span class="p">,</span> <span class="n">ReadReports</span><span class="p">],</span>       <span class="c1"># (app)</span>
+	<span class="p">}</span>  <span class="c1">#: A dictionary of all events/callbacks &lt;https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx-core-events&gt;`__ used by this domain.</span>
+
+<div class="viewcode-block" id="ReportDomain.resolve_xref">
+<a class="viewcode-back" href="../sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.resolve_xref">[docs]</a>
+	<span class="k">def</span> <span class="nf">resolve_xref</span><span class="p">(</span>
+		<span class="bp">self</span><span class="p">,</span>
+		<span class="n">env</span><span class="p">:</span> <span class="n">BuildEnvironment</span><span class="p">,</span>
+		<span class="n">fromdocname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+		<span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">,</span>
+		<span class="n">typ</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+		<span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+		<span class="n">node</span><span class="p">:</span> <span class="n">pending_xref</span><span class="p">,</span>
+		<span class="n">contnode</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span>
+	<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Nullable</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">]:</span>
+		<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+</div>
+
+
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+	<span class="k">class</span> <span class="nc">setup_ReturnType</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+		<span class="n">version</span><span class="p">:</span> <span class="nb">str</span>
+		<span class="n">env_version</span><span class="p">:</span> <span class="nb">int</span>
+		<span class="n">parallel_read_safe</span><span class="p">:</span> <span class="nb">bool</span>
+		<span class="n">parallel_write_safe</span><span class="p">:</span> <span class="nb">bool</span>
+
+
+<div class="viewcode-block" id="setup">
+<a class="viewcode-back" href="../sphinx_reports/sphinx_reports.html#sphinx_reports.setup">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">sphinxApplication</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;setup_ReturnType&quot;</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Extension setup function registering the ``report`` domain in Sphinx.</span>
+
+<span class="sd">	It will execute these steps:</span>
+
+<span class="sd">	* register domains, directives and roles.</span>
+<span class="sd">	* connect events (register callbacks)</span>
+<span class="sd">	* register configuration variables for :file:`conf.py`</span>
+
+<span class="sd">	:param sphinxApplication: The Sphinx application.</span>
+<span class="sd">	:return:                  Dictionary containing the extension version and some properties.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">sphinxApplication</span><span class="o">.</span><span class="n">add_domain</span><span class="p">(</span><span class="n">ReportDomain</span><span class="p">)</span>
+
+	<span class="c1"># Register callbacks</span>
+	<span class="k">for</span> <span class="n">eventName</span><span class="p">,</span> <span class="n">callbacks</span> <span class="ow">in</span> <span class="n">ReportDomain</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+		<span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="p">:</span>
+			<span class="n">sphinxApplication</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">eventName</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+
+	<span class="c1"># Register configuration options supported/needed in Sphinx&#39;s &#39;conf.py&#39;</span>
+	<span class="k">for</span> <span class="n">configName</span><span class="p">,</span> <span class="p">(</span><span class="n">configDefault</span><span class="p">,</span> <span class="n">configRebuilt</span><span class="p">,</span> <span class="n">configTypes</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ReportDomain</span><span class="o">.</span><span class="n">configValues</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+		<span class="n">sphinxApplication</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ReportDomain</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">configName</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">configDefault</span><span class="p">,</span> <span class="n">configRebuilt</span><span class="p">,</span> <span class="n">configTypes</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="p">{</span>
+		<span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">__version__</span><span class="p">,</span>                          <span class="c1"># version of the extension</span>
+		<span class="s2">&quot;env_version&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">__version__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span>   <span class="c1"># version of the data structure stored in the environment</span>
+		<span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>                     <span class="c1"># Not yet evaluated, thus false</span>
+		<span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>                     <span class="c1"># Internal data structure is used read-only, thus no problems will occur by parallel writing.</span>
+	<span class="p">}</span></div>
+
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 09.11.2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="361pt" height="27pt" viewBox="0.00 0.00 361.00 27.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 23)">
+<ns0:title>inheritance1c172a31ab</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>AggregatedCoverage</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.AggregatedCoverage" ns1:title="AggregatedCoverage" target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="218,-19 99,-19 99,0 218,0 218,-19" />
+<ns0:text text-anchor="middle" x="158.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">AggregatedCoverage</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>ModuleCoverage</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.ModuleCoverage" ns1:title="ModuleCoverage" target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="353,-19 254,-19 254,0 353,0 353,-19" />
+<ns0:text text-anchor="middle" x="303.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ModuleCoverage</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>AggregatedCoverage-&gt;ModuleCoverage</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M218.08,-9.5C228.19,-9.5 238.66,-9.5 248.65,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="248.82,-11.25 253.82,-9.5 248.82,-7.75 248.82,-11.25" />
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>Coverage</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Coverage" ns1:title="Coverage" target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="63,-19 0,-19 0,0 63,0 63,-19" />
+<ns0:text text-anchor="middle" x="31.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Coverage</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>Coverage-&gt;AggregatedCoverage</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M63.08,-9.5C72.4,-9.5 83.01,-9.5 93.67,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="93.9,-11.25 98.9,-9.5 93.9,-7.75 93.9,-11.25" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>
