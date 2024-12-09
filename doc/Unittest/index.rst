@@ -83,7 +83,7 @@ bar.
          :caption: References and Reports
          :hidden:
 
-         sphinx_reports/sphinx_reports
+         Python Class Reference <sphinx_reports/sphinx_reports>
          unittests/index
          coverage/index
          Doc. Coverage Report <DocCoverage>

@@ -6,9 +6,13 @@ __pycache__/
 .coverage
 .cov
 coverage.xml
+/report/coverage
 
-# Generated reports
-report/
+# mypy
+/report/typing
+
+# pytest
+/report/unit
 
 # setuptools
 /build/**/*.*
@@ -26,7 +30,7 @@ doc/sphinx_reports/**/*.*
 # BuildTheDocs
 doc/_theme/**/*.*
 
-# IntelliJ project files
+# PyCharm project files
 /.idea/workspace.xml
 
 # Git files

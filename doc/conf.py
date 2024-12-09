@@ -76,7 +76,7 @@ except Exception as ex:
 html_context = {}
 ctx = ROOT / "context.json"
 if ctx.is_file():
-	html_context.update(loads(ctx.open('r').read()))
+	html_context.update(loads(ctx.open("r", encoding="utf-8").read()))
 
 # ==============================================================================
 # Options for HTML output
