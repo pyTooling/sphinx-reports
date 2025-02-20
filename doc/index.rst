@@ -2,7 +2,7 @@
    :alt: Sourcecode on GitHub
    :height: 22
    :target: https://github.com/pyTooling/sphinx-reports
-.. |img-sphinx-reports-license| image:: https://img.shields.io/badge/Apache%20License,%202.0-bd0000.svg?longCache=true&label=license&logo=Apache&logoColor=D22128
+.. |img-sphinx-reports-license| image:: https://img.shields.io/badge/Apache%20License,%202.0-bd0000?longCache=true&label=license&logo=Apache&logoColor=D22128
    :alt: License
    :height: 22
 .. |img-sphinx-reports-tag| image:: https://img.shields.io/github/v/tag/pyTooling/sphinx-reports?logo=GitHub&include_prereleases

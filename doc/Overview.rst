@@ -23,7 +23,7 @@ See the following :file:`doc/requirements.txt` file as an example with commonly 
    -r ../requirements.txt
 
    # Enforce latest version on ReadTheDocs
-   sphinx ~= 8.1
+   sphinx ~= 8.2
    docutils ~= 0.21
 
    # ReadTheDocs Theme
@@ -34,7 +34,7 @@ See the following :file:`doc/requirements.txt` file as an example with commonly 
    autoapi ~= 2.0.1
    sphinx_design ~= 0.6.1
    sphinx-copybutton ~= 0.5.2
-   sphinx_autodoc_typehints ~= 2.5
+   sphinx_autodoc_typehints ~= 3.1
    sphinx_reports ~= 1.0
 
 Finally, the extension needs to be enabled in Sphinx's :file:`conf.py`, so the extension is loaded by Sphinx.

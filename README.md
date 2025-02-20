@@ -3,7 +3,7 @@
 [![GitHub tag (latest SemVer incl. pre-release)](https://img.shields.io/github/v/tag/pyTooling/sphinx-reports?logo=GitHub&include_prereleases)](https://github.com/pyTooling/sphinx-reports/tags)
 [![GitHub release (latest SemVer incl. including pre-releases)](https://img.shields.io/github/v/release/pyTooling/sphinx-reports?logo=GitHub&include_prereleases)](https://github.com/pyTooling/sphinx-reports/releases/latest)
 [![GitHub release date](https://img.shields.io/github/release-date/pyTooling/sphinx-reports?logo=GitHub&)](https://github.com/pyTooling/sphinx-reports/releases)  
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pyTooling/sphinx-reports/Test,%20Coverage%20and%20Release?label=Workflow&logo=GitHub)](https://github.com/pyTooling/sphinx-reports/actions?query=workflow%3A%22Test%2C+Coverage+and+Release%22)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pyTooling/sphinx-reports/Pipeline.ymllabel=Workflow&logo=GitHub)](https://github.com/pyTooling/sphinx-reports/actions?query=workflow%3A%22Test%2C+Coverage+and+Release%22)
 [![PyPI](https://img.shields.io/pypi/v/sphinx-reports?logo=PyPI)](https://pypi.org/project/sphinx-reports/)
 ![PyPI - Status](https://img.shields.io/pypi/status/sphinx-reports?logo=PyPI)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/sphinx-reports?logo=PyPI)
