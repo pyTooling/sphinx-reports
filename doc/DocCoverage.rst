@@ -4,12 +4,20 @@ Documentation Coverage
 .. #report:doc-coverage-legend::
    :packageid: src
 
-.. report:doc-coverage::
-   :packageid: src
+.. grid:: 2
 
-.. report:doc-coverage-legend::
-   :packageid: src
-   :style: vertical-table
+   .. grid-item::
+      :columns: 5
+
+      .. report:doc-coverage::
+         :packageid: src
+
+   .. grid-item::
+      :columns: 7
+
+      .. report:doc-coverage-legend::
+         :packageid: src
+         :style: vertical-table
 
 ----------
 

@@ -4,12 +4,20 @@ Code Coverage Report
 .. #report:code-coverage-legend::
    :packageid: src
 
-.. report:code-coverage::
-   :packageid: src
+.. grid:: 2
 
-.. report:code-coverage-legend::
-   :packageid: src
-   :style: vertical-table
+   .. grid-item::
+      :columns: 8
+
+      .. report:code-coverage::
+         :packageid: src
+
+   .. grid-item::
+      :columns: 4
+
+      .. report:code-coverage-legend::
+         :packageid: src
+         :style: vertical-table
 
 ----------
 
