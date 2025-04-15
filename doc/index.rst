@@ -176,6 +176,9 @@ License
 
    Examples/Documentation
    Examples/Dependency
+   Examples/JUnit-Basic
+   Examples/JUnit-Complete
+   Examples/OSVVM
 
 .. toctree::
    :caption: Supported Reports

@@ -264,6 +264,9 @@ todo_link_only = True
 # ==============================================================================
 report_unittest_testsuites = {
 	"src":                    {"xml_report": "../report/unit/unittest.xml"},
+	"example-junit-basic":    {"xml_report": "../tests/data/unittest/junit-basic.xml"},
+	"example-junit-complete": {"xml_report": "../tests/data/unittest/junit-complete.xml"},
+	"example-osvvm":          {"xml_report": "../tests/data/unittest/osvvm-Libraries.xml"}
 }
 
 report_codecov_packages = {
