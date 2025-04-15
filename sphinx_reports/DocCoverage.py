@@ -60,10 +60,17 @@ class DocCoverageBase(BaseDirective):
 
 	defaultCoverageDefinitions = {
 		"default": {
+			10:      {"class": "report-cov-below10",  "desc": "almost undocumented"},
+			20:      {"class": "report-cov-below20",  "desc": "almost undocumented"},
 			30:      {"class": "report-cov-below30",  "desc": "almost undocumented"},
+			40:      {"class": "report-cov-below40",  "desc": "poorly documented"},
 			50:      {"class": "report-cov-below50",  "desc": "poorly documented"},
+			60:      {"class": "report-cov-below60",  "desc": "roughly documented"},
+			70:      {"class": "report-cov-below70",  "desc": "roughly documented"},
 			80:      {"class": "report-cov-below80",  "desc": "roughly documented"},
+			85:      {"class": "report-cov-below85",  "desc": "well documented"},
 			90:      {"class": "report-cov-below90",  "desc": "well documented"},
+			95:      {"class": "report-cov-below95",  "desc": "well documented"},
 			100:     {"class": "report-cov-below100", "desc": "excellent documented"},
 			"error": {"class": "report-cov-error",    "desc": "internal error"},
 		}

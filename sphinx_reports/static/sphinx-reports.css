@@ -11,23 +11,44 @@
  */
 /* very good */
 .report-cov-below100 {
-	background: rgba(0, 200, 82, .4);
+	background: hsl(120 75% 75%);
 }
 /* good */
+.report-cov-below95 {
+	background: hsl(90 75% 75%);
+}
 .report-cov-below90 {
-	background: rgba(0, 200, 82, .2);
+	background: hsl(75 75% 75%);
+}
+.report-cov-below85 {
+	background: hsl(60 75% 75%);
 }
 /* modest */
 .report-cov-below80 {
-	background: rgba(255, 145, 0, .2);
+	background: hsl(45 75% 75%);
+}
+.report-cov-below70 {
+	background: hsl(30 75% 75%);
+}
+.report-cov-below60 {
+	background: hsl(15 75% 75%);
 }
 /* bad */
 .report-cov-below50 {
-	background: rgba(255, 82, 82, .2);
+	background: hsl(0 75% 75%);
+}
+.report-cov-below40 {
+	background: hsl(285 75% 75%);
 }
 /* very bad */
 .report-cov-below30 {
-	background: rgba(101, 31, 255, .2);
+	background: hsl(270 75% 75%);
+}
+.report-cov-below20 {
+	background: hsl(255 75% 75%);
+}
+.report-cov-below10 {
+	background: hsl(240 75% 75%);
 }
 /* internal error */
 .report-cov-error{
