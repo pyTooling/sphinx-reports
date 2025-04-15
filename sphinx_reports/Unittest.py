@@ -32,8 +32,9 @@
 **Report unit test results as Sphinx documentation page(s).**
 """
 from datetime import timedelta
+from enum     import Flag
 from pathlib  import Path
-from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict, ClassVar
+from typing   import Dict, Tuple, Any, List, Mapping, Generator, TypedDict, ClassVar, Optional as Nullable
 
 from docutils                          import nodes
 from docutils.parsers.rst.directives   import flag
@@ -52,6 +53,36 @@ class report_DictType(TypedDict):
 
 
 @export
+class ShowTestcases(Flag):
+	passed = 1
+	failed = 2
+	skipped = 4
+	excluded = 8
+	errors = 16
+	aborted = 32
+
+	all = passed | failed | skipped | excluded | errors | aborted
+	not_passed = all & ~passed
+
+	def __eq__(self, other):
+		if isinstance(other, TestcaseStatus):
+			if other is TestcaseStatus.Passed:
+				return ShowTestcases.passed in self
+			elif other is TestcaseStatus.Failed:
+				return ShowTestcases.failed in self
+			elif other is TestcaseStatus.Skipped:
+				return ShowTestcases.skipped in self
+			elif other is TestcaseStatus.Excluded:
+				return ShowTestcases.excluded in self
+			elif other is TestcaseStatus.Error or other is TestcaseStatus.SetupError:
+				return ShowTestcases.errors in self
+			elif other is TestcaseStatus.Aborted:
+				return ShowTestcases.aborted in self
+
+		return False
+
+
+@export
 class UnittestSummary(BaseDirective):
 	"""
 	This directive will be replaced by a table representing unit test results.
@@ -61,8 +92,12 @@ class UnittestSummary(BaseDirective):
 	optional_arguments = 2
 
 	option_spec = {
-		"reportid":      strip,
-		"no-assertions": flag
+		"class":                  strip,
+		"reportid":               strip,
+		"testsuite-summary-name": strip,
+		"show-testcases":         strip,
+		"no-assertions":          flag,
+		"hide-testsuite-summary": flag
 	}
 
 	directiveName: str = "unittest-summary"
@@ -71,19 +106,30 @@ class UnittestSummary(BaseDirective):
 		f"{configPrefix}_testsuites": ({}, "env", Dict)
 	}  #: A dictionary of all configuration values used by unittest directives.
 
-	_testSummaries: ClassVar[Dict[str, report_DictType]] = {}
+	_testSummaries:    ClassVar[Dict[str, report_DictType]] = {}
 
-	_reportID:     str
-	_noAssertions: bool
-	_xmlReport:    Path
-	_testsuite:    TestsuiteSummary
+	_cssClasses:           List[str]
+	_reportID:             str
+	_noAssertions:         bool
+	_hideTestsuiteSummary: bool
+	_testsuiteSummaryName: Nullable[str]
+	_showTestcases:        ShowTestcases
+	_xmlReport:            Path
+	_testsuite:            TestsuiteSummary
 
 	def _CheckOptions(self) -> None:
 		"""
 		Parse all directive options or use default values.
 		"""
+		cssClasses = self._ParseStringOption("class", "", r"(\w+)?( +\w+)*")
+		showTestcases = self._ParseStringOption("show-testcases", "all", r"all|not-passed")
+
+		self._cssClasses = [] if cssClasses == "" else cssClasses.split(" ")
 		self._reportID = self._ParseStringOption("reportid")
-		self._noAssertions = "without-assertions" in self.options
+		self._testsuiteSummaryName = self._ParseStringOption("testsuite-summary-name", "", r".+")
+		self._showTestcases = ShowTestcases[showTestcases.replace("-", "_")]
+		self._noAssertions = "no-assertions" in self.options
+		self._hideTestsuiteSummary = "hide-testsuite-summary" in self.options
 
 		try:
 			testSummary = self._testSummaries[self._reportID]
@@ -141,6 +187,62 @@ class UnittestSummary(BaseDirective):
 				"xml_report": xmlReport
 			}
 
+	def _sortedValues(self, d: Mapping[str, Testsuite]) -> Generator[Testsuite, None, None]:
+		for key in sorted(d.keys()):
+			yield d[key]
+
+	def _convertTestcaseStatusToSymbol(self, status: TestcaseStatus) -> str:
+		if status is TestcaseStatus.Passed:
+			return "✅"
+		elif status is TestcaseStatus.Failed:
+			return "❌"
+		elif status is TestcaseStatus.Skipped:
+			return "⚠"
+		elif status is TestcaseStatus.Aborted:
+			return "🚫"
+		elif status is TestcaseStatus.Excluded:
+			return "➖"
+		elif status is TestcaseStatus.Errored:
+			return "❗"
+		elif status is TestcaseStatus.SetupError:
+			return "⛔"
+		elif status is TestcaseStatus.Unknown:
+			return "❓"
+		else:
+			return "❌"
+
+	def _convertTestsuiteStatusToSymbol(self, status: TestsuiteStatus) -> str:
+		if status is TestsuiteStatus.Passed:
+			return "✅"
+		elif status is TestsuiteStatus.Failed:
+			return "❌"
+		elif status is TestsuiteStatus.Skipped:
+			return "⚠"
+		elif status is TestsuiteStatus.Aborted:
+			return "🚫"
+		elif status is TestsuiteStatus.Excluded:
+			return "➖"
+		elif status is TestsuiteStatus.Errored:
+			return "❗"
+		elif status is TestsuiteStatus.SetupError:
+			return "⛔"
+		elif status is TestsuiteStatus.Unknown:
+			return "❓"
+		else:
+			return "❌"
+
+	def _formatTimedelta(self, delta: timedelta) -> str:
+		if delta is None:
+			return ""
+
+		# Compute by hand, because timedelta._to_microseconds is not officially documented
+		microseconds = (delta.days * 86_400 + delta.seconds) * 1_000_000 + delta.microseconds
+		milliseconds = (microseconds + 500) // 1000
+		seconds = milliseconds // 1000
+		minutes = seconds // 60
+		hours = minutes // 60
+		return f"{hours:02}:{minutes % 60:02}:{seconds % 60:02}.{milliseconds % 1000:03}"
+
 	def _GenerateTestSummaryTable(self) -> nodes.table:
 		# Create a table and table header with 8 columns
 		columns = [
@@ -158,93 +260,100 @@ class UnittestSummary(BaseDirective):
 		if self._noAssertions:
 			columns.pop(6)
 
+		cssClasses = ["report-unittest-table", f"report-unittest-{self._reportID}"]
+		cssClasses.extend(self._cssClasses)
+
 		table, tableGroup = self._CreateTableHeader(
 			identifier=self._reportID,
 			columns=columns,
-			classes=["report-unittest-table"]
+			classes=cssClasses
 		)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
-		def sortedValues(d: Mapping[str, Testsuite]) -> Generator[Testsuite, None, None]:
-			for key in sorted(d.keys()):
-				yield d[key]
-
-		def convertTestcaseStatusToSymbol(state: TestcaseStatus) -> str:
-			if state is TestcaseStatus.Passed:
-				return "✅"
-			elif state is TestcaseStatus.Unknown:
-				return "❓"
-			else:
-				return "❌"
-
-		def convertTestsuiteStatusToSymbol(state: TestsuiteStatus) -> str:
-			if state is TestsuiteStatus.Passed:
-				return "✅"
-			elif state is TestsuiteStatus.Unknown:
-				return "❓"
-			else:
-				return "❌"
-
-		def formatTimedelta(delta: timedelta) -> str:
-			if delta is None:
-				return ""
-
-			# Compute by hand, because timedelta._to_microseconds is not officially documented
-			microseconds = (delta.days * 86_400 + delta.seconds) * 1_000_000 + delta.microseconds
-			milliseconds = (microseconds + 500) // 1000
-			seconds = milliseconds // 1000
-			minutes = seconds // 60
-			hours = minutes // 60
-			return f"{hours:02}:{minutes % 60:02}:{seconds % 60:02}.{milliseconds % 1000:03}"
-
-		def renderRoot(tableBody: nodes.tbody, testsuite: TestsuiteSummary) -> None:
-			for ts in sortedValues(testsuite._testsuites):
-				renderTestsuite(tableBody, ts, 0)
-
-		def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
-			state = convertTestsuiteStatusToSymbol(testsuite._status)
-
-			tableRow = nodes.row("", classes=["report-unittest-table-row", "report-testsuite"])
-			tableBody += tableRow
-
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testsuite.Name}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.TestcaseCount}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}"))
-			if not self._noAssertions:
-				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{formatTimedelta(testsuite.TotalDuration)}"))
-
-			for ts in sortedValues(testsuite._testsuites):
-				renderTestsuite(tableBody, ts, level + 1)
-
-			for testcase in sortedValues(testsuite._testcases):
-				renderTestcase(tableBody, testcase, level + 1)
-
-		def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
-			state = convertTestcaseStatusToSymbol(testcase._status)
-
-			tableRow =	nodes.row("", classes=["report-unittest-table-row", "report-testcase"])
-			tableBody += tableRow
-
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testcase.Name}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Expected}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Covered}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-			if not self._noAssertions:
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{testcase.AssertionCount}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{formatTimedelta(testcase.TotalDuration)}"))
-
-		renderRoot(tableBody, self._testsuite)
-
-		# # Add a summary row
+		self.renderRoot(tableBody, self._testsuite, self._hideTestsuiteSummary, self._testsuiteSummaryName)
 
 		return table
+
+	def renderRoot(self, tableBody: nodes.tbody, testsuiteSummary: TestsuiteSummary, includeRoot: bool = True, testsuiteSummaryName: Nullable[str] = None) -> None:
+		level = 0
+
+		if includeRoot:
+			level += 1
+			state = self._convertTestsuiteStatusToSymbol(testsuiteSummary._status)
+
+			tableRow = nodes.row("", classes=["report-testsuitesummary", f"testsuitesummary-{testsuiteSummary._status.name.lower()}"])
+			tableBody += tableRow
+
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{state}{testsuiteSummary.Name if testsuiteSummaryName == '' else testsuiteSummaryName}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.TestcaseCount}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.Skipped}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.Errored}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.Failed}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.Passed}"))
+			if not self._noAssertions:
+				tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._formatTimedelta(testsuiteSummary.TotalDuration)}"))
+
+		for ts in self._sortedValues(testsuiteSummary._testsuites):
+			self.renderTestsuite(tableBody, ts, level)
+
+		self.renderSummary(tableBody, testsuiteSummary)
+
+	def renderTestsuite(self, tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
+		state = self._convertTestsuiteStatusToSymbol(testsuite._status)
+
+		tableRow = nodes.row("", classes=["report-testsuite", f"testsuite-{testsuite._status.name.lower()}"])
+		tableBody += tableRow
+
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testsuite.Name}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.TestcaseCount}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}"))
+		if not self._noAssertions:
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._formatTimedelta(testsuite.TotalDuration)}"))
+
+		for ts in self._sortedValues(testsuite._testsuites):
+			self.renderTestsuite(tableBody, ts, level + 1)
+
+		for testcase in self._sortedValues(testsuite._testcases):
+			if testcase._status == self._showTestcases:
+				self.renderTestcase(tableBody, testcase, level + 1)
+
+	def renderTestcase(self, tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
+		state = self._convertTestcaseStatusToSymbol(testcase._status)
+
+		tableRow =	nodes.row("", classes=["report-testcase", f"testcase-{testcase._status.name.lower()}"])
+		tableBody += tableRow
+
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testcase.Name}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Expected}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Covered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+		if not self._noAssertions:
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{testcase.AssertionCount}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._formatTimedelta(testcase.TotalDuration)}"))
+
+	def renderSummary(self, tableBody: nodes.tbody, testsuiteSummary: TestsuiteSummary) -> None:
+		state = self._convertTestsuiteStatusToSymbol(testsuiteSummary._status)
+
+		tableRow = nodes.row("", classes=["report-summary", f"testsuitesummary-{testsuiteSummary._status.name.lower()}"])
+		tableBody += tableRow
+
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{state} {testsuiteSummary.Status.name.upper()}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.TestcaseCount}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.Skipped}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.Errored}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.Failed}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuiteSummary.Passed}"))
+		if not self._noAssertions:
+			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._formatTimedelta(testsuiteSummary.TotalDuration)}"))
 
 	def run(self) -> List[nodes.Node]:
 		container = nodes.container()

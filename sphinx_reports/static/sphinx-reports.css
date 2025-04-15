@@ -21,34 +21,34 @@
 	background: hsl(75 75% 75%);
 }
 .report-cov-below85 {
-	background: hsl(60 75% 75%);
+	background: hsl(60 75% 77%);
 }
 /* modest */
 .report-cov-below80 {
-	background: hsl(45 75% 75%);
+	background: hsl(45 75% 80%);
 }
 .report-cov-below70 {
-	background: hsl(30 75% 75%);
+	background: hsl(30 75% 85%);
 }
 .report-cov-below60 {
-	background: hsl(15 75% 75%);
+	background: hsl(15 75% 85%);
 }
 /* bad */
 .report-cov-below50 {
-	background: hsl(0 75% 75%);
+	background: hsl(0 75% 85%);
 }
 .report-cov-below40 {
-	background: hsl(285 75% 75%);
+	background: hsl(285 75% 85%);
 }
 /* very bad */
 .report-cov-below30 {
-	background: hsl(270 75% 75%);
+	background: hsl(270 75% 85%);
 }
 .report-cov-below20 {
-	background: hsl(255 75% 75%);
+	background: hsl(255 75% 85%);
 }
 .report-cov-below10 {
-	background: hsl(240 75% 75%);
+	background: hsl(240 75% 85%);
 }
 /* internal error */
 .report-cov-error{
@@ -66,4 +66,39 @@
 }
 .report-unittest-summary-row {
 	font-weight: bold;
+}
+
+table.report-unittest-table > thead > tr {
+	background: #ebebeb;
+}
+table.report-unittest-table > tbody > tr {
+	font-weight: bold;
+}
+table.report-unittest-table > tbody > tr.report-summary {
+	background: #ebebeb;
+}
+table.report-unittest-table > tbody > tr.testsuitesummary-unknown,
+table.report-unittest-table > tbody > tr.testsuite-unknown,
+table.report-unittest-table > tbody > tr.testcase-unknown {
+	background: hsl(0 75% 65%);
+}
+table.report-unittest-table > tbody > tr.testsuitesummary-failed,
+table.report-unittest-table > tbody > tr.testsuitesummary-skipped,
+table.report-unittest-table > tbody > tr.testsuitesummary-excluded,
+table.report-unittest-table > tbody > tr.testsuite-failed,
+table.report-unittest-table > tbody > tr.testcase-failed {
+	background: hsl(0 75% 90%);
+}
+table.report-unittest-table > tbody > tr.testsuite-excluded,
+table.report-unittest-table > tbody > tr.testcase-excluded {
+	background: #ebebeb;
+}
+table.report-unittest-table > tbody > tr.testsuite-skipped,
+table.report-unittest-table > tbody > tr.testcase-skipped {
+	background: hsl(60 75% 77%);
+}
+table.report-unittest-table > tbody > tr.report-summary.testsuitesummary-passed /*,
+table.report-unittest-table > tbody > tr.testsuite-passed,
+table.report-unittest-table > tbody > tr.testcase-passed */ {
+	background: hsl(120 75% 90%);
 }

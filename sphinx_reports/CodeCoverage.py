@@ -32,8 +32,7 @@
 **Report code coverage as Sphinx documentation page(s).**
 """
 from pathlib import Path
-from typing  import Dict, Tuple, Any, List, Iterable, Mapping, Generator, TypedDict, Union, Optional as Nullable, \
-	ClassVar
+from typing  import Dict, Tuple, Any, List, Mapping, Generator, TypedDict, Union, Optional as Nullable, ClassVar
 
 from docutils                              import nodes
 from docutils.parsers.rst.directives       import flag
@@ -65,10 +64,17 @@ class CodeCoverageBase(BaseDirective):
 
 	defaultCoverageDefinitions = {
 		"default": {
+			10:      {"class": "report-cov-below10",  "desc": "almost unused"},
+			20:      {"class": "report-cov-below20",  "desc": "almost unused"},
 			30:      {"class": "report-cov-below30",  "desc": "almost unused"},
+			40:      {"class": "report-cov-below40",  "desc": "poorly used"},
 			50:      {"class": "report-cov-below50",  "desc": "poorly used"},
+			60:      {"class": "report-cov-below60",  "desc": "somehow used"},
+			70:      {"class": "report-cov-below70",  "desc": "somehow used"},
 			80:      {"class": "report-cov-below80",  "desc": "somehow used"},
+			85:      {"class": "report-cov-below85",  "desc": "well used"},
 			90:      {"class": "report-cov-below90",  "desc": "well used"},
+			95:      {"class": "report-cov-below95",  "desc": "well used"},
 			100:     {"class": "report-cov-below100", "desc": "excellently used"},
 			"error": {"class": "report-cov-error",    "desc": "internal error"},
 		}
