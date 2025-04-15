@@ -89,7 +89,7 @@ class UnittestSummary(BaseDirective):
 	"""
 	has_content = False
 	required_arguments = 0
-	optional_arguments = 2
+	optional_arguments = 6
 
 	option_spec = {
 		"class":                  strip,

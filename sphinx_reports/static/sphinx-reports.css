@@ -10,44 +10,81 @@
  * Coloring for 0..30, 30..50, 50..80, 80..90, 90.100% coverage
  */
 /* very good */
-.report-cov-below100 {
+table.report-codecov-table > tbody > tr.report-cov-below100,
+table.report-codecov-legend > tbody > tr.report-cov-below100,
+table.report-doccov-table > tbody > tr.report-cov-below100,
+table.report-doccov-legend > tbody > tr.report-cov-below100 {
 	background: hsl(120 75% 75%);
 }
+
 /* good */
-.report-cov-below95 {
+table.report-codecov-table > tbody > tr.report-cov-below95,
+table.report-codecov-legend > tbody > tr.report-cov-below95,
+table.report-doccov-table > tbody > tr.report-cov-below95,
+table.report-doccov-legend > tbody > tr.report-cov-below95 {
 	background: hsl(90 75% 75%);
 }
-.report-cov-below90 {
+table.report-codecov-table > tbody > tr.report-cov-below90,
+table.report-codecov-legend > tbody > tr.report-cov-below90,
+table.report-doccov-table > tbody > tr.report-cov-below90,
+table.report-doccov-legend > tbody > tr.report-cov-below90 {
 	background: hsl(75 75% 75%);
 }
-.report-cov-below85 {
+table.report-codecov-table > tbody > tr.report-cov-below85,
+table.report-codecov-legend > tbody > tr.report-cov-below85,
+table.report-doccov-table > tbody > tr.report-cov-below85,
+table.report-doccov-legend > tbody > tr.report-cov-below85 {
 	background: hsl(60 75% 77%);
 }
 /* modest */
-.report-cov-below80 {
+table.report-codecov-table > tbody > tr.report-cov-below80,
+table.report-codecov-legend > tbody > tr.report-cov-below80,
+table.report-doccov-table > tbody > tr.report-cov-below80,
+table.report-doccov-legend > tbody > tr.report-cov-below80 {
 	background: hsl(45 75% 80%);
 }
-.report-cov-below70 {
+table.report-codecov-table > tbody > tr.report-cov-below70,
+table.report-codecov-legend > tbody > tr.report-cov-below70,
+table.report-doccov-table > tbody > tr.report-cov-below70,
+table.report-doccov-legend > tbody > tr.report-cov-below70 {
 	background: hsl(30 75% 85%);
 }
-.report-cov-below60 {
+table.report-codecov-table > tbody > tr.report-cov-below60,
+table.report-codecov-legend > tbody > tr.report-cov-below60,
+table.report-doccov-table > tbody > tr.report-cov-below60,
+table.report-doccov-legend > tbody > tr.report-cov-below60 {
 	background: hsl(15 75% 85%);
 }
 /* bad */
-.report-cov-below50 {
+table.report-codecov-table > tbody > tr.report-cov-below50,
+table.report-codecov-legend > tbody > tr.report-cov-below50,
+table.report-doccov-table > tbody > tr.report-cov-below50,
+table.report-doccov-legend > tbody > tr.report-cov-below50 {
 	background: hsl(0 75% 85%);
 }
-.report-cov-below40 {
+table.report-codecov-table > tbody > tr.report-cov-below40,
+table.report-codecov-legend > tbody > tr.report-cov-below40,
+table.report-doccov-table > tbody > tr.report-cov-below40,
+table.report-doccov-legend > tbody > tr.report-cov-below40 {
 	background: hsl(285 75% 85%);
 }
 /* very bad */
-.report-cov-below30 {
+table.report-codecov-table > tbody > tr.report-cov-below30,
+table.report-codecov-legend > tbody > tr.report-cov-below30,
+table.report-doccov-table > tbody > tr.report-cov-below30,
+table.report-doccov-legend > tbody > tr.report-cov-below30 {
 	background: hsl(270 75% 85%);
 }
-.report-cov-below20 {
+table.report-codecov-table > tbody > tr.report-cov-below20,
+table.report-codecov-legend > tbody > tr.report-cov-below20,
+table.report-doccov-table > tbody > tr.report-cov-below20,
+table.report-doccov-legend > tbody > tr.report-cov-below20 {
 	background: hsl(255 75% 85%);
 }
-.report-cov-below10 {
+table.report-codecov-table > tbody > tr.report-cov-below10,
+table.report-codecov-legend > tbody > tr.report-cov-below10,
+table.report-doccov-table > tbody > tr.report-cov-below10,
+table.report-doccov-legend > tbody > tr.report-cov-below10 {
 	background: hsl(240 75% 85%);
 }
 /* internal error */
@@ -55,23 +92,16 @@
 	background: rgba(255, 0, 0, .4);
 }
 
-.report-dep-summary-row {
-	font-weight: bold;
-}
-.report-codecov-summary-row {
-	font-weight: bold;
-}
-.report-doccov-summary-row {
-	font-weight: bold;
-}
-.report-unittest-summary-row {
-	font-weight: bold;
-}
-
-table.report-unittest-table > thead > tr {
+table.report-unittest-table > thead > tr,
+table.report-codecov-table > thead > tr,
+table.report-codecov-legend > thead > tr,
+table.report-doccov-table > thead > tr,
+table.report-doccov-legend > thead > tr {
 	background: #ebebeb;
 }
-table.report-unittest-table > tbody > tr {
+table.report-unittest-table > tbody > tr.report-summary,
+table.report-codecov-table > tbody > tr.report-summary,
+table.report-doccov-table > tbody > tr.report-summary {
 	font-weight: bold;
 }
 table.report-unittest-table > tbody > tr.report-summary {

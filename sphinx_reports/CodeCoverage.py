@@ -58,7 +58,9 @@ class package_DictType(TypedDict):
 
 @export
 class CodeCoverageBase(BaseDirective):
+
 	option_spec = {
+		"class":     strip,
 		"packageid": strip
 	}
 
@@ -80,8 +82,8 @@ class CodeCoverageBase(BaseDirective):
 		}
 	}
 
-	configPrefix:  str = "codecov"
-	configValues:  Dict[str, Tuple[Any, str, Any]] = {
+	configPrefix: str = "codecov"
+	configValues: Dict[str, Tuple[Any, str, Any]] = {
 		f"{configPrefix}_packages": ({}, "env", Dict),
 		f"{configPrefix}_levels": (defaultCoverageDefinitions, "env", Dict),
 	}  #: A dictionary of all configuration values used by code coverage directives.
@@ -89,12 +91,18 @@ class CodeCoverageBase(BaseDirective):
 	_coverageLevelDefinitions: ClassVar[Dict[str, Dict[Union[int, str], Dict[str, str]]]] = {}
 	_packageConfigurations:    ClassVar[Dict[str, package_DictType]] = {}
 
-	_packageID:        str
-	_levels:           Dict[Union[int, str], Dict[str, str]]
+	_cssClasses:  List[str]
+	_packageID:   str
+	_levels:      Dict[Union[int, str], Dict[str, str]]
 
 	def _CheckOptions(self) -> None:
-		# Parse all directive options or use default values
+		"""
+		Parse all directive options or use default values.
+		"""
+		cssClasses = self._ParseStringOption("class", "", r"(\w+)?( +\w+)*")
+
 		self._packageID = self._ParseStringOption("packageid")
+		self._cssClasses = [] if cssClasses == "" else cssClasses.split(" ")
 
 	@classmethod
 	def CheckConfiguration(cls, sphinxApplication: Sphinx, sphinxConfiguration: Config) -> None:
@@ -257,7 +265,7 @@ class CodeCoverage(CodeCoverageBase):
 
 	has_content = False
 	required_arguments = 0
-	optional_arguments = 2
+	optional_arguments = CodeCoverageBase.optional_arguments + 1
 
 	option_spec = CodeCoverageBase.option_spec | {
 		"no-branch-coverage": flag
@@ -288,6 +296,9 @@ class CodeCoverage(CodeCoverageBase):
 		self._levels =      packageConfiguration["levels"]
 
 	def _GenerateCoverageTable(self) -> nodes.table:
+		cssClasses = ["report-codecov-table", f"report-codecov-{self._packageID}"]
+		cssClasses.extend(self._cssClasses)
+
 		# Create a table and table header with 10 columns
 		columns = [
 			("Package",   [(" Module", 500)], None),
@@ -302,64 +313,16 @@ class CodeCoverage(CodeCoverageBase):
 		table, tableGroup = self._CreateTableHeader(
 			identifier=self._packageID,
 			columns=columns,
-			classes=["report-codecov-table"]
+			classes=cssClasses
 		)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
-		def sortedValues(d: Mapping[str, AggregatedCoverage]) -> Generator[AggregatedCoverage, None, None]:
-			for key in sorted(d.keys()):
-				yield d[key]
-
-		def renderlevel(tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
-			tableRow = nodes.row("", classes=[
-				"report-codecov-table-row",
-				"report-codecov-package",
-				self._ConvertToColor(packageCoverage.Coverage, "class")
-			])
-			tableBody += tableRow
-
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * level}📦{packageCoverage.Name}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalStatements}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.ExcludedStatements}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredStatements}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingStatements}"))
-			if not self._noBranchCoverage:
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalBranches}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredBranches}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.PartialBranches}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}"))
-
-			for package in sortedValues(packageCoverage._packages):
-				renderlevel(tableBody, package, level + 1)
-
-			for module in sortedValues(packageCoverage._modules):
-				tableRow = nodes.row("", classes=[
-					"report-codecov-table-row",
-					"report-codecov-module",
-					self._ConvertToColor(module.Coverage, "class")
-				])
-				tableBody += tableRow
-
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * (level + 1)}  {module.Name}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingStatements}"))
-				if not self._noBranchCoverage:
-					tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalBranches}"))
-					tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredBranches}"))
-					tableRow += nodes.entry("", nodes.paragraph(text=f"{module.PartialBranches}"))
-					tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingBranches}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}"))
-
-		renderlevel(tableBody, self._coverage)
+		self.renderlevel(tableBody, self._coverage)
 
 		# Add a summary row
 		tableRow = nodes.row("", classes=[
-			"report-codecov-table-row",
-			"report-codecov-summary",
+			"report-summary",
 			self._ConvertToColor(self._coverage.Coverage, "class")
 		])
 		tableBody += tableRow
@@ -377,6 +340,52 @@ class CodeCoverage(CodeCoverageBase):
 		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCoverage:.1%}")),
 
 		return table
+
+	def sortedValues(self, d: Mapping[str, AggregatedCoverage]) -> Generator[AggregatedCoverage, None, None]:
+		for key in sorted(d.keys()):
+			yield d[key]
+
+	def renderlevel(self, tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
+		tableRow = nodes.row("", classes=[
+			"report-package",
+			self._ConvertToColor(packageCoverage.Coverage, "class")
+		])
+		tableBody += tableRow
+
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * level}📦{packageCoverage.Name}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalStatements}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.ExcludedStatements}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredStatements}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingStatements}"))
+		if not self._noBranchCoverage:
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.PartialBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingBranches}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}"))
+
+		for package in self.sortedValues(packageCoverage._packages):
+			self.renderlevel(tableBody, package, level + 1)
+
+		for module in self.sortedValues(packageCoverage._modules):
+			tableRow = nodes.row("", classes=[
+				"report-module",
+				self._ConvertToColor(module.Coverage, "class")
+			])
+			tableBody += tableRow
+
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * (level + 1)}  {module.Name}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingStatements}"))
+			if not self._noBranchCoverage:
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalBranches}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredBranches}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.PartialBranches}"))
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}"))
+
 
 	def _CreatePages(self) -> None:
 		def handlePackage(package: PackageCoverage) -> None:
@@ -480,7 +489,7 @@ class CodeCoverageLegend(CodeCoverageBase):
 	"""
 	has_content = False
 	required_arguments = 0
-	optional_arguments = 2
+	optional_arguments = CodeCoverageBase.optional_arguments + 1
 
 	option_spec = CodeCoverageBase.option_spec | {
 		"style": strip
