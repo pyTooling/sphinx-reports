@@ -21,7 +21,10 @@ namespace_packages = true
 html_report = "report/typing"
 
 [tool.pytest]
-junit_xml = "report/unit/TestReportSummary.xml"
+junit_xml = "report/unit/UnittestReportSummary.xml"
+
+[tool.pyedaa-reports]
+junit_xml = "report/unit/unittest.xml"
 
 [tool.pytest.ini_options]
 addopts = "--tb=native"
