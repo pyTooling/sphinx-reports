@@ -14,6 +14,7 @@ jobs:
 #      package_namespace: pyEDAA
       package_name: sphinx_reports
       unittest_python_version_list: '3.11 3.12 3.13'
+      cleanup: false
     secrets:
       PYPI_TOKEN:           ${{ secrets.PYPI_TOKEN }}
       CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
