@@ -85,48 +85,130 @@ Supported format reports are:
 
 * ✅🚧 Unit Test summaries (by `pytest <https://github.com/pytest-dev/pytest>`__)
 
-  * ✅ Summary page (displaying `unittest.xml`)
+  * ✅ Summary page (displaying ``unittest.xml``)
   * 🚧 Show logging, output and error messages.
 
 * 🚧 Code coverage (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
 
-  * ✅ Summary page
-  * 🚧 Highlighted source code
+  * ✅ Summary page (displaying ``coverage.json``)
+  * 🚧 Individual Sphinx documents per package/module
+  * 🚧 Highlighted source code with syntax highlighting and coverage highlighting
 
-* ✅ Documentation coverage (by `docstr_coverage <https://github.com/HunterMcGushion/docstr_coverage>`__ (or `interrogate`?))
-* 🚧 Dependencies (reading `requirements.txt` files)
+* 🚧 Documentation coverage
+
+  * ✅ Summary page (displaying data from `"""docstr_coverage""" <https://github.com/HunterMcGushion/docstr_coverage>`__)
+  * ❓ Additionally support `interrogate <https://github.com/econchick/interrogate>`__ as data source.
+  * 🚧 Individual Sphinx documents per package/module
+  * 🚧 Highlighted source code with syntax highlighting and coverage highlighting
+
+* 🚧 Dependencies
+
+  * 🚧 Summary page (displaying ``requirements.txt``)
 
 
 Unit Test Summary
 =================
 
-🚧 This is a work-in-progress feature. 🚧
+.. grid:: 2
 
-:ref:`UNITTEST`
+   .. grid-item::
+      :columns: 6
 
-.. todo:: index: Screen shot here and link to this unitest summary.
+      🚧 This is a work-in-progress feature. 🚧
+
+      :ref:`UNITTEST`
+
+      .. rubric:: Configuration Options
+
+      * Handle multiple unittest report files per Sphinx documentation.
+      * Overwrite testsuite summary name (toplevel report name).
+      * Show all testcases or not passing testcases.
+      * Hide assertions
+      * Hide summary row
+      * Separate legend directive to list color pallet.
+
+      .. rubric:: Styling via CSS
+
+      * Add user-defined CSS classes
+      * Predefined color pallet or user defined percentages and CSS class names
+
+      .. rubric:: Planned features
+
+      * Display testsuite details on standalone documents (separate HTML page)
+
+   .. grid-item::
+      :columns: 6
+
+      .. image:: _static/Unittest.png
 
 
 Code Coverage
 =============
 
-:ref:`CODECOV` checks if a source code was used during execution. Usually, testcases are run by a testcase execution
-framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the code for code
-coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually based on
-`Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage collection.
+.. grid:: 2
 
-.. todo:: index: Screen shot here and link to this code coverage report.
+   .. grid-item::
+      :columns: 6
+
+      :ref:`CODECOV` checks if a source code was used during execution. Usually, testcases are run by a testcase
+      execution framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the
+      code for code coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually
+      based on `Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage
+      collection.
+
+      .. rubric:: Configuration Options
+
+      * Handle multiple code coverage report files per Sphinx documentation.
+      * Show branch coverage if available.
+      * Separate legend directive to list color pallet.
+
+      .. rubric:: Styling via CSS
+
+      * Add user-defined CSS classes
+      * Predefined color pallet or user defined percentages and CSS class names
+
+      .. rubric:: Planned features
+
+      * Display package and module coverage on standalone documents (separate HTML page)
+      * Visualize code coverage using syntax highlightling and background colors.
+
+   .. grid-item::
+      :columns: 6
+
+      .. image:: _static/CodeCoverage.png
 
 
 Documentation coverage
 ======================
 
-:ref:`DOCCOV` counts how many publicly accessible members are documented using a Python :term:`doc-string`. Based on the
-count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage of
-documentation coverage can be computed.
+.. grid:: 2
 
-.. todo:: index: Screen shot here and link to this documentations report.
+   .. grid-item::
+      :columns: 6
 
+      :ref:`DOCCOV` counts how many publicly accessible members are documented using a Python :term:`doc-string`. Based
+      on the count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage
+      of documentation coverage can be computed.
+
+      .. rubric:: Configuration Options
+
+      * Handle multiple documentation coverage reports per Sphinx documentation.
+      * Separate legend directive to list color pallet.
+
+      .. rubric:: Styling via CSS
+
+      * Add user-defined CSS classes
+      * Predefined color pallet or user defined percentages and CSS class names
+
+      .. rubric:: Planned features
+
+      * Display documentation coverage on standalone documents (separate HTML page)
+      * Visualize documentation coverage using syntax highlightling and background colors.
+
+   .. grid-item::
+      :columns: 6
+
+      .. image:: _static/DocCoverage.png
 
 Dependencies
 ============
