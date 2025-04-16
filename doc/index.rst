@@ -1,75 +1,26 @@
-.. |img-sphinx-reports-github| image:: https://img.shields.io/badge/pyTooling-sphinx--reports-323131.svg?logo=github&longCache=true
-   :alt: Sourcecode on GitHub
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports
-.. |img-sphinx-reports-license| image:: https://img.shields.io/badge/Apache%20License,%202.0-bd0000.svg?longCache=true&label=license&logo=Apache&logoColor=D22128
-   :alt: License
-   :height: 22
-.. |img-sphinx-reports-tag| image:: https://img.shields.io/github/v/tag/pyTooling/sphinx-reports?logo=GitHub&include_prereleases
-   :alt: GitHub tag (latest SemVer incl. pre-release
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports/tags
-.. |img-sphinx-reports-release| image:: https://img.shields.io/github/v/release/pyTooling/sphinx-reports?logo=GitHub&include_prereleases
-   :alt: GitHub release (latest SemVer incl. including pre-releases
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports/releases/latest
-.. |img-sphinx-reports-date| image:: https://img.shields.io/github/release-date/pyTooling/sphinx-reports?logo=GitHub
-   :alt: GitHub release date
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports/releases
-.. |img-sphinx-reports-lib-status| image:: https://img.shields.io/librariesio/release/pypi/sphinx-reports
-   :alt: Libraries.io status for latest release
-   :height: 22
-   :target: https://libraries.io/github/pyTooling/sphinx-reports
-.. |img-sphinx-reports-req-status| image:: https://img.shields.io/requires/github/pyTooling/sphinx-reports
-   :alt: Requires.io
-   :height: 22
-   :target: https://requires.io/github/pyTooling/sphinx-reports/requirements/?branch=master
-.. |img-sphinx-reports-travis| image:: https://img.shields.io/travis/com/pyTooling/sphinx-reports?logo=Travis
-   :alt: Travis - Build on 'master'
-   :height: 22
-   :target: https://travis-ci.com/pyTooling/sphinx-reports
-.. |img-sphinx-reports-pypi-tag| image:: https://img.shields.io/pypi/v/sphinx-reports?logo=PyPI
-   :alt: PyPI - Tag
-   :height: 22
-   :target: https://pypi.org/project/sphinx-reports/
-.. |img-sphinx-reports-pypi-status| image:: https://img.shields.io/pypi/status/sphinx-reports?logo=PyPI
-   :alt: PyPI - Status
-   :height: 22
-.. |img-sphinx-reports-pypi-python| image:: https://img.shields.io/pypi/pyversions/sphinx-reports?logo=PyPI
-   :alt: PyPI - Python Version
-   :height: 22
-.. |img-sphinx-reports-lib-dep| image:: https://img.shields.io/librariesio/dependent-repos/pypi/sphinx-reports
-   :alt: Dependent repos (via libraries.io)
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports/network/dependents
-.. |img-sphinx-reports-codacy-quality| image:: https://img.shields.io/codacy/grade/9a89bbc1d2c04a699ea14abea75588c7?logo=codacy
-   :alt: Codacy - Quality
-   :height: 22
-   :target: https://www.codacy.com/manual/pyTooling/sphinx-reports
-.. |img-sphinx-reports-codacy-coverage| image:: https://img.shields.io/codacy/coverage/9a89bbc1d2c04a699ea14abea75588c7?logo=codacy
-   :alt: Codacy - Line Coverage
-   :height: 22
-   :target: https://www.codacy.com/manual/pyTooling/sphinx-reports
-.. |img-sphinx-reports-codecov-coverage| image:: https://codecov.io/gh/pyTooling/sphinx-reports/branch/master/graph/badge.svg
-   :alt: Codecov - Branch Coverage
-   :height: 22
-   :target: https://codecov.io/gh/pyTooling/sphinx-reports
-.. |img-sphinx-reports-lib-rank| image:: https://img.shields.io/librariesio/sourcerank/pypi/sphinx-reports
-   :alt: Libraries.io SourceRank
-   :height: 22
-   :target: https://libraries.io/github/pyTooling/sphinx-reports/sourcerank
-.. |img-sphinx-reports-rtd| image:: https://img.shields.io/readthedocs/sphinx-reports
-   :alt: Read the Docs
-   :height: 22
-   :target: https://sphinx-reports.readthedocs.io/en/latest/
+.. include:: shields.inc
 
-|img-sphinx-reports-github| |img-sphinx-reports-tag| |img-sphinx-reports-release| |img-sphinx-reports-date| |br|
-|img-sphinx-reports-lib-status| |img-sphinx-reports-req-status| |img-sphinx-reports-lib-dep| |br|
-|img-sphinx-reports-travis| |img-sphinx-reports-pypi-tag| |img-sphinx-reports-pypi-status| |img-sphinx-reports-pypi-python| |br|
-|img-sphinx-reports-codacy-quality| |img-sphinx-reports-codacy-coverage| |img-sphinx-reports-codecov-coverage| |img-sphinx-reports-lib-rank| |br|
-|img-sphinx-reports-rtd| |img-sphinx-reports-license|
+.. raw:: latex
 
+   \part{Introduction}
+
+.. only:: html
+
+   |  |SHIELD:svg:SphinxReports-github| |SHIELD:svg:SphinxReports-src-license| |SHIELD:svg:SphinxReports-ghp-doc| |SHIELD:svg:SphinxReports-doc-license|
+   |  |SHIELD:svg:SphinxReports-pypi-tag| |SHIELD:svg:SphinxReports-pypi-status| |SHIELD:svg:SphinxReports-pypi-python|
+   |  |SHIELD:svg:SphinxReports-gha-test| |SHIELD:svg:SphinxReports-lib-status| |SHIELD:svg:SphinxReports-codacy-quality| |SHIELD:svg:SphinxReports-codacy-coverage| |SHIELD:svg:SphinxReports-codecov-coverage|
+
+.. Disabled shields: |SHIELD:svg:SphinxReports-gitter| |SHIELD:svg:SphinxReports-lib-dep| |SHIELD:svg:SphinxReports-lib-rank|
+
+.. only:: latex
+
+   |SHIELD:png:SphinxReports-github| |SHIELD:png:SphinxReports-src-license| |SHIELD:png:SphinxReports-ghp-doc| |SHIELD:png:SphinxReports-doc-license|
+   |SHIELD:png:SphinxReports-pypi-tag| |SHIELD:png:SphinxReports-pypi-status| |SHIELD:png:SphinxReports-pypi-python|
+   |SHIELD:png:SphinxReports-gha-test| |SHIELD:png:SphinxReports-lib-status| |SHIELD:png:SphinxReports-codacy-quality| |SHIELD:png:SphinxReports-codacy-coverage| |SHIELD:png:SphinxReports-codecov-coverage|
+
+.. Disabled shields: |SHIELD:svg:SphinxReports-gitter| |SHIELD:png:SphinxReports-lib-dep| |SHIELD:png:SphinxReports-lib-rank|
+
+--------------------------------------------------------------------------------
 
 sphinx-reports Documentation
 ############################
@@ -85,48 +36,130 @@ Supported format reports are:
 
 * ✅🚧 Unit Test summaries (by `pytest <https://github.com/pytest-dev/pytest>`__)
 
-  * ✅ Summary page (displaying `unittest.xml`)
+  * ✅ Summary page (displaying ``unittest.xml``)
   * 🚧 Show logging, output and error messages.
 
 * 🚧 Code coverage (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
 
-  * ✅ Summary page
-  * 🚧 Highlighted source code
+  * ✅ Summary page (displaying ``coverage.json``)
+  * 🚧 Individual Sphinx documents per package/module
+  * 🚧 Highlighted source code with syntax highlighting and coverage highlighting
 
-* ✅ Documentation coverage (by `docstr_coverage <https://github.com/HunterMcGushion/docstr_coverage>`__ (or `interrogate`?))
-* 🚧 Dependencies (reading `requirements.txt` files)
+* 🚧 Documentation coverage
+
+  * ✅ Summary page (displaying data from `"""docstr_coverage""" <https://github.com/HunterMcGushion/docstr_coverage>`__)
+  * ❓ Additionally support `interrogate <https://github.com/econchick/interrogate>`__ as data source.
+  * 🚧 Individual Sphinx documents per package/module
+  * 🚧 Highlighted source code with syntax highlighting and coverage highlighting
+
+* 🚧 Dependencies
+
+  * 🚧 Summary page (displaying ``requirements.txt``)
 
 
 Unit Test Summary
 =================
 
-🚧 This is a work-in-progress feature. 🚧
+.. grid:: 2
 
-:ref:`UNITTEST`
+   .. grid-item::
+      :columns: 6
 
-.. todo:: index: Screen shot here and link to this unitest summary.
+      🚧 This is a work-in-progress feature. 🚧
+
+      :ref:`UNITTEST`
+
+      .. rubric:: Configuration Options
+
+      * Handle multiple unittest report files per Sphinx documentation.
+      * Overwrite testsuite summary name (toplevel report name).
+      * Show all testcases or not passing testcases.
+      * Hide assertions
+      * Hide summary row
+      * Separate legend directive to list color pallet.
+
+      .. rubric:: Styling via CSS
+
+      * Add user-defined CSS classes
+      * Predefined color pallet or user defined percentages and CSS class names
+
+      .. rubric:: Planned features
+
+      * Display testsuite details on standalone documents (separate HTML page)
+
+   .. grid-item::
+      :columns: 6
+
+      .. image:: _static/Unittest.png
 
 
 Code Coverage
 =============
 
-:ref:`CODECOV` checks if a source code was used during execution. Usually, testcases are run by a testcase execution
-framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the code for code
-coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually based on
-`Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage collection.
+.. grid:: 2
 
-.. todo:: index: Screen shot here and link to this code coverage report.
+   .. grid-item::
+      :columns: 6
+
+      :ref:`CODECOV` checks if a source code was used during execution. Usually, testcases are run by a testcase
+      execution framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the
+      code for code coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually
+      based on `Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage
+      collection.
+
+      .. rubric:: Configuration Options
+
+      * Handle multiple code coverage report files per Sphinx documentation.
+      * Show branch coverage if available.
+      * Separate legend directive to list color pallet.
+
+      .. rubric:: Styling via CSS
+
+      * Add user-defined CSS classes
+      * Predefined color pallet or user defined percentages and CSS class names
+
+      .. rubric:: Planned features
+
+      * Display package and module coverage on standalone documents (separate HTML page)
+      * Visualize code coverage using syntax highlightling and background colors.
+
+   .. grid-item::
+      :columns: 6
+
+      .. image:: _static/CodeCoverage.png
 
 
 Documentation coverage
 ======================
 
-:ref:`DOCCOV` counts how many publicly accessible members are documented using a Python :term:`doc-string`. Based on the
-count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage of
-documentation coverage can be computed.
+.. grid:: 2
 
-.. todo:: index: Screen shot here and link to this documentations report.
+   .. grid-item::
+      :columns: 6
 
+      :ref:`DOCCOV` counts how many publicly accessible members are documented using a Python :term:`doc-string`. Based
+      on the count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage
+      of documentation coverage can be computed.
+
+      .. rubric:: Configuration Options
+
+      * Handle multiple documentation coverage reports per Sphinx documentation.
+      * Separate legend directive to list color pallet.
+
+      .. rubric:: Styling via CSS
+
+      * Add user-defined CSS classes
+      * Predefined color pallet or user defined percentages and CSS class names
+
+      .. rubric:: Planned features
+
+      * Display documentation coverage on standalone documents (separate HTML page)
+      * Visualize documentation coverage using syntax highlightling and background colors.
+
+   .. grid-item::
+      :columns: 6
+
+      .. image:: _static/DocCoverage.png
 
 Dependencies
 ============
@@ -139,7 +172,7 @@ Dependencies
 Contributors
 ************
 
-* `Patrick Lehmann <https://GitHub.com/pyTooling>`__ (Maintainer)
+* `Patrick Lehmann <https://GitHub.com/Paebbels>`__ (Maintainer)
 * `and more... <https://GitHub.com/pyTooling/sphinx-reports/graphs/contributors>`__
 
 
@@ -176,6 +209,9 @@ License
 
    Examples/Documentation
    Examples/Dependency
+   Examples/JUnit-Basic
+   Examples/JUnit-Complete
+   Examples/OSVVM
 
 .. toctree::
    :caption: Supported Reports
@@ -197,6 +233,7 @@ License
    Python Class Reference <sphinx_reports/sphinx_reports>
    unittests/index
    coverage/index
+   CodeCoverage
    Doc. Coverage Report <DocCoverage>
    Static Type Check Report ➚ <typing/index>
 

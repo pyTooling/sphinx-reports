@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2024 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -41,9 +41,9 @@ Supported reports:
 """
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
-__copyright__ = "2023-2024, Patrick Lehmann"
+__copyright__ = "2023-2025, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.7.5"
+__version__ =   "0.8.0"
 __keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate"]
 
 from hashlib               import md5

@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2024 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -54,23 +54,32 @@ class package_DictType(TypedDict):
 
 @export
 class DocCoverageBase(BaseDirective):
+
 	option_spec = {
+		"class":     strip,
 		"packageid": strip,
 	}
 
 	defaultCoverageDefinitions = {
 		"default": {
+			10:      {"class": "report-cov-below10",  "desc": "almost undocumented"},
+			20:      {"class": "report-cov-below20",  "desc": "almost undocumented"},
 			30:      {"class": "report-cov-below30",  "desc": "almost undocumented"},
+			40:      {"class": "report-cov-below40",  "desc": "poorly documented"},
 			50:      {"class": "report-cov-below50",  "desc": "poorly documented"},
+			60:      {"class": "report-cov-below60",  "desc": "roughly documented"},
+			70:      {"class": "report-cov-below70",  "desc": "roughly documented"},
 			80:      {"class": "report-cov-below80",  "desc": "roughly documented"},
+			85:      {"class": "report-cov-below85",  "desc": "well documented"},
 			90:      {"class": "report-cov-below90",  "desc": "well documented"},
+			95:      {"class": "report-cov-below95",  "desc": "well documented"},
 			100:     {"class": "report-cov-below100", "desc": "excellent documented"},
 			"error": {"class": "report-cov-error",    "desc": "internal error"},
 		}
 	}
 
-	configPrefix:  str = "doccov"
-	configValues:  Dict[str, Tuple[Any, str, Any]] = {
+	configPrefix: str = "doccov"
+	configValues: Dict[str, Tuple[Any, str, Any]] = {
 		f"{configPrefix}_packages": ({}, "env", Dict),
 		f"{configPrefix}_levels": (defaultCoverageDefinitions, "env", Dict),
 	}  #: A dictionary of all configuration values used by documentation coverage directives.
@@ -78,12 +87,18 @@ class DocCoverageBase(BaseDirective):
 	_coverageLevelDefinitions: ClassVar[Dict[str, Dict[Union[int, str], Dict[str, str]]]] = {}
 	_packageConfigurations:    ClassVar[Dict[str, package_DictType]] = {}
 
+	_cssClasses:  List[str]
 	_packageID:   str
 	_levels:      Dict[Union[int, str], Dict[str, str]]
 
 	def _CheckOptions(self) -> None:
-		# Parse all directive options or use default values
+		"""
+		Parse all directive options or use default values.
+		"""
+		cssClasses = self._ParseStringOption("class", "", r"(\w+)?( +\w+)*")
+
 		self._packageID = self._ParseStringOption("packageid")
+		self._cssClasses = [] if cssClasses == "" else cssClasses.split(" ")
 
 	@classmethod
 	def CheckConfiguration(cls, sphinxApplication: Sphinx, sphinxConfiguration: Config) -> None:
@@ -231,7 +246,7 @@ class DocCoverage(DocCoverageBase):
 
 	has_content = False
 	required_arguments = 0
-	optional_arguments = 2
+	optional_arguments = DocCoverageBase.optional_arguments + 0
 
 	option_spec = DocCoverageBase.option_spec
 
@@ -253,6 +268,9 @@ class DocCoverage(DocCoverageBase):
 		self._levels =      packageConfiguration["levels"]
 
 	def _GenerateCoverageTable(self) -> nodes.table:
+		cssClasses = ["report-doccov-table", f"report-doccov-{self._packageID}"]
+		cssClasses.extend(self._cssClasses)
+
 		# Create a table and table header with 5 columns
 		table, tableGroup = self._CreateTableHeader(
 			identifier=self._packageID,
@@ -263,49 +281,12 @@ class DocCoverage(DocCoverageBase):
 				("Missing", None, 100),
 				("Coverage in %", None, 100)
 			],
-			classes=["report-doccov-table"]
+			classes=cssClasses
 		)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
-		def sortedValues(d: Mapping[str, AggregatedCoverage]) -> Generator[AggregatedCoverage, None, None]:
-			for key in sorted(d.keys()):
-				yield d[key]
-
-		def renderlevel(tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
-			tableBody += nodes.row(
-				"",
-				nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
-				classes=[
-					"report-doccov-table-row",
-					"report-doccov-package",
-					self._ConvertToColor(packageCoverage.Coverage, "class")
-				],
-			)
-
-			for package in sortedValues(packageCoverage._packages):
-				renderlevel(tableBody, package, level + 1)
-
-			for module in sortedValues(packageCoverage._modules):
-				tableBody += nodes.row(
-					"",
-					nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
-					nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
-					classes=[
-						"report-doccov-table-row",
-						"report-doccov-module",
-						self._ConvertToColor(module.Coverage, "class")
-					],
-				)
-
-		renderlevel(tableBody, self._coverage)
+		self._renderlevel(tableBody, self._coverage)
 
 		# Add a summary row
 		tableBody += nodes.row(
@@ -318,13 +299,47 @@ class DocCoverage(DocCoverageBase):
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
 			classes=[
-				"report-doccov-table-row",
-				"report-doccov-summary",
+				"report-summary",
 				self._ConvertToColor(self._coverage.AggregatedCoverage, "class")
 			]
 		)
 
 		return table
+
+	def _sortedValues(self, d: Mapping[str, AggregatedCoverage]) -> Generator[AggregatedCoverage, None, None]:
+		for key in sorted(d.keys()):
+			yield d[key]
+
+	def _renderlevel(self, tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
+		tableBody += nodes.row(
+			"",
+			nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
+			nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Expected}")),
+			nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
+			nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
+			nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
+			classes=[
+				"report-package",
+				self._ConvertToColor(packageCoverage.Coverage, "class")
+			],
+		)
+
+		for package in self._sortedValues(packageCoverage._packages):
+			self._renderlevel(tableBody, package, level + 1)
+
+		for module in self._sortedValues(packageCoverage._modules):
+			tableBody += nodes.row(
+				"",
+				nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
+				nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
+				nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
+				nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
+				classes=[
+					"report-module",
+					self._ConvertToColor(module.Coverage, "class")
+				],
+			)
 
 
 @export
@@ -357,7 +372,7 @@ class DocCoverageLegend(DocCoverageBase):
 	"""
 	has_content = False
 	required_arguments = 0
-	optional_arguments = 2
+	optional_arguments = DocCoverageBase.optional_arguments + 1
 
 	option_spec = DocCoverageBase.option_spec | {
 		"style": strip

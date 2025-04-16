@@ -1,20 +1,21 @@
 [![Sourcecode on GitHub](https://img.shields.io/badge/pyTooling-sphinx--reports-323131.svg?logo=github&longCache=true)](https://github.com/pyTooling/sphinx-reports)
-[![License](https://img.shields.io/badge/code%20license-Apache%20License%2C%202.0-lightgrey?logo=GitHub)](LICENSE.md)
-[![GitHub tag (latest SemVer incl. pre-release)](https://img.shields.io/github/v/tag/pyTooling/sphinx-reports?logo=GitHub&include_prereleases)](https://github.com/pyTooling/sphinx-reports/tags)
-[![GitHub release (latest SemVer incl. including pre-releases)](https://img.shields.io/github/v/release/pyTooling/sphinx-reports?logo=GitHub&include_prereleases)](https://github.com/pyTooling/sphinx-reports/releases/latest)
+[![Sourcecode License](https://img.shields.io/pypi/l/sphinx-reports?longCache=true&style=flat-square&logo=Apache&label=code)](LICENSE.md)
+[![Documentation](https://img.shields.io/website?longCache=true&style=flat-square&label=pyTooling.github.io%2Fsphinx-reports&logo=GitHub&logoColor=fff&up_color=blueviolet&up_message=Read%20now%20%E2%9E%9A&url=https%3A%2F%2FpyTooling.github.io%2Fsphinx%2Dreports%2Findex.html)](https://pyTooling.github.io/sphinx-reports/)
+[![Documentation License](https://img.shields.io/badge/doc-CC--BY%204.0-green?longCache=true&style=flat-square&logo=CreativeCommons&logoColor=fff)](LICENSE.md)  
+[![PyPI](https://img.shields.io/pypi/v/sphinx-reports?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)](https://pypi.org/project/sphinx-reports/)
+![PyPI - Status](https://img.shields.io/pypi/status/sphinx-reports?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/sphinx-reports?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)  
+[![GitHub Workflow - Build and Test Status](https://img.shields.io/github/actions/workflow/status/pyTooling/sphinx-reports/Pipeline.yml?branch=main&longCache=true&style=flat-square&label=build%20and%20test&logo=GitHub%20Actions&logoColor=FFFFFF)](https://GitHub.com/pyTooling/sphinx-reports/actions/workflows/Pipeline.yml)
+[![Libraries.io status for latest release](https://img.shields.io/librariesio/release/pypi/sphinx-reports?longCache=true&style=flat-square&logo=Libraries.io&logoColor=fff)](https://libraries.io/github/pyTooling/sphinx-reports)
+[![Codacy - Quality](https://img.shields.io/codacy/grade/9a89bbc1d2c04a699ea14abea75588c7?longCache=true&style=flat-square&logo=Codacy)](https://www.codacy.com/gh/pyTooling/sphinx-reports)
+[![Codacy - Coverage](https://img.shields.io/codacy/coverage/9a89bbc1d2c04a699ea14abea75588c7?longCache=true&style=flat-square&logo=Codacy)](https://www.codacy.com/gh/pyTooling/sphinx-reports)
+[![Codecov - Branch Coverage](https://img.shields.io/codecov/c/github/pyTooling/sphinx-reports?longCache=true&style=flat-square&logo=Codecov)](https://codecov.io/gh/pyTooling/sphinx-reports)
+
+
+<!--
 [![GitHub release date](https://img.shields.io/github/release-date/pyTooling/sphinx-reports?logo=GitHub&)](https://github.com/pyTooling/sphinx-reports/releases)  
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pyTooling/sphinx-reports/Test,%20Coverage%20and%20Release?label=Workflow&logo=GitHub)](https://github.com/pyTooling/sphinx-reports/actions?query=workflow%3A%22Test%2C+Coverage+and+Release%22)
-[![PyPI](https://img.shields.io/pypi/v/sphinx-reports?logo=PyPI)](https://pypi.org/project/sphinx-reports/)
-![PyPI - Status](https://img.shields.io/pypi/status/sphinx-reports?logo=PyPI)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/sphinx-reports?logo=PyPI)
 [![Dependent repos (via libraries.io)](https://img.shields.io/librariesio/dependent-repos/pypi/sphinx-reports)](https://github.com/pyTooling/sphinx-reports/network/dependents)  
-[![Libraries.io status for latest release](https://img.shields.io/librariesio/release/pypi/sphinx-reports)](https://libraries.io/github/pyTooling/sphinx-reports)
-[![Requires.io](https://img.shields.io/requires/github/pyTooling/sphinx-reports)](https://requires.io/github/pyTooling/sphinx-reports/requirements/?branch=master)  
-[![Codacy - Quality](https://img.shields.io/codacy/grade/9a89bbc1d2c04a699ea14abea75588c7?logo=Codacy)](https://www.codacy.com/manual/pyTooling/sphinx-reports)
-[![Codacy - Coverage](https://img.shields.io/codacy/coverage/9a89bbc1d2c04a699ea14abea75588c7?logo=Codacy)](https://www.codacy.com/manual/pyTooling/sphinx-reports)
-[![Codecov - Branch Coverage](https://img.shields.io/codecov/c/github/pyTooling/sphinx-reports?logo=Codecov)](https://codecov.io/gh/pyTooling/sphinx-reports)
-[![Libraries.io SourceRank](https://img.shields.io/librariesio/sourcerank/pypi/sphinx-reports)](https://libraries.io/github/pyTooling/sphinx-reports/sourcerank)  
-<!-- [![Read the Docs](https://img.shields.io/readthedocs/sphinx-reports)](https://pyVersioning.readthedocs.io/en/latest/) -->
+-->
 
 
 # Sphinx Reports
@@ -23,16 +24,20 @@ The Sphinx extension `sphinx_reports` offers a set of directives to integrate re
 documentation generated by Sphinx.
 
 Supported format reports are:
-* ✅ Documentation coverage (by [docstr_coverage](https://github.com/HunterMcGushion/docstr_coverage) (or `interrogate`?))
-* 🚧 Code coverage (by [Coverage.py](https://github.com/nedbat/coveragepy))
-  * ✅ Summary page (displaying `coverage.json`)
-  * 🚧 Highlighted source code
 * ✅🚧 Unit Test summaries (by [pytest](https://github.com/pytest-dev/pytest))
   * ✅ Summary page (displaying `unittest.xml`)
   * 🚧 Show logging, output and error messages.
-* 🚧 Dependencies (reading `requirements.txt` files)
-
-![Code Coverage Summary Page](.github/CodeCoverage.png)
+* 🚧 Code coverage (by [Coverage.py](https://github.com/nedbat/coveragepy))
+  * ✅ Summary page (displaying `coverage.json`)
+  * 🚧 Individual Sphinx documents per package/module
+  * 🚧 Highlighted source code with syntax highlighting and coverage highlighting
+* 🚧 Documentation coverage
+  * ✅ Summary page (displaying data from ["""docstr_coverage"""](https://github.com/HunterMcGushion/docstr_coverage))
+  * ❓ Additionally support [interrogate](https://github.com/econchick/interrogate) as data source.
+  * 🚧 Individual Sphinx documents per package/module
+  * 🚧 Highlighted source code with syntax highlighting and coverage highlighting 
+* 🚧 Package Dependencies
+  * 🚧 Summary page (displaying `requirements.txt`)
 
 
 ## Extension Configuration
@@ -52,74 +57,60 @@ extensions = [
 
 Each report directive might require an individual configuration, therefore see the next sections for details.
 
-## Documentation Coverage
 
-*Documentation Coverage* counts how many publicly accessible members are documented using a Python *doc-string*. Based
-on the count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage of
-documentation coverage can be computed.
+## Unittest Report Summary
 
-Documentation coverage is a measure of code quality, which expresses how well documented (completeness or documentation,
-but not necessarily quality/helpfulness of documentation) source code is. Well documented code helps to use and maintain
-the existing code base. It also allows for automated documentation generation.
+The *Unittests Report* collects the success or failure of unittests. The results are typically stored in an XML file,
+which can be read by **sphinx-reports**. After reading the structure of testsuites and testcases, the report can be
+visualized. The user  
+
+![Unitest Summary Page](doc/_static/Unittest.png)
 
 
-### Quick Configuration
+This is a quick and minimal configuration for the *unittest summary* directives.
+See the [unittest](https://pyTooling.github.io/sphinx-reports/Unittest/index.html) documentation for more details.
 
-This is a quick and minimal configuration for the *documentation coverage* directives.
-See [documentation coverage](https://pyTooling.github.io/sphinx-reports/DocCov/index.html) documentation for more
-details.
+<details><summary>Quick Configuration - Step-by-Step</summary>
 
-1. Configure one or more Python packages for documentation coverage analysis in `conf.py` by adding a new 'section' 
-   defining some configuration variables. Each package is identified by an ID, which is later referred to by the report
-   directive. Here, the ID is called `src` (dictionary key). Each package needs 4 configuration entries:
+1. Configure one or more coverage analysis reports in `conf.py` by adding a new 'section' defining some configuration
+   variables. Each unittest report is identified by an ID, which is later referred to by the report directive. Here, the
+   ID is called ``src`` (dictionary key). Each unittest report needs 1 configuration entry:
 
-   * `name` - Name of the Python package[^1].
-   * `directory` - The directory of the package to analyze.
-   * `fail_below` - An integer value in range 0..100, for when a documentation coverage is considered FAILED.
-   * `levels` - A dictionary of coverage limits, their description and CSS style classes.
+   * `xml_report` - The unittest report as XML file as generated by *pytest*.
 
    ```Python
-   # ==============================================================================
-   # Sphinx-reports - DocCov
-   # ==============================================================================
-   report_doccov_packages = {
+   report_unittest_testsuites = {
      "src": {
-       "name":       "myPackage",
-       "directory":  "../myPackage",
-       "fail_below": 80,
-       "levels": {
-         30:      {"class": "report-cov-below30",  "desc": "almost undocumented"},
-         50:      {"class": "report-cov-below50",  "desc": "poorly documented"},
-         80:      {"class": "report-cov-below80",  "desc": "roughly documented"},
-         90:      {"class": "report-cov-below90",  "desc": "well documented"},
-         100:     {"class": "report-cov-below100", "desc": "excellent documented"},
-         "error": {"class": "report-cov-error",    "desc": "internal error"},
-       },
+       "xml_report": "../report/unit/unittest.xml"
      }
    }
    ```
-2. Add the `doc-coverage` directive into your Restructured Text (ReST) document.
-   
-   * `packageid` - The ID used in `conf.py` to describe a Python package.
-   * `legend` (optional) - Position of the legend (`no_legend`, `top`, `bottom`, `both`)
+2. Add the `unittest-summary` directive into your Restructured Text (ReST) document.
 
-   ```Python
-   .. report:doc-coverage::
-      :packageid: src
+   * `reportid` - The ID used in `conf.py` to describe a report.
+
+   ```ReST
+   .. report:unittest-summary::
+      :reportid: src
    ```
 
-## Code Coverage
+</details>
+
+## Code Coverage Summary
 
 *Code Coverage* checks if a source code was used during execution. Usually, testcases are run by a testcase execution
 framework like [pytest](https://github.com/pytest-dev/pytest), which also offers to instrument the code for code
 coverage collection using the `pytest-cov` plugin. For Python, coverage collection is usually based on
-[Coverage.py](https://github.com/nedbat/coveragepy>), which supports statement and branch coverage collection.
+[Coverage.py](https://github.com/nedbat/coveragepy>), which supports statement and branch coverage collection either as
+XML or JSON files. **sphinx-reports** can visualize a code coverage summary from JSON files. 
 
-### Quick Configuration
+![Code Coverage Summary Page](doc/_static/CodeCoverage.png)
+
 
 This is a quick and minimal configuration for the *code coverage* directives.
-See [code coverage](https://pyTooling.github.io/sphinx-reports/CodeCov/index.html) documentation for more
-details.
+See the [code coverage](https://pyTooling.github.io/sphinx-reports/CodeCov/index.html) documentation for more details.
+
+<details><summary>Quick Configuration - Step-by-Step</summary>
 
 1. Configure one or more coverage analysis reports in `conf.py` by adding a new 'section' defining some configuration
    variables. Each analysis report is identified by an ID, which is later referred to by the report directive. Here, the
@@ -128,7 +119,7 @@ details.
    * `name` - Name of the Python package[^1].
    * `json_report` - The code coverage report as JSON file as generated by *Coverage.py*.
    * `fail_below` - An integer value in range 0..100, for when a code coverage is considered FAILED.
-   * `levels` - A dictionary of coverage limits, their description and CSS style classes.
+   * `levels` - A predefined color pallet name or a dictionary of coverage limits, their description and CSS style classes.
 
    ```Python
    # ==============================================================================
@@ -139,39 +130,79 @@ details.
        "name":        "myPackage",
        "json_report": "../report/coverage/coverage.json",
        "fail_below":  80,
-       "levels": {
-         30:      {"class": "report-cov-below30",  "desc": "almost unused"},
-         50:      {"class": "report-cov-below50",  "desc": "poorly used"},
-         80:      {"class": "report-cov-below80",  "desc": "medium used"},
-         90:      {"class": "report-cov-below90",  "desc": "well well"},
-         100:     {"class": "report-cov-below100", "desc": "excellent used"},
-         "error": {"class": "report-cov-error",    "desc": "internal error"},
-       },
+       "levels":      "default"
      }
    }
    ```
 2. Add the `code-coverage` directive into your Restructured Text (ReST) document.
-   
-   * `packageid` - The ID used in `conf.py` to describe a Python package.
-   * `legend` (optional) - Position of the legend (`no_legend`, `top`, `bottom`, `both`)
 
-   ```Python
+   * `packageid` - The ID used in `conf.py` to describe a Python package.
+
+   ```ReST
    .. report:code-coverage::
       :packageid: src
    ```
 
-## Unit Test Summary
-
-```
-UnitTest: write introduction
-```
+</details>
 
 
-## Dependencies
+## Documentation Coverage Summary
 
-```
-Dep: write introduction
-```
+*Documentation Coverage* counts how many publicly accessible members are documented using a Python *doc-string*. Based
+on the count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage of
+documentation coverage can be computed.
+
+Documentation coverage is a measure of code quality, which expresses how well documented (completeness or documentation,
+but not necessarily quality/helpfulness of documentation) source code is. Well documented code helps to use and maintain
+the existing code base. It also allows for automated documentation generation.
+
+![Documentation Coverage Summary Page](doc/_static/DocCoverage.png)
+
+
+This is a quick and minimal configuration for the *documentation coverage* directives.
+See the [documentation coverage](https://pyTooling.github.io/sphinx-reports/DocCov/index.html) documentation for more
+details.
+
+<details><summary>Quick Configuration - Step-by-Step</summary>
+
+1. Configure one or more Python packages for documentation coverage analysis in `conf.py` by adding a new 'section' 
+   defining some configuration variables. Each package is identified by an ID, which is later referred to by the report
+   directive. Here, the ID is called `src` (dictionary key). Each package needs 4 configuration entries:
+
+   * `name` - Name of the Python package[^1].
+   * `directory` - The directory of the package to analyze.
+   * `fail_below` - An integer value in range 0..100, for when a documentation coverage is considered FAILED.
+   * `levels` - A predefined color pallet name or a dictionary of coverage limits, their description and CSS style classes.
+
+   ```Python
+   # ==============================================================================
+   # Sphinx-reports - DocCov
+   # ==============================================================================
+   report_doccov_packages = {
+     "src": {
+       "name":       "myPackage",
+       "directory":  "../myPackage",
+       "fail_below": 80,
+       "levels":     "default"
+     }
+   }
+   ```
+2. Add the `doc-coverage` directive into your Restructured Text (ReST) document.
+ 
+   * `packageid` - The ID used in `conf.py` to describe a Python package.
+
+   ```ReST
+   .. report:doc-coverage::
+      :packageid: src
+   ```
+
+</details>
+
+
+## Package Dependencies
+
+🚧 In planning phase 🚧
+
 
 
 ## Contributors

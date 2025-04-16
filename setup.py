@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2024 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -54,7 +54,7 @@ setup(**DescribePythonPackageHostedOnGitHub(
 		"Topic :: Software Development :: Testing :: Unit",
 	],
 	developmentStatus="beta",
-	pythonVersions=("3.10", "3.11", "3.12"),
+	pythonVersions=("3.11", "3.12", "3.13"),
 	dataFiles={
 		"sphinx_reports": ["static/*.css"]
 	}

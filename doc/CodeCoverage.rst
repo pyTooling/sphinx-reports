@@ -1,5 +1,5 @@
-Code Coverage Report
-####################
+Code Coverage Summary
+#####################
 
 .. #report:code-coverage-legend::
    :packageid: src
