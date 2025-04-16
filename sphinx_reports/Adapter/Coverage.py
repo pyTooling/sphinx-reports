@@ -33,11 +33,11 @@
 """
 from pathlib import Path
 
-from pyTooling.Configuration.JSON import Configuration
 from pyTooling.Decorators         import export, readonly
+from pyTooling.Configuration.JSON import Configuration
 
 from sphinx_reports.Common                 import ReportExtensionError
-from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, ModuleCoverage, AggregatedCoverage
+from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, ModuleCoverage, Coverage
 
 
 @export
@@ -97,16 +97,23 @@ class Analyzer:
 		return self._coverageReport
 
 	def Convert(self) -> PackageCoverage:
+		meta = self._coverageReport["meta"]
+		if (version := meta["format"]) == "3":
+			return self._convert_v3()
+		else:
+			raise CodeCoverageError(f"Unsupported coverage format version '{version}'")
+
+	def _convert_v3(self) -> PackageCoverage:
 		rootPackageCoverage = PackageCoverage(self._packageName, Path("__init__.py"))
 
-		for statusRecord in self._coverageReport["files"]:
-			moduleFile = Path(statusRecord.Key)
-			coverageSummary = statusRecord["summary"]
+		for fileRecord in self._coverageReport["files"]:
+			moduleFile = Path(fileRecord.Key)
+			coverageSummary = fileRecord["summary"]
 
 			moduleName = moduleFile.stem
 			modulePath = moduleFile.parent.parts[1:]
 
-			currentCoverageObject: AggregatedCoverage = rootPackageCoverage
+			currentCoverageObject: Coverage = rootPackageCoverage
 			for packageName in modulePath:
 				try:
 					currentCoverageObject = currentCoverageObject[packageName]

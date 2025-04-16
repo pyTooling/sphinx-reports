@@ -45,7 +45,7 @@ from pyTooling.Decorators                  import export
 
 from sphinx_reports.Common                 import ReportExtensionError, LegendStyle
 from sphinx_reports.Sphinx                 import strip, BaseDirective
-from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, AggregatedCoverage, ModuleCoverage
+from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, Coverage, ModuleCoverage
 from sphinx_reports.Adapter.Coverage       import Analyzer
 
 
@@ -302,9 +302,9 @@ class CodeCoverage(CodeCoverageBase):
 		# Create a table and table header with 10 columns
 		columns = [
 			("Package",   [(" Module", 500)], None),
-			("Statments", [("Total", 100), ("Excluded", 100), ("Covered", 100), ("Missing", 100)], None),
-			("Branches" , [("Total", 100), ("Covered", 100), ("Partial", 100), ("Missing", 100)], None),
-			("Coverage",  [("in %", 100)], None)
+			("Statments", [("Total", 100), ("Excluded", 100), ("Covered", 100), ("Missing", 100), ("Coverage", 100)], None),
+			("Branches" , [("Total", 100), ("Covered", 100), ("Partial", 100), ("Missing", 100), ("Coverage", 100)], None),
+			# ("Coverage",  [("in %", 100)], None)
 		]
 
 		if self._noBranchCoverage:
@@ -328,20 +328,21 @@ class CodeCoverage(CodeCoverageBase):
 		tableBody += tableRow
 
 		tableRow += nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedExpected}")),
-		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
-		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
-		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedTotalStatements}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedExcludedStatements}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoveredStatements}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedMissingStatements}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedStatementCoverage:.1%}"))
 		if not self._noBranchCoverage:
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCovered}")),
-			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedUncovered}")),
-		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {self._coverage.AggregatedCoverage:.1%}")),
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedTotalBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoveredBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedPartialBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedMissingBranches}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedBranchCoverage:.1%}"))
 
 		return table
 
-	def sortedValues(self, d: Mapping[str, AggregatedCoverage]) -> Generator[AggregatedCoverage, None, None]:
+	def sortedValues(self, d: Mapping[str, Coverage]) -> Generator[Coverage, None, None]:
 		for key in sorted(d.keys()):
 			yield d[key]
 
@@ -357,12 +358,13 @@ class CodeCoverage(CodeCoverageBase):
 		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.ExcludedStatements}"))
 		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredStatements}"))
 		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingStatements}"))
+		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.StatementCoverage:.1%}"))
 		if not self._noBranchCoverage:
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalBranches}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredBranches}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.PartialBranches}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingBranches}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.BranchCoverage:.1%}"))
 
 		for package in self.sortedValues(packageCoverage._packages):
 			self.renderlevel(tableBody, package, level + 1)
@@ -379,13 +381,13 @@ class CodeCoverage(CodeCoverageBase):
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingStatements}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.StatementCoverage:.1%}"))
 			if not self._noBranchCoverage:
 				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalBranches}"))
 				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredBranches}"))
 				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.PartialBranches}"))
 				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}"))
-
+				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.BranchCoverage:.1%}"))
 
 	def _CreatePages(self) -> None:
 		def handlePackage(package: PackageCoverage) -> None:
@@ -433,53 +435,54 @@ class CodeCoverage(CodeCoverageBase):
 
 		container += self._GenerateCoverageTable()
 
-		docName = self.env.docname
-		docParent = docName[:docName.rindex("/")]
+		def foo():
+			docName = self.env.docname
+			docParent = docName[:docName.rindex("/")]
 
-		subnode = toctree()
-		subnode['parent'] = docName
+			subnode = toctree()
+			subnode['parent'] = docName
 
-		# (title, ref) pairs, where ref may be a document, or an external link,
-		# and title may be None if the document's title is to be used
-		subnode['entries'] =       []
-		subnode['includefiles'] =  []
-		subnode['maxdepth'] =      -1  # self.options.get('maxdepth', -1)
-		subnode['caption'] =       None  # self.options.get('caption')
-		subnode['glob'] =          None  # 'glob' in self.options
-		subnode['hidden'] =        True  # 'hidden' in self.options
-		subnode['includehidden'] = False  # 'includehidden' in self.options
-		subnode['numbered'] =      0  # self.options.get('numbered', 0)
-		subnode['titlesonly'] =    False  # 'titlesonly' in self.options
-		self.set_source_info(subnode)
+			# (title, ref) pairs, where ref may be a document, or an external link,
+			# and title may be None if the document's title is to be used
+			subnode['entries'] =       []
+			subnode['includefiles'] =  []
+			subnode['maxdepth'] =      -1  # self.options.get('maxdepth', -1)
+			subnode['caption'] =       None  # self.options.get('caption')
+			subnode['glob'] =          None  # 'glob' in self.options
+			subnode['hidden'] =        True  # 'hidden' in self.options
+			subnode['includehidden'] = False  # 'includehidden' in self.options
+			subnode['numbered'] =      0  # self.options.get('numbered', 0)
+			subnode['titlesonly'] =    False  # 'titlesonly' in self.options
+			self.set_source_info(subnode)
 
-		wrappernode = nodes.compound(classes=['toctree-wrapper'])
-		wrappernode.append(subnode)
-		self.add_name(wrappernode)
+			wrappernode = nodes.compound(classes=['toctree-wrapper'])
+			wrappernode.append(subnode)
+			self.add_name(wrappernode)
 
-		for entry in (
-			"sphinx_reports",
-			"sphinx_reports.Adapter",
-			"sphinx_reports.Adapter.Coverage",
-			"sphinx_reports.Adapter.DocStrCoverage",
-			"sphinx_reports.Adapter.JUnit",
-			"sphinx_reports.DataModel",
-			"sphinx_reports.DataModel.CodeCoverage",
-			"sphinx_reports.DataModel.DocumentationCoverage",
-			"sphinx_reports.DataModel.Unittest",
-			"sphinx_reports.static",
-			"sphinx_reports.CodeCoverage",
-			"sphinx_reports.Common",
-			"sphinx_reports.DocCoverage",
-			"sphinx_reports.Sphinx",
-			"sphinx_reports.Unittest",
-		):
-			moduleDocumentName = f"{docParent}/{entry}"
-			moduleDocumentTitle = entry
+			for entry in (
+				"sphinx_reports",
+				"sphinx_reports.Adapter",
+				"sphinx_reports.Adapter.Coverage",
+				"sphinx_reports.Adapter.DocStrCoverage",
+				"sphinx_reports.Adapter.JUnit",
+				"sphinx_reports.DataModel",
+				"sphinx_reports.DataModel.CodeCoverage",
+				"sphinx_reports.DataModel.DocumentationCoverage",
+				"sphinx_reports.DataModel.Unittest",
+				"sphinx_reports.static",
+				"sphinx_reports.CodeCoverage",
+				"sphinx_reports.Common",
+				"sphinx_reports.DocCoverage",
+				"sphinx_reports.Sphinx",
+				"sphinx_reports.Unittest",
+			):
+				moduleDocumentName = f"{docParent}/{entry}"
+				moduleDocumentTitle = entry
 
-			subnode["entries"].append((moduleDocumentTitle, moduleDocumentName))
-			subnode["includefiles"].append(moduleDocumentName)
+				subnode["entries"].append((moduleDocumentTitle, moduleDocumentName))
+				subnode["includefiles"].append(moduleDocumentName)
 
-		return [container, wrappernode]
+		return [container]  #, wrappernode]
 
 
 @export

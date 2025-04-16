@@ -32,17 +32,21 @@
 **Abstract documentation coverage data model for Python code.**
 """
 from pathlib import Path
-from typing  import Optional as Nullable, Dict, Union
+from typing  import Optional as Nullable, Dict, Union, Generic, TypeVar
 
-from pyTooling.Decorators import export, readonly
+from pyTooling.Decorators                        import export, readonly
+from pyEDAA.Reports.DocumentationCoverage.Python import PackageCoverage
+
+
+_ParentType = TypeVar("_ParentType", bound="Base")
 
 
 @export
-class Coverage:
+class Base(Generic[_ParentType]):
 	_name:      str
-	_parent:    Nullable["Coverage"]
+	_parent:    Nullable[_ParentType]
 
-	def __init__(self, name: str, parent: Nullable["Coverage"] = None) -> None:
+	def __init__(self, name: str, parent: Nullable[_ParentType] = None) -> None:
 		self._name =   name
 		self._parent = parent
 
@@ -51,12 +55,12 @@ class Coverage:
 		return self._name
 
 	@readonly
-	def Parent(self) -> Nullable["Coverage"]:
+	def Parent(self) -> Nullable[_ParentType]:
 		return self._parent
 
 
 @export
-class AggregatedCoverage(Coverage):
+class Coverage(Base[_ParentType], Generic[_ParentType]):
 	_file:               Path
 
 	_totalStatements:    int
@@ -68,7 +72,7 @@ class AggregatedCoverage(Coverage):
 
 	_coverage:           float
 
-	def __init__(self, name: str, file: Path, parent: Nullable["Coverage"] = None) -> None:
+	def __init__(self, name: str, file: Path, parent: Nullable[_ParentType] = None) -> None:
 		super().__init__(name, parent)
 		self._file = file
 
@@ -105,6 +109,13 @@ class AggregatedCoverage(Coverage):
 		return self._missingStatements
 
 	@readonly
+	def StatementCoverage(self) -> float:
+		if self._totalStatements <= 0:
+			return 0.0
+
+		return self._coveredStatements / self._totalStatements
+
+	@readonly
 	def TotalBranches(self) -> int:
 		return self._totalBranches
 
@@ -121,12 +132,19 @@ class AggregatedCoverage(Coverage):
 		return self._missingBranches
 
 	@readonly
+	def BranchCoverage(self) -> float:
+		if self._totalBranches <= 0:
+			return 0.0
+
+		return (self._coveredBranches + self._partialBranches) / self._totalBranches
+
+	@readonly
 	def Coverage(self) -> float:
 		return self._coverage
 
 
 @export
-class ModuleCoverage(AggregatedCoverage):
+class ModuleCoverage(Coverage["PackageCoverage"]):
 	def __init__(self, name: str, file: Path, parent: Nullable["PackageCoverage"] = None) -> None:
 		super().__init__(name, file, parent)
 
@@ -135,9 +153,7 @@ class ModuleCoverage(AggregatedCoverage):
 
 
 @export
-class PackageCoverage(AggregatedCoverage):
-	_fileCount: int
-
+class PackageCoverage(Coverage["PackageCoverage"]):
 	_modules:   Dict[str, ModuleCoverage]
 	_packages:  Dict[str, "PackageCoverage"]
 
@@ -147,21 +163,108 @@ class PackageCoverage(AggregatedCoverage):
 		if parent is not None:
 			parent._packages[name] = self
 
-		self._fileCount = 1
 		self._modules =   {}
 		self._packages =  {}
 
 	@readonly
 	def FileCount(self) -> int:
-		return self._fileCount
+		return self.TotalModuleCount
+
+	@readonly
+	def PackageCount(self) -> int:
+		return len(self._packages)
+
+	@readonly
+	def ModuleCount(self) -> int:
+		return 1 + len(self._modules)
+
+	@readonly
+	def TotalPackageCount(self) -> int:
+		return 1 + sum(p.TotalPackageCount for p in self._packages.values())
+
+	@readonly
+	def TotalModuleCount(self) -> int:
+		return 1 + sum(p.TotalModuleCount for p in self._packages.values()) + len(self._modules)
+
+	@readonly
+	def Packages(self) -> Dict[str, "PackageCoverage"]:
+		return self._packages
 
 	@readonly
 	def Modules(self) -> Dict[str, ModuleCoverage]:
 		return self._modules
 
 	@readonly
-	def Packages(self) -> Dict[str, "PackageCoverage"]:
-		return self._packages
+	def AggregatedTotalStatements(self) -> int:
+		return (
+			self._totalStatements +
+			sum(p.AggregatedTotalStatements for p in self._packages.values()) +
+			sum(m._totalStatements for m in self._modules.values())
+		)
+
+	@readonly
+	def AggregatedExcludedStatements(self) -> int:
+		return (
+			self._excludedStatements +
+			sum(p.AggregatedExcludedStatements for p in self._packages.values()) +
+			sum(m._excludedStatements for m in self._modules.values())
+		)
+
+	@readonly
+	def AggregatedCoveredStatements(self) -> int:
+		return (
+			self._coveredStatements +
+			sum(p.AggregatedCoveredStatements for p in self._packages.values()) +
+			sum(m._coveredStatements for m in self._modules.values())
+		)
+
+	@readonly
+	def AggregatedMissingStatements(self) -> int:
+		return (
+			self._missingStatements +
+			sum(p.AggregatedMissingStatements for p in self._packages.values()) +
+			sum(m._missingStatements for m in self._modules.values())
+		)
+
+	@readonly
+	def AggregatedStatementCoverage(self) -> float:
+		return self.AggregatedCoveredStatements / self.AggregatedTotalStatements
+
+	@readonly
+	def AggregatedTotalBranches(self) -> int:
+		return (
+			self._totalBranches +
+			sum(p.AggregatedTotalBranches for p in self._packages.values()) +
+			sum(m._totalBranches for m in self._modules.values())
+		)
+
+	@readonly
+	def AggregatedCoveredBranches(self) -> int:
+		return (
+			self._coveredBranches +
+			sum(p.AggregatedCoveredBranches for p in self._packages.values()) +
+			sum(m._coveredBranches for m in self._modules.values())
+		)
+
+	@readonly
+	def AggregatedPartialBranches(self) -> int:
+		return (
+			self._partialBranches +
+			sum(p.AggregatedPartialBranches for p in self._packages.values()) +
+			sum(m._partialBranches for m in self._modules.values())
+		)
+
+	@readonly
+	def AggregatedMissingBranches(self) -> int:
+		return (
+			self._missingBranches +
+			sum(p.AggregatedMissingBranches for p in self._packages.values()) +
+			sum(m._missingBranches for m in self._modules.values())
+		)
+
+	@readonly
+	def AggregatedBranchCoverage(self) -> float:
+		return (self.AggregatedCoveredBranches + self.AggregatedPartialBranches) / self.AggregatedTotalBranches
 
 	def __getitem__(self, key: str) -> Union["PackageCoverage", ModuleCoverage]:
 		try:
