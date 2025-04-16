@@ -1,75 +1,26 @@
-.. |img-sphinx-reports-github| image:: https://img.shields.io/badge/pyTooling-sphinx--reports-323131.svg?logo=github&longCache=true
-   :alt: Sourcecode on GitHub
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports
-.. |img-sphinx-reports-license| image:: https://img.shields.io/badge/Apache%20License,%202.0-bd0000?longCache=true&label=license&logo=Apache&logoColor=D22128
-   :alt: License
-   :height: 22
-.. |img-sphinx-reports-tag| image:: https://img.shields.io/github/v/tag/pyTooling/sphinx-reports?logo=GitHub&include_prereleases
-   :alt: GitHub tag (latest SemVer incl. pre-release
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports/tags
-.. |img-sphinx-reports-release| image:: https://img.shields.io/github/v/release/pyTooling/sphinx-reports?logo=GitHub&include_prereleases
-   :alt: GitHub release (latest SemVer incl. including pre-releases
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports/releases/latest
-.. |img-sphinx-reports-date| image:: https://img.shields.io/github/release-date/pyTooling/sphinx-reports?logo=GitHub
-   :alt: GitHub release date
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports/releases
-.. |img-sphinx-reports-lib-status| image:: https://img.shields.io/librariesio/release/pypi/sphinx-reports
-   :alt: Libraries.io status for latest release
-   :height: 22
-   :target: https://libraries.io/github/pyTooling/sphinx-reports
-.. |img-sphinx-reports-req-status| image:: https://img.shields.io/requires/github/pyTooling/sphinx-reports
-   :alt: Requires.io
-   :height: 22
-   :target: https://requires.io/github/pyTooling/sphinx-reports/requirements/?branch=master
-.. |img-sphinx-reports-travis| image:: https://img.shields.io/travis/com/pyTooling/sphinx-reports?logo=Travis
-   :alt: Travis - Build on 'master'
-   :height: 22
-   :target: https://travis-ci.com/pyTooling/sphinx-reports
-.. |img-sphinx-reports-pypi-tag| image:: https://img.shields.io/pypi/v/sphinx-reports?logo=PyPI
-   :alt: PyPI - Tag
-   :height: 22
-   :target: https://pypi.org/project/sphinx-reports/
-.. |img-sphinx-reports-pypi-status| image:: https://img.shields.io/pypi/status/sphinx-reports?logo=PyPI
-   :alt: PyPI - Status
-   :height: 22
-.. |img-sphinx-reports-pypi-python| image:: https://img.shields.io/pypi/pyversions/sphinx-reports?logo=PyPI
-   :alt: PyPI - Python Version
-   :height: 22
-.. |img-sphinx-reports-lib-dep| image:: https://img.shields.io/librariesio/dependent-repos/pypi/sphinx-reports
-   :alt: Dependent repos (via libraries.io)
-   :height: 22
-   :target: https://github.com/pyTooling/sphinx-reports/network/dependents
-.. |img-sphinx-reports-codacy-quality| image:: https://img.shields.io/codacy/grade/9a89bbc1d2c04a699ea14abea75588c7?logo=codacy
-   :alt: Codacy - Quality
-   :height: 22
-   :target: https://www.codacy.com/manual/pyTooling/sphinx-reports
-.. |img-sphinx-reports-codacy-coverage| image:: https://img.shields.io/codacy/coverage/9a89bbc1d2c04a699ea14abea75588c7?logo=codacy
-   :alt: Codacy - Line Coverage
-   :height: 22
-   :target: https://www.codacy.com/manual/pyTooling/sphinx-reports
-.. |img-sphinx-reports-codecov-coverage| image:: https://codecov.io/gh/pyTooling/sphinx-reports/branch/master/graph/badge.svg
-   :alt: Codecov - Branch Coverage
-   :height: 22
-   :target: https://codecov.io/gh/pyTooling/sphinx-reports
-.. |img-sphinx-reports-lib-rank| image:: https://img.shields.io/librariesio/sourcerank/pypi/sphinx-reports
-   :alt: Libraries.io SourceRank
-   :height: 22
-   :target: https://libraries.io/github/pyTooling/sphinx-reports/sourcerank
-.. |img-sphinx-reports-rtd| image:: https://img.shields.io/readthedocs/sphinx-reports
-   :alt: Read the Docs
-   :height: 22
-   :target: https://sphinx-reports.readthedocs.io/en/latest/
+.. include:: shields.inc
 
-|img-sphinx-reports-github| |img-sphinx-reports-tag| |img-sphinx-reports-release| |img-sphinx-reports-date| |br|
-|img-sphinx-reports-lib-status| |img-sphinx-reports-req-status| |img-sphinx-reports-lib-dep| |br|
-|img-sphinx-reports-travis| |img-sphinx-reports-pypi-tag| |img-sphinx-reports-pypi-status| |img-sphinx-reports-pypi-python| |br|
-|img-sphinx-reports-codacy-quality| |img-sphinx-reports-codacy-coverage| |img-sphinx-reports-codecov-coverage| |img-sphinx-reports-lib-rank| |br|
-|img-sphinx-reports-rtd| |img-sphinx-reports-license|
+.. raw:: latex
 
+   \part{Introduction}
+
+.. only:: html
+
+   |  |SHIELD:svg:SphinxReports-github| |SHIELD:svg:SphinxReports-src-license| |SHIELD:svg:SphinxReports-ghp-doc| |SHIELD:svg:SphinxReports-doc-license|
+   |  |SHIELD:svg:SphinxReports-pypi-tag| |SHIELD:svg:SphinxReports-pypi-status| |SHIELD:svg:SphinxReports-pypi-python|
+   |  |SHIELD:svg:SphinxReports-gha-test| |SHIELD:svg:SphinxReports-lib-status| |SHIELD:svg:SphinxReports-codacy-quality| |SHIELD:svg:SphinxReports-codacy-coverage| |SHIELD:svg:SphinxReports-codecov-coverage|
+
+.. Disabled shields: |SHIELD:svg:SphinxReports-gitter| |SHIELD:svg:SphinxReports-lib-dep| |SHIELD:svg:SphinxReports-lib-rank|
+
+.. only:: latex
+
+   |SHIELD:png:SphinxReports-github| |SHIELD:png:SphinxReports-src-license| |SHIELD:png:SphinxReports-ghp-doc| |SHIELD:png:SphinxReports-doc-license|
+   |SHIELD:png:SphinxReports-pypi-tag| |SHIELD:png:SphinxReports-pypi-status| |SHIELD:png:SphinxReports-pypi-python|
+   |SHIELD:png:SphinxReports-gha-test| |SHIELD:png:SphinxReports-lib-status| |SHIELD:png:SphinxReports-codacy-quality| |SHIELD:png:SphinxReports-codacy-coverage| |SHIELD:png:SphinxReports-codecov-coverage|
+
+.. Disabled shields: |SHIELD:svg:SphinxReports-gitter| |SHIELD:png:SphinxReports-lib-dep| |SHIELD:png:SphinxReports-lib-rank|
+
+--------------------------------------------------------------------------------
 
 sphinx-reports Documentation
 ############################
@@ -221,7 +172,7 @@ Dependencies
 Contributors
 ************
 
-* `Patrick Lehmann <https://GitHub.com/pyTooling>`__ (Maintainer)
+* `Patrick Lehmann <https://GitHub.com/Paebbels>`__ (Maintainer)
 * `and more... <https://GitHub.com/pyTooling/sphinx-reports/graphs/contributors>`__
 
 
