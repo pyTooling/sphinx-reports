@@ -1,9 +1,6 @@
 Documentation Coverage
 ######################
 
-.. #report:doc-coverage-legend::
-   :packageid: src
-
 .. grid:: 2
 
    .. grid-item::
