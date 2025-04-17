@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9eb15a62d72b4706a273550963db0a31)](https://app.codacy.com/gh/pyTooling/sphinx-reports?utm_source=github.com&utm_medium=referral&utm_content=pyTooling/sphinx-reports&utm_campaign=Badge_Grade)
 [![Sourcecode on GitHub](https://img.shields.io/badge/pyTooling-sphinx--reports-323131.svg?logo=github&longCache=true)](https://github.com/pyTooling/sphinx-reports)
 [![Sourcecode License](https://img.shields.io/pypi/l/sphinx-reports?longCache=true&style=flat-square&logo=Apache&label=code)](LICENSE.md)
 [![Documentation](https://img.shields.io/website?longCache=true&style=flat-square&label=pyTooling.github.io%2Fsphinx-reports&logo=GitHub&logoColor=fff&up_color=blueviolet&up_message=Read%20now%20%E2%9E%9A&url=https%3A%2F%2FpyTooling.github.io%2Fsphinx%2Dreports%2Findex.html)](https://pyTooling.github.io/sphinx-reports/)
