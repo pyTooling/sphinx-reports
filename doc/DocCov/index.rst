@@ -3,18 +3,38 @@
 Documentation Coverage
 ######################
 
-:term:`Documentation coverage` counts how many publicly accessible members (packages, modules, classes, methods,
-functions, variables, ...) are documented using a Python :term:`doc-string`. Based on the count of possibly documented
-public members and the actual number of non-empty *doc-strings*, a percentage of documentation coverage can be computed.
+.. grid:: 2
 
-Documentation coverage is a measure of code quality, which expresses how well documented (completeness or documentation,
-but not necessarily quality/helpfulness of documentation) source code is. Well documented code helps to use and maintain
-the existing code base. It also allows for automated documentation generation.
+   .. grid-item::
+      :columns: 6
 
-Depending on quality standards, a coverage goal (or limit) like 90% might be defined, which considers an overall
-documentation coverage less then 90% as FAILED. Such a limit might be enforced by maintainers or merge rules (via CI
-jobs). This ensures new code introduced by merge requests (pull requests) cannot decrease the once achieved overall
-project's code quality.
+      :term:`Documentation coverage` counts how many publicly accessible members (packages, modules, classes, methods,
+      functions, variables, ...) are documented using a Python :term:`doc-string`. Based on the count of possibly documented
+      public members and the actual number of non-empty *doc-strings*, a percentage of documentation coverage can be computed.
+
+      Documentation coverage is a measure of code quality, which expresses how well documented (completeness or documentation,
+      but not necessarily quality/helpfulness of documentation) source code is. Well documented code helps to use and maintain
+      the existing code base. It also allows for automated documentation generation.
+
+      Depending on quality standards, a coverage goal (or limit) like 90% might be defined, which considers an overall
+      documentation coverage less then 90% as FAILED. Such a limit might be enforced by maintainers or merge rules (via CI
+      jobs). This ensures new code introduced by merge requests (pull requests) cannot decrease the once achieved overall
+      project's code quality.
+
+      .. code-block:: ReST
+
+         .. report:doc-coverage::
+            :packageid: src
+
+      .. rubric:: Options
+
+      :rst:dir:`class <report:code-coverage:class>` (optional)
+        A list of space separated user-defined CSS class names, which are applied on the table.
+
+   .. grid-item::
+      :columns: 6
+
+      .. image:: ../_static/DocCoverage.png
 
 
 .. _DOCCOV/Quick:

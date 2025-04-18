@@ -204,6 +204,15 @@ License
    \part{Main Documentation}
 
 .. toctree::
+   :caption: Supported Reports
+   :hidden:
+
+   Overview
+   Unittest/index
+   CodeCov/index
+   DocCov/index
+
+.. toctree::
    :caption: Examples
    :hidden:
 
@@ -212,15 +221,6 @@ License
    Examples/JUnit-Basic
    Examples/JUnit-Complete
    Examples/OSVVM
-
-.. toctree::
-   :caption: Supported Reports
-   :hidden:
-
-   Overview
-   Unittest/index
-   CodeCov/index
-   DocCov/index
 
 .. raw:: latex
 

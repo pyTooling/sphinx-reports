@@ -3,43 +3,59 @@
 Overview
 ########
 
+The *sphinx-reports* extension provides a new domain called ``report``, which adds new RestructuredText directives and
+roles.
+
+These are described in the following categories:
+
+* ✅ :ref:`UNITTEST`
+* ✅ :ref:`CODECOV`
+* ✅ :ref:`DOCCOV`
+* 🚧 :ref:`DEP`
 
 .. _OVER/Setup:
 
 General Extension Setup
 ***********************
 
-To use the *sphinx-reports* extension in your Sphinx documentation project, the ``sphinx_reports`` package must be
-downloaded and :ref:`installed from PyPI <INSTALL/pip/install>` in your environment. The installation page also shows,
-how to :ref:`update <INSTALL/pip/update>` the package from PyPI using ``pip``.
+To use the *sphinx-reports* extension in your Sphinx documentation project, the ``sphinx_reports`` package needs be
+downloaded and :ref:`installed from PyPI <INSTALL/pip/install>` in your environment. *Sphinx-reports*'s
+:ref:`installation <INSTALL>` page also shows how to :ref:`update <INSTALL/pip/update>` the package from PyPI using
+``pip``.
 
-At next, it's recommended to add ``sphinx_reports`` to your documentation's :file:`doc/requirements.txt`. As
-modification to the package might bring braking changes, it's recommended to specify a package version (range/limit).
+At next, it's recommended to add ``sphinx_reports`` to your documentation's :file:`doc/requirements.txt`. As updates and
+modifications to the ``sphinx_reports`` package might introduce braking changes, it's recommended to specify a package
+version (range/limit). Usually, the major version number is fixed, because according to `SemVer.org <https://semver.org/>`__
+a breaking change needs to increment the major version number.
 
 See the following :file:`doc/requirements.txt` file as an example with commonly used extensions:
 
-.. code-block::
+.. admonition:: :file:`doc/requirements.txt`
 
-   -r ../requirements.txt
+   .. code-block::
 
-   # Enforce latest version on ReadTheDocs
-   sphinx ~= 8.2
-   docutils ~= 0.21
+      -r ../requirements.txt
 
-   # ReadTheDocs Theme
-   sphinx_rtd_theme ~= 3.0
+      # Enforce latest version on ReadTheDocs
+      sphinx ~= 8.2
+      docutils ~= 0.21
 
-   # Sphinx Extenstions
-   sphinxcontrib-mermaid ~= 1.0
-   autoapi ~= 2.0.1
-   sphinx_design ~= 0.6.1
-   sphinx-copybutton ~= 0.5.2
-   sphinx_autodoc_typehints ~= 3.1
-   sphinx_reports ~= 1.0
+      # ReadTheDocs Theme
+      sphinx_rtd_theme ~= 3.0
+
+      # Sphinx Extenstions
+      sphinxcontrib-mermaid ~= 1.0
+      autoapi ~= 2.0.1
+      sphinx_design ~= 0.6.1
+      sphinx-copybutton ~= 0.5.2
+      sphinx_autodoc_typehints ~= 3.1
+      sphinx_reports ~= 1.0             # <= new entry
 
 Finally, the extension needs to be enabled in Sphinx's :file:`conf.py`, so the extension is loaded by Sphinx.
 
 The following code snippets shows a list of commonly enabled extensions, including ``sphinx_report``:
+
+.. admonition:: :file:`conf.py`
 
    .. code-block:: Python
 
@@ -64,7 +80,7 @@ The following code snippets shows a list of commonly enabled extensions, includi
         "sphinx_design",
         "sphinx_copybutton",
         "sphinx_autodoc_typehints",
-        "sphinx_reports",
+        "sphinx_reports",             # <= new entry
       # User defined extensions
         # ...
       ]
