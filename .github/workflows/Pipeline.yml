@@ -13,6 +13,9 @@ jobs:
     with:
       package_name: sphinx_reports
       unittest_python_version_list: '3.11 3.12 3.13'
+      codecov: true
+      codacy:  true
+      dorny:   true
     secrets:
       PYPI_TOKEN:           ${{ secrets.PYPI_TOKEN }}
       CODECOV_TOKEN:        ${{ secrets.CODECOV_TOKEN }}
