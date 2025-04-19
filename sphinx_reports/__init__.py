@@ -33,9 +33,9 @@
 
 Supported reports:
 
+* :ref:`UNITTEST`
 * :ref:`DOCCOV`
 * :ref:`CODECOV`
-* :ref:`UNITTEST`
 * :ref:`DEP`
 
 """
@@ -43,8 +43,11 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2025, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.8.0"
-__keywords__ =  ["Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate"]
+__version__ =   "0.9.0"
+__keywords__ =  [
+	"Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate", "Code Coverage", "Coverage",
+	"Documentation Coverage", "Unittest", "Dependencies", "Summary"
+]
 
 from hashlib               import md5
 from pathlib               import Path

@@ -7,7 +7,7 @@ Undocumented
 The following report shows an undocumented package.
 
 .. report:doc-coverage::
-   :packageid: undocumented
+   :reportid: undocumented
 
 
 Partially Documented
@@ -16,7 +16,7 @@ Partially Documented
 The following report shows a partially documented package.
 
 .. report:doc-coverage::
-   :packageid: partially
+   :reportid: partially
 
 
 Fully Undocumented
@@ -25,4 +25,4 @@ Fully Undocumented
 The following report shows a fully documented package.
 
 .. report:doc-coverage::
-   :packageid: documented
+   :reportid: documented

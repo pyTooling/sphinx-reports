@@ -9,12 +9,14 @@ on:
 
 jobs:
   Pipeline:
-    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@dev
+    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r4
     with:
-#      package_namespace: pyEDAA
       package_name: sphinx_reports
       unittest_python_version_list: '3.11 3.12 3.13'
-      cleanup: false
+      codecov: true
+      codacy:  true
+      dorny:   true
     secrets:
       PYPI_TOKEN:           ${{ secrets.PYPI_TOKEN }}
+      CODECOV_TOKEN:        ${{ secrets.CODECOV_TOKEN }}
       CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}

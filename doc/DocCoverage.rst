@@ -1,8 +1,5 @@
-Documentation Coverage
-######################
-
-.. #report:doc-coverage-legend::
-   :packageid: src
+Documentation Coverage Report
+#############################
 
 .. grid:: 2
 
@@ -10,16 +7,16 @@ Documentation Coverage
       :columns: 5
 
       .. report:doc-coverage::
-         :packageid: src
+         :reportid: src
 
    .. grid-item::
       :columns: 7
 
       .. report:doc-coverage-legend::
-         :packageid: src
+         :reportid: src
          :style: vertical-table
 
 ----------
 
-Documentation coverage generated with `docstr-coverage <https://github.com/HunterMcGushion/docstr_coverage>`__ and
+Documentation coverage generated with `"""docstr-coverage""" <https://github.com/HunterMcGushion/docstr_coverage>`__ and
 visualized by `sphinx-reports <https://github.com/pyTooling/sphinx-reports>`__.

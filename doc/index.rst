@@ -34,18 +34,18 @@ Supported Report Formats
 
 Supported format reports are:
 
-* ✅🚧 Unit Test summaries (by `pytest <https://github.com/pytest-dev/pytest>`__)
+* ✅🚧 :ref:`Unit Test summaries <UNITTEST>` (by `pytest <https://github.com/pytest-dev/pytest>`__)
 
   * ✅ Summary page (displaying ``unittest.xml``)
   * 🚧 Show logging, output and error messages.
 
-* 🚧 Code coverage (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
+* 🚧 :ref:`Code coverage <CODECOV>` (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
 
   * ✅ Summary page (displaying ``coverage.json``)
   * 🚧 Individual Sphinx documents per package/module
   * 🚧 Highlighted source code with syntax highlighting and coverage highlighting
 
-* 🚧 Documentation coverage
+* 🚧 :ref:`Documentation coverage <DOCCOV>`
 
   * ✅ Summary page (displaying data from `"""docstr_coverage""" <https://github.com/HunterMcGushion/docstr_coverage>`__)
   * ❓ Additionally support `interrogate <https://github.com/econchick/interrogate>`__ as data source.
@@ -65,15 +65,15 @@ Unit Test Summary
    .. grid-item::
       :columns: 6
 
-      🚧 This is a work-in-progress feature. 🚧
-
-      :ref:`UNITTEST`
+      :ref:`Unittesting <UNITTEST>` executes isolated tests on tiny source code portions (units). The results are
+      collected in a unittest summary report usually in the Any JUnit XML format (or a related dialect). These test
+      results can be visualized as a hierarchy of groups (testsuites) and tests (testcases).
 
       .. rubric:: Configuration Options
 
       * Handle multiple unittest report files per Sphinx documentation.
       * Overwrite testsuite summary name (toplevel report name).
-      * Show all testcases or not passing testcases.
+      * Show all testcases or only flawed testcases.
       * Hide assertions
       * Hide summary row
       * Separate legend directive to list color pallet.
@@ -90,7 +90,9 @@ Unit Test Summary
    .. grid-item::
       :columns: 6
 
-      .. image:: _static/Unittest.png
+      .. card:: Unittest Summary Report
+
+         .. image:: _static/Unittest.png
 
 
 Code Coverage
@@ -101,11 +103,11 @@ Code Coverage
    .. grid-item::
       :columns: 6
 
-      :ref:`CODECOV` checks if a source code was used during execution. Usually, testcases are run by a testcase
-      execution framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the
-      code for code coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually
-      based on `Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage
-      collection.
+      :ref:`CODECOV` checks if a source code (lines, statements, branches, ...) were used during execution. Usually,
+      testcases are run by a testcase execution framework like `pytest <https://github.com/pytest-dev/pytest>`__, which
+      also offers to instrument the source code for code coverage collection using the ``pytest-cov`` plugin. For
+      Python, code coverage collection is usually based on `Coverage.py <https://github.com/nedbat/coveragepy>`__, which
+      supports statement and branch coverage collection.
 
       .. rubric:: Configuration Options
 
@@ -126,7 +128,9 @@ Code Coverage
    .. grid-item::
       :columns: 6
 
-      .. image:: _static/CodeCoverage.png
+      .. card:: Code Coverage Summary Report
+
+         .. image:: _static/CodeCoverage.png
 
 
 Documentation coverage
@@ -159,7 +163,9 @@ Documentation coverage
    .. grid-item::
       :columns: 6
 
-      .. image:: _static/DocCoverage.png
+      .. card:: Documentation Coverage Summary Report
+
+         .. image:: _static/DocCoverage.png
 
 Dependencies
 ============
@@ -204,6 +210,15 @@ License
    \part{Main Documentation}
 
 .. toctree::
+   :caption: Supported Reports
+   :hidden:
+
+   Overview
+   Unittest/index
+   CodeCov/index
+   DocCov/index
+
+.. toctree::
    :caption: Examples
    :hidden:
 
@@ -212,15 +227,6 @@ License
    Examples/JUnit-Basic
    Examples/JUnit-Complete
    Examples/OSVVM
-
-.. toctree::
-   :caption: Supported Reports
-   :hidden:
-
-   Overview
-   Unittest/index
-   CodeCov/index
-   DocCov/index
 
 .. raw:: latex
 
@@ -234,7 +240,7 @@ License
    unittests/index
    coverage/index
    CodeCoverage
-   Doc. Coverage Report <DocCoverage>
+   DocCoverage
    Static Type Check Report ➚ <typing/index>
 
 .. raw:: latex

@@ -136,11 +136,11 @@ See the [code coverage](https://pyTooling.github.io/sphinx-reports/CodeCov/index
    ```
 2. Add the `code-coverage` directive into your Restructured Text (ReST) document.
 
-   * `packageid` - The ID used in `conf.py` to describe a Python package.
+   * `reportid` - The ID used in `conf.py` to describe a Python package.
 
    ```ReST
    .. report:code-coverage::
-      :packageid: src
+      :reportid: src
    ```
 
 </details>
@@ -189,11 +189,11 @@ details.
    ```
 2. Add the `doc-coverage` directive into your Restructured Text (ReST) document.
  
-   * `packageid` - The ID used in `conf.py` to describe a Python package.
+   * `reportid` - The ID used in `conf.py` to describe a Python package.
 
    ```ReST
    .. report:doc-coverage::
-      :packageid: src
+      :reportid: src
    ```
 
 </details>
