@@ -65,9 +65,9 @@ Unit Test Summary
    .. grid-item::
       :columns: 6
 
-      🚧 This is a work-in-progress feature. 🚧
-
-      :ref:`UNITTEST`
+      :ref:`Unittesting <UNITTEST>` executes isolated tests on tiny source code portions (units). The results are
+      collected in a unittest summary report usually in the Any JUnit XML format (or a related dialect). These test
+      results can be visualized as a hierarchy of groups (testsuites) and tests (testcases).
 
       .. rubric:: Configuration Options
 
@@ -90,7 +90,9 @@ Unit Test Summary
    .. grid-item::
       :columns: 6
 
-      .. image:: _static/Unittest.png
+      .. card:: Unittest Summary Report
+
+         .. image:: _static/Unittest.png
 
 
 Code Coverage
@@ -101,11 +103,11 @@ Code Coverage
    .. grid-item::
       :columns: 6
 
-      :ref:`CODECOV` checks if a source code was used during execution. Usually, testcases are run by a testcase
-      execution framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the
-      code for code coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually
-      based on `Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage
-      collection.
+      :ref:`CODECOV` checks if a source code (lines, statements, branches, ...) were used during execution. Usually,
+      testcases are run by a testcase execution framework like `pytest <https://github.com/pytest-dev/pytest>`__, which
+      also offers to instrument the source code for code coverage collection using the ``pytest-cov`` plugin. For
+      Python, code coverage collection is usually based on `Coverage.py <https://github.com/nedbat/coveragepy>`__, which
+      supports statement and branch coverage collection.
 
       .. rubric:: Configuration Options
 
@@ -126,7 +128,9 @@ Code Coverage
    .. grid-item::
       :columns: 6
 
-      .. image:: _static/CodeCoverage.png
+      .. card:: Code Coverage Summary Report
+
+         .. image:: _static/CodeCoverage.png
 
 
 Documentation coverage
@@ -159,7 +163,9 @@ Documentation coverage
    .. grid-item::
       :columns: 6
 
-      .. image:: _static/DocCoverage.png
+      .. card:: Documentation Coverage Summary Report
+
+         .. image:: _static/DocCoverage.png
 
 Dependencies
 ============

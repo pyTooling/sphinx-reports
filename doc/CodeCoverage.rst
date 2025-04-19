@@ -7,13 +7,13 @@ Code Coverage Report
       :columns: 8
 
       .. report:code-coverage::
-         :packageid: src
+         :reportid: src
 
    .. grid-item::
       :columns: 4
 
       .. report:code-coverage-legend::
-         :packageid: src
+         :reportid: src
          :style: vertical-table
 
 ----------

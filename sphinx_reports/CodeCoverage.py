@@ -60,8 +60,8 @@ class package_DictType(TypedDict):
 class CodeCoverageBase(BaseDirective):
 
 	option_spec = {
-		"class":     strip,
-		"packageid": strip
+		"class":    strip,
+		"reportid": strip
 	}
 
 	defaultCoverageDefinitions = {
@@ -91,9 +91,9 @@ class CodeCoverageBase(BaseDirective):
 	_coverageLevelDefinitions: ClassVar[Dict[str, Dict[Union[int, str], Dict[str, str]]]] = {}
 	_packageConfigurations:    ClassVar[Dict[str, package_DictType]] = {}
 
-	_cssClasses:  List[str]
-	_packageID:   str
-	_levels:      Dict[Union[int, str], Dict[str, str]]
+	_cssClasses: List[str]
+	_reportID:   str
+	_levels:     Dict[Union[int, str], Dict[str, str]]
 
 	def _CheckOptions(self) -> None:
 		"""
@@ -101,7 +101,7 @@ class CodeCoverageBase(BaseDirective):
 		"""
 		cssClasses = self._ParseStringOption("class", "", r"(\w+)?( +\w+)*")
 
-		self._packageID = self._ParseStringOption("packageid")
+		self._reportID = self._ParseStringOption("reportid")
 		self._cssClasses = [] if cssClasses == "" else cssClasses.split(" ")
 
 	@classmethod
@@ -185,12 +185,12 @@ class CodeCoverageBase(BaseDirective):
 			raise ReportExtensionError(f"Configuration option '{variableName}' is not configured.") from ex
 
 		# try:
-		# 	packageConfiguration = allPackages[self._packageID]
+		# 	packageConfiguration = allPackages[self._reportID]
 		# except KeyError as ex:
-		# 	raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{cls.configPrefix}_packages: No configuration found for '{self._packageID}'.") from ex
+		# 	raise ReportExtensionError(f"conf.py: {ReportDomain.name}_{cls.configPrefix}_packages: No configuration found for '{self._reportID}'.") from ex
 
-		for packageID, packageConfiguration in allPackages.items():
-			configurationName = f"conf.py: {variableName}:[{packageID}]"
+		for reportID, packageConfiguration in allPackages.items():
+			configurationName = f"conf.py: {variableName}:[{reportID}]"
 
 			try:
 				packageName = packageConfiguration["name"]
@@ -238,7 +238,7 @@ class CodeCoverageBase(BaseDirective):
 			else:
 				raise ReportExtensionError(f"")
 
-			cls._packageConfigurations[packageID] = {
+			cls._packageConfigurations[reportID] = {
 				"name": packageName,
 				"json_report": jsonReport,
 				"fail_below": failBelow,
@@ -286,9 +286,9 @@ class CodeCoverage(CodeCoverageBase):
 		self._noBranchCoverage = "no-branch-coverage" in self.options
 
 		try:
-			packageConfiguration = self._packageConfigurations[self._packageID]
+			packageConfiguration = self._packageConfigurations[self._reportID]
 		except KeyError as ex:
-			raise ReportExtensionError(f"No configuration for '{self._packageID}'") from ex
+			raise ReportExtensionError(f"No configuration for '{self._reportID}'") from ex
 
 		self._packageName = packageConfiguration["name"]
 		self._jsonReport =  packageConfiguration["json_report"]
@@ -296,7 +296,7 @@ class CodeCoverage(CodeCoverageBase):
 		self._levels =      packageConfiguration["levels"]
 
 	def _GenerateCoverageTable(self) -> nodes.table:
-		cssClasses = ["report-codecov-table", f"report-codecov-{self._packageID}"]
+		cssClasses = ["report-codecov-table", f"report-codecov-{self._reportID}"]
 		cssClasses.extend(self._cssClasses)
 
 		# Create a table and table header with 10 columns
@@ -311,7 +311,7 @@ class CodeCoverage(CodeCoverageBase):
 			columns.pop(2)
 
 		table, tableGroup = self._CreateTableHeader(
-			identifier=self._packageID,
+			identifier=self._reportID,
 			columns=columns,
 			classes=cssClasses
 		)
@@ -509,9 +509,9 @@ class CodeCoverageLegend(CodeCoverageBase):
 		self._style = self._ParseLegendStyle("style", LegendStyle.horizontal_table)
 
 		try:
-			packageConfiguration = self._packageConfigurations[self._packageID]
+			packageConfiguration = self._packageConfigurations[self._reportID]
 		except KeyError as ex:
-			raise ReportExtensionError(f"No configuration for '{self._packageID}'") from ex
+			raise ReportExtensionError(f"No configuration for '{self._reportID}'") from ex
 
 		self._levels = packageConfiguration["levels"]
 
@@ -575,9 +575,9 @@ class CodeCoverageLegend(CodeCoverageBase):
 
 		if LegendStyle.Table in self._style:
 			if LegendStyle.Horizontal in self._style:
-				container += self._CreateHorizontalLegendTable(identifier=f"{self._packageID}-legend", classes=["report-codecov-legend"])
+				container += self._CreateHorizontalLegendTable(identifier=f"{self._reportID}-legend", classes=["report-codecov-legend"])
 			elif LegendStyle.Vertical in self._style:
-				container += self._CreateVerticalLegendTable(identifier=f"{self._packageID}-legend", classes=["report-codecov-legend"])
+				container += self._CreateVerticalLegendTable(identifier=f"{self._reportID}-legend", classes=["report-codecov-legend"])
 			else:
 				container += nodes.paragraph(text=f"Unsupported legend style.")
 		else:
@@ -615,9 +615,9 @@ class ModuleCoverage(CodeCoverageBase):
 		self._moduleName = self._ParseStringOption("module")
 
 		try:
-			packageConfiguration = self._packageConfigurations[self._packageID]
+			packageConfiguration = self._packageConfigurations[self._reportID]
 		except KeyError as ex:
-			raise ReportExtensionError(f"No configuration for '{self._packageID}'") from ex
+			raise ReportExtensionError(f"No configuration for '{self._reportID}'") from ex
 
 		self._packageName = packageConfiguration["name"]
 		self._jsonReport =  packageConfiguration["json_report"]

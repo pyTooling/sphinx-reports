@@ -56,8 +56,8 @@ class package_DictType(TypedDict):
 class DocCoverageBase(BaseDirective):
 
 	option_spec = {
-		"class":     strip,
-		"packageid": strip,
+		"class":    strip,
+		"reportid": strip,
 	}
 
 	defaultCoverageDefinitions = {
@@ -87,9 +87,9 @@ class DocCoverageBase(BaseDirective):
 	_coverageLevelDefinitions: ClassVar[Dict[str, Dict[Union[int, str], Dict[str, str]]]] = {}
 	_packageConfigurations:    ClassVar[Dict[str, package_DictType]] = {}
 
-	_cssClasses:  List[str]
-	_packageID:   str
-	_levels:      Dict[Union[int, str], Dict[str, str]]
+	_cssClasses: List[str]
+	_reportID:   str
+	_levels:     Dict[Union[int, str], Dict[str, str]]
 
 	def _CheckOptions(self) -> None:
 		"""
@@ -97,7 +97,7 @@ class DocCoverageBase(BaseDirective):
 		"""
 		cssClasses = self._ParseStringOption("class", "", r"(\w+)?( +\w+)*")
 
-		self._packageID = self._ParseStringOption("packageid")
+		self._reportID = self._ParseStringOption("reportid")
 		self._cssClasses = [] if cssClasses == "" else cssClasses.split(" ")
 
 	@classmethod
@@ -171,8 +171,8 @@ class DocCoverageBase(BaseDirective):
 		except (KeyError, AttributeError) as ex:
 			raise ReportExtensionError(f"Configuration option '{variableName}' is not configured.") from ex
 
-		for packageID, packageConfiguration in allPackages.items():
-			configurationName = f"conf.py: {variableName}:[{packageID}]"
+		for reportID, packageConfiguration in allPackages.items():
+			configurationName = f"conf.py: {variableName}:[{reportID}]"
 
 			try:
 				packageName = packageConfiguration["name"]
@@ -219,7 +219,7 @@ class DocCoverageBase(BaseDirective):
 			else:
 				raise ReportExtensionError(f"")
 
-			cls._packageConfigurations[packageID] = {
+			cls._packageConfigurations[reportID] = {
 				"name": packageName,
 				"directory": directory,
 				"fail_below": failBelow,
@@ -261,19 +261,19 @@ class DocCoverage(DocCoverageBase):
 		"""
 		super()._CheckOptions()
 
-		packageConfiguration = self._packageConfigurations[self._packageID]
+		packageConfiguration = self._packageConfigurations[self._reportID]
 		self._packageName = packageConfiguration["name"]
 		self._directory =   packageConfiguration["directory"]
 		self._failBelow =   packageConfiguration["fail_below"]
 		self._levels =      packageConfiguration["levels"]
 
 	def _GenerateCoverageTable(self) -> nodes.table:
-		cssClasses = ["report-doccov-table", f"report-doccov-{self._packageID}"]
+		cssClasses = ["report-doccov-table", f"report-doccov-{self._reportID}"]
 		cssClasses.extend(self._cssClasses)
 
 		# Create a table and table header with 5 columns
 		table, tableGroup = self._CreateTableHeader(
-			identifier=self._packageID,
+			identifier=self._reportID,
 			columns=[
 				("Filename", None, 500),
 				("Total", None, 100),
@@ -388,7 +388,7 @@ class DocCoverageLegend(DocCoverageBase):
 
 		self._style = self._ParseLegendStyle("style", LegendStyle.horizontal_table)
 
-		packageConfiguration = self._packageConfigurations[self._packageID]
+		packageConfiguration = self._packageConfigurations[self._reportID]
 		self._levels = packageConfiguration["levels"]
 
 	def _CreateHorizontalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
@@ -444,9 +444,9 @@ class DocCoverageLegend(DocCoverageBase):
 
 		if LegendStyle.Table in self._style:
 			if LegendStyle.Horizontal in self._style:
-				container += self._CreateHorizontalLegendTable(identifier=f"{self._packageID}-legend", classes=["report-doccov-legend"])
+				container += self._CreateHorizontalLegendTable(identifier=f"{self._reportID}-legend", classes=["report-doccov-legend"])
 			elif LegendStyle.Vertical in self._style:
-				container += self._CreateVerticalLegendTable(identifier=f"{self._packageID}-legend", classes=["report-doccov-legend"])
+				container += self._CreateVerticalLegendTable(identifier=f"{self._reportID}-legend", classes=["report-doccov-legend"])
 			else:
 				container += nodes.paragraph(text=f"Unsupported legend style.")
 		else:

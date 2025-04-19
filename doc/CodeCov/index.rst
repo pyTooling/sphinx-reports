@@ -12,7 +12,7 @@ Code Coverage
       report file(s) need to be configured in Sphinx's ``conf.py`` for pre-analysis and data aggregation
       (:ref:`see below <CODECOV/Config>` for details). This also allows the directive to supports multiple code coverage
       reports per Sphinx documentation. Each code coverage report is referenced by the
-      :rst:dir:`packageid <report:code-coverage:packageid>` option, which matches the dictionary key used in the
+      :rst:dir:`reportid <report:code-coverage:reportid>` option, which matches the dictionary key used in the
       configuration file.
 
       .. rubric:: Minimal Example
@@ -22,13 +22,13 @@ Code Coverage
          .. code-block:: ReST
 
             .. report:code-coverage::
-               :packageid: src
+               :reportid: src
 
       .. rubric:: Options
 
       Additional options are offered for fine-tuning and styling of the report:
 
-      :rst:dir:`packageid <report:code-coverage:packageid>`
+      :rst:dir:`reportid <report:code-coverage:reportid>`
         Reference the code coverage report file and settings as listed in :file:`conf.py`.
 
       :rst:dir:`no-branch-coverage <report:code-coverage:no-branch-coverage>` (optional)
@@ -162,13 +162,13 @@ The second file shows how to integrate that document into the navigation bar / *
             :columns: 8
 
             .. report:code-coverage::
-               :packageid: src
+               :reportid: src
 
          .. grid-item::
             :columns: 4
 
             .. report:code-coverage-legend::
-               :packageid: src
+               :reportid: src
                :style:     vertical-table
 
       ----------
@@ -185,8 +185,7 @@ The second file shows how to integrate that document into the navigation bar / *
          :hidden:
 
          Python Class Reference <sphinx_reports/sphinx_reports>
-         unittests/index
-         coverage/index
+         Unittest
          CodeCoverage
          DocCoverage
          Static Type Check Report ➚ <typing/index>
@@ -214,7 +213,7 @@ The following directives are provided for visualizing code coverage reports.
 
       The CSS classes are applied on the HTML ``<table>`` tag.
 
-   .. rst:directive:option:: packageid
+   .. rst:directive:option:: reportid
 
       An identifier referencing a dictionary entry (key) in the configuration variable ``report_codecov_packages``
       defined in :file:`conf.py`.
@@ -227,7 +226,7 @@ The following directives are provided for visualizing code coverage reports.
 
    Generate a table showing the color palett applied to a code coverage summary table.
 
-   Each code coverage report could potentially use its own color palett. Therefore, the ``packageid`` options should use
+   Each code coverage report could potentially use its own color palett. Therefore, the ``reportid`` options should use
    the same values.
 
    .. rst:directive:option:: class
@@ -304,8 +303,8 @@ Custom CSS Styling
 
       ``report-codecov-table``
         Allows selecting the ``table`` tag, but only for code coverage reports.
-      ``report-codecov-%packageid%``
-        Allows selecting one specific code coverage report. ``%packageid%`` gets replaced by the packageid used in the
+      ``report-codecov-%reportid%``
+        Allows selecting one specific code coverage report. ``%reportid%`` gets replaced by the reportid used in the
         option field of the directive. Here it got replaced by ``src``.
 
       .. rubric:: Row Styling

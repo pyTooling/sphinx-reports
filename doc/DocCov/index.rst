@@ -9,10 +9,10 @@ Documentation Coverage
       :columns: 6
 
       The :rst:dir:`report:doc-coverage` directive generates a documentation coverage report summary table. The
-      documentation coverage report need to be configured in Sphinx's ``conf.py`` for pre-analysis and data aggregation
+      documentation coverage reports need to be configured in Sphinx's ``conf.py`` for pre-analysis and data aggregation
       (:ref:`see below <DOCCOV/Config>` for details). This also allows the directive to supports multiple documentation
       coverage reports per Sphinx documentation. Each documentation coverage report is referenced by the
-      :rst:dir:`packageid <report:doc-coverage:packageid>` option, which matches the dictionary key used in the
+      :rst:dir:`reportid <report:doc-coverage:reportid>` option, which matches the dictionary key used in the
       configuration file.
 
       .. rubric:: Minimal Example
@@ -22,13 +22,13 @@ Documentation Coverage
          .. code-block:: ReST
 
             .. report:doc-coverage::
-               :packageid: src
+               :reportid: src
 
       .. rubric:: Options
 
       Additional options are offered for fine-tuning and styling of the report:
 
-      :rst:dir:`packageid <report:doc-coverage:packageid>`
+      :rst:dir:`reportid <report:doc-coverage:reportid>`
         Reference the documentation coverage report file and settings as listed in :file:`conf.py`.
 
       :rst:dir:`class <report:doc-coverage:class>` (optional)
@@ -159,13 +159,13 @@ The second file shows how to integrate that document into the navigation bar / *
             :columns: 5
 
             .. report:doc-coverage::
-               :packageid: src
+               :reportid: src
 
          .. grid-item::
             :columns: 7
 
             .. report:doc-coverage-legend::
-               :packageid: src
+               :reportid: src
                :style: vertical-table
 
       ----------
@@ -182,8 +182,7 @@ The second file shows how to integrate that document into the navigation bar / *
          :hidden:
 
          Python Class Reference <sphinx_reports/sphinx_reports>
-         unittests/index
-         coverage/index
+         Unittest
          CodeCoverage
          DocCoverage
          Static Type Check Report ➚ <typing/index>
@@ -211,7 +210,7 @@ The following directives are provided for visualizing documentation coverage rep
 
       The CSS classes are applied on the HTML ``<table>`` tag.
 
-   .. rst:directive:option:: packageid
+   .. rst:directive:option:: reportid
 
       An identifier referencing a dictionary entry (key) in the configuration variable ``report_doccov_packages``
       defined in :file:`conf.py`.
@@ -220,7 +219,7 @@ The following directives are provided for visualizing documentation coverage rep
 
    Generate a table showing the color palett applied to a documentation coverage summary table.
 
-   Each documentation coverage report could potentially use its own color palett. Therefore, the ``packageid`` options
+   Each documentation coverage report could potentially use its own color palett. Therefore, the ``reportid`` options
    should use the same values.
 
    .. rst:directive:option:: class
@@ -248,7 +247,7 @@ Sphinx Roles
 *There are no roles defined.*
 
 
-.. _DOCUMENTATIONCOV/ColorPalett:
+.. _DOCCOV/ColorPalett:
 
 Color Paletts
 *************
@@ -296,8 +295,8 @@ Custom CSS Styling
 
       ``report-doccov-table``
         Allows selecting the ``table`` tag, but only for documentation coverage reports.
-      ``report-doccov-%packageid%``
-        Allows selecting one specific documentation coverage report. ``%packageid%`` gets replaced by the packageid used in the
+      ``report-doccov-%reportid%``
+        Allows selecting one specific documentation coverage report. ``%reportid%`` gets replaced by the reportid used in the
         option field of the directive. Here it got replaced by ``src``.
 
       .. rubric:: Row Styling
