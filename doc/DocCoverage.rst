@@ -1,5 +1,5 @@
-Documentation Coverage
-######################
+Documentation Coverage Report
+#############################
 
 .. grid:: 2
 
@@ -18,5 +18,5 @@ Documentation Coverage
 
 ----------
 
-Documentation coverage generated with `docstr-coverage <https://github.com/HunterMcGushion/docstr_coverage>`__ and
+Documentation coverage generated with `"""docstr-coverage""" <https://github.com/HunterMcGushion/docstr_coverage>`__ and
 visualized by `sphinx-reports <https://github.com/pyTooling/sphinx-reports>`__.

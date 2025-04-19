@@ -1,5 +1,5 @@
-Code Coverage Summary
-#####################
+Code Coverage Report
+####################
 
 .. grid:: 2
 

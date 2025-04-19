@@ -34,18 +34,18 @@ Supported Report Formats
 
 Supported format reports are:
 
-* ✅🚧 Unit Test summaries (by `pytest <https://github.com/pytest-dev/pytest>`__)
+* ✅🚧 :ref:`Unit Test summaries <UNITTEST>` (by `pytest <https://github.com/pytest-dev/pytest>`__)
 
   * ✅ Summary page (displaying ``unittest.xml``)
   * 🚧 Show logging, output and error messages.
 
-* 🚧 Code coverage (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
+* 🚧 :ref:`Code coverage <CODECOV>` (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
 
   * ✅ Summary page (displaying ``coverage.json``)
   * 🚧 Individual Sphinx documents per package/module
   * 🚧 Highlighted source code with syntax highlighting and coverage highlighting
 
-* 🚧 Documentation coverage
+* 🚧 :ref:`Documentation coverage <DOCCOV>`
 
   * ✅ Summary page (displaying data from `"""docstr_coverage""" <https://github.com/HunterMcGushion/docstr_coverage>`__)
   * ❓ Additionally support `interrogate <https://github.com/econchick/interrogate>`__ as data source.
@@ -73,7 +73,7 @@ Unit Test Summary
 
       * Handle multiple unittest report files per Sphinx documentation.
       * Overwrite testsuite summary name (toplevel report name).
-      * Show all testcases or not passing testcases.
+      * Show all testcases or only flawed testcases.
       * Hide assertions
       * Hide summary row
       * Separate legend directive to list color pallet.
@@ -234,7 +234,7 @@ License
    unittests/index
    coverage/index
    CodeCoverage
-   Doc. Coverage Report <DocCoverage>
+   DocCoverage
    Static Type Check Report ➚ <typing/index>
 
 .. raw:: latex

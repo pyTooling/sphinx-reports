@@ -9,10 +9,11 @@ Code Coverage
       :columns: 6
 
       The :rst:dir:`report:code-coverage` directive generates a code coverage report summary table. The code coverage
-      report file(s) need to be configured in Sphinx's ``conf.py`` for pre-analysis and data aggregation (see below for
-      details). This also allows the directive to supports multiple code coverage reports per Sphinx documentation. Each
-      code coverage report is referenced by the :rst:dir:`packageid <report:code-coverage:packageid>` option, which
-      matches the dictionary key used in the configuration file.
+      report file(s) need to be configured in Sphinx's ``conf.py`` for pre-analysis and data aggregation
+      (:ref:`see below <CODECOV/Config>` for details). This also allows the directive to supports multiple code coverage
+      reports per Sphinx documentation. Each code coverage report is referenced by the
+      :rst:dir:`packageid <report:code-coverage:packageid>` option, which matches the dictionary key used in the
+      configuration file.
 
       .. rubric:: Minimal Example
 
@@ -49,12 +50,6 @@ Code Coverage
       It's planned to display a per package and per module code coverage on a separate Sphinx document (separate HTML
       page) with syntax highlighting and colored background visualizing the coverage status.
 
-   .. #:term:`Code Coverage` checks if a source code was used during execution. Usually, testcases are run by a testcase
-      execution framework like `pytest <https://github.com/pytest-dev/pytest>`__, which also offers to instrument the
-      code for code coverage collection using the ``pytest-cov`` plugin. For Python, coverage collection is usually
-      based on `Coverage.py <https://github.com/nedbat/coveragepy>`__, which supports statement and branch coverage
-      collection.
-
    .. grid-item::
       :columns: 6
 
@@ -77,9 +72,9 @@ Configuration Entries in :file:`conf.py`
    .. grid-item::
       :columns: 6
 
-      See the :ref:`overview page <OVER>` on how to setup and enable the **sphinx-reports** extension in general.
+      See the :ref:`overview page <OVER>` on how to setup and enable the *sphinx-reports* extension in general.
 
-      Configure one or more coverage analysis reports in :file:`conf.py` by adding a new **section** defining some
+      Configure one or more coverage analysis reports in :file:`conf.py` by adding a new *section* defining some
       configuration variables. Each analysis report is identified by an ID, which is later referred to by the report
       directive or legend directive. Here, the ID is called ``src`` (dictionary key). Each analysis report needs 4
       configuration entries:
@@ -93,7 +88,6 @@ Configuration Entries in :file:`conf.py`
       ``levels``
         Either a predefined color palett name (like ``"default"``), or |br|
         a dictionary of coverage limits, their description and CSS style classes.
-
 
    .. grid-item::
       :columns: 6
@@ -153,14 +147,14 @@ directive. The first file consists of three parts:
    :rst:dir:`report:code-coverage-legend` can be displayed side-by-side
 3. A footer
 
-The second file shows how to integrate that document into the navigation bar / **toc-tree**.
+The second file shows how to integrate that document into the navigation bar / *toc-tree*.
 
 .. admonition:: :file:`CodeCoverage.rst`
 
    .. code-block:: ReST
 
-      Code Coverage Summary
-      #####################
+      Code Coverage Report
+      ####################
 
       .. grid:: 2
 
@@ -193,8 +187,8 @@ The second file shows how to integrate that document into the navigation bar / *
          Python Class Reference <sphinx_reports/sphinx_reports>
          unittests/index
          coverage/index
-         Code Coverage Summary <CodeCoverage>
-         Doc. Coverage Report <DocCoverage>
+         CodeCoverage
+         DocCoverage
          Static Type Check Report ➚ <typing/index>
 
       .. toctree::
@@ -291,7 +285,7 @@ Color Paletts
          .. tab-item:: default
 
             .. image:: ../_static/CodeCoverage-Legend.png
-               :scale: 100%
+               :width: 350 px
 
 
 .. _CODECOV/Styling:
