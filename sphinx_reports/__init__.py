@@ -43,7 +43,7 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2025, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.9.0"
+__version__ =   "0.9.1"
 __keywords__ =  [
 	"Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate", "Code Coverage", "Coverage",
 	"Documentation Coverage", "Unittest", "Dependencies", "Summary"
@@ -60,13 +60,12 @@ from sphinx.builders       import Builder
 from sphinx.config         import Config
 from sphinx.domains        import Domain
 from sphinx.environment    import BuildEnvironment
+from sphinx.util.logging   import getLogger
 from pyTooling.Decorators  import export
 from pyTooling.Common      import readResourceFile
-from sphinx.util.logging import getLogger
 
+from sphinx_reports        import static as ResourcePackage
 from sphinx_reports.Common import ReportExtensionError
-
-from sphinx_reports import static as ResourcePackage
 
 
 @export

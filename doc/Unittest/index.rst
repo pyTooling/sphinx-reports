@@ -163,7 +163,7 @@ The second file shows how to integrate that document into the navigation bar / *
          Python Class Reference <sphinx_reports/sphinx_reports>
          Unittest
          CodeCoverage
-         DocCoverage
+         Doc. Coverage Report <DocCoverage>
          Static Type Check Report ➚ <typing/index>
 
       .. toctree::
