@@ -240,7 +240,7 @@ License
    unittests/index
    coverage/index
    CodeCoverage
-   DocCoverage
+   Doc. Coverage Report <DocCoverage>
    Static Type Check Report ➚ <typing/index>
 
 .. raw:: latex

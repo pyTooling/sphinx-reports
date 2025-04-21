@@ -1,3 +1,5 @@
+.. _DOCCOV:
+
 Documentation Coverage Report
 #############################
 
