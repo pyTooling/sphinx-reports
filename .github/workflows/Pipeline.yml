@@ -10,6 +10,9 @@ on:
 jobs:
   Pipeline:
     uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@dev
+    permissions:
+      contents: write  # required for create tag
+      actions:  write  # required for trigger workflow
     with:
       package_name: sphinx_reports
       unittest_python_version_list: '3.11 3.12 3.13'

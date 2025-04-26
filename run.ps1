@@ -32,7 +32,7 @@ Param(
 )
 
 $PackageName = "sphinx_reports"
-$PackageVersion = "0.9.1"
+$PackageVersion = "0.9.2"
 
 # set default values
 $EnableDebug =        [bool]$PSCmdlet.MyInvocation.BoundParameters["Debug"]
