@@ -1,7 +1,6 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-from importlib.util import find_spec
 from sys import path as sys_path
 from os.path import abspath
 from pathlib import Path
@@ -24,8 +23,9 @@ sys_path.insert(0, abspath("../sphinx_reports"))
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 project = "sphinx_reports"
+directoryName = project.replace('.', '/')
 
-packageInformationFile = Path(f"../{project.replace('.', '/')}/__init__.py")
+packageInformationFile = Path(f"../{directoryName}/__init__.py")
 versionInformation = extractVersionInformation(packageInformationFile)
 
 author =    versionInformation.Author
@@ -271,7 +271,7 @@ report_unittest_testsuites = {
 
 report_codecov_packages = {
 	"src": {
-		"name":        "sphinx_reports",
+		"name":        f"{project}",
 		"json_report": "../report/coverage/coverage.json",
 		"fail_below":  80,
 		"levels":      "default"
@@ -280,8 +280,8 @@ report_codecov_packages = {
 
 report_doccov_packages = {
 	"src": {
-		"name":       "sphinx_reports",
-		"directory":  "../sphinx_reports",
+		"name":       f"{project}",
+		"directory":  f"../{directoryName}",
 		"fail_below": 80,
 		"levels":     "default"
 	},
