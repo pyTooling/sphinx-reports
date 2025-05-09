@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Coverage &mdash; sphinx_reports 0.9.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.469918902edf87f5154c9531e0f2362c.css?v=6ad14cd5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=c5ca06ca"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documentation Coverage" href="../DocCov/index.html" />
+    <link rel="prev" title="Unit Test Summary" href="../Unittest/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Coverage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-entries-in-conf-py">Configuration Entries in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-document">Example Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-directives">Sphinx Directives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#directive-report-code-coverage"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">report:code-coverage::</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-code-coverage-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-code-coverage-reportid"><code class="docutils literal notranslate"><span class="pre">:reportid:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-code-coverage-no-branch-coverage"><code class="docutils literal notranslate"><span class="pre">:no-branch-coverage:</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#directive-report-code-coverage-legend"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">report:code-coverage-legend::</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-code-coverage-legend-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-code-coverage-legend-style"><code class="docutils literal notranslate"><span class="pre">:style:</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-roles">Sphinx Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#color-paletts">Color Paletts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-css-styling">Custom CSS Styling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Dependency.html">Dependency Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/JUnit-Basic.html">JUnit Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/JUnit-Complete.html">JUnit Complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/OSVVM.html">OSVVM Regression Test</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Code Coverage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/CodeCov/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="code-coverage">
+<span id="codecov"></span><h1>Code Coverage<a class="headerlink" href="#code-coverage" title="Link to this heading"></a></h1>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p>The <a class="reference internal" href="#directive-report-code-coverage" title="report:code-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:code-coverage</span></code></a> directive generates a code coverage report summary table. The code coverage
+report file(s) need to be configured in Sphinx’s <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> for pre-analysis and data aggregation
+(<a class="reference internal" href="#codecov-config"><span class="std std-ref">see below</span></a> for details). This also allows the directive to supports multiple code coverage
+reports per Sphinx documentation. Each code coverage report is referenced by the
+<a class="reference internal" href="#directive-option-report-code-coverage-reportid" title="report:code-coverage:reportid directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">reportid</span></code></a> option, which matches the dictionary key used in the
+configuration file.</p>
+<p class="rubric">Minimal Example</p>
+<div class="admonition-file-codecoverage-rst admonition">
+<p class="admonition-title"><code class="file docutils literal notranslate"><span class="pre">CodeCoverage.rst</span></code></p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">report:code-coverage</span><span class="p">::</span>
+   <span class="nc">:reportid:</span> src
+</pre></div>
+</div>
+</div>
+<p class="rubric">Options</p>
+<p>Additional options are offered for fine-tuning and styling of the report:</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#directive-option-report-code-coverage-reportid" title="report:code-coverage:reportid directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">reportid</span></code></a></dt><dd><p>Reference the code coverage report file and settings as listed in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+</dd>
+<dt><a class="reference internal" href="#directive-option-report-code-coverage-no-branch-coverage" title="report:code-coverage:no-branch-coverage directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">no-branch-coverage</span></code></a> (optional)</dt><dd><p>If this flag is set, only statement coverage is shown.</p>
+</dd>
+<dt><a class="reference internal" href="#directive-option-report-code-coverage-class" title="report:code-coverage:class directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">class</span></code></a> (optional)</dt><dd><p>User-defined CSS class name(s), which are applied on the HTML table.</p>
+</dd>
+</dl>
+<p class="rubric">Supported Code Coverage Formats</p>
+<p>Currently, only JSON output from <code class="docutils literal notranslate"><span class="pre">Coverage.py</span></code> (Python) can be read and visualized.</p>
+<p>The <a class="reference external" href="https://edaa-org.github.io/pyEDAA.Reports/">pyEDAA.Reports</a> projects works on a unified code coverage
+format, which can read, transform, merge and write any format (XML (Cobertura), JSON (Coverage.py), …). This
+would allow this directive to display any code coverage result.</p>
+<p class="rubric">Future Ideas</p>
+<p>It’s planned to display a per package and per module code coverage on a separate Sphinx document (separate HTML
+page) with syntax highlighting and colored background visualizing the coverage status.</p>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Only Statement Coverage</div>
+<img alt="../_images/CodeCoverage_WithoutBranches.png" src="../_images/CodeCoverage_WithoutBranches.png" />
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Statement and Branch Coverage</div>
+<img alt="../_images/CodeCoverage.png" src="../_images/CodeCoverage.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="configuration-entries-in-conf-py">
+<span id="codecov-config"></span><h2>Configuration Entries in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code><a class="headerlink" href="#configuration-entries-in-conf-py" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p>See the <a class="reference internal" href="../Overview.html#over"><span class="std std-ref">overview page</span></a> on how to setup and enable the <em>sphinx-reports</em> extension in general.</p>
+<p>Configure one or more coverage analysis reports in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> by adding a new <em>section</em> defining some
+configuration variables. Each analysis report is identified by an ID, which is later referred to by the report
+directive or legend directive. Here, the ID is called <code class="docutils literal notranslate"><span class="pre">src</span></code> (dictionary key). Each analysis report needs 4
+configuration entries:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Name of the Python package <a class="footnote-reference brackets" href="#pkgnamevspkgdir" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">json_report</span></code></dt><dd><p>The code coverage report as JSON file as generated by <em>Coverage.py</em>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fail_below</span></code></dt><dd><p>An integer value in range 0..100, for when a code coverage is considered FAILED.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">levels</span></code></dt><dd><p>Either a predefined color palett name (like <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code>), or <br />
+a dictionary of coverage limits, their description and CSS style classes.</p>
+</dd>
+</dl>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Simple Configuration</label><div class="sd-tab-content docutils">
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># Sphinx-reports - CodeCov</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">report_codecov_packages</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span>        <span class="s2">&quot;myPackage&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;json_report&quot;</span><span class="p">:</span> <span class="s2">&quot;../report/coverage/coverage.json&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;fail_below&quot;</span><span class="p">:</span>  <span class="mi">80</span><span class="p">,</span>
+      <span class="s2">&quot;levels&quot;</span><span class="p">:</span>      <span class="s2">&quot;default&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Complex Configuration</label><div class="sd-tab-content docutils">
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># Sphinx-reports - CodeCov</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">report_codecov_packages</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span>        <span class="s2">&quot;myPackage&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;json_report&quot;</span><span class="p">:</span> <span class="s2">&quot;../report/coverage/coverage.json&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;fail_below&quot;</span><span class="p">:</span>  <span class="mi">80</span><span class="p">,</span>
+      <span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="mi">30</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below30&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;almost unused&quot;</span><span class="p">},</span>
+         <span class="mi">50</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below50&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;poorly used&quot;</span><span class="p">},</span>
+         <span class="mi">80</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below80&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;medium used&quot;</span><span class="p">},</span>
+         <span class="mi">90</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below90&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;well well&quot;</span><span class="p">},</span>
+         <span class="mi">100</span><span class="p">:</span>     <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below100&quot;</span><span class="p">,</span> <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;excellent used&quot;</span><span class="p">},</span>
+         <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-error&quot;</span><span class="p">,</span>    <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;internal error&quot;</span><span class="p">},</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-document">
+<span id="codecov-example"></span><h2>Example Document<a class="headerlink" href="#example-document" title="Link to this heading"></a></h2>
+<p>The following <code class="file docutils literal notranslate"><span class="pre">CodeCoverage.rst</span></code> document is an example on how to use the <a class="reference internal" href="#directive-report-code-coverage" title="report:code-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:code-coverage</span></code></a>
+directive. The first file consists of three parts:</p>
+<ol class="arabic simple">
+<li><p>A page title (headline)</p></li>
+<li><p>A grid from <a class="reference external" href="https://sphinx-design.readthedocs.io/">sphinx{design}</a> so <a class="reference internal" href="#directive-report-code-coverage" title="report:code-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:code-coverage</span></code></a> and
+<a class="reference internal" href="#directive-report-code-coverage-legend" title="report:code-coverage-legend directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:code-coverage-legend</span></code></a> can be displayed side-by-side</p></li>
+<li><p>A footer</p></li>
+</ol>
+<p>The second file shows how to integrate that document into the navigation bar / <em>toc-tree</em>.</p>
+<div class="admonition-file-codecoverage-rst admonition">
+<p class="admonition-title"><code class="file docutils literal notranslate"><span class="pre">CodeCoverage.rst</span></code></p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="nt">_CODECOV:</span>
+
+<span class="gh">Code Coverage Report</span>
+<span class="gh">####################</span>
+
+<span class="p">..</span> <span class="ow">grid</span><span class="p">::</span> 2
+
+<span class="p">   ..</span> <span class="ow">grid-item</span><span class="p">::</span>
+      <span class="nc">:columns:</span> 8
+
+<span class="p">      ..</span> <span class="ow">report:code-coverage</span><span class="p">::</span>
+         <span class="nc">:reportid:</span> src
+
+<span class="p">   ..</span> <span class="ow">grid-item</span><span class="p">::</span>
+      <span class="nc">:columns:</span> 4
+
+<span class="p">      ..</span> <span class="ow">report:code-coverage-legend</span><span class="p">::</span>
+         <span class="nc">:reportid:</span> src
+         <span class="nc">:style:</span>     vertical-table
+
+----------
+
+Code coverage report generated with <span class="s">`pytest </span><span class="si">&lt;https://github.com/pytest-dev/pytest&gt;</span><span class="s">`__</span>, <span class="s">`Coverage.py </span><span class="si">&lt;https://github.com/nedbat/coveragepy/tree/master&gt;</span><span class="s">`__</span> and visualized by <span class="s">`sphinx-reports </span><span class="si">&lt;https://github.com/pyTooling/sphinx-reports&gt;</span><span class="s">`__</span>.
+</pre></div>
+</div>
+</div>
+<div class="admonition-file-index-rst admonition">
+<p class="admonition-title"><code class="file docutils literal notranslate"><span class="pre">index.rst</span></code></p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:caption:</span> References and Reports
+   <span class="nc">:hidden:</span>
+
+   Python Class Reference &lt;sphinx_reports/sphinx_reports&gt;
+   Unittest
+   CodeCoverage
+   Doc. Coverage Report &lt;DocCoverage&gt;
+   Static Type Check Report ➚ &lt;typing/index&gt;
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:caption:</span> Appendix
+   <span class="nc">:hidden:</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="sphinx-directives">
+<span id="codecov-directives"></span><h2>Sphinx Directives<a class="headerlink" href="#sphinx-directives" title="Link to this heading"></a></h2>
+<p>The following directives are provided for visualizing code coverage reports.</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-report-code-coverage">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">report:code-coverage::</span></span><a class="headerlink" href="#directive-report-code-coverage" title="Link to this definition"></a></dt>
+<dd><p>Generate a table summarizing the code coverage per Python source code file (packages and/or modules). The package
+hierarchy is visualized by indentation and a 📦 symbol.</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-code-coverage-class">
+<span class="sig-name descname"><span class="pre">:class:</span></span><a class="headerlink" href="#directive-option-report-code-coverage-class" title="Link to this definition"></a></dt>
+<dd><p>Optional: A list of space separated user-defined CSS class names.</p>
+<p>The CSS classes are applied on the HTML <code class="docutils literal notranslate"><span class="pre">&lt;table&gt;</span></code> tag.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-code-coverage-reportid">
+<span class="sig-name descname"><span class="pre">:reportid:</span></span><a class="headerlink" href="#directive-option-report-code-coverage-reportid" title="Link to this definition"></a></dt>
+<dd><p>An identifier referencing a dictionary entry (key) in the configuration variable <code class="docutils literal notranslate"><span class="pre">report_codecov_packages</span></code>
+defined in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-code-coverage-no-branch-coverage">
+<span class="sig-name descname"><span class="pre">:no-branch-coverage:</span></span><a class="headerlink" href="#directive-option-report-code-coverage-no-branch-coverage" title="Link to this definition"></a></dt>
+<dd><p>If flag is present, no branch coverage columns are shown. Only statement coverage columns are present.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-report-code-coverage-legend">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">report:code-coverage-legend::</span></span><a class="headerlink" href="#directive-report-code-coverage-legend" title="Link to this definition"></a></dt>
+<dd><p>Generate a table showing the color palett applied to a code coverage summary table.</p>
+<p>Each code coverage report could potentially use its own color palett. Therefore, the <code class="docutils literal notranslate"><span class="pre">reportid</span></code> options should use
+the same values.</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-code-coverage-legend-class">
+<span class="sig-name descname"><span class="pre">:class:</span></span><a class="headerlink" href="#directive-option-report-code-coverage-legend-class" title="Link to this definition"></a></dt>
+<dd><p>Optional: A list of space separated user-defined CSS class names.</p>
+<p>The CSS classes are applied on the HTML <code class="docutils literal notranslate"><span class="pre">&lt;table&gt;</span></code> tag.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-code-coverage-legend-style">
+<span class="sig-name descname"><span class="pre">:style:</span></span><a class="headerlink" href="#directive-option-report-code-coverage-legend-style" title="Link to this definition"></a></dt>
+<dd><p>Specifies the legend style. Default is <code class="docutils literal notranslate"><span class="pre">horizontal-table</span></code>.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">default</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">horizontal-table</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vertical-table</span></code></p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="sphinx-roles">
+<span id="codecov-roles"></span><h2>Sphinx Roles<a class="headerlink" href="#sphinx-roles" title="Link to this heading"></a></h2>
+<p><em>There are no roles defined.</em></p>
+</section>
+<section id="color-paletts">
+<span id="codecov-colorpalett"></span><h2>Color Paletts<a class="headerlink" href="#color-paletts" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p>The default color palett can be changed by:</p>
+<ul class="simple">
+<li><p>setting a different predefined color palett name.</p></li>
+<li><p>specifying a new list of coverage level which also define a corresponding CSS class name.</p></li>
+<li><p>overriding the existing CSS rules with different colors and styles.</p></li>
+</ul>
+<p class="rubric"><code class="docutils literal notranslate"><span class="pre">default</span></code> palett</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">default</span></code> palett defines 12 levels: ≤10%, ≤20%, ≤30%, ≤40%, ≤50%, ≤60%, ≤70%, ≤80%, ≤85%, ≤90%, ≤95%, ≤100%
+from blue via red, orange, yellow to green.</p>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+default</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/CodeCoverage-Legend.png"><img alt="../_images/CodeCoverage-Legend.png" src="../_images/CodeCoverage-Legend.png" style="width: 350px;" />
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="custom-css-styling">
+<span id="codecov-styling"></span><h2>Custom CSS Styling<a class="headerlink" href="#custom-css-styling" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p class="rubric">Table Styling</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">table</span></code>-tag has 2 additional CSS classes:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">report-codecov-table</span></code></dt><dd><p>Allows selecting the <code class="docutils literal notranslate"><span class="pre">table</span></code> tag, but only for code coverage reports.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">report-codecov-%reportid%</span></code></dt><dd><p>Allows selecting one specific code coverage report. <code class="docutils literal notranslate"><span class="pre">%reportid%</span></code> gets replaced by the reportid used in the
+option field of the directive. Here it got replaced by <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd>
+</dl>
+<p class="rubric">Row Styling</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">tr</span></code>-tag (table row) has 2 additional CSS classes:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">report-package</span></code>/<code class="docutils literal notranslate"><span class="pre">report-module</span></code>/<code class="docutils literal notranslate"><span class="pre">report-summary</span></code></dt><dd><p>This class indicated if the row refers to a Python package, Python module or the overall coverage summary (last
+row).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">report-below-%percentage%</span></code></dt><dd><p>Depending on the coverage in percent, a CSS class is added according to the color palett configuration.</p>
+</dd>
+</dl>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Generated HTML Code (condensed)</div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;report-codecov-table report-codecov-src&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      .....
+      <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;report-package report-below-30&quot;</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;report-module report-below-70&quot;</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    .....
+    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;report-summary report-below-50&quot;</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Example CSS Rules</div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">table</span><span class="p">.</span><span class="nc">report-codecov-table</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">thead</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tr</span><span class="o">,</span>
+<span class="nt">table</span><span class="p">.</span><span class="nc">report-codecov-legend</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">thead</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tr</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#ebebeb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">table</span><span class="p">.</span><span class="nc">report-codecov-table</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tbody</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tr</span><span class="p">.</span><span class="nc">report-cov-below95</span><span class="o">,</span>
+<span class="nt">table</span><span class="p">.</span><span class="nc">report-codecov-legend</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tbody</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tr</span><span class="p">.</span><span class="nc">report-cov-below95</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">hsl</span><span class="p">(</span><span class="mi">90</span><span class="w"> </span><span class="mi">75</span><span class="kt">%</span><span class="w"> </span><span class="mi">75</span><span class="kt">%</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nt">table</span><span class="p">.</span><span class="nc">report-codecov-table</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tbody</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tr</span><span class="p">.</span><span class="nc">report-summary</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="pkgnamevspkgdir" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Toplevel Python packages can reside in a directory not matching the package name. This is possible
+because the toplevel package name is set in the package installation description. This is not good practice, but
+possible and unfortunately widely used. E.g. <code class="docutils literal notranslate"><span class="pre">src</span></code> as directory name. See setuptools, etc. for more details.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Unittest/index.html" class="btn btn-neutral float-left" title="Unit Test Summary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../DocCov/index.html" class="btn btn-neutral float-right" title="Documentation Coverage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 09.05.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

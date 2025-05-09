@@ -1,0 +1,29 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="186pt" height="27pt" viewBox="0.00 0.00 186.00 27.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 23)">
+<ns0:title>inheritance472103c3ad</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>Domain</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:title="A Domain is meant to be a group of &quot;object&quot; description directives for">
+<ns0:polygon fill="white" stroke="#1e90ff" points="55,-19 0,-19 0,0 55,0 55,-19" />
+<ns0:text text-anchor="middle" x="27.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Domain</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>ReportDomain</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain" ns1:title="A Sphinx extension providing a ``report`` domain to integrate reports and summaries into a Sphinx-based documentation." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="178,-19 91,-19 91,0 178,0 178,-19" />
+<ns0:text text-anchor="middle" x="134.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ReportDomain</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>Domain-&gt;ReportDomain</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M55.27,-9.5C64.56,-9.5 75.29,-9.5 85.76,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="85.87,-11.25 90.87,-9.5 85.87,-7.75 85.87,-11.25" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

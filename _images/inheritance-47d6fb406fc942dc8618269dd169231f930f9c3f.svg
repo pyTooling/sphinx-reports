@@ -1,0 +1,44 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="278pt" height="27pt" viewBox="0.00 0.00 278.00 27.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 23)">
+<ns0:title>inheritance868026c856</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>Enum</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/enum.html#enum.Enum" ns1:title="Create a collection of name/value pairs." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="54,-19 0,-19 0,0 54,0 54,-19" />
+<ns0:text text-anchor="middle" x="27" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Enum</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>Flag</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/enum.html#enum.Flag" ns1:title="Support for flags" target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="144,-19 90,-19 90,0 144,0 144,-19" />
+<ns0:text text-anchor="middle" x="117" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Flag</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>Enum-&gt;Flag</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M54.4,-9.5C63.97,-9.5 74.87,-9.5 84.82,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="84.92,-11.25 89.92,-9.5 84.92,-7.75 84.92,-11.25" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>ShowTestcases</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases" ns1:title="ShowTestcases" target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="270,-19 180,-19 180,0 270,0 270,-19" />
+<ns0:text text-anchor="middle" x="225" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ShowTestcases</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>Flag-&gt;ShowTestcases</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M144.2,-9.5C153.48,-9.5 164.23,-9.5 174.79,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="174.95,-11.25 179.95,-9.5 174.95,-7.75 174.95,-11.25" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

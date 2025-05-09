@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports.Dependency &mdash; sphinx_reports 0.9.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-reports.469918902edf87f5154c9531e0f2362c.css?v=6ad14cd5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../../_static/icon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=c5ca06ca"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/Dependency.html">Dependency Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/JUnit-Basic.html">JUnit Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/JUnit-Complete.html">JUnit Complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/OSVVM.html">OSVVM Regression Test</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../sphinx_reports.html">sphinx_reports</a></li>
+      <li class="breadcrumb-item active">sphinx_reports.Dependency</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for sphinx_reports.Dependency</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#            _     _                                           _                                                       #</span>
+<span class="c1">#  ___ _ __ | |__ (_)_ __ __  __     _ __ ___ _ __   ___  _ __| |_ ___                                                 #</span>
+<span class="c1"># / __| &#39;_ \| &#39;_ \| | &#39;_ \\ \/ /____| &#39;__/ _ \ &#39;_ \ / _ \| &#39;__| __/ __|                                                #</span>
+<span class="c1"># \__ \ |_) | | | | | | | |&gt;  &lt;_____| | |  __/ |_) | (_) | |  | |_\__ \                                                #</span>
+<span class="c1"># |___/ .__/|_| |_|_|_| |_/_/\_\    |_|  \___| .__/ \___/|_|   \__|___/                                                #</span>
+<span class="c1">#     |_|                                    |_|                                                                       #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Authors:                                                                                                             #</span>
+<span class="c1">#   Patrick Lehmann                                                                                                    #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># License:                                                                                                             #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);                                                      #</span>
+<span class="c1"># you may not use this file except in compliance with the License.                                                     #</span>
+<span class="c1"># You may obtain a copy of the License at                                                                              #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software                                                  #</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,                                                    #</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #</span>
+<span class="c1"># See the License for the specific language governing permissions and                                                  #</span>
+<span class="c1"># limitations under the License.                                                                                       #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0                                                                                  #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">**Report unit test results as Sphinx documentation page(s).**</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Generator</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils</span><span class="w">                          </span><span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Decorators</span><span class="w">              </span><span class="kn">import</span> <span class="n">export</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.application</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.Common</span><span class="w">               </span><span class="kn">import</span> <span class="n">ReportExtensionError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.Sphinx</span><span class="w">               </span><span class="kn">import</span> <span class="n">strip</span><span class="p">,</span> <span class="n">BaseDirective</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.DataModel.Dependency</span><span class="w"> </span><span class="kn">import</span> <span class="n">Distribution</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.Adapter.Dependency</span><span class="w">   </span><span class="kn">import</span> <span class="n">DependencyScanner</span>
+
+
+<div class="viewcode-block" id="DependencyTable">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DependencyTable</span><span class="p">(</span><span class="n">BaseDirective</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	This directive will be replaced by a table representing dependencies.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">has_content</span> <span class="o">=</span> <span class="kc">False</span>
+	<span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="n">optional_arguments</span> <span class="o">=</span> <span class="mi">1</span>
+
+	<span class="n">option_spec</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s2">&quot;package&quot;</span><span class="p">:</span>       <span class="n">strip</span>
+	<span class="p">}</span>
+
+	<span class="n">directiveName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dependency-table&quot;</span>
+	<span class="n">configPrefix</span><span class="p">:</span>  <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dep&quot;</span>
+	<span class="n">configValues</span><span class="p">:</span>  <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="c1"># f&quot;{configPrefix}_testsuites&quot;: ({}, &quot;env&quot;, Dict)</span>
+	<span class="p">}</span>  <span class="c1">#: A dictionary of all configuration values used by unittest directives.</span>
+
+	<span class="n">_packageName</span><span class="p">:</span>  <span class="nb">str</span>
+
+	<span class="n">_distribution</span><span class="p">:</span> <span class="n">Distribution</span>
+
+<div class="viewcode-block" id="DependencyTable._CheckOptions">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable._CheckOptions">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CheckOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Parse all directive options or use default values.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ParseStringOption</span><span class="p">(</span><span class="s2">&quot;package&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DependencyTable.CheckConfiguration">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.CheckConfiguration">[docs]</a>
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">CheckConfiguration</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sphinxApplication</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">,</span> <span class="n">sphinxConfiguration</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Check configuration fields and load necessary values.</span>
+
+<span class="sd">		:param sphinxApplication:   Sphinx application instance.</span>
+<span class="sd">		:param sphinxConfiguration: Sphinx configuration instance.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">pass</span></div>
+
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">_GenerateDependencyTable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nodes</span><span class="o">.</span><span class="n">table</span><span class="p">:</span>
+		<span class="c1"># Create a table and table header with 8 columns</span>
+		<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+			<span class="p">(</span><span class="s2">&quot;Package&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+			<span class="p">(</span><span class="s2">&quot;Version&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+			<span class="p">(</span><span class="s2">&quot;License&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+		<span class="p">]</span>
+
+		<span class="n">table</span><span class="p">,</span> <span class="n">tableGroup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CreateTableHeader</span><span class="p">(</span>
+			<span class="n">identifier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span><span class="p">,</span>
+			<span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
+			<span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;report-dependency-table&quot;</span><span class="p">]</span>
+		<span class="p">)</span>
+		<span class="n">tableBody</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">tbody</span><span class="p">()</span>
+		<span class="n">tableGroup</span> <span class="o">+=</span> <span class="n">tableBody</span>
+
+		<span class="c1"># def sortedValues(d: Mapping[str, Testsuite]) -&gt; Generator[Testsuite, None, None]:</span>
+		<span class="c1"># 	for key in sorted(d.keys()):</span>
+		<span class="c1"># 		yield d[key]</span>
+
+		<span class="k">def</span><span class="w"> </span><span class="nf">renderRoot</span><span class="p">(</span><span class="n">tableBody</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">tbody</span><span class="p">,</span> <span class="n">distribution</span><span class="p">:</span> <span class="n">Distribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="n">tableRow</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;report-dependency-table-row&quot;</span><span class="p">,</span> <span class="s2">&quot;report-dependency&quot;</span><span class="p">])</span>
+			<span class="n">tableBody</span> <span class="o">+=</span> <span class="n">tableRow</span>
+
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">distribution</span><span class="o">.</span><span class="n">Name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">distribution</span><span class="o">.</span><span class="n">Version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">distribution</span><span class="o">.</span><span class="n">Licenses</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+			<span class="c1"># for ts in sortedValues(testsuite._testsuites):</span>
+			<span class="c1"># 	renderTestsuite(tableBody, ts, 0)</span>
+
+		<span class="c1"># def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -&gt; None:</span>
+		<span class="c1"># 	state = stateToSymbol(testsuite._state)</span>
+		<span class="c1">#</span>
+		<span class="c1"># 	tableRow = nodes.row(&quot;&quot;, classes=[&quot;report-unittest-table-row&quot;, &quot;report-testsuite&quot;])</span>
+		<span class="c1"># 	tableBody += tableRow</span>
+		<span class="c1">#</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{&#39;  &#39; * level}{state}{testsuite.Name}&quot;))</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{testsuite.Tests}&quot;))</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{testsuite.Skipped}&quot;))</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{testsuite.Errored}&quot;))</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{testsuite.Failed}&quot;))</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{testsuite.Passed}&quot;))</span>
+		<span class="c1"># 	if not self._noAssertions:</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {testsuite.Uncovered}&quot;)),</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{timeformat(testsuite.Time)}&quot;))</span>
+		<span class="c1">#</span>
+		<span class="c1"># 	for ts in sortedValues(testsuite._testsuites):</span>
+		<span class="c1"># 		renderTestsuite(tableBody, ts, level + 1)</span>
+		<span class="c1">#</span>
+		<span class="c1"># 	for testcase in sortedValues(testsuite._testcases):</span>
+		<span class="c1"># 		renderTestcase(tableBody, testcase, level + 1)</span>
+		<span class="c1">#</span>
+		<span class="c1"># def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -&gt; None:</span>
+		<span class="c1"># 	state = stateToSymbol(testcase._state)</span>
+		<span class="c1">#</span>
+		<span class="c1"># 	tableRow =	nodes.row(&quot;&quot;, classes=[&quot;report-unittest-table-row&quot;, &quot;report-testcase&quot;])</span>
+		<span class="c1"># 	tableBody += tableRow</span>
+		<span class="c1">#</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{&#39;  &#39; * level}{state}{testcase.Name}&quot;))</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {testsuite.Expected}&quot;)),</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {testsuite.Covered}&quot;)),</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {testsuite.Uncovered}&quot;)),</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {testsuite.Uncovered}&quot;)),</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {testsuite.Uncovered}&quot;)),</span>
+		<span class="c1"># 	if not self._noAssertions:</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{testcase.Assertions}&quot;))</span>
+		<span class="c1"># 	tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{timeformat(testcase.Time)}&quot;))</span>
+		<span class="c1">#</span>
+		<span class="c1"># 	for test in sortedValues(testcase._tests):</span>
+		<span class="c1"># 		state = stateToSymbol(test._state)</span>
+		<span class="c1"># 		tableRow = nodes.row(&quot;&quot;, classes=[&quot;report-unittest-table-row&quot;, &quot;report-test&quot;])</span>
+		<span class="c1"># 		tableBody += tableRow</span>
+		<span class="c1">#</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;{&#39;  &#39; * (level + 1)}{state}{test.Name}&quot;))</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {test.Expected}&quot;)),</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {test.Covered}&quot;)),</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {test.Covered}&quot;)),</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {test.Covered}&quot;)),</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {test.Covered}&quot;)),</span>
+		<span class="c1"># 		if not self._noAssertions:</span>
+		<span class="c1"># 			tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {test.Uncovered}&quot;)),</span>
+		<span class="c1"># 		tableRow += nodes.entry(&quot;&quot;, nodes.paragraph(text=f&quot;&quot;))  # {test.Coverage :.1%}&quot;)),</span>
+
+		<span class="n">renderRoot</span><span class="p">(</span><span class="n">tableBody</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distribution</span><span class="p">)</span>
+
+		<span class="c1"># # Add a summary row</span>
+
+		<span class="k">return</span> <span class="n">table</span>
+
+<div class="viewcode-block" id="DependencyTable.run">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.run">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">]:</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_CheckOptions</span><span class="p">()</span>
+
+		<span class="c1"># Assemble a list of Python source files</span>
+		<span class="n">scanner</span> <span class="o">=</span> <span class="n">DependencyScanner</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_distribution</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="n">Distribution</span>
+
+		<span class="n">container</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">container</span><span class="p">()</span>
+		<span class="n">container</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_GenerateDependencyTable</span><span class="p">()</span>
+
+		<span class="k">return</span> <span class="p">[</span><span class="n">container</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 09.05.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
