@@ -1,0 +1,53 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=====================
+sphinx_reports.Sphinx
+=====================
+
+.. automodule:: sphinx_reports.Sphinx
+
+
+.. currentmodule:: sphinx_reports.Sphinx
+
+
+**Functions**
+
+- :py:func:`strip`:
+  Undocumented.
+
+
+
+**Classes**
+
+- :py:class:`BaseDirective`:
+  Directive to describe a class, function or similar object.
+
+
+
+---------------------
+
+**Functions**
+
+
+.. autofunction:: strip
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: BaseDirective
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: BaseDirective
+      :parts: 1
