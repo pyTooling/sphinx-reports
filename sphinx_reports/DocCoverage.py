@@ -54,7 +54,6 @@ class package_DictType(TypedDict):
 
 @export
 class DocCoverageBase(BaseDirective):
-
 	option_spec = {
 		"class":    strip,
 		"reportid": strip,
