@@ -54,7 +54,6 @@ class package_DictType(TypedDict):
 
 @export
 class DocCoverageBase(BaseDirective):
-
 	option_spec = {
 		"class":    strip,
 		"reportid": strip,
@@ -330,7 +329,7 @@ class DocCoverage(DocCoverageBase):
 		for module in self._sortedValues(packageCoverage._modules):
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)}  {module.Name}")),
+				nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)} 📓{module.Name}")),
 				nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
 				nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
 				nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),

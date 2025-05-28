@@ -323,7 +323,7 @@ class CodeCoverage(CodeCoverageBase):
 		# Add a summary row
 		tableRow = nodes.row("", classes=[
 			"report-summary",
-			self._ConvertToColor(self._coverage.Coverage, "class")
+			self._ConvertToColor(self._coverage.AggregatedStatementCoverage, "class")
 		])
 		tableBody += tableRow
 
@@ -347,9 +347,10 @@ class CodeCoverage(CodeCoverageBase):
 			yield d[key]
 
 	def renderlevel(self, tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
+		coverage = 1 if packageCoverage.Coverage < 0.0 else packageCoverage.Coverage
 		tableRow = nodes.row("", classes=[
 			"report-package",
-			self._ConvertToColor(packageCoverage.Coverage, "class")
+			self._ConvertToColor(coverage, "class")
 		])
 		tableBody += tableRow
 
@@ -376,7 +377,7 @@ class CodeCoverage(CodeCoverageBase):
 			])
 			tableBody += tableRow
 
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * (level + 1)}  {module.Name}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * (level + 1)} 📓{module.Name}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}"))

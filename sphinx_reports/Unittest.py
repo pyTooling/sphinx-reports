@@ -197,7 +197,7 @@ class UnittestSummary(BaseDirective):
 		elif status is TestcaseStatus.Failed:
 			return "❌"
 		elif status is TestcaseStatus.Skipped:
-			return "⚠"
+			return "⚠️"
 		elif status is TestcaseStatus.Aborted:
 			return "🚫"
 		elif status is TestcaseStatus.Excluded:
@@ -217,7 +217,7 @@ class UnittestSummary(BaseDirective):
 		elif status is TestsuiteStatus.Failed:
 			return "❌"
 		elif status is TestsuiteStatus.Skipped:
-			return "⚠"
+			return "⚠️"
 		elif status is TestsuiteStatus.Aborted:
 			return "🚫"
 		elif status is TestsuiteStatus.Excluded:
