@@ -43,7 +43,7 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2025, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.9.4"
+__version__ =   "0.9.5"
 __keywords__ =  [
 	"Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate", "Code Coverage", "Coverage",
 	"Documentation Coverage", "Unittest", "Dependencies", "Summary"
