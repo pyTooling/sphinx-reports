@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Test Summary &mdash; sphinx_reports 0.9.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.469918902edf87f5154c9531e0f2362c.css?v=6ad14cd5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=61b282d3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code Coverage" href="../CodeCov/index.html" />
+    <link rel="prev" title="Overview" href="../Overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unit Test Summary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-entries-in-conf-py">Configuration Entries in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-document">Example Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-directives">Sphinx Directives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#directive-report-unittest-summary"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">report:unittest-summary::</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-unittest-summary-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-unittest-summary-reportid"><code class="docutils literal notranslate"><span class="pre">:reportid:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-unittest-summary-testsuite-summary-name"><code class="docutils literal notranslate"><span class="pre">:testsuite-summary-name:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-unittest-summary-show-testcases"><code class="docutils literal notranslate"><span class="pre">:show-testcases:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-unittest-summary-no-assertions"><code class="docutils literal notranslate"><span class="pre">:no-assertions:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directive-option-report-unittest-summary-hide-testsuite-summary"><code class="docutils literal notranslate"><span class="pre">:hide-testsuite-summary:</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-roles">Sphinx Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-css-styling">Custom CSS Styling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Dependency.html">Dependency Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/JUnit-Basic.html">JUnit Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/JUnit-Complete.html">JUnit Complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/OSVVM.html">OSVVM Regression Test</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Unit Test Summary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Unittest/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="unit-test-summary">
+<span id="unittest"></span><h1>Unit Test Summary<a class="headerlink" href="#unit-test-summary" title="Link to this heading"></a></h1>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p>The <a class="reference internal" href="#directive-report-unittest-summary" title="report:unittest-summary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:unittest-summary</span></code></a> directive generates a unittest report summary table. The unittest report
+file(s) need to be configured in Sphinx’s <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> for pre-analysis and data aggregation
+(<a class="reference internal" href="#unittest-config"><span class="std std-ref">see below</span></a> for details). This also allows the directive to supports multiple unittest
+reports per Sphinx documentation. Each unittest report is referenced by the
+<a class="reference internal" href="#directive-option-report-unittest-summary-reportid" title="report:unittest-summary:reportid directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report</span></code></a> option, which matches the dictionary key used in the
+configuration file.</p>
+<p class="rubric">Minimal Example</p>
+<div class="admonition-file-unittest-rst admonition">
+<p class="admonition-title"><code class="file docutils literal notranslate"><span class="pre">Unittest.rst</span></code></p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">report:unittest-summary</span><span class="p">::</span>
+   <span class="nc">:reportid:</span> src
+</pre></div>
+</div>
+</div>
+<p class="rubric">Options</p>
+<p>Additional options are offered for fine-tuning and styling of the report:</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#directive-option-report-unittest-summary-reportid" title="report:unittest-summary:reportid directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">reportid</span></code></a></dt><dd><p>Reference the unittest report file and settings as listed in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+</dd>
+<dt><a class="reference internal" href="#directive-option-report-unittest-summary-testsuite-summary-name" title="report:unittest-summary:testsuite-summary-name directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">testsuite-summary-name</span></code></a> (optional)</dt><dd><p>Override the TestsuiteSummary’s name.</p>
+</dd>
+<dt><a class="reference internal" href="#directive-option-report-unittest-summary-show-testcases" title="report:unittest-summary:show-testcases directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">show-testcases</span></code></a> (optional)</dt><dd><p>Select if all testcases or only flawed testcases should be listed per testsuite.</p>
+</dd>
+<dt><a class="reference internal" href="#directive-option-report-unittest-summary-no-assertions" title="report:unittest-summary:no-assertions directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">no-assertions</span></code></a> (optional)</dt><dd><p>If flag is present, no assertion column will be shown.</p>
+</dd>
+<dt><a class="reference internal" href="#directive-option-report-unittest-summary-hide-testsuite-summary" title="report:unittest-summary:hide-testsuite-summary directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">hide-testsuite-summary</span></code></a> (optional)</dt><dd><p>If this flag is present, hide the summary row.</p>
+</dd>
+<dt><a class="reference internal" href="#directive-option-report-unittest-summary-class" title="report:unittest-summary:class directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">class</span></code></a> (optional)</dt><dd><p>User-defined CSS class name(s), which are applied on the HTML table.</p>
+</dd>
+</dl>
+<p class="rubric">Supported Unittest Formats</p>
+<p>Reading unittest summary reports in XML format is based on <a class="reference external" href="https://edaa-org.github.io/pyEDAA.Reports">pyEDAA.Reports</a>.
+It supports Any JUnit XML files and derived dialects. So any XML file format can be used to visualize the results
+in a Sphinx documentation.</p>
+<p>Explicitly, the following report sources have been tested:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/pytest-dev/pytest">pytest</a></p></li>
+<li><p><a class="reference external" href="https://github.com/OSVVM/OSVVM-Scripts">OSVVM-Scripts</a></p></li>
+</ul>
+<p class="rubric">Future Ideas</p>
+<p>It’s planned to display a per testsuite and maybe per testcase report on a separate Sphinx document (separate HTML
+page).</p>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="sd-tab-set docutils">
+<input id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Only Testsuites</label><div class="sd-tab-content docutils">
+<img alt="_static/Unittest_OnlyTestsuites.png" src="_static/Unittest_OnlyTestsuites.png" />
+</div>
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Testsuites and Testcases</label><div class="sd-tab-content docutils">
+<img alt="../_images/Unittest.png" src="../_images/Unittest.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="configuration-entries-in-conf-py">
+<span id="unittest-config"></span><h2>Configuration Entries in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code><a class="headerlink" href="#configuration-entries-in-conf-py" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p>See the <a class="reference internal" href="../Overview.html#over"><span class="std std-ref">overview page</span></a> on how to setup and enable the <em>sphinx-reports</em> extension in general.</p>
+<p>Configure one or more unittest reports in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> by adding a new <em>section</em> defining some
+configuration variables. Each unittest report is identified by an ID, which is later referred to by the report
+directive or legend directive. Here, the ID is called <code class="docutils literal notranslate"><span class="pre">src</span></code> (dictionary key). Each analysis report needs 4
+configuration entries:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Name of the Python package.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">xml_report</span></code></dt><dd><p>The unittest report as XML file.</p>
+</dd>
+</dl>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Configuration</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># Sphinx-reports - Unittest</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">report_codecov_packages</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span>       <span class="s2">&quot;myPackage&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;xml_report&quot;</span><span class="p">:</span> <span class="s2">&quot;../report/unit/unittest.xml&quot;</span><span class="p">,</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-document">
+<span id="unittest-example"></span><h2>Example Document<a class="headerlink" href="#example-document" title="Link to this heading"></a></h2>
+<p>he following <code class="file docutils literal notranslate"><span class="pre">Unittest.rst</span></code> document is an example on how to use the <a class="reference internal" href="#directive-report-unittest-summary" title="report:unittest-summary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:unittest-summary</span></code></a>
+directive. The first file consists of three parts:</p>
+<ol class="arabic simple">
+<li><p>A page title (headline)</p></li>
+<li><p>The <a class="reference internal" href="../CodeCov/index.html#directive-report-code-coverage" title="report:code-coverage directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">report:code-coverage</span></code></a> directive to generate the report table.</p></li>
+<li><p>A footer</p></li>
+</ol>
+<p>The second file shows how to integrate that document into the navigation bar / <em>toc-tree</em>.</p>
+<div class="admonition-file-unittest-rst admonition">
+<p class="admonition-title"><code class="file docutils literal notranslate"><span class="pre">Unittest.rst</span></code></p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="gh">Unittest Summary Report</span>
+<span class="gh">#######################</span>
+
+<span class="p">..</span> <span class="ow">report:unittest-summary</span><span class="p">::</span>
+   <span class="nc">:reportid:</span> src
+   <span class="nc">:show-testcases:</span> not-passed
+   <span class="nc">:no-assertions:</span>
+
+----------
+
+Unittest report generated with <span class="s">`pytest </span><span class="si">&lt;https://github.com/pytest-dev/pytest&gt;</span><span class="s">`__</span> and visualized by
+<span class="s">`sphinx-reports </span><span class="si">&lt;https://github.com/pyTooling/sphinx-reports&gt;</span><span class="s">`__</span>.
+</pre></div>
+</div>
+</div>
+<div class="admonition-file-index-rst admonition">
+<p class="admonition-title"><code class="file docutils literal notranslate"><span class="pre">index.rst</span></code></p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:caption:</span> References and Reports
+   <span class="nc">:hidden:</span>
+
+   Python Class Reference &lt;sphinx_reports/sphinx_reports&gt;
+   Unittest
+   CodeCoverage
+   Doc. Coverage Report &lt;DocCoverage&gt;
+   Static Type Check Report ➚ &lt;typing/index&gt;
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:caption:</span> Appendix
+   <span class="nc">:hidden:</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="sphinx-directives">
+<span id="unittest-directives"></span><h2>Sphinx Directives<a class="headerlink" href="#sphinx-directives" title="Link to this heading"></a></h2>
+<p>The following directives are provided for visualizing unittest reports.</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-report-unittest-summary">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">report:unittest-summary::</span></span><a class="headerlink" href="#directive-report-unittest-summary" title="Link to this definition"></a></dt>
+<dd><p>Generate a table summarizing the unittest results per testsuite and testcase. The testsuite hierarchy is visualized
+by indentation.</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-unittest-summary-class">
+<span class="sig-name descname"><span class="pre">:class:</span></span><a class="headerlink" href="#directive-option-report-unittest-summary-class" title="Link to this definition"></a></dt>
+<dd><p>Optional: A list of space separated user-defined CSS class names.</p>
+<p>The CSS classes are applied on the HTML <code class="docutils literal notranslate"><span class="pre">&lt;table&gt;</span></code> tag.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-unittest-summary-reportid">
+<span class="sig-name descname"><span class="pre">:reportid:</span></span><a class="headerlink" href="#directive-option-report-unittest-summary-reportid" title="Link to this definition"></a></dt>
+<dd><p>An identifier referencing a dictionary entry (key) in the configuration variable <code class="docutils literal notranslate"><span class="pre">report_unittest_testsuites</span></code>
+defined in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-unittest-summary-testsuite-summary-name">
+<span class="sig-name descname"><span class="pre">:testsuite-summary-name:</span></span><a class="headerlink" href="#directive-option-report-unittest-summary-testsuite-summary-name" title="Link to this definition"></a></dt>
+<dd><p>Optional: Override the TestsuiteSummary’s name.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-unittest-summary-show-testcases">
+<span class="sig-name descname"><span class="pre">:show-testcases:</span></span><a class="headerlink" href="#directive-option-report-unittest-summary-show-testcases" title="Link to this definition"></a></dt>
+<dd><p>Optional: Select if all testcases (<code class="docutils literal notranslate"><span class="pre">all</span></code>) or only flawed testcases (<code class="docutils literal notranslate"><span class="pre">not-passed</span></code>) should be listed per
+testsuite.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-unittest-summary-no-assertions">
+<span class="sig-name descname"><span class="pre">:no-assertions:</span></span><a class="headerlink" href="#directive-option-report-unittest-summary-no-assertions" title="Link to this definition"></a></dt>
+<dd><p>Optional: If flag is present, no assertion column will be shown.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-report-unittest-summary-hide-testsuite-summary">
+<span class="sig-name descname"><span class="pre">:hide-testsuite-summary:</span></span><a class="headerlink" href="#directive-option-report-unittest-summary-hide-testsuite-summary" title="Link to this definition"></a></dt>
+<dd><p>Optional: if this flag is present, hide the summary row.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="sphinx-roles">
+<span id="unittest-roles"></span><h2>Sphinx Roles<a class="headerlink" href="#sphinx-roles" title="Link to this heading"></a></h2>
+<p><em>There are no roles defined.</em></p>
+</section>
+<section id="custom-css-styling">
+<span id="unittest-styling"></span><h2>Custom CSS Styling<a class="headerlink" href="#custom-css-styling" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p class="rubric">Table Styling</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">table</span></code>-tag has 2 additional CSS classes:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">report-unittest-table</span></code></dt><dd><p>Allows selecting the <code class="docutils literal notranslate"><span class="pre">table</span></code> tag, but only for unittest reports.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">report-unittest-%reportid%</span></code></dt><dd><p>Allows selecting one specific unittest report. <code class="docutils literal notranslate"><span class="pre">%reportid%</span></code> gets replaced by the reportid used in the
+option field of the directive. Here it got replaced by <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd>
+</dl>
+<p class="rubric">Row Styling</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">tr</span></code>-tag (table row) has 2 additional CSS classes:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">report-testsuite</span></code>/<code class="docutils literal notranslate"><span class="pre">report-testcase</span></code>/<code class="docutils literal notranslate"><span class="pre">report-summary</span></code></dt><dd><p>This class indicated if the row refers to a testsuite, testcase or the overall coverage summary (last row).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">report-%status%</span></code></dt><dd><p>Depending on the testsuite or testcase status, a representing CSS class is added.</p>
+</dd>
+</dl>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Generated HTML Code (condensed)</div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;report-unittest-table report-unittest-src&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      .....
+      <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;report-testsuite report-passed&quot;</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;report-testcase report-skipped&quot;</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    .....
+    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;report-summary report-passed&quot;</span><span class="p">&gt;</span> ..... <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Example CSS Rules</div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">table</span><span class="p">.</span><span class="nc">report-unittest-table</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">thead</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tr</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#ebebeb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">table</span><span class="p">.</span><span class="nc">report-unittest-table</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tbody</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">tr</span><span class="p">.</span><span class="nc">report-summary</span><span class="p">.</span><span class="nc">report-passed</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../CodeCov/index.html" class="btn btn-neutral float-right" title="Code Coverage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 30.05.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

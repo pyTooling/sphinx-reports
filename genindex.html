@@ -1,0 +1,1607 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; sphinx_reports 0.9.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-reports.469918902edf87f5154c9531e0f2362c.css?v=6ad14cd5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="_static/icon.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=61b282d3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/Dependency.html">Dependency Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/JUnit-Basic.html">JUnit Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/JUnit-Complete.html">JUnit Complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/OSVVM.html">OSVVM Regression Test</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Glossary.html">Glossary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__bool__">__bool__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__bool__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.__class_getitem__">__class_getitem__() (sphinx_reports.CodeCoverage.CodeCoverage class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.__class_getitem__">(sphinx_reports.CodeCoverage.CodeCoverageBase class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.__class_getitem__">(sphinx_reports.CodeCoverage.CodeCoverageLegend class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.__class_getitem__">(sphinx_reports.CodeCoverage.ModuleCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Base.__class_getitem__">(sphinx_reports.DataModel.CodeCoverage.Base class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Coverage.__class_getitem__">(sphinx_reports.DataModel.CodeCoverage.Coverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.ModuleCoverage.__class_getitem__">(sphinx_reports.DataModel.CodeCoverage.ModuleCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.PackageCoverage.__class_getitem__">(sphinx_reports.DataModel.CodeCoverage.PackageCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.__class_getitem__">(sphinx_reports.Dependency.DependencyTable class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.__class_getitem__">(sphinx_reports.DocCoverage.DocCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.__class_getitem__">(sphinx_reports.DocCoverage.DocCoverageBase class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.__class_getitem__">(sphinx_reports.DocCoverage.DocCoverageLegend class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.__class_getitem__">(sphinx_reports.DocCoverage.DocStrCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.__class_getitem__">(sphinx_reports.Sphinx.BaseDirective class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.__class_getitem__">(sphinx_reports.Unittest.UnittestSummary class method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__contains__">__contains__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__contains__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__eq__">__eq__() (sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__getitem__">__getitem__() (sphinx_reports.Common.LegendStyle class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__getitem__">(sphinx_reports.Unittest.ShowTestcases class method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.Analyzer.__init__">__init__() (sphinx_reports.Adapter.Coverage.Analyzer method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Adapter.Dependency.html#sphinx_reports.Adapter.Dependency.DependencyScanner.__init__">(sphinx_reports.Adapter.Dependency.DependencyScanner method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.__init__">(sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.__init__">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.__init__">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.__init__">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Base.__init__">(sphinx_reports.DataModel.CodeCoverage.Base method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Coverage.__init__">(sphinx_reports.DataModel.CodeCoverage.Coverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.ModuleCoverage.__init__">(sphinx_reports.DataModel.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.PackageCoverage.__init__">(sphinx_reports.DataModel.CodeCoverage.PackageCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.Dependency.html#sphinx_reports.DataModel.Dependency.Distribution.__init__">(sphinx_reports.DataModel.Dependency.Distribution method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.Dependency.html#sphinx_reports.DataModel.Dependency.License.__init__">(sphinx_reports.DataModel.Dependency.License method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.Dependency.html#sphinx_reports.DataModel.Dependency.VersionSpecifier.__init__">(sphinx_reports.DataModel.Dependency.VersionSpecifier method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.__init__">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.__init__">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.__init__">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.__init__">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.__init__">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.__init__">(sphinx_reports.ReportDomain method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.__init__">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.__init__">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.__init_subclass__">__init_subclass__() (sphinx_reports.CodeCoverage.CodeCoverage class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.__init_subclass__">(sphinx_reports.CodeCoverage.CodeCoverageBase class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.__init_subclass__">(sphinx_reports.CodeCoverage.CodeCoverageLegend class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.__init_subclass__">(sphinx_reports.CodeCoverage.ModuleCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Base.__init_subclass__">(sphinx_reports.DataModel.CodeCoverage.Base class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Coverage.__init_subclass__">(sphinx_reports.DataModel.CodeCoverage.Coverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.ModuleCoverage.__init_subclass__">(sphinx_reports.DataModel.CodeCoverage.ModuleCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.PackageCoverage.__init_subclass__">(sphinx_reports.DataModel.CodeCoverage.PackageCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.__init_subclass__">(sphinx_reports.Dependency.DependencyTable class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.__init_subclass__">(sphinx_reports.DocCoverage.DocCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.__init_subclass__">(sphinx_reports.DocCoverage.DocCoverageBase class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.__init_subclass__">(sphinx_reports.DocCoverage.DocCoverageLegend class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.__init_subclass__">(sphinx_reports.DocCoverage.DocStrCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.__init_subclass__">(sphinx_reports.Sphinx.BaseDirective class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.__init_subclass__">(sphinx_reports.Unittest.UnittestSummary class method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__iter__">__iter__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__iter__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__len__">__len__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__len__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__new__">__new__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__new__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__or__">__or__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__or__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__repr__">__repr__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__repr__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__ror__">__ror__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__ror__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle.__str__">__str__() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases.__str__">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage._CheckOptions">_CheckOptions() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase._CheckOptions">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend._CheckOptions">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage._CheckOptions">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable._CheckOptions">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage._CheckOptions">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase._CheckOptions">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend._CheckOptions">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage._CheckOptions">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary._CheckOptions">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle._generate_next_value_">_generate_next_value_() (sphinx_reports.Common.LegendStyle static method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases._generate_next_value_">(sphinx_reports.Unittest.ShowTestcases static method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle._iter_member_">_iter_member_() (sphinx_reports.Common.LegendStyle class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases._iter_member_">(sphinx_reports.Unittest.ShowTestcases class method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle._iter_member_by_def_">_iter_member_by_def_() (sphinx_reports.Common.LegendStyle class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases._iter_member_by_def_">(sphinx_reports.Unittest.ShowTestcases class method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle._iter_member_by_value_">_iter_member_by_value_() (sphinx_reports.Common.LegendStyle class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases._iter_member_by_value_">(sphinx_reports.Unittest.ShowTestcases class method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle._missing_">_missing_() (sphinx_reports.Common.LegendStyle class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases._missing_">(sphinx_reports.Unittest.ShowTestcases class method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle._numeric_repr_">_numeric_repr_() (sphinx_reports.Common.LegendStyle method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases._numeric_repr_">(sphinx_reports.Unittest.ShowTestcases method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage._object_hierarchy_parts">_object_hierarchy_parts() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase._object_hierarchy_parts">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend._object_hierarchy_parts">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage._object_hierarchy_parts">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable._object_hierarchy_parts">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage._object_hierarchy_parts">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase._object_hierarchy_parts">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend._object_hierarchy_parts">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage._object_hierarchy_parts">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective._object_hierarchy_parts">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary._object_hierarchy_parts">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage._toc_entry_name">_toc_entry_name() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase._toc_entry_name">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend._toc_entry_name">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage._toc_entry_name">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable._toc_entry_name">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage._toc_entry_name">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase._toc_entry_name">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend._toc_entry_name">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage._toc_entry_name">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective._toc_entry_name">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary._toc_entry_name">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.add_name">add_name() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.add_name">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.add_name">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.add_name">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.add_name">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.add_name">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.add_name">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.add_name">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.add_name">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.add_name">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.add_name">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.add_object_type">add_object_type() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.add_target_and_index">add_target_and_index() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.add_target_and_index">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.add_target_and_index">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.add_target_and_index">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.add_target_and_index">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.add_target_and_index">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.add_target_and_index">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.add_target_and_index">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.add_target_and_index">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.add_target_and_index">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.add_target_and_index">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.AddCSSFiles">AddCSSFiles() (sphinx_reports.ReportDomain static method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.after_content">after_content() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.after_content">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.after_content">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.after_content">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.after_content">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.after_content">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.after_content">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.after_content">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.after_content">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.after_content">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.after_content">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.Analyzer">Analyzer (class in sphinx_reports.Adapter.Coverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.assert_has_content">assert_has_content() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.assert_has_content">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.assert_has_content">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.assert_has_content">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.assert_has_content">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.assert_has_content">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.assert_has_content">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.assert_has_content">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.assert_has_content">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.assert_has_content">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.assert_has_content">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Base">Base (class in sphinx_reports.DataModel.CodeCoverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective">BaseDirective (class in sphinx_reports.Sphinx)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.before_content">before_content() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.before_content">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.before_content">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.before_content">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.before_content">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.before_content">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.before_content">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.before_content">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.before_content">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.before_content">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.before_content">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Glossary.html#term-Branch-Coverage"><strong>Branch Coverage</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    :class: (directive option)
+
+      <ul>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-class">report:code-coverage (directive)</a>
+</li>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-legend-class">report:code-coverage-legend (directive)</a>
+</li>
+        <li><a href="DocCov/index.html#directive-option-report-doc-coverage-class">report:doc-coverage (directive)</a>
+</li>
+        <li><a href="DocCov/index.html#directive-option-report-doc-coverage-legend-class">report:doc-coverage-legend (directive)</a>
+</li>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-class">report:unittest-summary (directive)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.callbacks">callbacks (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.check_consistency">check_consistency() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.CheckConfiguration">CheckConfiguration() (sphinx_reports.CodeCoverage.CodeCoverage class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.CheckConfiguration">(sphinx_reports.CodeCoverage.CodeCoverageBase class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.CheckConfiguration">(sphinx_reports.CodeCoverage.CodeCoverageLegend class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.CheckConfiguration">(sphinx_reports.CodeCoverage.ModuleCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.CheckConfiguration">(sphinx_reports.Dependency.DependencyTable class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.CheckConfiguration">(sphinx_reports.DocCoverage.DocCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.CheckConfiguration">(sphinx_reports.DocCoverage.DocCoverageBase class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.CheckConfiguration">(sphinx_reports.DocCoverage.DocCoverageLegend class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.CheckConfiguration">(sphinx_reports.DocCoverage.DocStrCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.CheckConfiguration">(sphinx_reports.Unittest.UnittestSummary class method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.CheckConfigurationVariables">CheckConfigurationVariables() (sphinx_reports.ReportDomain static method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.clear_doc">clear_doc() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="Glossary.html#term-Code-Coverage"><strong>Code Coverage</strong></a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage">CodeCoverage (class in sphinx_reports.CodeCoverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase">CodeCoverageBase (class in sphinx_reports.CodeCoverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.CodeCoverageError">CodeCoverageError</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend">CodeCoverageLegend (class in sphinx_reports.CodeCoverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.config">config (sphinx_reports.CodeCoverage.CodeCoverage property)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.config">(sphinx_reports.CodeCoverage.CodeCoverageBase property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.config">(sphinx_reports.CodeCoverage.CodeCoverageLegend property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.config">(sphinx_reports.CodeCoverage.ModuleCoverage property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.config">(sphinx_reports.Dependency.DependencyTable property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.config">(sphinx_reports.DocCoverage.DocCoverage property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.config">(sphinx_reports.DocCoverage.DocCoverageBase property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.config">(sphinx_reports.DocCoverage.DocCoverageLegend property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.config">(sphinx_reports.DocCoverage.DocStrCoverage property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.config">(sphinx_reports.Sphinx.BaseDirective property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.config">(sphinx_reports.Unittest.UnittestSummary property)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.configValues">configValues (sphinx_reports.CodeCoverage.CodeCoverage attribute)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.configValues">(sphinx_reports.CodeCoverage.CodeCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.configValues">(sphinx_reports.CodeCoverage.CodeCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.configValues">(sphinx_reports.CodeCoverage.ModuleCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.configValues">(sphinx_reports.Dependency.DependencyTable attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.configValues">(sphinx_reports.DocCoverage.DocCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.configValues">(sphinx_reports.DocCoverage.DocCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.configValues">(sphinx_reports.DocCoverage.DocCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.configValues">(sphinx_reports.DocCoverage.DocStrCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.configValues">(sphinx_reports.ReportDomain attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.configValues">(sphinx_reports.Unittest.UnittestSummary attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.Coverage">Coverage (class in sphinx_reports.DataModel.CodeCoverage)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.dangling_warnings">dangling_warnings (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.data">data (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.data_version">data_version (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.dependencies">dependencies (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.Adapter.Dependency.html#sphinx_reports.Adapter.Dependency.DependencyScanner">DependencyScanner (class in sphinx_reports.Adapter.Dependency)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable">DependencyTable (class in sphinx_reports.Dependency)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.directive">directive() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.directive_error">directive_error() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.directive_error">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.directive_error">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.directive_error">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.directive_error">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.directive_error">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.directive_error">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.directive_error">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.directive_error">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.directive_error">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.directive_error">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.directives">directives (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.DataModel.Dependency.html#sphinx_reports.DataModel.Dependency.Distribution">Distribution (class in sphinx_reports.DataModel.Dependency)</a>
+</li>
+      <li><a href="Glossary.html#term-doc-string"><strong>doc-string</strong></a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage">DocCoverage (class in sphinx_reports.DocCoverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase">DocCoverageBase (class in sphinx_reports.DocCoverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend">DocCoverageLegend (class in sphinx_reports.DocCoverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage">DocStrCoverage (class in sphinx_reports.DocCoverage)</a>
+</li>
+      <li><a href="Glossary.html#term-Documentation-Coverage"><strong>Documentation Coverage</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.enumerable_nodes">enumerable_nodes (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.env">env (sphinx_reports.CodeCoverage.CodeCoverage property)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.env">(sphinx_reports.CodeCoverage.CodeCoverageBase property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.env">(sphinx_reports.CodeCoverage.CodeCoverageLegend property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.env">(sphinx_reports.CodeCoverage.ModuleCoverage property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.env">(sphinx_reports.Dependency.DependencyTable property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.env">(sphinx_reports.DocCoverage.DocCoverage property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.env">(sphinx_reports.DocCoverage.DocCoverageBase property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.env">(sphinx_reports.DocCoverage.DocCoverageLegend property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.env">(sphinx_reports.DocCoverage.DocStrCoverage property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.env">(sphinx_reports.Sphinx.BaseDirective property)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.env">(sphinx_reports.Unittest.UnittestSummary property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.final_argument_whitespace">final_argument_whitespace (sphinx_reports.CodeCoverage.CodeCoverage attribute)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.final_argument_whitespace">(sphinx_reports.CodeCoverage.CodeCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.final_argument_whitespace">(sphinx_reports.CodeCoverage.CodeCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.final_argument_whitespace">(sphinx_reports.CodeCoverage.ModuleCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.final_argument_whitespace">(sphinx_reports.Dependency.DependencyTable attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.final_argument_whitespace">(sphinx_reports.DocCoverage.DocCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.final_argument_whitespace">(sphinx_reports.DocCoverage.DocCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.final_argument_whitespace">(sphinx_reports.DocCoverage.DocCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.final_argument_whitespace">(sphinx_reports.DocCoverage.DocStrCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.final_argument_whitespace">(sphinx_reports.Sphinx.BaseDirective attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.final_argument_whitespace">(sphinx_reports.Unittest.UnittestSummary attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.get_enumerable_node_type">get_enumerable_node_type() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.get_full_qualified_name">get_full_qualified_name() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.get_location">get_location() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.get_location">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.get_location">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.get_location">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.get_location">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.get_location">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.get_location">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.get_location">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.get_location">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.get_location">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.get_location">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.get_objects">get_objects() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.get_signatures">get_signatures() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.get_signatures">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.get_signatures">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.get_signatures">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.get_signatures">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.get_signatures">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.get_signatures">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.get_signatures">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.get_signatures">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.get_signatures">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.get_signatures">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.get_source_info">get_source_info() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.get_source_info">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.get_source_info">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.get_source_info">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.get_source_info">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.get_source_info">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.get_source_info">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.get_source_info">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.get_source_info">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.get_source_info">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.get_source_info">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.get_type_name">get_type_name() (sphinx_reports.ReportDomain method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    :hide-testsuite-summary: (directive option)
+
+      <ul>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-hide-testsuite-summary">report:unittest-summary (directive)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.handle_signature">handle_signature() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.handle_signature">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.handle_signature">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.handle_signature">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.handle_signature">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.handle_signature">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.handle_signature">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.handle_signature">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.handle_signature">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.handle_signature">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.handle_signature">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.has_content">has_content (sphinx_reports.CodeCoverage.CodeCoverage attribute)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.has_content">(sphinx_reports.CodeCoverage.CodeCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.has_content">(sphinx_reports.CodeCoverage.CodeCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.has_content">(sphinx_reports.CodeCoverage.ModuleCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.has_content">(sphinx_reports.Dependency.DependencyTable attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.has_content">(sphinx_reports.DocCoverage.DocCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.has_content">(sphinx_reports.DocCoverage.DocCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.has_content">(sphinx_reports.DocCoverage.DocCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.has_content">(sphinx_reports.DocCoverage.DocStrCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.has_content">(sphinx_reports.Sphinx.BaseDirective attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.has_content">(sphinx_reports.Unittest.UnittestSummary attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.indices">indices (sphinx_reports.ReportDomain attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.initial_data">initial_data (sphinx_reports.ReportDomain attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.Analyzer.JSONCoverageFile">JSONCoverageFile (sphinx_reports.Adapter.Coverage.Analyzer property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.label">label (sphinx_reports.ReportDomain attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.LegendStyle">LegendStyle (class in sphinx_reports.Common)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.DataModel.Dependency.html#sphinx_reports.DataModel.Dependency.License">License (class in sphinx_reports.DataModel.Dependency)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.merge_domaindata">merge_domaindata() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.html#module-sphinx_reports">sphinx_reports</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Adapter.html#module-sphinx_reports.Adapter">sphinx_reports.Adapter</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Adapter.Coverage.html#module-sphinx_reports.Adapter.Coverage">sphinx_reports.Adapter.Coverage</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Adapter.Dependency.html#module-sphinx_reports.Adapter.Dependency">sphinx_reports.Adapter.Dependency</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#module-sphinx_reports.CodeCoverage">sphinx_reports.CodeCoverage</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Common.html#module-sphinx_reports.Common">sphinx_reports.Common</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.html#module-sphinx_reports.DataModel">sphinx_reports.DataModel</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#module-sphinx_reports.DataModel.CodeCoverage">sphinx_reports.DataModel.CodeCoverage</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.Dependency.html#module-sphinx_reports.DataModel.Dependency">sphinx_reports.DataModel.Dependency</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#module-sphinx_reports.Dependency">sphinx_reports.Dependency</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#module-sphinx_reports.DocCoverage">sphinx_reports.DocCoverage</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#module-sphinx_reports.Sphinx">sphinx_reports.Sphinx</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.static.html#module-sphinx_reports.static">sphinx_reports.static</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#module-sphinx_reports.Unittest">sphinx_reports.Unittest</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage">ModuleCoverage (class in sphinx_reports.CodeCoverage)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.ModuleCoverage">(class in sphinx_reports.DataModel.CodeCoverage)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    :no-assertions: (directive option)
+
+      <ul>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-no-assertions">report:unittest-summary (directive)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    :no-branch-coverage: (directive option)
+
+      <ul>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-no-branch-coverage">report:code-coverage (directive)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.name">name (sphinx_reports.ReportDomain attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.object_types">object_types (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.option_spec">option_spec (sphinx_reports.CodeCoverage.CodeCoverage attribute)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.option_spec">(sphinx_reports.CodeCoverage.CodeCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.option_spec">(sphinx_reports.CodeCoverage.CodeCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.option_spec">(sphinx_reports.CodeCoverage.ModuleCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.option_spec">(sphinx_reports.Dependency.DependencyTable attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.option_spec">(sphinx_reports.DocCoverage.DocCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.option_spec">(sphinx_reports.DocCoverage.DocCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.option_spec">(sphinx_reports.DocCoverage.DocCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.option_spec">(sphinx_reports.DocCoverage.DocStrCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.option_spec">(sphinx_reports.Sphinx.BaseDirective attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.option_spec">(sphinx_reports.Unittest.UnittestSummary attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.optional_arguments">optional_arguments (sphinx_reports.CodeCoverage.CodeCoverage attribute)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.optional_arguments">(sphinx_reports.CodeCoverage.CodeCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.optional_arguments">(sphinx_reports.CodeCoverage.CodeCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.optional_arguments">(sphinx_reports.CodeCoverage.ModuleCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.optional_arguments">(sphinx_reports.Dependency.DependencyTable attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.optional_arguments">(sphinx_reports.DocCoverage.DocCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.optional_arguments">(sphinx_reports.DocCoverage.DocCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.optional_arguments">(sphinx_reports.DocCoverage.DocCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.optional_arguments">(sphinx_reports.DocCoverage.DocStrCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.optional_arguments">(sphinx_reports.Sphinx.BaseDirective attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.optional_arguments">(sphinx_reports.Unittest.UnittestSummary attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#sphinx_reports.DataModel.CodeCoverage.PackageCoverage">PackageCoverage (class in sphinx_reports.DataModel.CodeCoverage)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.Analyzer.PackageName">PackageName (sphinx_reports.Adapter.Coverage.Analyzer property)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.parse_content_to_nodes">parse_content_to_nodes() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.parse_content_to_nodes">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.parse_content_to_nodes">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.parse_content_to_nodes">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.parse_content_to_nodes">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.parse_content_to_nodes">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.parse_content_to_nodes">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.parse_content_to_nodes">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.parse_content_to_nodes">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.parse_content_to_nodes">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.parse_content_to_nodes">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.parse_inline">parse_inline() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.parse_inline">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.parse_inline">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.parse_inline">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.parse_inline">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.parse_inline">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.parse_inline">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.parse_inline">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.parse_inline">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.parse_inline">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.parse_inline">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.parse_text_to_nodes">parse_text_to_nodes() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.parse_text_to_nodes">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.parse_text_to_nodes">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.parse_text_to_nodes">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.parse_text_to_nodes">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.parse_text_to_nodes">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.parse_text_to_nodes">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.parse_text_to_nodes">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.parse_text_to_nodes">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.parse_text_to_nodes">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.parse_text_to_nodes">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.process_doc">process_doc() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.process_field_xref">process_field_xref() (sphinx_reports.ReportDomain method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    :reportid: (directive option)
+
+      <ul>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-reportid">report:code-coverage (directive)</a>
+</li>
+        <li><a href="DocCov/index.html#directive-option-report-doc-coverage-reportid">report:doc-coverage (directive)</a>
+</li>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-reportid">report:unittest-summary (directive)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.ReadReports">ReadReports() (sphinx_reports.CodeCoverage.CodeCoverage class method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.ReadReports">(sphinx_reports.CodeCoverage.CodeCoverageBase class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.ReadReports">(sphinx_reports.CodeCoverage.CodeCoverageLegend class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.ReadReports">(sphinx_reports.CodeCoverage.ModuleCoverage class method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.ReadReports">(sphinx_reports.ReportDomain static method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.ReadReports">(sphinx_reports.Unittest.UnittestSummary class method)</a>
+</li>
+      </ul></li>
+      <li><a href="CodeCov/index.html#directive-report-code-coverage">report:code-coverage (directive)</a>
+
+      <ul>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-class">:class: (directive option)</a>
+</li>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-no-branch-coverage">:no-branch-coverage: (directive option)</a>
+</li>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-reportid">:reportid: (directive option)</a>
+</li>
+      </ul></li>
+      <li><a href="CodeCov/index.html#directive-report-code-coverage-legend">report:code-coverage-legend (directive)</a>
+
+      <ul>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-legend-class">:class: (directive option)</a>
+</li>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-legend-style">:style: (directive option)</a>
+</li>
+      </ul></li>
+      <li><a href="DocCov/index.html#directive-report-doc-coverage">report:doc-coverage (directive)</a>
+
+      <ul>
+        <li><a href="DocCov/index.html#directive-option-report-doc-coverage-class">:class: (directive option)</a>
+</li>
+        <li><a href="DocCov/index.html#directive-option-report-doc-coverage-reportid">:reportid: (directive option)</a>
+</li>
+      </ul></li>
+      <li><a href="DocCov/index.html#directive-report-doc-coverage-legend">report:doc-coverage-legend (directive)</a>
+
+      <ul>
+        <li><a href="DocCov/index.html#directive-option-report-doc-coverage-legend-class">:class: (directive option)</a>
+</li>
+        <li><a href="DocCov/index.html#directive-option-report-doc-coverage-legend-style">:style: (directive option)</a>
+</li>
+      </ul></li>
+      <li><a href="Unittest/index.html#directive-report-unittest-summary">report:unittest-summary (directive)</a>
+
+      <ul>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-class">:class: (directive option)</a>
+</li>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-hide-testsuite-summary">:hide-testsuite-summary: (directive option)</a>
+</li>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-no-assertions">:no-assertions: (directive option)</a>
+</li>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-reportid">:reportid: (directive option)</a>
+</li>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-show-testcases">:show-testcases: (directive option)</a>
+</li>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-testsuite-summary-name">:testsuite-summary-name: (directive option)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain">ReportDomain (class in sphinx_reports)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.Common.html#sphinx_reports.Common.ReportExtensionError">ReportExtensionError</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.required_arguments">required_arguments (sphinx_reports.CodeCoverage.CodeCoverage attribute)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.required_arguments">(sphinx_reports.CodeCoverage.CodeCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.required_arguments">(sphinx_reports.CodeCoverage.CodeCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.required_arguments">(sphinx_reports.CodeCoverage.ModuleCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.required_arguments">(sphinx_reports.Dependency.DependencyTable attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.required_arguments">(sphinx_reports.DocCoverage.DocCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.required_arguments">(sphinx_reports.DocCoverage.DocCoverageBase attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.required_arguments">(sphinx_reports.DocCoverage.DocCoverageLegend attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.required_arguments">(sphinx_reports.DocCoverage.DocStrCoverage attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.required_arguments">(sphinx_reports.Sphinx.BaseDirective attribute)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.required_arguments">(sphinx_reports.Unittest.UnittestSummary attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.resolve_any_xref">resolve_any_xref() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.resolve_xref">resolve_xref() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.role">role() (sphinx_reports.ReportDomain method)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.roles">roles (sphinx_reports.ReportDomain attribute)</a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.run">run() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.run">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.run">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.run">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.run">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.run">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.run">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.run">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.run">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.run">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.run">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    :show-testcases: (directive option)
+
+      <ul>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-show-testcases">report:unittest-summary (directive)</a>
+</li>
+      </ul></li>
+      <li>
+    :style: (directive option)
+
+      <ul>
+        <li><a href="CodeCov/index.html#directive-option-report-code-coverage-legend-style">report:code-coverage-legend (directive)</a>
+</li>
+        <li><a href="DocCov/index.html#directive-option-report-doc-coverage-legend-style">report:doc-coverage-legend (directive)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.set_source_info">set_source_info() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.set_source_info">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.set_source_info">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.set_source_info">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.set_source_info">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.set_source_info">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.set_source_info">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.set_source_info">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.set_source_info">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.set_source_info">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.set_source_info">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.setup">setup() (in module sphinx_reports)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.html#sphinx_reports.ReportDomain.setup">(sphinx_reports.ReportDomain method)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.ShowTestcases">ShowTestcases (class in sphinx_reports.Unittest)</a>
+</li>
+      <li>
+    sphinx_reports
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.html#module-sphinx_reports">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.Adapter
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Adapter.html#module-sphinx_reports.Adapter">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.Adapter.Coverage
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Adapter.Coverage.html#module-sphinx_reports.Adapter.Coverage">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    sphinx_reports.Adapter.Dependency
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Adapter.Dependency.html#module-sphinx_reports.Adapter.Dependency">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.CodeCoverage
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#module-sphinx_reports.CodeCoverage">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.Common
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Common.html#module-sphinx_reports.Common">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.DataModel
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.html#module-sphinx_reports.DataModel">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.DataModel.CodeCoverage
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.CodeCoverage.html#module-sphinx_reports.DataModel.CodeCoverage">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.DataModel.Dependency
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.DataModel.Dependency.html#module-sphinx_reports.DataModel.Dependency">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.Dependency
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#module-sphinx_reports.Dependency">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.DocCoverage
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#module-sphinx_reports.DocCoverage">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.Sphinx
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#module-sphinx_reports.Sphinx">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.static
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.static.html#module-sphinx_reports.static">module</a>
+</li>
+      </ul></li>
+      <li>
+    sphinx_reports.Unittest
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#module-sphinx_reports.Unittest">module</a>
+</li>
+      </ul></li>
+      <li><a href="Glossary.html#term-Statement-Coverage"><strong>Statement Coverage</strong></a>
+</li>
+      <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.strip">strip() (in module sphinx_reports.Sphinx)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    :testsuite-summary-name: (directive option)
+
+      <ul>
+        <li><a href="Unittest/index.html#directive-option-report-unittest-summary-testsuite-summary-name">report:unittest-summary (directive)</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.transform_content">transform_content() (sphinx_reports.CodeCoverage.CodeCoverage method)</a>
+
+      <ul>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.transform_content">(sphinx_reports.CodeCoverage.CodeCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.transform_content">(sphinx_reports.CodeCoverage.CodeCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.transform_content">(sphinx_reports.CodeCoverage.ModuleCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Dependency.html#sphinx_reports.Dependency.DependencyTable.transform_content">(sphinx_reports.Dependency.DependencyTable method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverage.transform_content">(sphinx_reports.DocCoverage.DocCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageBase.transform_content">(sphinx_reports.DocCoverage.DocCoverageBase method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocCoverageLegend.transform_content">(sphinx_reports.DocCoverage.DocCoverageLegend method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.DocCoverage.html#sphinx_reports.DocCoverage.DocStrCoverage.transform_content">(sphinx_reports.DocCoverage.DocStrCoverage method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective.transform_content">(sphinx_reports.Sphinx.BaseDirective method)</a>
+</li>
+        <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary.transform_content">(sphinx_reports.Unittest.UnittestSummary method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.Unittest.html#sphinx_reports.Unittest.UnittestSummary">UnittestSummary (class in sphinx_reports.Unittest)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sphinx_reports/sphinx_reports.DataModel.Dependency.html#sphinx_reports.DataModel.Dependency.VersionSpecifier">VersionSpecifier (class in sphinx_reports.DataModel.Dependency)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 30.05.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
