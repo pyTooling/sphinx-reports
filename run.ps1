@@ -32,7 +32,7 @@ Param(
 )
 
 $PackageName = "sphinx_reports"
-$PackageVersion = "0.9.4"
+$PackageVersion = "0.9.6"
 
 # set default values
 $EnableDebug =        [bool]$PSCmdlet.MyInvocation.BoundParameters["Debug"]
@@ -82,7 +82,7 @@ if ($clean)
 
 if ($build)
 { Write-Host -ForegroundColor Yellow     "[live][BUILD] Building $PackageName package as wheel ..."
-  py -3.13 -m build --wheel
+  py -3.13 -m build --wheel --no-isolation
 
   Write-Host -ForegroundColor Yellow     "[live][BUILD] Building wheel finished"
 }
