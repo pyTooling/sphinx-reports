@@ -39,7 +39,7 @@ from sphinx.application import Sphinx
 from sphinx.config import Config
 
 from sphinx_reports.Common               import ReportExtensionError
-from sphinx_reports.Sphinx               import strip, BaseDirective
+from sphinx_reports.Sphinx               import stripAndNormalize, BaseDirective
 from sphinx_reports.DataModel.Dependency import Distribution
 from sphinx_reports.Adapter.Dependency   import DependencyScanner
 
@@ -54,7 +54,7 @@ class DependencyTable(BaseDirective):
 	optional_arguments = 1
 
 	option_spec = {
-		"package":       strip
+		"package":       stripAndNormalize
 	}
 
 	directiveName: str = "dependency-table"

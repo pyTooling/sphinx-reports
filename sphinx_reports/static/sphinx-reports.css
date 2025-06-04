@@ -99,6 +99,9 @@ table.report-doccov-table > thead > tr,
 table.report-doccov-legend > thead > tr {
 	background: #ebebeb;
 }
+table.report-unittest-table > tbody > tr:hover {
+	background-color: rgba(0,187, 255, 0.5); /* #88d0ff; */
+}
 table.report-unittest-table > tbody > tr.report-summary,
 table.report-codecov-table > tbody > tr.report-summary,
 table.report-doccov-table > tbody > tr.report-summary {

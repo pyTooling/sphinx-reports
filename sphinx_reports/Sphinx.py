@@ -44,6 +44,11 @@ from sphinx_reports.Common import ReportExtensionError, LegendStyle
 
 @export
 def strip(option: str) -> str:
+	return option.strip()
+
+
+@export
+def stripAndNormalize(option: str) -> str:
 	return option.strip().lower()
 
 

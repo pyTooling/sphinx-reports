@@ -42,7 +42,7 @@ from pyEDAA.Reports.DocumentationCoverage.Python import DocStrCoverage as DocStr
 from pyEDAA.Reports.DocumentationCoverage.Python import PackageCoverage, AggregatedCoverage
 
 from sphinx_reports.Common                          import ReportExtensionError, LegendStyle
-from sphinx_reports.Sphinx                          import strip, BaseDirective
+from sphinx_reports.Sphinx                          import strip, stripAndNormalize, BaseDirective
 
 
 class package_DictType(TypedDict):
@@ -56,7 +56,7 @@ class package_DictType(TypedDict):
 class DocCoverageBase(BaseDirective):
 	option_spec = {
 		"class":    strip,
-		"reportid": strip,
+		"reportid": stripAndNormalize,
 	}
 
 	defaultCoverageDefinitions = {
@@ -374,7 +374,7 @@ class DocCoverageLegend(DocCoverageBase):
 	optional_arguments = DocCoverageBase.optional_arguments + 1
 
 	option_spec = DocCoverageBase.option_spec | {
-		"style": strip
+		"style": stripAndNormalize
 	}
 
 	directiveName: str = "doc-coverage-legend"
