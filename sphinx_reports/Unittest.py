@@ -271,7 +271,7 @@ class UnittestSummary(BaseDirective):
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
-		self.renderRoot(tableBody, self._testsuite, self._hideTestsuiteSummary, self._testsuiteSummaryName)
+		self.renderRoot(tableBody, self._testsuite, not self._hideTestsuiteSummary, self._testsuiteSummaryName)
 
 		return table
 
