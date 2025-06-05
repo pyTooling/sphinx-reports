@@ -39,23 +39,26 @@ packageName =            "sphinx_reports"
 packageDirectory =       packageName.replace(".", "/")
 packageInformationFile = Path(f"{packageDirectory}/__init__.py")
 
-setup(**DescribePythonPackageHostedOnGitHub(
-	packageName=packageName,
-	description="A Sphinx extension providing reports and summaries embedded in documentation pages.",
-	gitHubNamespace=gitHubNamespace,
-	sourceFileWithVersion=packageInformationFile,
-	classifiers=list(DEFAULT_CLASSIFIERS) + [
-		"Framework :: Sphinx",
-		"Framework :: Sphinx :: Domain",
-		"Framework :: Sphinx :: Extension",
-		"Topic :: Documentation :: Sphinx",
-		"Topic :: Software Development :: Documentation",
-		"Topic :: Software Development :: Quality Assurance",
-		"Topic :: Software Development :: Testing :: Unit",
-	],
-	developmentStatus="beta",
-	pythonVersions=("3.11", "3.12", "3.13"),
-	dataFiles={
-		"sphinx_reports": ["static/*.css"]
-	}
-))
+setup(
+	**DescribePythonPackageHostedOnGitHub(
+		packageName=packageName,
+		description="A Sphinx extension providing reports and summaries embedded in documentation pages.",
+		gitHubNamespace=gitHubNamespace,
+		sourceFileWithVersion=packageInformationFile,
+		classifiers=list(DEFAULT_CLASSIFIERS) + [
+			"Framework :: Sphinx",
+			"Framework :: Sphinx :: Domain",
+			"Framework :: Sphinx :: Extension",
+			"Topic :: Documentation :: Sphinx",
+			"Topic :: Software Development :: Documentation",
+			"Topic :: Software Development :: Quality Assurance",
+			"Topic :: Software Development :: Testing :: Unit",
+		],
+		developmentStatus="beta",
+		pythonVersions=("3.11", "3.12", "3.13"),
+		dataFiles={
+			"sphinx_reports": ["static/*.css"]
+		},
+		debug=True
+	)
+)

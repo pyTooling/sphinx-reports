@@ -45,7 +45,7 @@ from sphinx.application                import Sphinx
 from sphinx.config                     import Config
 
 from sphinx_reports.Common             import ReportExtensionError
-from sphinx_reports.Sphinx             import strip, BaseDirective
+from sphinx_reports.Sphinx             import strip, stripAndNormalize, BaseDirective
 
 
 class report_DictType(TypedDict):
@@ -93,9 +93,9 @@ class UnittestSummary(BaseDirective):
 
 	option_spec = {
 		"class":                  strip,
-		"reportid":               strip,
+		"reportid":               stripAndNormalize,
 		"testsuite-summary-name": strip,
-		"show-testcases":         strip,
+		"show-testcases":         stripAndNormalize,
 		"no-assertions":          flag,
 		"hide-testsuite-summary": flag
 	}
@@ -271,7 +271,7 @@ class UnittestSummary(BaseDirective):
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
-		self.renderRoot(tableBody, self._testsuite, self._hideTestsuiteSummary, self._testsuiteSummaryName)
+		self.renderRoot(tableBody, self._testsuite, not self._hideTestsuiteSummary, self._testsuiteSummaryName)
 
 		return table
 

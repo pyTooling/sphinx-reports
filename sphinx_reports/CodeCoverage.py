@@ -44,7 +44,7 @@ from sphinx.util.docutils                  import new_document
 from pyTooling.Decorators                  import export
 
 from sphinx_reports.Common                 import ReportExtensionError, LegendStyle
-from sphinx_reports.Sphinx                 import strip, BaseDirective
+from sphinx_reports.Sphinx                 import strip, stripAndNormalize, BaseDirective
 from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, Coverage, ModuleCoverage
 from sphinx_reports.Adapter.Coverage       import Analyzer
 
@@ -61,7 +61,7 @@ class CodeCoverageBase(BaseDirective):
 
 	option_spec = {
 		"class":    strip,
-		"reportid": strip
+		"reportid": stripAndNormalize
 	}
 
 	defaultCoverageDefinitions = {
@@ -496,7 +496,7 @@ class CodeCoverageLegend(CodeCoverageBase):
 	optional_arguments = CodeCoverageBase.optional_arguments + 1
 
 	option_spec = CodeCoverageBase.option_spec | {
-		"style": strip
+		"style": stripAndNormalize
 	}
 
 	directiveName: str = "code-coverage-legend"
@@ -600,7 +600,7 @@ class ModuleCoverage(CodeCoverageBase):
 	optional_arguments = 2
 
 	option_spec = CodeCoverageBase.option_spec | {
-		"module": strip
+		"module": stripAndNormalize
 	}
 
 	_packageName:      str

@@ -43,7 +43,7 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2025, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.9.5"
+__version__ =   "0.9.6"
 __keywords__ =  [
 	"Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate", "Code Coverage", "Coverage",
 	"Documentation Coverage", "Unittest", "Dependencies", "Summary"
@@ -306,5 +306,3 @@ def setup(sphinxApplication: Sphinx) -> "setup_ReturnType":
 		'parallel_read_safe': False,                     # Not yet evaluated, thus false
 		'parallel_write_safe': True,                     # Internal data structure is used read-only, thus no problems will occur by parallel writing.
 	}
-
-
