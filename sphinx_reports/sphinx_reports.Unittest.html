@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports.Unittest &mdash; sphinx_reports 0.9.6 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.089ed2e62f89368aa21ac7591d90c12a.css?v=83177741" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=564a08b9"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sphinx_reports.static" href="sphinx_reports.static.html" />
+    <link rel="prev" title="sphinx_reports.Sphinx" href="sphinx_reports.Sphinx.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Dependency.html">Dependency Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/JUnit-Basic.html">JUnit Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/JUnit-Complete.html">JUnit Complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/OSVVM.html">OSVVM Regression Test</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sphinx_reports.html">Python Class Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Adapter.html">sphinx_reports.Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.CodeCoverage.html">sphinx_reports.CodeCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Common.html">sphinx_reports.Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DataModel.html">sphinx_reports.DataModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Dependency.html">sphinx_reports.Dependency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DocCoverage.html">sphinx_reports.DocCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Sphinx.html">sphinx_reports.Sphinx</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sphinx_reports.Unittest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases"><code class="docutils literal notranslate"><span class="pre">ShowTestcases</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__eq__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases._generate_next_value_"><code class="docutils literal notranslate"><span class="pre">ShowTestcases._generate_next_value_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases._numeric_repr_"><code class="docutils literal notranslate"><span class="pre">ShowTestcases._numeric_repr_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases._iter_member_by_value_"><code class="docutils literal notranslate"><span class="pre">ShowTestcases._iter_member_by_value_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases._iter_member_"><code class="docutils literal notranslate"><span class="pre">ShowTestcases._iter_member_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases._iter_member_by_def_"><code class="docutils literal notranslate"><span class="pre">ShowTestcases._iter_member_by_def_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases._missing_"><code class="docutils literal notranslate"><span class="pre">ShowTestcases._missing_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__contains__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__contains__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__iter__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__iter__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__len__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__len__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__repr__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__str__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__str__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__bool__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__bool__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__or__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__or__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__ror__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__ror__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__new__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__new__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases.__getitem__"><code class="docutils literal notranslate"><span class="pre">ShowTestcases.__getitem__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary"><code class="docutils literal notranslate"><span class="pre">UnittestSummary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.has_content"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.has_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.required_arguments"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.required_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.optional_arguments"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.optional_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.option_spec"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.option_spec</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.configValues"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.configValues</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary._CheckOptions"><code class="docutils literal notranslate"><span class="pre">UnittestSummary._CheckOptions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.CheckConfiguration"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.CheckConfiguration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.ReadReports"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.ReadReports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.run"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.__class_getitem__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.__init__"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.__init_subclass__"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.__init_subclass__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary._object_hierarchy_parts"><code class="docutils literal notranslate"><span class="pre">UnittestSummary._object_hierarchy_parts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary._toc_entry_name"><code class="docutils literal notranslate"><span class="pre">UnittestSummary._toc_entry_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.add_name"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.add_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.add_target_and_index"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.add_target_and_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.after_content"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.after_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.assert_has_content"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.assert_has_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.before_content"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.before_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.config"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.directive_error"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.directive_error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.env"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.env</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.final_argument_whitespace"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.final_argument_whitespace</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.get_location"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.get_location()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.get_signatures"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.get_signatures()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.get_source_info"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.get_source_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.handle_signature"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.handle_signature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.parse_content_to_nodes"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.parse_content_to_nodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.parse_inline"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.parse_inline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.parse_text_to_nodes"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.parse_text_to_nodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.set_source_info"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.set_source_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.transform_content"><code class="docutils literal notranslate"><span class="pre">UnittestSummary.transform_content()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.static.html">sphinx_reports.static</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.html#sphinx_reports.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.html#sphinx_reports.ReportDomain"><code class="docutils literal notranslate"><span class="pre">ReportDomain</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="sphinx_reports.html">sphinx_reports</a></li>
+      <li class="breadcrumb-item active">sphinx_reports.Unittest</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sphinx_reports/sphinx_reports.Unittest.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="module-sphinx_reports.Unittest">
+<span id="sphinx-reports-unittest"></span><h1>sphinx_reports.Unittest<a class="headerlink" href="#module-sphinx_reports.Unittest" title="Link to this heading"></a></h1>
+<p><strong>Report unit test results as Sphinx documentation page(s).</strong></p>
+<p><strong>Classes</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sphinx_reports.Unittest.ShowTestcases" title="sphinx_reports.Unittest.ShowTestcases"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShowTestcases</span></code></a>:
+Support for flags</p></li>
+<li><p><a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary" title="sphinx_reports.Unittest.UnittestSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnittestSummary</span></code></a>:
+This directive will be replaced by a table representing unit test results.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Classes</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.Unittest.</span></span><span class="sig-name descname"><span class="pre">ShowTestcases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Unittest.html#ShowTestcases"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-47d6fb406fc942dc8618269dd169231f930f9c3f.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of ShowTestcases</p></object></div>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Unittest.html#ShowTestcases.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__eq__" title="Link to this definition"></a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases._generate_next_value_">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_generate_next_value_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases._generate_next_value_" title="Link to this definition"></a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_values: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases._numeric_repr_">
+<span class="sig-name descname"><span class="pre">_numeric_repr_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases._numeric_repr_" title="Link to this definition"></a></dt>
+<dd><p>Return the canonical string representation of the object.</p>
+<p>For many object types, including most builtins, eval(repr(obj)) == obj.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases._iter_member_by_value_">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_iter_member_by_value_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases._iter_member_by_value_" title="Link to this definition"></a></dt>
+<dd><p>Extract all members from the value in definition (i.e. increasing value) order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases._iter_member_">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_iter_member_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases._iter_member_" title="Link to this definition"></a></dt>
+<dd><p>Extract all members from the value in definition (i.e. increasing value) order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases._iter_member_by_def_">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_iter_member_by_def_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases._iter_member_by_def_" title="Link to this definition"></a></dt>
+<dd><p>Extract all members from the value in definition order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases._missing_">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_missing_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases._missing_" title="Link to this definition"></a></dt>
+<dd><p>Create a composite member containing all canonical members present in <cite>value</cite>.</p>
+<p>If non-member values are present, result depends on <cite>_boundary_</cite> setting.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__contains__" title="Link to this definition"></a></dt>
+<dd><p>Returns True if self has at least the same flags set as other.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__iter__" title="Link to this definition"></a></dt>
+<dd><p>Returns flags in definition order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__len__" title="Link to this definition"></a></dt>
+<dd><p>Return the number of members (no aliases)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__str__" title="Link to this definition"></a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__bool__">
+<span class="sig-name descname"><span class="pre">__bool__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__bool__" title="Link to this definition"></a></dt>
+<dd><p>classes/types should always be True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__or__" title="Link to this definition"></a></dt>
+<dd><p>Return self|value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__ror__">
+<span class="sig-name descname"><span class="pre">__ror__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__ror__" title="Link to this definition"></a></dt>
+<dd><p>Return value|self.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__new__">
+<span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__new__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.ShowTestcases.__getitem__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.ShowTestcases.__getitem__" title="Link to this definition"></a></dt>
+<dd><p>Return the member matching <cite>name</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.Unittest.</span></span><span class="sig-name descname"><span class="pre">UnittestSummary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Unittest.html#UnittestSummary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary" title="Link to this definition"></a></dt>
+<dd><p>This directive will be replaced by a table representing unit test results.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-317ed739a27b2e9057023a5908b851f50caa18af.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of UnittestSummary</p></object></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.has_content" title="Link to this definition"></a></dt>
+<dd><p>A boolean; <code class="docutils literal notranslate"><span class="pre">True</span></code> if content is allowed.</p>
+<p>Client code must handle the case where content is required but not supplied (an empty content list will be supplied).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.required_arguments">
+<span class="sig-name descname"><span class="pre">required_arguments</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.required_arguments" title="Link to this definition"></a></dt>
+<dd><p>Number of required directive arguments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.optional_arguments">
+<span class="sig-name descname"><span class="pre">optional_arguments</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.optional_arguments" title="Link to this definition"></a></dt>
+<dd><p>Number of optional arguments after the required arguments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.option_spec">
+<span class="sig-name descname"><span class="pre">option_spec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[OptionSpec]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'class':</span> <span class="pre">&lt;function</span> <span class="pre">strip&gt;,</span> <span class="pre">'hide-testsuite-summary':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;,</span> <span class="pre">'no-assertions':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;,</span> <span class="pre">'reportid':</span> <span class="pre">&lt;function</span> <span class="pre">stripAndNormalize&gt;,</span> <span class="pre">'show-testcases':</span> <span class="pre">&lt;function</span> <span class="pre">stripAndNormalize&gt;,</span> <span class="pre">'testsuite-summary-name':</span> <span class="pre">&lt;function</span> <span class="pre">strip&gt;}</span></em><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.option_spec" title="Link to this definition"></a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+<p>A dictionary, mapping known option names to conversion functions such as <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>
+(default: {}, no options). Several conversion functions are defined in the <code class="docutils literal notranslate"><span class="pre">directives/__init__.py</span></code> module.</p>
+<p>Option conversion functions take a single parameter, the option argument (a string or <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code>), validate it
+and/or convert it to the appropriate form. Conversion functions may raise <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> and
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exceptions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.configValues">
+<span class="sig-name descname"><span class="pre">configValues</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a><span class="pre">]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'unittest_testsuites':</span> <span class="pre">({},</span> <span class="pre">'env',</span> <span class="pre">typing.Dict)}</span></em><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.configValues" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of all configuration values used by unittest directives.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary._CheckOptions">
+<span class="sig-name descname"><span class="pre">_CheckOptions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Unittest.html#UnittestSummary._CheckOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary._CheckOptions" title="Link to this definition"></a></dt>
+<dd><p>Parse all directive options or use default values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.CheckConfiguration">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CheckConfiguration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphinxConfiguration</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Unittest.html#UnittestSummary.CheckConfiguration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.CheckConfiguration" title="Link to this definition"></a></dt>
+<dd><p>Check configuration fields and load necessary values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></span>) – Sphinx application instance.</p></li>
+<li><p><strong>sphinxConfiguration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></span>) – Sphinx configuration instance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.ReadReports">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadReports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphinxApplication</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Unittest.html#UnittestSummary.ReadReports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.ReadReports" title="Link to this definition"></a></dt>
+<dd><p>Read unittest report files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sphinxApplication</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></span>) – Sphinx application instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Unittest.html#UnittestSummary.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.run" title="Link to this definition"></a></dt>
+<dd><p>Main directive entry function, called by docutils upon encountering the
+directive.</p>
+<p>This directive is meant to be quite easily subclassable, so it delegates
+to several additional methods.  What it does:</p>
+<ul class="simple">
+<li><p>find out if called as a domain-specific directive, set self.domain</p></li>
+<li><p>create a <cite>desc</cite> node to fit all description inside</p></li>
+<li><p>parse standard options, currently <cite>no-index</cite></p></li>
+<li><p>create an index node if needed as self.indexnode</p></li>
+<li><p>parse all given signatures (as returned by self.get_signatures())
+using self.handle_signature(), which should either return a name
+or raise ValueError</p></li>
+<li><p>add index entries using self.add_target_and_index()</p></li>
+<li><p>parse the content and handle doc fields in it</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.__class_getitem__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.__class_getitem__" title="Link to this definition"></a></dt>
+<dd><p>Parameterizes a generic class.</p>
+<p>At least, parameterizing a generic class is the <em>main</em> thing this
+method does. For example, for some generic class <cite>Foo</cite>, this is called
+when we do <cite>Foo[int]</cite> - there, with <cite>cls=Foo</cite> and <cite>params=int</cite>.</p>
+<p>However, note that this method is also called when defining generic
+classes in the first place with <cite>class Foo[T]: …</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.__init_subclass__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.__init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>Function to initialize subclasses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary._object_hierarchy_parts">
+<span class="sig-name descname"><span class="pre">_object_hierarchy_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary._object_hierarchy_parts" title="Link to this definition"></a></dt>
+<dd><p>Returns a tuple of strings, one entry for each part of the object’s
+hierarchy (e.g. <code class="docutils literal notranslate"><span class="pre">('module',</span> <span class="pre">'submodule',</span> <span class="pre">'Class',</span> <span class="pre">'method')</span></code>). The
+returned tuple is used to properly nest children within parents in the
+table of contents, and can also be used within the
+<a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary._toc_entry_name" title="sphinx_reports.Unittest.UnittestSummary._toc_entry_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_toc_entry_name()</span></code></a> method.</p>
+<p>This method must not be used outwith table of contents generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#Ellipsis" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>sig_node</strong> (<em>desc_signature</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary._toc_entry_name">
+<span class="sig-name descname"><span class="pre">_toc_entry_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary._toc_entry_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the text of the table of contents entry for the object.</p>
+<p>This function is called once, in <a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.run" title="sphinx_reports.Unittest.UnittestSummary.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, to set the name for the
+table of contents entry (a special attribute <code class="docutils literal notranslate"><span class="pre">_toc_name</span></code> is set on the
+object node, later used in
+<code class="docutils literal notranslate"><span class="pre">environment.collectors.toctree.TocTreeCollector.process_doc().build_toc()</span></code>
+when the table of contents entries are collected).</p>
+<p>To support table of contents entries for their objects, domains must
+override this method, also respecting the configuration setting
+<code class="docutils literal notranslate"><span class="pre">toc_object_entries_show_parents</span></code>. Domains must also override
+<a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary._object_hierarchy_parts" title="sphinx_reports.Unittest.UnittestSummary._object_hierarchy_parts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_object_hierarchy_parts()</span></code></a>, with one (string) entry for each part of the
+object’s hierarchy. The result of this method is set on the signature
+node, and can be accessed as <code class="docutils literal notranslate"><span class="pre">sig_node['_toc_parts']</span></code> for use within
+this method. The resulting tuple is also used to properly nest children
+within parents in the table of contents.</p>
+<p>An example implementations of this method is within the python domain
+(<code class="xref py py-meth docutils literal notranslate"><span class="pre">PyObject._toc_entry_name()</span></code>). The python domain sets the
+<code class="docutils literal notranslate"><span class="pre">_toc_parts</span></code> attribute within the <a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.handle_signature" title="sphinx_reports.Unittest.UnittestSummary.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a>
+method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>sig_node</strong> (<em>desc_signature</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.add_name">
+<span class="sig-name descname"><span class="pre">add_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.add_name" title="Link to this definition"></a></dt>
+<dd><p>Append self.options[‘name’] to node[‘names’] if it exists.</p>
+<p>Also normalize the name string and register it as explicit target.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.add_target_and_index">
+<span class="sig-name descname"><span class="pre">add_target_and_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.add_target_and_index" title="Link to this definition"></a></dt>
+<dd><p>Add cross-reference IDs and entries to self.indexnode, if applicable.</p>
+<p><em>name</em> is whatever <a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.handle_signature" title="sphinx_reports.Unittest.UnittestSummary.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a> returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>name</strong> (<em>ObjDescT</em>)</p></li>
+<li><p><strong>sig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>signode</strong> (<em>desc_signature</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.after_content">
+<span class="sig-name descname"><span class="pre">after_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.after_content" title="Link to this definition"></a></dt>
+<dd><p>Called after parsing content.</p>
+<p>Used to reset information about the current directive context
+on the build environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.assert_has_content">
+<span class="sig-name descname"><span class="pre">assert_has_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.assert_has_content" title="Link to this definition"></a></dt>
+<dd><p>Throw an ERROR-level DirectiveError if the directive doesn’t
+have contents.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.before_content">
+<span class="sig-name descname"><span class="pre">before_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.before_content" title="Link to this definition"></a></dt>
+<dd><p>Called before parsing content.</p>
+<p>Used to set information about the current directive context
+on the build environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.config">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Config</span></em><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.config" title="Link to this definition"></a></dt>
+<dd><p>Reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code> object.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.8.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.directive_error">
+<span class="sig-name descname"><span class="pre">directive_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.directive_error" title="Link to this definition"></a></dt>
+<dd><p>Return a DirectiveError suitable for being thrown as an exception.</p>
+<p>Call “raise self.directive_error(level, message)” from within
+a directive implementation to return one single system message
+at level <cite>level</cite>, which automatically gets the directive block
+and the line number added.</p>
+<p>Preferably use the <cite>debug</cite>, <cite>info</cite>, <cite>warning</cite>, <cite>error</cite>, or <cite>severe</cite>
+wrapper methods, e.g. <code class="docutils literal notranslate"><span class="pre">self.error(message)</span></code> to generate an
+ERROR-level directive error.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.env">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">env</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BuildEnvironment</span></em><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.env" title="Link to this definition"></a></dt>
+<dd><p>Reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code> object.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.8.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.final_argument_whitespace">
+<span class="sig-name descname"><span class="pre">final_argument_whitespace</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.final_argument_whitespace" title="Link to this definition"></a></dt>
+<dd><p>A boolean, indicating if the final argument may contain whitespace.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.get_location">
+<span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.get_location" title="Link to this definition"></a></dt>
+<dd><p>Get current location info for logging.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.2.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.get_signatures">
+<span class="sig-name descname"><span class="pre">get_signatures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.get_signatures" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the signatures to document from the directive arguments.</p>
+<p>By default, signatures are given as arguments, one per line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.get_source_info">
+<span class="sig-name descname"><span class="pre">get_source_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.get_source_info" title="Link to this definition"></a></dt>
+<dd><p>Get source and line number.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.0.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.handle_signature">
+<span class="sig-name descname"><span class="pre">handle_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.handle_signature" title="Link to this definition"></a></dt>
+<dd><p>Parse the signature <em>sig</em>.</p>
+<p>The individual nodes are then appended to <em>signode</em>.
+If ValueError is raised, parsing is aborted and the whole
+<em>sig</em> is put into a single desc_name node.</p>
+<p>The return value should be a value that identifies the object.  It is
+passed to <a class="reference internal" href="#sphinx_reports.Unittest.UnittestSummary.add_target_and_index" title="sphinx_reports.Unittest.UnittestSummary.add_target_and_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_target_and_index()</span></code></a> unchanged, and otherwise only
+used to skip duplicates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">ObjDescT</span></code>)</span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>sig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>signode</strong> (<em>desc_signature</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.parse_content_to_nodes">
+<span class="sig-name descname"><span class="pre">parse_content_to_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allow_section_headings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.parse_content_to_nodes" title="Link to this definition"></a></dt>
+<dd><p>Parse the directive’s content into nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>allow_section_headings</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Are titles (sections) allowed in the directive’s content?
+Note that this option bypasses Docutils’ usual checks on
+doctree structure, and misuse of this option can lead to
+an incoherent doctree. In Docutils, section nodes should
+only be children of <code class="docutils literal notranslate"><span class="pre">Structural</span></code> nodes, which includes
+<code class="docutils literal notranslate"><span class="pre">document</span></code>, <code class="docutils literal notranslate"><span class="pre">section</span></code>, and <code class="docutils literal notranslate"><span class="pre">sidebar</span></code> nodes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code>]</span></p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.parse_inline">
+<span class="sig-name descname"><span class="pre">parse_inline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.parse_inline" title="Link to this definition"></a></dt>
+<dd><p>Parse <em>text</em> as inline elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The text to parse, which should be a single line or paragraph.
+This cannot contain any structural elements (headings,
+transitions, directives, etc).</p></li>
+<li><p><strong>lineno</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The line number where the interpreted text begins.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">system_message</span></code>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of nodes (text and inline elements) and a list of system_messages.</p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.parse_text_to_nodes">
+<span class="sig-name descname"><span class="pre">parse_text_to_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_section_headings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.parse_text_to_nodes" title="Link to this definition"></a></dt>
+<dd><p>Parse <em>text</em> into nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Text, in string form. <code class="docutils literal notranslate"><span class="pre">StringList</span></code> is also accepted.</p></li>
+<li><p><strong>allow_section_headings</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Are titles (sections) allowed in <em>text</em>?
+Note that this option bypasses Docutils’ usual checks on
+doctree structure, and misuse of this option can lead to
+an incoherent doctree. In Docutils, section nodes should
+only be children of <code class="docutils literal notranslate"><span class="pre">Structural</span></code> nodes, which includes
+<code class="docutils literal notranslate"><span class="pre">document</span></code>, <code class="docutils literal notranslate"><span class="pre">section</span></code>, and <code class="docutils literal notranslate"><span class="pre">sidebar</span></code> nodes.</p></li>
+<li><p><strong>offset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The offset of the content.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code>]</span></p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.set_source_info">
+<span class="sig-name descname"><span class="pre">set_source_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.set_source_info" title="Link to this definition"></a></dt>
+<dd><p>Set source and line number to the node.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>node</strong> (<em>Node</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Unittest.UnittestSummary.transform_content">
+<span class="sig-name descname"><span class="pre">transform_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Unittest.UnittestSummary.transform_content" title="Link to this definition"></a></dt>
+<dd><p>Can be used to manipulate the content.</p>
+<p>Called after creating the content through nested parsing,
+but before the <code class="docutils literal notranslate"><span class="pre">object-description-transform</span></code> event is emitted,
+and before the info-fields are transformed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>content_node</strong> (<em>desc_content</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sphinx_reports.Sphinx.html" class="btn btn-neutral float-left" title="sphinx_reports.Sphinx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sphinx_reports.static.html" class="btn btn-neutral float-right" title="sphinx_reports.static" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 06.06.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
