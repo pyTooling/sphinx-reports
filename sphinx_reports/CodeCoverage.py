@@ -377,7 +377,7 @@ class CodeCoverage(CodeCoverageBase):
 			])
 			tableBody += tableRow
 
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * (level + 1)} 📓{module.Name}"))
+			tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * (level + 1)} ⚙️{module.Name}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}"))
 			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}"))
