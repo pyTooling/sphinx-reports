@@ -91,7 +91,7 @@ class DependencyTable(BaseDirective):
 			("License", None, 100),
 		]
 
-		table, tableGroup = self._CreateTableHeader(
+		tableGroup = self._CreateDoubleRowTableHeader(
 			identifier=self._packageName,
 			columns=columns,
 			classes=["report-dependency-table"]
@@ -171,7 +171,7 @@ class DependencyTable(BaseDirective):
 
 		# # Add a summary row
 
-		return table
+		return tableGroup.parent
 
 	def run(self) -> List[nodes.Node]:
 		self._CheckOptions()

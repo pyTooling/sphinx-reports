@@ -263,7 +263,7 @@ class UnittestSummary(BaseDirective):
 		cssClasses = ["report-unittest-table", f"report-unittest-{self._reportID}"]
 		cssClasses.extend(self._cssClasses)
 
-		table, tableGroup = self._CreateTableHeader(
+		tableGroup = self._CreateDoubleRowTableHeader(
 			identifier=self._reportID,
 			columns=columns,
 			classes=cssClasses
@@ -273,7 +273,7 @@ class UnittestSummary(BaseDirective):
 
 		self.renderRoot(tableBody, self._testsuite, not self._hideTestsuiteSummary, self._testsuiteSummaryName)
 
-		return table
+		return tableGroup.parent
 
 	def renderRoot(self, tableBody: nodes.tbody, testsuiteSummary: TestsuiteSummary, includeRoot: bool = True, testsuiteSummaryName: Nullable[str] = None) -> None:
 		level = 0

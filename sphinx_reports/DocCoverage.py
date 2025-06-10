@@ -271,7 +271,7 @@ class DocCoverage(DocCoverageBase):
 		cssClasses.extend(self._cssClasses)
 
 		# Create a table and table header with 5 columns
-		table, tableGroup = self._CreateTableHeader(
+		tableGroup = self._CreateDoubleRowTableHeader(
 			identifier=self._reportID,
 			columns=[
 				("Filename", None, 500),
@@ -303,7 +303,7 @@ class DocCoverage(DocCoverageBase):
 			]
 		)
 
-		return table
+		return tableGroup.parent
 
 	def _sortedValues(self, d: Mapping[str, AggregatedCoverage]) -> Generator[AggregatedCoverage, None, None]:
 		for key in sorted(d.keys()):
@@ -396,7 +396,7 @@ class DocCoverageLegend(DocCoverageBase):
 			if isinstance(level, int):
 				columns.append((f"≤{level} %", None, 200))
 
-		table, tableGroup = self._CreateTableHeader(columns, identifier=identifier, classes=classes)
+		tableGroup = self._CreateDoubleRowTableHeader(columns, identifier=identifier, classes=classes)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
@@ -410,7 +410,7 @@ class DocCoverageLegend(DocCoverageBase):
 		return table
 
 	def _CreateVerticalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
-		table, tableGroup = self._CreateTableHeader([
+		tableGroup = self._CreateDoubleRowTableHeader([
 				("Documentation Coverage", None, 300),
 				("Coverage Level", None, 300)
 			],
@@ -430,7 +430,7 @@ class DocCoverageLegend(DocCoverageBase):
 					classes=["report-doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
 				)
 
-		return table
+		return tableGroup.parent
 
 	def run(self) -> List[nodes.Node]:
 		container = nodes.container()

@@ -310,7 +310,7 @@ class CodeCoverage(CodeCoverageBase):
 		if self._noBranchCoverage:
 			columns.pop(2)
 
-		table, tableGroup = self._CreateTableHeader(
+		tableGroup = self._CreateDoubleRowTableHeader(
 			identifier=self._reportID,
 			columns=columns,
 			classes=cssClasses
@@ -522,7 +522,7 @@ class CodeCoverageLegend(CodeCoverageBase):
 			if isinstance(level, int):
 				columns.append((f"≤{level} %", None, 200))
 
-		table, tableGroup = self._CreateTableHeader(columns, identifier=identifier, classes=classes)
+		tableGroup = self._CreateDoubleRowTableHeader(columns, identifier=identifier, classes=classes)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
@@ -543,7 +543,7 @@ class CodeCoverageLegend(CodeCoverageBase):
 		return table
 
 	def _CreateVerticalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
-		table, tableGroup = self._CreateTableHeader([
+		tableGroup = self._CreateDoubleRowTableHeader([
 				("Code Coverage", None, 300),
 				("Coverage Level", None, 300)
 			],
@@ -563,7 +563,7 @@ class CodeCoverageLegend(CodeCoverageBase):
 					classes=["report-codecov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
 				)
 
-		return table
+		return tableGroup.parent
 
 	def run(self) -> List[nodes.Node]:
 		container = nodes.container()
