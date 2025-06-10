@@ -130,20 +130,29 @@ class BaseDirective(ObjectDescription):
 		except KeyError as ex:
 			raise ReportExtensionError(f"{self.directiveName}::{optionName}: Value '{option}' (transformed: '{identifier}') is not a valid member of 'LegendStyle'.") from ex
 
-	def _CreateTableHeader(self, columns: List[Tuple[str, Nullable[List[Tuple[str, int]]], Nullable[int]]], identifier: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
+	def _CreateSingleTableHeader(self, columns: List[Tuple[str, Nullable[int]]], identifier: str, classes: List[str]) -> nodes.tgroup:
 		table = nodes.table("", identifier=identifier, classes=classes)
+		table += (tableGroup := nodes.tgroup(cols=(len(columns))))
 
-		hasSecondHeaderRow = False
-		columnCount = 0
-		for groupColumn in columns:
-			if groupColumn[1] is not None:
-				columnCount += len(groupColumn[1])
-				hasSecondHeaderRow = True
-			else:
-				columnCount += 1
+		# Setup column specifications
+		for _, width in columns:
+			tableGroup += nodes.colspec(colwidth=width)
 
-		tableGroup = nodes.tgroup(cols=columnCount)
-		table += tableGroup
+		tableGroup += (tableHeader := nodes.thead())
+		tableHeader += (headerRow := nodes.row())
+
+		# Setup header row
+		for columnTitle, _ in columns:
+			headerRow += nodes.entry("", nodes.paragraph("", text=columnTitle))
+
+		return tableGroup
+
+	def _CreateDoubleRowTableHeader(self, columns: List[Tuple[str, Nullable[List[Tuple[str, int]]], Nullable[int]]], identifier: str, classes: List[str]) -> Tuple[nodes.table, nodes.tgroup]:
+		columnCount = sum(len(groupColumn[1]) if groupColumn[1] is not None else 1 for groupColumn in columns)
+
+		# Create table with N columns
+		table = nodes.table("", identifier=identifier, classes=classes)
+		table += (tableGroup := nodes.tgroup(cols=columnCount))
 
 		# Setup column specifications
 		for _, more, width in columns:
@@ -152,34 +161,28 @@ class BaseDirective(ObjectDescription):
 			else:
 				for _, width in more:
 					tableGroup += nodes.colspec(colwidth=width)
+		tableGroup += (tableHeader := nodes.thead())
+		tableHeader += (headerRow1 := nodes.row())
 
 		# Setup primary header row
-		headerRow = nodes.row()
 		for columnTitle, more, _ in columns:
 			if more is None:
-				headerRow += nodes.entry("", nodes.paragraph(text=columnTitle), morerows=1)
+				headerRow1 += nodes.entry("", nodes.paragraph(text=columnTitle), morerows=1)
 			else:
-				morecols = len(more) - 1
-				headerRow += nodes.entry("", nodes.paragraph(text=columnTitle), morecols=morecols)
+				headerRow1 += nodes.entry("", nodes.paragraph(text=columnTitle), morecols=(morecols := len(more) - 1))
 				for i in range(morecols):
-					headerRow += None
+					headerRow1 += None
 
-		tableHeader = nodes.thead("", headerRow)
-		tableGroup += tableHeader
+		# Setup secondary header row
+		tableHeader += (headerRow2 := nodes.row())
+		for columnTitle, more, _ in columns:
+			if more is None:
+				headerRow2 += None
+			else:
+				for columnTitle, _ in more:
+					headerRow2 += nodes.entry("", nodes.paragraph(text=columnTitle))
 
-		# If present, setup secondary header row
-		if hasSecondHeaderRow:
-			tableRow = nodes.row()
-			for columnTitle, more, _ in columns:
-				if more is None:
-					tableRow += None
-				else:
-					for columnTitle, _ in more:
-						tableRow += nodes.entry("", nodes.paragraph(text=columnTitle))
-
-			tableHeader += tableRow
-
-		return table, tableGroup
+		return tableGroup
 
 	def _internalError(self, container: nodes.container, location: str, message: str, exception: Exception) -> List[nodes.Node]:
 		logger = getLogger(location)
