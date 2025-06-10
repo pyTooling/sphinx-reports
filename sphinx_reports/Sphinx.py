@@ -186,7 +186,11 @@ class BaseDirective(ObjectDescription):
 
 	def _internalError(self, container: nodes.container, location: str, message: str, exception: Exception) -> List[nodes.Node]:
 		logger = getLogger(location)
-		logger.error(f"{message}\n  {exception}")
+		logger.error(f"{message}")
+		logger.error(f"  {exception.__class__.__name__}: {exception}")
+		if exception.__cause__ is not None:
+			logger.error(f"    {exception.__cause__.__class__.__name__}: {exception.__cause__}")
+		logger.exception(exception)
 
 		container += nodes.paragraph(text=message)
 
