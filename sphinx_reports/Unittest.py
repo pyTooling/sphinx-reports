@@ -74,7 +74,7 @@ class ShowTestcases(Flag):
 				return ShowTestcases.skipped in self
 			elif other is TestcaseStatus.Excluded:
 				return ShowTestcases.excluded in self
-			elif other is TestcaseStatus.Error or other is TestcaseStatus.SetupError:
+			elif other is TestcaseStatus.Errored or other is TestcaseStatus.SetupError:
 				return ShowTestcases.errors in self
 			elif other is TestcaseStatus.Aborted:
 				return ShowTestcases.aborted in self

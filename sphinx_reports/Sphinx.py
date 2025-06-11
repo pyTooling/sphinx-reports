@@ -184,6 +184,25 @@ class BaseDirective(ObjectDescription):
 
 		return tableGroup
 
+	def _CreateRotatedTableHeader(self, columns: List[Tuple[str, Nullable[List[str]]]], identifier: str, classes: List[str]) -> nodes.tgroup:
+		table = nodes.table("", identifier=identifier, classes=classes)
+		table += (tableGroup := nodes.tgroup(cols=len(columns)))
+
+		# Setup column specifications
+		for i, (_, width) in enumerate(columns):
+			tableGroup += nodes.colspec(classes=[f"col-{i}"])
+
+		tableGroup += (tableHeader := nodes.thead())
+		tableHeader += (headerRow := nodes.row())
+
+		# Setup header row
+		for columnTitle, classes in columns:
+			span = nodes.inline("", text=columnTitle)
+			div = nodes.container("", span)
+			headerRow += nodes.entry("", div, classes=[] if classes is None else classes)
+
+		return tableGroup
+
 	def _internalError(self, container: nodes.container, location: str, message: str, exception: Exception) -> List[nodes.Node]:
 		logger = getLogger(location)
 		logger.error(f"{message}")
