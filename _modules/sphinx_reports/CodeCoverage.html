@@ -1,0 +1,859 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports.CodeCoverage &mdash; sphinx_reports 0.9.7 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-reports.089ed2e62f89368aa21ac7591d90c12a.css?v=83177741" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../../_static/icon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2328ca0"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/Dependency.html">Dependency Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/JUnit-Basic.html">JUnit Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/JUnit-Complete.html">JUnit Complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/OSVVM.html">OSVVM Regression Test</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../sphinx_reports.html">sphinx_reports</a></li>
+      <li class="breadcrumb-item active">sphinx_reports.CodeCoverage</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for sphinx_reports.CodeCoverage</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#            _     _                                           _                                                       #</span>
+<span class="c1">#  ___ _ __ | |__ (_)_ __ __  __     _ __ ___ _ __   ___  _ __| |_ ___                                                 #</span>
+<span class="c1"># / __| &#39;_ \| &#39;_ \| | &#39;_ \\ \/ /____| &#39;__/ _ \ &#39;_ \ / _ \| &#39;__| __/ __|                                                #</span>
+<span class="c1"># \__ \ |_) | | | | | | | |&gt;  &lt;_____| | |  __/ |_) | (_) | |  | |_\__ \                                                #</span>
+<span class="c1"># |___/ .__/|_| |_|_|_| |_/_/\_\    |_|  \___| .__/ \___/|_|   \__|___/                                                #</span>
+<span class="c1">#     |_|                                    |_|                                                                       #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Authors:                                                                                                             #</span>
+<span class="c1">#   Patrick Lehmann                                                                                                    #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># License:                                                                                                             #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);                                                      #</span>
+<span class="c1"># you may not use this file except in compliance with the License.                                                     #</span>
+<span class="c1"># You may obtain a copy of the License at                                                                              #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software                                                  #</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,                                                    #</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #</span>
+<span class="c1"># See the License for the specific language governing permissions and                                                  #</span>
+<span class="c1"># limitations under the License.                                                                                       #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0                                                                                  #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">**Report code coverage as Sphinx documentation page(s).**</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w">  </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span> <span class="k">as</span> <span class="n">Nullable</span><span class="p">,</span> <span class="n">ClassVar</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils</span><span class="w">                              </span><span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.parsers.rst.directives</span><span class="w">       </span><span class="kn">import</span> <span class="n">flag</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.addnodes</span><span class="w">                       </span><span class="kn">import</span> <span class="n">toctree</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.application</span><span class="w">                    </span><span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.config</span><span class="w">                         </span><span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.directives.code</span><span class="w">                </span><span class="kn">import</span> <span class="n">LiteralIncludeReader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.docutils</span><span class="w">                  </span><span class="kn">import</span> <span class="n">new_document</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Decorators</span><span class="w">                  </span><span class="kn">import</span> <span class="n">export</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.Common</span><span class="w">                 </span><span class="kn">import</span> <span class="n">ReportExtensionError</span><span class="p">,</span> <span class="n">LegendStyle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.Sphinx</span><span class="w">                 </span><span class="kn">import</span> <span class="n">strip</span><span class="p">,</span> <span class="n">stripAndNormalize</span><span class="p">,</span> <span class="n">BaseDirective</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.DataModel.CodeCoverage</span><span class="w"> </span><span class="kn">import</span> <span class="n">PackageCoverage</span><span class="p">,</span> <span class="n">Coverage</span><span class="p">,</span> <span class="n">ModuleCoverage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.Adapter.Coverage</span><span class="w">       </span><span class="kn">import</span> <span class="n">Analyzer</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">package_DictType</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+	<span class="n">name</span><span class="p">:</span>        <span class="nb">str</span>
+	<span class="n">json_report</span><span class="p">:</span> <span class="n">Path</span>
+	<span class="n">fail_below</span><span class="p">:</span>  <span class="nb">int</span>
+	<span class="n">levels</span><span class="p">:</span>      <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
+
+
+<div class="viewcode-block" id="CodeCoverageBase">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CodeCoverageBase</span><span class="p">(</span><span class="n">BaseDirective</span><span class="p">):</span>
+
+	<span class="n">option_spec</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s2">&quot;class&quot;</span><span class="p">:</span>    <span class="n">strip</span><span class="p">,</span>
+		<span class="s2">&quot;reportid&quot;</span><span class="p">:</span> <span class="n">stripAndNormalize</span>
+	<span class="p">}</span>
+
+	<span class="n">defaultCoverageDefinitions</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+			<span class="mi">10</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below10&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;almost unused&quot;</span><span class="p">},</span>
+			<span class="mi">20</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below20&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;almost unused&quot;</span><span class="p">},</span>
+			<span class="mi">30</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below30&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;almost unused&quot;</span><span class="p">},</span>
+			<span class="mi">40</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below40&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;poorly used&quot;</span><span class="p">},</span>
+			<span class="mi">50</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below50&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;poorly used&quot;</span><span class="p">},</span>
+			<span class="mi">60</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below60&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;somehow used&quot;</span><span class="p">},</span>
+			<span class="mi">70</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below70&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;somehow used&quot;</span><span class="p">},</span>
+			<span class="mi">80</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below80&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;somehow used&quot;</span><span class="p">},</span>
+			<span class="mi">85</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below85&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;well used&quot;</span><span class="p">},</span>
+			<span class="mi">90</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below90&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;well used&quot;</span><span class="p">},</span>
+			<span class="mi">95</span><span class="p">:</span>      <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below95&quot;</span><span class="p">,</span>  <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;well used&quot;</span><span class="p">},</span>
+			<span class="mi">100</span><span class="p">:</span>     <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-below100&quot;</span><span class="p">,</span> <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;excellently used&quot;</span><span class="p">},</span>
+			<span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;report-cov-error&quot;</span><span class="p">,</span>    <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;internal error&quot;</span><span class="p">},</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="n">configPrefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;codecov&quot;</span>
+	<span class="n">configValues</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configPrefix</span><span class="si">}</span><span class="s2">_packages&quot;</span><span class="p">:</span> <span class="p">({},</span> <span class="s2">&quot;env&quot;</span><span class="p">,</span> <span class="n">Dict</span><span class="p">),</span>
+		<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configPrefix</span><span class="si">}</span><span class="s2">_levels&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">defaultCoverageDefinitions</span><span class="p">,</span> <span class="s2">&quot;env&quot;</span><span class="p">,</span> <span class="n">Dict</span><span class="p">),</span>
+	<span class="p">}</span>  <span class="c1">#: A dictionary of all configuration values used by code coverage directives.</span>
+
+	<span class="n">_coverageLevelDefinitions</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]]</span> <span class="o">=</span> <span class="p">{}</span>
+	<span class="n">_packageConfigurations</span><span class="p">:</span>    <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">package_DictType</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+
+	<span class="n">_cssClasses</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+	<span class="n">_reportID</span><span class="p">:</span>   <span class="nb">str</span>
+	<span class="n">_levels</span><span class="p">:</span>     <span class="n">Dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
+
+<div class="viewcode-block" id="CodeCoverageBase._CheckOptions">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase._CheckOptions">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CheckOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Parse all directive options or use default values.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">cssClasses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ParseStringOption</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;(\w+)?( +\w+)*&quot;</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ParseStringOption</span><span class="p">(</span><span class="s2">&quot;reportid&quot;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_cssClasses</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">cssClasses</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="n">cssClasses</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CodeCoverageBase.CheckConfiguration">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.CheckConfiguration">[docs]</a>
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">CheckConfiguration</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sphinxApplication</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">,</span> <span class="n">sphinxConfiguration</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Check configuration fields and load necessary values.</span>
+
+<span class="sd">		:param sphinxApplication:   Sphinx application instance.</span>
+<span class="sd">		:param sphinxConfiguration: Sphinx configuration instance.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">cls</span><span class="o">.</span><span class="n">_CheckLevelsConfiguration</span><span class="p">(</span><span class="n">sphinxConfiguration</span><span class="p">)</span>
+		<span class="bp">cls</span><span class="o">.</span><span class="n">_CheckPackagesConfiguration</span><span class="p">(</span><span class="n">sphinxConfiguration</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CodeCoverageBase.ReadReports">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase.ReadReports">[docs]</a>
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ReadReports</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sphinxApplication</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Read code coverage report files.</span>
+
+<span class="sd">		:param sphinxApplication:   Sphinx application instance.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[REPORT] Reading code coverage reports ...&quot;</span><span class="p">)</span></div>
+
+
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CheckLevelsConfiguration</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sphinxConfiguration</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReportDomain</span>
+
+		<span class="n">variableName</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ReportDomain</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">configPrefix</span><span class="si">}</span><span class="s2">_levels&quot;</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="n">coverageLevelDefinitions</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">package_DictType</span><span class="p">]</span> <span class="o">=</span> <span class="n">sphinxConfiguration</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ReportDomain</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">configPrefix</span><span class="si">}</span><span class="s2">_levels&quot;</span><span class="p">]</span>
+		<span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Configuration option &#39;</span><span class="si">{</span><span class="n">variableName</span><span class="si">}</span><span class="s2">&#39; is not configured.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+		<span class="k">if</span> <span class="s2">&quot;default&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">coverageLevelDefinitions</span><span class="p">:</span>
+			<span class="bp">cls</span><span class="o">.</span><span class="n">_coverageLevelDefinitions</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">defaultCoverageDefinitions</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span>
+
+		<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">coverageLevelDefinition</span> <span class="ow">in</span> <span class="n">coverageLevelDefinitions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+			<span class="n">configurationName</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;conf.py: </span><span class="si">{</span><span class="n">variableName</span><span class="si">}</span><span class="s2">:[</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">]&quot;</span>
+
+			<span class="k">if</span> <span class="mi">100</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">coverageLevelDefinition</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">[100]: Configuration is missing.&quot;</span><span class="p">)</span>
+			<span class="k">elif</span> <span class="s2">&quot;error&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">coverageLevelDefinition</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">[error]: Configuration is missing.&quot;</span><span class="p">)</span>
+
+			<span class="bp">cls</span><span class="o">.</span><span class="n">_coverageLevelDefinitions</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+			<span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">levelConfig</span> <span class="ow">in</span> <span class="n">coverageLevelDefinition</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+				<span class="k">try</span><span class="p">:</span>
+					<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+						<span class="k">if</span> <span class="n">level</span> <span class="o">!=</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
+							<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2">]: Level is a keyword, but not &#39;error&#39;.&quot;</span><span class="p">)</span>
+					<span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">level</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">100.0</span><span class="p">):</span>
+						<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2">]: Level is out of range 0..100.&quot;</span><span class="p">)</span>
+				<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+					<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2">]: Level is not a keyword or an integer in range 0..100.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+				<span class="k">try</span><span class="p">:</span>
+					<span class="n">cssClass</span> <span class="o">=</span> <span class="n">levelConfig</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
+				<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+					<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2">].class: CSS class is missing.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+				<span class="k">try</span><span class="p">:</span>
+					<span class="n">description</span> <span class="o">=</span> <span class="n">levelConfig</span><span class="p">[</span><span class="s2">&quot;desc&quot;</span><span class="p">]</span>
+				<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+					<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2">].desc: Description is missing.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+				<span class="bp">cls</span><span class="o">.</span><span class="n">_coverageLevelDefinitions</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">level</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+					<span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="n">cssClass</span><span class="p">,</span>
+					<span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="n">description</span>
+				<span class="p">}</span>
+
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CheckPackagesConfiguration</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sphinxConfiguration</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReportDomain</span>
+
+		<span class="n">variableName</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ReportDomain</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">configPrefix</span><span class="si">}</span><span class="s2">_packages&quot;</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="n">allPackages</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">package_DictType</span><span class="p">]</span> <span class="o">=</span> <span class="n">sphinxConfiguration</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ReportDomain</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">configPrefix</span><span class="si">}</span><span class="s2">_packages&quot;</span><span class="p">]</span>
+		<span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Configuration option &#39;</span><span class="si">{</span><span class="n">variableName</span><span class="si">}</span><span class="s2">&#39; is not configured.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+		<span class="c1"># try:</span>
+		<span class="c1"># 	packageConfiguration = allPackages[self._reportID]</span>
+		<span class="c1"># except KeyError as ex:</span>
+		<span class="c1"># 	raise ReportExtensionError(f&quot;conf.py: {ReportDomain.name}_{cls.configPrefix}_packages: No configuration found for &#39;{self._reportID}&#39;.&quot;) from ex</span>
+
+		<span class="k">for</span> <span class="n">reportID</span><span class="p">,</span> <span class="n">packageConfiguration</span> <span class="ow">in</span> <span class="n">allPackages</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+			<span class="n">configurationName</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;conf.py: </span><span class="si">{</span><span class="n">variableName</span><span class="si">}</span><span class="s2">:[</span><span class="si">{</span><span class="n">reportID</span><span class="si">}</span><span class="s2">]&quot;</span>
+
+			<span class="k">try</span><span class="p">:</span>
+				<span class="n">packageName</span> <span class="o">=</span> <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+			<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.name: Configuration is missing.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+			<span class="k">try</span><span class="p">:</span>
+				<span class="n">jsonReport</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;json_report&quot;</span><span class="p">])</span>
+			<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.json_report: Configuration is missing.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+			<span class="k">if</span> <span class="ow">not</span> <span class="n">jsonReport</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.json_report: Coverage report file &#39;</span><span class="si">{</span><span class="n">jsonReport</span><span class="si">}</span><span class="s2">&#39; doesn&#39;t exist.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">FileNotFoundError</span><span class="p">(</span><span class="n">jsonReport</span><span class="p">)</span>
+
+			<span class="k">try</span><span class="p">:</span>
+				<span class="n">failBelow</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;fail_below&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span>
+			<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.fail_below: Configuration is missing.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+			<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.fail_below: &#39;</span><span class="si">{</span><span class="n">packageConfiguration</span><span class="p">[</span><span class="s1">&#39;fail_below&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39; is not an integer in range 0..100.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+			<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">failBelow</span> <span class="o">&lt;=</span> <span class="mf">100.0</span><span class="p">):</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.fail_below: Is out of range 0..100.&quot;</span><span class="p">)</span>
+
+			<span class="k">try</span><span class="p">:</span>
+				<span class="n">levels</span> <span class="o">=</span> <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;levels&quot;</span><span class="p">]</span>
+			<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.levels: Configuration is missing.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+				<span class="k">try</span><span class="p">:</span>
+					<span class="n">levelDefinition</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_coverageLevelDefinitions</span><span class="p">[</span><span class="n">levels</span><span class="p">]</span>
+				<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+					<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span>
+						<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.levels: Referenced coverage levels &#39;</span><span class="si">{</span><span class="n">levels</span><span class="si">}</span><span class="s2">&#39; are not defined in conf.py variable &#39;</span><span class="si">{</span><span class="n">variableName</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+			<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+				<span class="k">if</span> <span class="mi">100</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;levels&quot;</span><span class="p">]:</span>
+					<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.levels[100]: Configuration is missing.&quot;</span><span class="p">)</span>
+				<span class="k">elif</span> <span class="s2">&quot;error&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;levels&quot;</span><span class="p">]:</span>
+					<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">configurationName</span><span class="si">}</span><span class="s2">.levels[error]: Configuration is missing.&quot;</span><span class="p">)</span>
+
+				<span class="n">levelDefinition</span> <span class="o">=</span> <span class="p">{}</span>
+				<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;levels&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+					<span class="k">pass</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+			<span class="bp">cls</span><span class="o">.</span><span class="n">_packageConfigurations</span><span class="p">[</span><span class="n">reportID</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+				<span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">packageName</span><span class="p">,</span>
+				<span class="s2">&quot;json_report&quot;</span><span class="p">:</span> <span class="n">jsonReport</span><span class="p">,</span>
+				<span class="s2">&quot;fail_below&quot;</span><span class="p">:</span> <span class="n">failBelow</span><span class="p">,</span>
+				<span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="n">levelDefinition</span>
+			<span class="p">}</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">_ConvertToColor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">currentLevel</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">configKey</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">if</span> <span class="n">currentLevel</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
+			<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">][</span><span class="n">configKey</span><span class="p">]</span>
+
+		<span class="k">for</span> <span class="n">levelLimit</span><span class="p">,</span> <span class="n">levelConfig</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">levelLimit</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">currentLevel</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">levelLimit</span><span class="p">:</span>
+				<span class="k">return</span> <span class="n">levelConfig</span><span class="p">[</span><span class="n">configKey</span><span class="p">]</span>
+
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="n">configKey</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="CodeCoverage">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CodeCoverage</span><span class="p">(</span><span class="n">CodeCoverageBase</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	This directive will be replaced by a table representing code coverage.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">directiveName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;code-coverage&quot;</span>
+
+	<span class="n">has_content</span> <span class="o">=</span> <span class="kc">False</span>
+	<span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="n">optional_arguments</span> <span class="o">=</span> <span class="n">CodeCoverageBase</span><span class="o">.</span><span class="n">optional_arguments</span> <span class="o">+</span> <span class="mi">1</span>
+
+	<span class="n">option_spec</span> <span class="o">=</span> <span class="n">CodeCoverageBase</span><span class="o">.</span><span class="n">option_spec</span> <span class="o">|</span> <span class="p">{</span>
+		<span class="s2">&quot;no-branch-coverage&quot;</span><span class="p">:</span> <span class="n">flag</span>
+	<span class="p">}</span>
+
+	<span class="n">_noBranchCoverage</span><span class="p">:</span> <span class="nb">bool</span>
+	<span class="n">_packageName</span><span class="p">:</span>      <span class="nb">str</span>
+	<span class="n">_jsonReport</span><span class="p">:</span>       <span class="n">Path</span>
+	<span class="n">_failBelow</span><span class="p">:</span>        <span class="nb">float</span>
+	<span class="n">_coverage</span><span class="p">:</span>         <span class="n">PackageCoverage</span>
+
+<div class="viewcode-block" id="CodeCoverage._CheckOptions">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage._CheckOptions">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CheckOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Parse all directive options or use default values.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_CheckOptions</span><span class="p">()</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_noBranchCoverage</span> <span class="o">=</span> <span class="s2">&quot;no-branch-coverage&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="n">packageConfiguration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_packageConfigurations</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="p">]</span>
+		<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No configuration for &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span> <span class="o">=</span> <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_jsonReport</span> <span class="o">=</span>  <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;json_report&quot;</span><span class="p">]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_failBelow</span> <span class="o">=</span>   <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;fail_below&quot;</span><span class="p">]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_levels</span> <span class="o">=</span>      <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;levels&quot;</span><span class="p">]</span></div>
+
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">_GenerateCoverageTable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nodes</span><span class="o">.</span><span class="n">table</span><span class="p">:</span>
+		<span class="n">cssClasses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;report-codecov-table&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;report-codecov-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+		<span class="n">cssClasses</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cssClasses</span><span class="p">)</span>
+
+		<span class="c1"># Create a table and table header with 10 columns</span>
+		<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+			<span class="p">(</span><span class="s2">&quot;Package&quot;</span><span class="p">,</span>   <span class="p">[(</span><span class="s2">&quot; Module&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)],</span> <span class="kc">None</span><span class="p">),</span>
+			<span class="p">(</span><span class="s2">&quot;Statments&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;Total&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Excluded&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Covered&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Missing&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Coverage&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)],</span> <span class="kc">None</span><span class="p">),</span>
+			<span class="p">(</span><span class="s2">&quot;Branches&quot;</span> <span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;Total&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Covered&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Partial&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Missing&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Coverage&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)],</span> <span class="kc">None</span><span class="p">),</span>
+			<span class="c1"># (&quot;Coverage&quot;,  [(&quot;in %&quot;, 100)], None)</span>
+		<span class="p">]</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_noBranchCoverage</span><span class="p">:</span>
+			<span class="n">columns</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+		<span class="n">table</span><span class="p">,</span> <span class="n">tableGroup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CreateTableHeader</span><span class="p">(</span>
+			<span class="n">identifier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="p">,</span>
+			<span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
+			<span class="n">classes</span><span class="o">=</span><span class="n">cssClasses</span>
+		<span class="p">)</span>
+		<span class="n">tableBody</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">tbody</span><span class="p">()</span>
+		<span class="n">tableGroup</span> <span class="o">+=</span> <span class="n">tableBody</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">renderlevel</span><span class="p">(</span><span class="n">tableBody</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="p">)</span>
+
+		<span class="c1"># Add a summary row</span>
+		<span class="n">tableRow</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span>
+			<span class="s2">&quot;report-summary&quot;</span><span class="p">,</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_ConvertToColor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedStatementCoverage</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">)</span>
+		<span class="p">])</span>
+		<span class="n">tableBody</span> <span class="o">+=</span> <span class="n">tableRow</span>
+
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Overall (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">FileCount</span><span class="si">}</span><span class="s2"> files):&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedTotalStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedExcludedStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedCoveredStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedMissingStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedStatementCoverage</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_noBranchCoverage</span><span class="p">:</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedTotalBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedCoveredBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedPartialBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedMissingBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="o">.</span><span class="n">AggregatedBranchCoverage</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+		<span class="k">return</span> <span class="n">table</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">sortedValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Coverage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Coverage</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+		<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+			<span class="k">yield</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">renderlevel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tableBody</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">tbody</span><span class="p">,</span> <span class="n">packageCoverage</span><span class="p">:</span> <span class="n">PackageCoverage</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="n">coverage</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">packageCoverage</span><span class="o">.</span><span class="n">Coverage</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="k">else</span> <span class="n">packageCoverage</span><span class="o">.</span><span class="n">Coverage</span>
+		<span class="n">tableRow</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span>
+			<span class="s2">&quot;report-package&quot;</span><span class="p">,</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_ConvertToColor</span><span class="p">(</span><span class="n">coverage</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">)</span>
+		<span class="p">])</span>
+		<span class="n">tableBody</span> <span class="o">+=</span> <span class="n">tableRow</span>
+
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">level</span><span class="si">}</span><span class="s2">📦</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">Name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">TotalStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">ExcludedStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">CoveredStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">MissingStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">StatementCoverage</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_noBranchCoverage</span><span class="p">:</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">TotalBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">CoveredBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">PartialBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">MissingBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">BranchCoverage</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+		<span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sortedValues</span><span class="p">(</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">_packages</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">renderlevel</span><span class="p">(</span><span class="n">tableBody</span><span class="p">,</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+		<span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sortedValues</span><span class="p">(</span><span class="n">packageCoverage</span><span class="o">.</span><span class="n">_modules</span><span class="p">):</span>
+			<span class="n">tableRow</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span>
+				<span class="s2">&quot;report-module&quot;</span><span class="p">,</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">_ConvertToColor</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">Coverage</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">)</span>
+			<span class="p">])</span>
+			<span class="n">tableBody</span> <span class="o">+=</span> <span class="n">tableRow</span>
+
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> ⚙️</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">Name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">TotalStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">ExcludedStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">CoveredStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">MissingStatements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">StatementCoverage</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+			<span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_noBranchCoverage</span><span class="p">:</span>
+				<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">TotalBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+				<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">CoveredBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+				<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">PartialBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+				<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">MissingBranches</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+				<span class="n">tableRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">BranchCoverage</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CreatePages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="k">def</span><span class="w"> </span><span class="nf">handlePackage</span><span class="p">(</span><span class="n">package</span><span class="p">:</span> <span class="n">PackageCoverage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">for</span> <span class="n">pack</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">_packages</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+				<span class="k">if</span> <span class="n">handlePackage</span><span class="p">(</span><span class="n">pack</span><span class="p">):</span>
+					<span class="k">return</span>
+
+			<span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+				<span class="k">if</span> <span class="n">handleModule</span><span class="p">(</span><span class="n">module</span><span class="p">):</span>
+					<span class="k">return</span>
+
+		<span class="k">def</span><span class="w"> </span><span class="nf">handleModule</span><span class="p">(</span><span class="n">module</span><span class="p">:</span> <span class="n">ModuleCoverage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="n">doc</span> <span class="o">=</span> <span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;dummy&quot;</span><span class="p">)</span>
+
+			<span class="n">rootSection</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">section</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">])</span>
+			<span class="n">doc</span> <span class="o">+=</span> <span class="n">rootSection</span>
+
+			<span class="n">title</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">Name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+			<span class="n">rootSection</span> <span class="o">+=</span> <span class="n">title</span>
+			<span class="n">rootSection</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;some text&quot;</span><span class="p">)</span>
+
+			<span class="n">docname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;coverage/</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">Name</span><span class="si">}</span><span class="s2">&quot;</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">titles</span><span class="p">[</span><span class="n">docname</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">longtitles</span><span class="p">[</span><span class="n">docname</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
+
+			<span class="k">return</span>
+
+		<span class="n">handlePackage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CodeCoverage.run">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverage.run">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">]:</span>
+		<span class="n">container</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">container</span><span class="p">()</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_CheckOptions</span><span class="p">()</span>
+		<span class="k">except</span> <span class="n">ReportExtensionError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Caught </span><span class="si">{</span><span class="n">ex</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> when checking options for directive &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">directiveName</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+			<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalError</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">ex</span><span class="p">)</span>
+
+		<span class="c1"># Assemble a list of Python source files</span>
+		<span class="n">analyzer</span> <span class="o">=</span> <span class="n">Analyzer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jsonReport</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">Convert</span><span class="p">()</span>
+		<span class="c1"># self._coverage.Aggregate()</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_CreatePages</span><span class="p">()</span>
+
+		<span class="n">container</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_GenerateCoverageTable</span><span class="p">()</span>
+
+		<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
+			<span class="n">docName</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">docname</span>
+			<span class="n">docParent</span> <span class="o">=</span> <span class="n">docName</span><span class="p">[:</span><span class="n">docName</span><span class="o">.</span><span class="n">rindex</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)]</span>
+
+			<span class="n">subnode</span> <span class="o">=</span> <span class="n">toctree</span><span class="p">()</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;parent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">docName</span>
+
+			<span class="c1"># (title, ref) pairs, where ref may be a document, or an external link,</span>
+			<span class="c1"># and title may be None if the document&#39;s title is to be used</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;entries&#39;</span><span class="p">]</span> <span class="o">=</span>       <span class="p">[]</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;includefiles&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[]</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;maxdepth&#39;</span><span class="p">]</span> <span class="o">=</span>      <span class="o">-</span><span class="mi">1</span>  <span class="c1"># self.options.get(&#39;maxdepth&#39;, -1)</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;caption&#39;</span><span class="p">]</span> <span class="o">=</span>       <span class="kc">None</span>  <span class="c1"># self.options.get(&#39;caption&#39;)</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;glob&#39;</span><span class="p">]</span> <span class="o">=</span>          <span class="kc">None</span>  <span class="c1"># &#39;glob&#39; in self.options</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;hidden&#39;</span><span class="p">]</span> <span class="o">=</span>        <span class="kc">True</span>  <span class="c1"># &#39;hidden&#39; in self.options</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;includehidden&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># &#39;includehidden&#39; in self.options</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;numbered&#39;</span><span class="p">]</span> <span class="o">=</span>      <span class="mi">0</span>  <span class="c1"># self.options.get(&#39;numbered&#39;, 0)</span>
+			<span class="n">subnode</span><span class="p">[</span><span class="s1">&#39;titlesonly&#39;</span><span class="p">]</span> <span class="o">=</span>    <span class="kc">False</span>  <span class="c1"># &#39;titlesonly&#39; in self.options</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">set_source_info</span><span class="p">(</span><span class="n">subnode</span><span class="p">)</span>
+
+			<span class="n">wrappernode</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">compound</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;toctree-wrapper&#39;</span><span class="p">])</span>
+			<span class="n">wrappernode</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subnode</span><span class="p">)</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">add_name</span><span class="p">(</span><span class="n">wrappernode</span><span class="p">)</span>
+
+			<span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="p">(</span>
+				<span class="s2">&quot;sphinx_reports&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.Adapter&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.Adapter.Coverage&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.Adapter.DocStrCoverage&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.Adapter.JUnit&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.DataModel&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.DataModel.CodeCoverage&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.DataModel.DocumentationCoverage&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.DataModel.Unittest&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.static&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.CodeCoverage&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.Common&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.DocCoverage&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.Sphinx&quot;</span><span class="p">,</span>
+				<span class="s2">&quot;sphinx_reports.Unittest&quot;</span><span class="p">,</span>
+			<span class="p">):</span>
+				<span class="n">moduleDocumentName</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">docParent</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">entry</span><span class="si">}</span><span class="s2">&quot;</span>
+				<span class="n">moduleDocumentTitle</span> <span class="o">=</span> <span class="n">entry</span>
+
+				<span class="n">subnode</span><span class="p">[</span><span class="s2">&quot;entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">moduleDocumentTitle</span><span class="p">,</span> <span class="n">moduleDocumentName</span><span class="p">))</span>
+				<span class="n">subnode</span><span class="p">[</span><span class="s2">&quot;includefiles&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">moduleDocumentName</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="p">[</span><span class="n">container</span><span class="p">]</span>  <span class="c1">#, wrappernode]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="CodeCoverageLegend">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CodeCoverageLegend</span><span class="p">(</span><span class="n">CodeCoverageBase</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	This directive will be replaced by a legend table representing coverage levels.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">has_content</span> <span class="o">=</span> <span class="kc">False</span>
+	<span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="n">optional_arguments</span> <span class="o">=</span> <span class="n">CodeCoverageBase</span><span class="o">.</span><span class="n">optional_arguments</span> <span class="o">+</span> <span class="mi">1</span>
+
+	<span class="n">option_spec</span> <span class="o">=</span> <span class="n">CodeCoverageBase</span><span class="o">.</span><span class="n">option_spec</span> <span class="o">|</span> <span class="p">{</span>
+		<span class="s2">&quot;style&quot;</span><span class="p">:</span> <span class="n">stripAndNormalize</span>
+	<span class="p">}</span>
+
+	<span class="n">directiveName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;code-coverage-legend&quot;</span>
+
+	<span class="n">_style</span><span class="p">:</span> <span class="n">LegendStyle</span>
+
+<div class="viewcode-block" id="CodeCoverageLegend._CheckOptions">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend._CheckOptions">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CheckOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="c1"># Parse all directive options or use default values</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_CheckOptions</span><span class="p">()</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_style</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ParseLegendStyle</span><span class="p">(</span><span class="s2">&quot;style&quot;</span><span class="p">,</span> <span class="n">LegendStyle</span><span class="o">.</span><span class="n">horizontal_table</span><span class="p">)</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="n">packageConfiguration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_packageConfigurations</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="p">]</span>
+		<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No configuration for &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_levels</span> <span class="o">=</span> <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;levels&quot;</span><span class="p">]</span></div>
+
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CreateHorizontalLegendTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">classes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">nodes</span><span class="o">.</span><span class="n">table</span><span class="p">:</span>
+		<span class="n">columns</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Code Coverage:&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">300</span><span class="p">)]</span>
+		<span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+				<span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="sa">f</span><span class="s2">&quot;≤</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+
+		<span class="n">table</span><span class="p">,</span> <span class="n">tableGroup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CreateTableHeader</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">identifier</span><span class="o">=</span><span class="n">identifier</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+		<span class="n">tableBody</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">tbody</span><span class="p">()</span>
+		<span class="n">tableGroup</span> <span class="o">+=</span> <span class="n">tableBody</span>
+
+		<span class="n">legendRow</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;report-codecov-legend-row&quot;</span><span class="p">])</span>
+		<span class="n">legendRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Coverage Level:&quot;</span><span class="p">))</span>
+		<span class="n">tableBody</span> <span class="o">+=</span> <span class="n">legendRow</span>
+		<span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+				<span class="n">legendRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;desc&quot;</span><span class="p">]),</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_ConvertToColor</span><span class="p">((</span><span class="n">level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">)])</span>
+
+		<span class="n">legendRow</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;report-codecov-legend-row&quot;</span><span class="p">])</span>
+		<span class="n">legendRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Coverage Level:&quot;</span><span class="p">))</span>
+		<span class="n">tableBody</span> <span class="o">+=</span> <span class="n">legendRow</span>
+		<span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+				<span class="n">legendRow</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;desc&quot;</span><span class="p">]),</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_ConvertToColor</span><span class="p">((</span><span class="n">level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">)])</span>
+
+		<span class="k">return</span> <span class="n">table</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CreateVerticalLegendTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">classes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">nodes</span><span class="o">.</span><span class="n">table</span><span class="p">:</span>
+		<span class="n">table</span><span class="p">,</span> <span class="n">tableGroup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CreateTableHeader</span><span class="p">([</span>
+				<span class="p">(</span><span class="s2">&quot;Code Coverage&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
+				<span class="p">(</span><span class="s2">&quot;Coverage Level&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+			<span class="p">],</span>
+			<span class="n">identifier</span><span class="o">=</span><span class="n">identifier</span><span class="p">,</span>
+			<span class="n">classes</span><span class="o">=</span><span class="n">classes</span>
+		<span class="p">)</span>
+
+		<span class="n">tableBody</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">tbody</span><span class="p">()</span>
+		<span class="n">tableGroup</span> <span class="o">+=</span> <span class="n">tableBody</span>
+
+		<span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+				<span class="n">tableBody</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span>
+					<span class="s2">&quot;&quot;</span><span class="p">,</span>
+					<span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;≤</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)),</span>
+					<span class="n">nodes</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;desc&quot;</span><span class="p">])),</span>
+					<span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;report-codecov-legend-row&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ConvertToColor</span><span class="p">((</span><span class="n">level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">)]</span>
+				<span class="p">)</span>
+
+		<span class="k">return</span> <span class="n">table</span>
+
+<div class="viewcode-block" id="CodeCoverageLegend.run">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend.run">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">]:</span>
+		<span class="n">container</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">container</span><span class="p">()</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_CheckOptions</span><span class="p">()</span>
+		<span class="k">except</span> <span class="n">ReportExtensionError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Caught </span><span class="si">{</span><span class="n">ex</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> when checking options for directive &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">directiveName</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+			<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalError</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">ex</span><span class="p">)</span>
+
+		<span class="k">if</span> <span class="n">LegendStyle</span><span class="o">.</span><span class="n">Table</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">LegendStyle</span><span class="o">.</span><span class="n">Horizontal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="p">:</span>
+				<span class="n">container</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CreateHorizontalLegendTable</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="si">}</span><span class="s2">-legend&quot;</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;report-codecov-legend&quot;</span><span class="p">])</span>
+			<span class="k">elif</span> <span class="n">LegendStyle</span><span class="o">.</span><span class="n">Vertical</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="p">:</span>
+				<span class="n">container</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CreateVerticalLegendTable</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="si">}</span><span class="s2">-legend&quot;</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;report-codecov-legend&quot;</span><span class="p">])</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">container</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Unsupported legend style.&quot;</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">container</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Unsupported legend style.&quot;</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="p">[</span><span class="n">container</span><span class="p">]</span></div>
+</div>
+
+
+
+
+<div class="viewcode-block" id="ModuleCoverage">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModuleCoverage</span><span class="p">(</span><span class="n">CodeCoverageBase</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	This directive will be replaced by highlighted source code.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">directiveName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;module-coverage&quot;</span>
+
+	<span class="n">has_content</span> <span class="o">=</span> <span class="kc">False</span>
+	<span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="n">optional_arguments</span> <span class="o">=</span> <span class="mi">2</span>
+
+	<span class="n">option_spec</span> <span class="o">=</span> <span class="n">CodeCoverageBase</span><span class="o">.</span><span class="n">option_spec</span> <span class="o">|</span> <span class="p">{</span>
+		<span class="s2">&quot;module&quot;</span><span class="p">:</span> <span class="n">stripAndNormalize</span>
+	<span class="p">}</span>
+
+	<span class="n">_packageName</span><span class="p">:</span>      <span class="nb">str</span>
+	<span class="n">_moduleName</span><span class="p">:</span>       <span class="nb">str</span>
+	<span class="n">_jsonReport</span><span class="p">:</span>       <span class="n">Path</span>
+
+<div class="viewcode-block" id="ModuleCoverage._CheckOptions">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage._CheckOptions">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">_CheckOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Parse all directive options or use default values.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_CheckOptions</span><span class="p">()</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_moduleName</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ParseStringOption</span><span class="p">(</span><span class="s2">&quot;module&quot;</span><span class="p">)</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="n">packageConfiguration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_packageConfigurations</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="p">]</span>
+		<span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">ReportExtensionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No configuration for &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_reportID</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span> <span class="o">=</span> <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_jsonReport</span> <span class="o">=</span>  <span class="n">packageConfiguration</span><span class="p">[</span><span class="s2">&quot;json_report&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="ModuleCoverage.run">
+<a class="viewcode-back" href="../../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.ModuleCoverage.run">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">]:</span>
+		<span class="n">container</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">container</span><span class="p">()</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_CheckOptions</span><span class="p">()</span>
+		<span class="k">except</span> <span class="n">ReportExtensionError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Caught </span><span class="si">{</span><span class="n">ex</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> when checking options for directive &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">directiveName</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+			<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalError</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">ex</span><span class="p">)</span>
+
+		<span class="c1"># Assemble a list of Python source files</span>
+		<span class="n">analyzer</span> <span class="o">=</span> <span class="n">Analyzer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jsonReport</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_coverage</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">Convert</span><span class="p">()</span>
+
+		<span class="n">sourceFile</span> <span class="o">=</span> <span class="s2">&quot;../../sphinx_reports/__init__.py&quot;</span>
+
+		<span class="n">container</span> <span class="o">+=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Code coverage of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_moduleName</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+		<span class="c1"># lexer = get_lexer_by_name(&quot;python&quot;, tabsize=2)</span>
+		<span class="c1"># tokens = lex(code, lexer)</span>
+
+		<span class="c1"># htmlFormatter = HtmlFormatter(linenos=True, cssclass=&quot;source&quot;)</span>
+		<span class="c1"># highlight()</span>
+
+		<span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_machine</span><span class="o">.</span><span class="n">get_source_and_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lineno</span><span class="p">)</span>
+		<span class="n">rel_filename</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">relfn2path</span><span class="p">(</span><span class="n">sourceFile</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">note_dependency</span><span class="p">(</span><span class="n">rel_filename</span><span class="p">)</span>
+
+		<span class="n">reader</span> <span class="o">=</span> <span class="n">LiteralIncludeReader</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;tab-width&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+		<span class="n">text</span><span class="p">,</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">)</span>
+
+		<span class="n">literalBlock</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">literal_block</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+		<span class="n">literalBlock</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;codecov&quot;</span>
+		<span class="n">literalBlock</span><span class="p">[</span><span class="s1">&#39;highlight_args&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">extra_args</span> <span class="o">=</span> <span class="p">{}</span>
+		<span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;hl_lines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">set_source_info</span><span class="p">(</span><span class="n">literalBlock</span><span class="p">)</span>
+
+		<span class="n">container</span> <span class="o">+=</span> <span class="n">literalBlock</span>
+
+		<span class="k">return</span> <span class="p">[</span><span class="n">container</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 13.06.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
