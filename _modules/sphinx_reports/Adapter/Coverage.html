@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports.Adapter.Coverage &mdash; sphinx_reports 0.9.7 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-reports.089ed2e62f89368aa21ac7591d90c12a.css?v=83177741" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/icon.png"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2328ca0"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Examples/Dependency.html">Dependency Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Examples/JUnit-Basic.html">JUnit Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Examples/JUnit-Complete.html">JUnit Complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Examples/OSVVM.html">OSVVM Regression Test</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sphinx_reports/sphinx_reports.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../sphinx_reports.html">sphinx_reports</a></li>
+      <li class="breadcrumb-item active">sphinx_reports.Adapter.Coverage</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for sphinx_reports.Adapter.Coverage</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#            _     _                                           _                                                       #</span>
+<span class="c1">#  ___ _ __ | |__ (_)_ __ __  __     _ __ ___ _ __   ___  _ __| |_ ___                                                 #</span>
+<span class="c1"># / __| &#39;_ \| &#39;_ \| | &#39;_ \\ \/ /____| &#39;__/ _ \ &#39;_ \ / _ \| &#39;__| __/ __|                                                #</span>
+<span class="c1"># \__ \ |_) | | | | | | | |&gt;  &lt;_____| | |  __/ |_) | (_) | |  | |_\__ \                                                #</span>
+<span class="c1"># |___/ .__/|_| |_|_|_| |_/_/\_\    |_|  \___| .__/ \___/|_|   \__|___/                                                #</span>
+<span class="c1">#     |_|                                    |_|                                                                       #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Authors:                                                                                                             #</span>
+<span class="c1">#   Patrick Lehmann                                                                                                    #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># License:                                                                                                             #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);                                                      #</span>
+<span class="c1"># you may not use this file except in compliance with the License.                                                     #</span>
+<span class="c1"># You may obtain a copy of the License at                                                                              #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software                                                  #</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,                                                    #</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #</span>
+<span class="c1"># See the License for the specific language governing permissions and                                                  #</span>
+<span class="c1"># limitations under the License.                                                                                       #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0                                                                                  #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">**A Sphinx extension providing code coverage details embedded in documentation pages.**</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Decorators</span><span class="w">         </span><span class="kn">import</span> <span class="n">export</span><span class="p">,</span> <span class="n">readonly</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Configuration.JSON</span><span class="w"> </span><span class="kn">import</span> <span class="n">Configuration</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.Common</span><span class="w">                 </span><span class="kn">import</span> <span class="n">ReportExtensionError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx_reports.DataModel.CodeCoverage</span><span class="w"> </span><span class="kn">import</span> <span class="n">PackageCoverage</span><span class="p">,</span> <span class="n">ModuleCoverage</span><span class="p">,</span> <span class="n">Coverage</span>
+
+
+<div class="viewcode-block" id="CodeCoverageError">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.CodeCoverageError">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CodeCoverageError</span><span class="p">(</span><span class="n">ReportExtensionError</span><span class="p">):</span>
+	<span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="Analyzer">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.Analyzer">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Analyzer</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	An analyzer to read and transform code coverage data from JSON format to a generic data model.</span>
+
+<span class="sd">	Coverage.py can provide collected statement and branch coverage metrics as JSON data, which can be converted to a</span>
+<span class="sd">	generic code coverage model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="n">_packageName</span><span class="p">:</span>    <span class="nb">str</span>
+	<span class="n">_coverageReport</span><span class="p">:</span> <span class="n">Configuration</span>
+
+<div class="viewcode-block" id="Analyzer.__init__">
+<a class="viewcode-back" href="../../../sphinx_reports/sphinx_reports.Adapter.Coverage.html#sphinx_reports.Adapter.Coverage.Analyzer.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">packageName</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">jsonCoverageFile</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Read a JSON file containing code coverage metrics generated by Coverage.py.</span>
+
+<span class="sd">		:param packageName:        Name of the Python package that was analyzed.</span>
+<span class="sd">		:param jsonCoverageFile:   JSON file containing statement and/or branch coverage.</span>
+<span class="sd">		:raises CodeCoverageError: If JSON file doesn&#39;t exist.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="n">jsonCoverageFile</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+			<span class="k">raise</span> <span class="n">CodeCoverageError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;JSON coverage report &#39;</span><span class="si">{</span><span class="n">jsonCoverageFile</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">FileNotFoundError</span><span class="p">(</span><span class="n">jsonCoverageFile</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span> <span class="o">=</span> <span class="n">packageName</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_coverageReport</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">jsonCoverageFile</span><span class="p">)</span></div>
+
+
+		<span class="c1"># if int(self._coverageReport[&quot;format&quot;]) != 2:</span>
+		<span class="c1"># 	raise CodeCoverageError(f&quot;File format of &#39;{jsonCoverageFile}&#39; is not supported.&quot;)</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">PackageName</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Read-only property to access the analyzed package&#39;s name.</span>
+
+<span class="sd">		:return: Name of the analyzed package.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">JSONCoverageFile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Read-only property to access the parsed JSON file.</span>
+
+<span class="sd">		:return: Path to the parsed JSON file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coverageReport</span><span class="o">.</span><span class="n">ConfigFile</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">CoverageReport</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Configuration</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coverageReport</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">Convert</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PackageCoverage</span><span class="p">:</span>
+		<span class="n">meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coverageReport</span><span class="p">[</span><span class="s2">&quot;meta&quot;</span><span class="p">]</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">version</span> <span class="o">:=</span> <span class="n">meta</span><span class="p">[</span><span class="s2">&quot;format&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span>
+			<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_v3</span><span class="p">()</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">CodeCoverageError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported coverage format version &#39;</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">_convert_v3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PackageCoverage</span><span class="p">:</span>
+		<span class="n">rootPackageCoverage</span> <span class="o">=</span> <span class="n">PackageCoverage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_packageName</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;__init__.py&quot;</span><span class="p">))</span>
+
+		<span class="k">for</span> <span class="n">fileRecord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coverageReport</span><span class="p">[</span><span class="s2">&quot;files&quot;</span><span class="p">]:</span>
+			<span class="n">moduleFile</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">fileRecord</span><span class="o">.</span><span class="n">Key</span><span class="p">)</span>
+			<span class="n">coverageSummary</span> <span class="o">=</span> <span class="n">fileRecord</span><span class="p">[</span><span class="s2">&quot;summary&quot;</span><span class="p">]</span>
+
+			<span class="n">moduleName</span> <span class="o">=</span> <span class="n">moduleFile</span><span class="o">.</span><span class="n">stem</span>
+			<span class="n">modulePath</span> <span class="o">=</span> <span class="n">moduleFile</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+			<span class="n">currentCoverageObject</span><span class="p">:</span> <span class="n">Coverage</span> <span class="o">=</span> <span class="n">rootPackageCoverage</span>
+			<span class="k">for</span> <span class="n">packageName</span> <span class="ow">in</span> <span class="n">modulePath</span><span class="p">:</span>
+				<span class="k">try</span><span class="p">:</span>
+					<span class="n">currentCoverageObject</span> <span class="o">=</span> <span class="n">currentCoverageObject</span><span class="p">[</span><span class="n">packageName</span><span class="p">]</span>
+				<span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+					<span class="n">currentCoverageObject</span> <span class="o">=</span> <span class="n">PackageCoverage</span><span class="p">(</span><span class="n">packageName</span><span class="p">,</span> <span class="n">moduleFile</span><span class="p">,</span> <span class="n">currentCoverageObject</span><span class="p">)</span>
+
+			<span class="k">if</span> <span class="n">moduleName</span> <span class="o">!=</span> <span class="s2">&quot;__init__&quot;</span><span class="p">:</span>
+				<span class="n">currentCoverageObject</span> <span class="o">=</span> <span class="n">ModuleCoverage</span><span class="p">(</span><span class="n">moduleName</span><span class="p">,</span> <span class="n">moduleFile</span><span class="p">,</span> <span class="n">currentCoverageObject</span><span class="p">)</span>
+
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_totalStatements</span> <span class="o">=</span>    <span class="nb">int</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;num_statements&quot;</span><span class="p">])</span>
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_excludedStatements</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;excluded_lines&quot;</span><span class="p">])</span>
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_coveredStatements</span> <span class="o">=</span>  <span class="nb">int</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;covered_lines&quot;</span><span class="p">])</span>
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_missingStatements</span> <span class="o">=</span>  <span class="nb">int</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;missing_lines&quot;</span><span class="p">])</span>
+
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_totalBranches</span> <span class="o">=</span>   <span class="nb">int</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;num_branches&quot;</span><span class="p">])</span>
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_coveredBranches</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;covered_branches&quot;</span><span class="p">])</span>
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_partialBranches</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;num_partial_branches&quot;</span><span class="p">])</span>
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_missingBranches</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;missing_branches&quot;</span><span class="p">])</span>
+
+			<span class="n">currentCoverageObject</span><span class="o">.</span><span class="n">_coverage</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">coverageSummary</span><span class="p">[</span><span class="s2">&quot;percent_covered&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="mf">100.0</span>
+
+		<span class="k">return</span> <span class="n">rootPackageCoverage</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 20.06.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

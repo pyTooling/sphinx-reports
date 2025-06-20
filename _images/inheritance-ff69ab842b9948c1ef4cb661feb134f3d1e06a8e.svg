@@ -1,0 +1,104 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="576pt" height="48pt" viewBox="0.00 0.00 576.00 48.06">
+<ns0:g id="graph0" class="graph" transform="scale(0.75 0.75) rotate(0) translate(4 60)">
+<ns0:title>inheritance940b59f63a</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>BaseDirective</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.Sphinx.html#sphinx_reports.Sphinx.BaseDirective" ns1:title="BaseDirective" target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="452,-37 367,-37 367,-18 452,-18 452,-37" />
+<ns0:text text-anchor="middle" x="409.5" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">BaseDirective</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>CodeCoverageBase</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageBase" ns1:title="CodeCoverageBase" target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="600,-37 488,-37 488,-18 600,-18 600,-37" />
+<ns0:text text-anchor="middle" x="544" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">CodeCoverageBase</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>BaseDirective-&gt;CodeCoverageBase</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M452.06,-27.5C461.84,-27.5 472.47,-27.5 482.88,-27.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="482.98,-29.25 487.98,-27.5 482.98,-25.75 482.98,-29.25" />
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>ObjectDescription</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:title="Directive to describe a class, function or similar object.">
+<ns0:polygon fill="white" stroke="#1e90ff" points="331,-37 227,-37 227,-18 331,-18 331,-37" />
+<ns0:text text-anchor="middle" x="279" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ObjectDescription</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>ObjectDescription-&gt;BaseDirective</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M331.16,-27.5C341.17,-27.5 351.62,-27.5 361.49,-27.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="361.6,-29.25 366.6,-27.5 361.6,-25.75 361.6,-29.25" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>CodeCoverageLegend</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../sphinx_reports/sphinx_reports.CodeCoverage.html#sphinx_reports.CodeCoverage.CodeCoverageLegend" ns1:title="This directive will be replaced by a legend table representing coverage levels." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="759,-37 636,-37 636,-18 759,-18 759,-37" />
+<ns0:text text-anchor="middle" x="697.5" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">CodeCoverageLegend</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>CodeCoverageBase-&gt;CodeCoverageLegend</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M600.12,-27.5C609.99,-27.5 620.37,-27.5 630.51,-27.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="630.79,-29.25 635.79,-27.5 630.79,-25.75 630.79,-29.25" />
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>Directive</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:title="Base class for reStructuredText directives.">
+<ns0:polygon fill="white" stroke="#1e90ff" points="61,-19 0,-19 0,0 61,0 61,-19" />
+<ns0:text text-anchor="middle" x="30.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Directive</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>SphinxDirective</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:title="A base class for Sphinx directives.">
+<ns0:polygon fill="white" stroke="#1e90ff" points="191,-19 97,-19 97,0 191,0 191,-19" />
+<ns0:text text-anchor="middle" x="144" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">SphinxDirective</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>Directive-&gt;SphinxDirective</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M61.09,-9.5C70.51,-9.5 81.23,-9.5 91.73,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="91.86,-11.25 96.86,-9.5 91.86,-7.75 91.86,-11.25" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>Generic</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="https://docs.python.org/3/library/typing.html#typing.Generic" ns1:title="Abstract base class for generic types." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="171,-56 117,-56 117,-37 171,-37 171,-56" />
+<ns0:text text-anchor="middle" x="144" y="-44" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Generic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>Generic-&gt;ObjectDescription</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M171.28,-42.75C185.62,-40.7 203.95,-38.08 221.36,-35.59" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="222.03,-37.26 226.73,-34.82 221.53,-33.8 222.03,-37.26" />
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>SphinxDirective-&gt;ObjectDescription</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M191.14,-15.75C201.07,-17.09 211.67,-18.52 221.93,-19.91" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="221.75,-21.65 226.94,-20.59 222.22,-18.18 221.75,-21.65" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

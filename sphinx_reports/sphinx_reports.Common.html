@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sphinx_reports.Common &mdash; sphinx_reports 0.9.7 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.089ed2e62f89368aa21ac7591d90c12a.css?v=83177741" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=6fa0b579" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2328ca0"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sphinx_reports.DataModel" href="sphinx_reports.DataModel.html" />
+    <link rel="prev" title="sphinx_reports.CodeCoverage" href="sphinx_reports.CodeCoverage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unittest/index.html">Unit Test Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCov/index.html">Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCov/index.html">Documentation Coverage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Documentation.html">Documentation Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/Dependency.html">Dependency Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/JUnit-Basic.html">JUnit Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/JUnit-Complete.html">JUnit Complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/OSVVM.html">OSVVM Regression Test</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sphinx_reports.html">Python Class Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Adapter.html">sphinx_reports.Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.CodeCoverage.html">sphinx_reports.CodeCoverage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sphinx_reports.Common</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.Common.ReportExtensionError"><code class="docutils literal notranslate"><span class="pre">ReportExtensionError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle"><code class="docutils literal notranslate"><span class="pre">LegendStyle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle._generate_next_value_"><code class="docutils literal notranslate"><span class="pre">LegendStyle._generate_next_value_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle._numeric_repr_"><code class="docutils literal notranslate"><span class="pre">LegendStyle._numeric_repr_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle._iter_member_by_value_"><code class="docutils literal notranslate"><span class="pre">LegendStyle._iter_member_by_value_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle._iter_member_"><code class="docutils literal notranslate"><span class="pre">LegendStyle._iter_member_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle._iter_member_by_def_"><code class="docutils literal notranslate"><span class="pre">LegendStyle._iter_member_by_def_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle._missing_"><code class="docutils literal notranslate"><span class="pre">LegendStyle._missing_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__contains__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__contains__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__iter__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__iter__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__len__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__len__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__repr__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__str__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__str__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__bool__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__bool__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__or__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__or__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__ror__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__ror__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__new__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__new__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx_reports.Common.LegendStyle.__getitem__"><code class="docutils literal notranslate"><span class="pre">LegendStyle.__getitem__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DataModel.html">sphinx_reports.DataModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Dependency.html">sphinx_reports.Dependency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.DocCoverage.html">sphinx_reports.DocCoverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Sphinx.html">sphinx_reports.Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.Unittest.html">sphinx_reports.Unittest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.static.html">sphinx_reports.static</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.html#sphinx_reports.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx_reports.html#sphinx_reports.ReportDomain"><code class="docutils literal notranslate"><span class="pre">ReportDomain</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx_reports</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="sphinx_reports.html">sphinx_reports</a></li>
+      <li class="breadcrumb-item active">sphinx_reports.Common</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sphinx_reports/sphinx_reports.Common.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="module-sphinx_reports.Common">
+<span id="sphinx-reports-common"></span><h1>sphinx_reports.Common<a class="headerlink" href="#module-sphinx_reports.Common" title="Link to this heading"></a></h1>
+<p><strong>Common exceptions, classes and helper functions.</strong></p>
+<p><strong>Exceptions</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sphinx_reports.Common.ReportExtensionError" title="sphinx_reports.Common.ReportExtensionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ReportExtensionError</span></code></a>:
+Extension error.</p></li>
+</ul>
+<p><strong>Classes</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sphinx_reports.Common.LegendStyle" title="sphinx_reports.Common.LegendStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">LegendStyle</span></code></a>:
+Support for flags</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Exceptions</strong></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="sphinx_reports.Common.ReportExtensionError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.Common.</span></span><span class="sig-name descname"><span class="pre">ReportExtensionError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_exc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Common.html#ReportExtensionError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Common.ReportExtensionError" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-0d839b1321388e299e2678dfc84d5452606fffd5.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of ReportExtensionError</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>orig_exc</strong> (<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><em>Exception</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>modname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<p><strong>Classes</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_reports.Common.</span></span><span class="sig-name descname"><span class="pre">LegendStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx_reports/Common.html#LegendStyle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx_reports.Common.LegendStyle" title="Link to this definition"></a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-56bf0d86dc3c82b66a827ac5697670af5a8c8226.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of LegendStyle</p></object></div>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle._generate_next_value_">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_generate_next_value_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle._generate_next_value_" title="Link to this definition"></a></dt>
+<dd><p>Generate the next value when not given.</p>
+<p>name: the name of the member
+start: the initial start value or None
+count: the number of existing members
+last_values: the last value assigned or None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle._numeric_repr_">
+<span class="sig-name descname"><span class="pre">_numeric_repr_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle._numeric_repr_" title="Link to this definition"></a></dt>
+<dd><p>Return the canonical string representation of the object.</p>
+<p>For many object types, including most builtins, eval(repr(obj)) == obj.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle._iter_member_by_value_">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_iter_member_by_value_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle._iter_member_by_value_" title="Link to this definition"></a></dt>
+<dd><p>Extract all members from the value in definition (i.e. increasing value) order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle._iter_member_">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_iter_member_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle._iter_member_" title="Link to this definition"></a></dt>
+<dd><p>Extract all members from the value in definition (i.e. increasing value) order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle._iter_member_by_def_">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_iter_member_by_def_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle._iter_member_by_def_" title="Link to this definition"></a></dt>
+<dd><p>Extract all members from the value in definition order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle._missing_">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_missing_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle._missing_" title="Link to this definition"></a></dt>
+<dd><p>Create a composite member containing all canonical members present in <cite>value</cite>.</p>
+<p>If non-member values are present, result depends on <cite>_boundary_</cite> setting.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__contains__" title="Link to this definition"></a></dt>
+<dd><p>Returns True if self has at least the same flags set as other.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__iter__" title="Link to this definition"></a></dt>
+<dd><p>Returns flags in definition order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__len__" title="Link to this definition"></a></dt>
+<dd><p>Return the number of members (no aliases)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__str__" title="Link to this definition"></a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__bool__">
+<span class="sig-name descname"><span class="pre">__bool__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__bool__" title="Link to this definition"></a></dt>
+<dd><p>classes/types should always be True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__or__" title="Link to this definition"></a></dt>
+<dd><p>Return self|value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__ror__">
+<span class="sig-name descname"><span class="pre">__ror__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__ror__" title="Link to this definition"></a></dt>
+<dd><p>Return value|self.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__new__">
+<span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__new__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_reports.Common.LegendStyle.__getitem__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_reports.Common.LegendStyle.__getitem__" title="Link to this definition"></a></dt>
+<dd><p>Return the member matching <cite>name</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sphinx_reports.CodeCoverage.html" class="btn btn-neutral float-left" title="sphinx_reports.CodeCoverage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sphinx_reports.DataModel.html" class="btn btn-neutral float-right" title="sphinx_reports.DataModel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 20.06.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
