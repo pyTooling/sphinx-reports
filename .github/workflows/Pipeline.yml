@@ -9,7 +9,7 @@ on:
 
 jobs:
   Pipeline:
-    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@dev
+    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r5
     permissions:
       contents: write  # required for create tag
       actions:  write  # required for trigger workflow
