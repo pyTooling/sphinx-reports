@@ -143,7 +143,7 @@ class BaseDirective(ObjectDescription):
 
 		# Setup header row
 		for columnTitle, _ in columns:
-			headerRow += nodes.entry("", nodes.paragraph("", text=columnTitle))
+			headerRow += nodes.entry("", nodes.Text(columnTitle))
 
 		return tableGroup
 
@@ -167,9 +167,9 @@ class BaseDirective(ObjectDescription):
 		# Setup primary header row
 		for columnTitle, more, _ in columns:
 			if more is None:
-				headerRow1 += nodes.entry("", nodes.paragraph(text=columnTitle), morerows=1)
+				headerRow1 += nodes.entry("", nodes.Text(columnTitle), morerows=1)
 			else:
-				headerRow1 += nodes.entry("", nodes.paragraph(text=columnTitle), morecols=(morecols := len(more) - 1))
+				headerRow1 += nodes.entry("", nodes.Text(columnTitle), morecols=(morecols := len(more) - 1))
 				for i in range(morecols):
 					headerRow1 += None
 
@@ -180,7 +180,7 @@ class BaseDirective(ObjectDescription):
 				headerRow2 += None
 			else:
 				for columnTitle, _ in more:
-					headerRow2 += nodes.entry("", nodes.paragraph(text=columnTitle))
+					headerRow2 += nodes.entry("", nodes.Text(columnTitle))
 
 		return tableGroup
 
