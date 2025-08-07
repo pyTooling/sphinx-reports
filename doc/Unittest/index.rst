@@ -112,7 +112,7 @@ Configuration Entries in :file:`conf.py`
             # ==============================================================================
             # Sphinx-reports - Unittest
             # ==============================================================================
-            report_codecov_packages = {
+            report_unittest_testsuites = {
                "src": {
                   "name":       "myPackage",
                   "xml_report": "../report/unit/unittest.xml",
