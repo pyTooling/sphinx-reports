@@ -9,16 +9,18 @@ on:
 
 jobs:
   Pipeline:
-    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r5
+    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r6
     permissions:
       contents: write  # required for create tag
       actions:  write  # required for trigger workflow
     with:
-      package_name: sphinx_reports
-      unittest_python_version_list: '3.11 3.12 3.13'
-      codecov: true
-      codacy:  true
-      dorny:   true
+      package_name: 'sphinx_reports'
+      unittest_python_version_list: '3.11 3.12 3.13 3.14'
+      bandit:       'true'
+      pylint:       'false'
+      codecov:      'true'
+      codacy:       'true'
+      dorny:        'true'
     secrets:
       PYPI_TOKEN:    ${{ secrets.PYPI_TOKEN }}
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
