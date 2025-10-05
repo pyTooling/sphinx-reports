@@ -46,8 +46,8 @@ See the following :file:`doc/requirements.txt` file as an example with commonly 
       # Sphinx Extenstions
       sphinxcontrib-mermaid ~= 1.0
       autoapi ~= 2.0.1
-      sphinx_design ~= 0.6.1
-      sphinx-copybutton ~= 0.5.2
+      sphinx_design ~= 0.6
+      sphinx-copybutton ~= 0.5
       sphinx_autodoc_typehints ~= 3.2
       sphinx_reports ~= 1.0             # <= new entry
 

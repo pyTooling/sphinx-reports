@@ -2,7 +2,7 @@
 requires = [
   "setuptools >= 80.0",
   "wheel ~= 0.45",
-  "pyTooling ~= 8.5"
+  "pyTooling ~= 8.7"
 ]
 build-backend = "setuptools.build_meta"
 
@@ -10,7 +10,7 @@ build-backend = "setuptools.build_meta"
 line-length = 120
 
 [tool.mypy]
-files = ["sphinx_reports"]
+packages = ["sphinx_reports"]
 python_version = "3.13"
 #ignore_missing_imports = true
 strict = true
