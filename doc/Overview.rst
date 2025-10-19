@@ -48,7 +48,7 @@ See the following :file:`doc/requirements.txt` file as an example with commonly 
       autoapi ~= 2.0.1
       sphinx_design ~= 0.6
       sphinx-copybutton ~= 0.5
-      sphinx_autodoc_typehints ~= 3.2
+      sphinx_autodoc_typehints ~= 3.5
       sphinx_reports ~= 1.0             # <= new entry
 
 Finally, the extension needs to be enabled in Sphinx's :file:`conf.py`, so the extension is loaded by Sphinx.
