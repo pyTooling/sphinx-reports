@@ -91,7 +91,7 @@ class DependencyTable(BaseDirective):
 			("License", None, 100),
 		]
 
-		table, tableGroup = self._CreateTableHeader(
+		tableGroup = self._CreateDoubleRowTableHeader(
 			identifier=self._packageName,
 			columns=columns,
 			classes=["report-dependency-table"]
@@ -107,71 +107,18 @@ class DependencyTable(BaseDirective):
 			tableRow = nodes.row("", classes=["report-dependency-table-row", "report-dependency"])
 			tableBody += tableRow
 
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{distribution.Name}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{distribution.Version}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{distribution.Licenses}"))
+			tableRow += nodes.entry("", nodes.Text(f"{distribution.Name}"))
+			tableRow += nodes.entry("", nodes.Text(f"{distribution.Version}"))
+			tableRow += nodes.entry("", nodes.Text(f"{distribution.Licenses}"))
 
 			# for ts in sortedValues(testsuite._testsuites):
 			# 	renderTestsuite(tableBody, ts, 0)
-
-		# def renderTestsuite(tableBody: nodes.tbody, testsuite: Testsuite, level: int) -> None:
-		# 	state = stateToSymbol(testsuite._state)
-		#
-		# 	tableRow = nodes.row("", classes=["report-unittest-table-row", "report-testsuite"])
-		# 	tableBody += tableRow
-		#
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testsuite.Name}"))
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Tests}"))
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Skipped}"))
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Errored}"))
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Failed}"))
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{testsuite.Passed}"))
-		# 	if not self._noAssertions:
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{timeformat(testsuite.Time)}"))
-		#
-		# 	for ts in sortedValues(testsuite._testsuites):
-		# 		renderTestsuite(tableBody, ts, level + 1)
-		#
-		# 	for testcase in sortedValues(testsuite._testcases):
-		# 		renderTestcase(tableBody, testcase, level + 1)
-		#
-		# def renderTestcase(tableBody: nodes.tbody, testcase: Testcase, level: int) -> None:
-		# 	state = stateToSymbol(testcase._state)
-		#
-		# 	tableRow =	nodes.row("", classes=["report-unittest-table-row", "report-testcase"])
-		# 	tableBody += tableRow
-		#
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * level}{state}{testcase.Name}"))
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Expected}")),
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Covered}")),
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {testsuite.Uncovered}")),
-		# 	if not self._noAssertions:
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f"{testcase.Assertions}"))
-		# 	tableRow += nodes.entry("", nodes.paragraph(text=f"{timeformat(testcase.Time)}"))
-		#
-		# 	for test in sortedValues(testcase._tests):
-		# 		state = stateToSymbol(test._state)
-		# 		tableRow = nodes.row("", classes=["report-unittest-table-row", "report-test"])
-		# 		tableBody += tableRow
-		#
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f"{'  ' * (level + 1)}{state}{test.Name}"))
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Expected}")),
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Covered}")),
-		# 		if not self._noAssertions:
-		# 			tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Uncovered}")),
-		# 		tableRow += nodes.entry("", nodes.paragraph(text=f""))  # {test.Coverage :.1%}")),
 
 		renderRoot(tableBody, self._distribution)
 
 		# # Add a summary row
 
-		return table
+		return tableGroup.parent
 
 	def run(self) -> List[nodes.Node]:
 		self._CheckOptions()

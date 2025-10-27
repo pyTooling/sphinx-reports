@@ -310,7 +310,7 @@ class CodeCoverage(CodeCoverageBase):
 		if self._noBranchCoverage:
 			columns.pop(2)
 
-		table, tableGroup = self._CreateTableHeader(
+		tableGroup = self._CreateDoubleRowTableHeader(
 			identifier=self._reportID,
 			columns=columns,
 			classes=cssClasses
@@ -327,20 +327,20 @@ class CodeCoverage(CodeCoverageBase):
 		])
 		tableBody += tableRow
 
-		tableRow += nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedTotalStatements}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedExcludedStatements}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoveredStatements}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedMissingStatements}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedStatementCoverage:.1%}"))
+		tableRow += nodes.entry("", nodes.Text(f"Overall ({self._coverage.FileCount} files):"))
+		tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedTotalStatements}"))
+		tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedExcludedStatements}"))
+		tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedCoveredStatements}"))
+		tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedMissingStatements}"))
+		tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedStatementCoverage:.1%}"))
 		if not self._noBranchCoverage:
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedTotalBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoveredBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedPartialBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedMissingBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedBranchCoverage:.1%}"))
+			tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedTotalBranches}"))
+			tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedCoveredBranches}"))
+			tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedPartialBranches}"))
+			tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedMissingBranches}"))
+			tableRow += nodes.entry("", nodes.Text(f"{self._coverage.AggregatedBranchCoverage:.1%}"))
 
-		return table
+		return tableGroup.parent
 
 	def sortedValues(self, d: Mapping[str, Coverage]) -> Generator[Coverage, None, None]:
 		for key in sorted(d.keys()):
@@ -354,18 +354,18 @@ class CodeCoverage(CodeCoverageBase):
 		])
 		tableBody += tableRow
 
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * level}📦{packageCoverage.Name}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalStatements}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.ExcludedStatements}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredStatements}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingStatements}"))
-		tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.StatementCoverage:.1%}"))
+		tableRow += nodes.entry("", nodes.Text(f"{' ' * level}📦{packageCoverage.Name}"))
+		tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.TotalStatements}"))
+		tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.ExcludedStatements}"))
+		tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.CoveredStatements}"))
+		tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.MissingStatements}"))
+		tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.StatementCoverage:.1%}"))
 		if not self._noBranchCoverage:
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.TotalBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.CoveredBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.PartialBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.MissingBranches}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{packageCoverage.BranchCoverage:.1%}"))
+			tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.TotalBranches}"))
+			tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.CoveredBranches}"))
+			tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.PartialBranches}"))
+			tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.MissingBranches}"))
+			tableRow += nodes.entry("", nodes.Text(f"{packageCoverage.BranchCoverage:.1%}"))
 
 		for package in self.sortedValues(packageCoverage._packages):
 			self.renderlevel(tableBody, package, level + 1)
@@ -377,18 +377,18 @@ class CodeCoverage(CodeCoverageBase):
 			])
 			tableBody += tableRow
 
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{' ' * (level + 1)} ⚙️{module.Name}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalStatements}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.ExcludedStatements}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredStatements}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingStatements}"))
-			tableRow += nodes.entry("", nodes.paragraph(text=f"{module.StatementCoverage:.1%}"))
+			tableRow += nodes.entry("", nodes.Text(f"{' ' * (level + 1)} ⚙️{module.Name}"))
+			tableRow += nodes.entry("", nodes.Text(f"{module.TotalStatements}"))
+			tableRow += nodes.entry("", nodes.Text(f"{module.ExcludedStatements}"))
+			tableRow += nodes.entry("", nodes.Text(f"{module.CoveredStatements}"))
+			tableRow += nodes.entry("", nodes.Text(f"{module.MissingStatements}"))
+			tableRow += nodes.entry("", nodes.Text(f"{module.StatementCoverage:.1%}"))
 			if not self._noBranchCoverage:
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.TotalBranches}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.CoveredBranches}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.PartialBranches}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.MissingBranches}"))
-				tableRow += nodes.entry("", nodes.paragraph(text=f"{module.BranchCoverage:.1%}"))
+				tableRow += nodes.entry("", nodes.Text(f"{module.TotalBranches}"))
+				tableRow += nodes.entry("", nodes.Text(f"{module.CoveredBranches}"))
+				tableRow += nodes.entry("", nodes.Text(f"{module.PartialBranches}"))
+				tableRow += nodes.entry("", nodes.Text(f"{module.MissingBranches}"))
+				tableRow += nodes.entry("", nodes.Text(f"{module.BranchCoverage:.1%}"))
 
 	def _CreatePages(self) -> None:
 		def handlePackage(package: PackageCoverage) -> None:
@@ -522,7 +522,7 @@ class CodeCoverageLegend(CodeCoverageBase):
 			if isinstance(level, int):
 				columns.append((f"≤{level} %", None, 200))
 
-		table, tableGroup = self._CreateTableHeader(columns, identifier=identifier, classes=classes)
+		tableGroup = self._CreateDoubleRowTableHeader(columns, identifier=identifier, classes=classes)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
@@ -543,7 +543,7 @@ class CodeCoverageLegend(CodeCoverageBase):
 		return table
 
 	def _CreateVerticalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
-		table, tableGroup = self._CreateTableHeader([
+		tableGroup = self._CreateDoubleRowTableHeader([
 				("Code Coverage", None, 300),
 				("Coverage Level", None, 300)
 			],
@@ -558,12 +558,12 @@ class CodeCoverageLegend(CodeCoverageBase):
 			if isinstance(level, int):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"≤{level} %")),
+					nodes.entry("", nodes.Text(f"≤{level} %")),
 					nodes.entry("", nodes.paragraph(text=config["desc"])),
 					classes=["report-codecov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
 				)
 
-		return table
+		return tableGroup.parent
 
 	def run(self) -> List[nodes.Node]:
 		container = nodes.container()

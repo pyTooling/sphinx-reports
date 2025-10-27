@@ -271,7 +271,7 @@ class DocCoverage(DocCoverageBase):
 		cssClasses.extend(self._cssClasses)
 
 		# Create a table and table header with 5 columns
-		table, tableGroup = self._CreateTableHeader(
+		tableGroup = self._CreateDoubleRowTableHeader(
 			identifier=self._reportID,
 			columns=[
 				("Filename", None, 500),
@@ -290,11 +290,11 @@ class DocCoverage(DocCoverageBase):
 		# Add a summary row
 		tableBody += nodes.row(
 			"",
-			nodes.entry("", nodes.paragraph(text=f"Overall ({self._coverage.FileCount} files):")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedExpected}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedUncovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{self._coverage.AggregatedCoverage:.1%}"),
+			nodes.entry("", nodes.Text(f"Overall ({self._coverage.FileCount} files):")),
+			nodes.entry("", nodes.Text(f"{self._coverage.AggregatedExpected}")),
+			nodes.entry("", nodes.Text(f"{self._coverage.AggregatedCovered}")),
+			nodes.entry("", nodes.Text(f"{self._coverage.AggregatedUncovered}")),
+			nodes.entry("", nodes.Text(f"{self._coverage.AggregatedCoverage:.1%}"),
 				# classes=[self._ConvertToColor(self._coverage.coverage(), "class")]
 			),
 			classes=[
@@ -303,7 +303,7 @@ class DocCoverage(DocCoverageBase):
 			]
 		)
 
-		return table
+		return tableGroup.parent
 
 	def _sortedValues(self, d: Mapping[str, AggregatedCoverage]) -> Generator[AggregatedCoverage, None, None]:
 		for key in sorted(d.keys()):
@@ -312,11 +312,11 @@ class DocCoverage(DocCoverageBase):
 	def _renderlevel(self, tableBody: nodes.tbody, packageCoverage: PackageCoverage, level: int = 0) -> None:
 		tableBody += nodes.row(
 			"",
-			nodes.entry("", nodes.paragraph(text=f"{' '*level}📦{packageCoverage.Name}")),
-			nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Expected}")),
-			nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Covered}")),
-			nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Uncovered}")),
-			nodes.entry("", nodes.paragraph(text=f"{packageCoverage.Coverage:.1%}")),
+			nodes.entry("", nodes.Text(f"{' '*level}📦{packageCoverage.Name}")),
+			nodes.entry("", nodes.Text(f"{packageCoverage.Expected}")),
+			nodes.entry("", nodes.Text(f"{packageCoverage.Covered}")),
+			nodes.entry("", nodes.Text(f"{packageCoverage.Uncovered}")),
+			nodes.entry("", nodes.Text(f"{packageCoverage.Coverage:.1%}")),
 			classes=[
 				"report-package",
 				self._ConvertToColor(packageCoverage.Coverage, "class")
@@ -329,11 +329,11 @@ class DocCoverage(DocCoverageBase):
 		for module in self._sortedValues(packageCoverage._modules):
 			tableBody += nodes.row(
 				"",
-				nodes.entry("", nodes.paragraph(text=f"{' '*(level+1)} ⚙️{module.Name}")),
-				nodes.entry("", nodes.paragraph(text=f"{module.Expected}")),
-				nodes.entry("", nodes.paragraph(text=f"{module.Covered}")),
-				nodes.entry("", nodes.paragraph(text=f"{module.Uncovered}")),
-				nodes.entry("", nodes.paragraph(text=f"{module.Coverage :.1%}")),
+				nodes.entry("", nodes.Text(f"{' '*(level+1)} ⚙️{module.Name}")),
+				nodes.entry("", nodes.Text(f"{module.Expected}")),
+				nodes.entry("", nodes.Text(f"{module.Covered}")),
+				nodes.entry("", nodes.Text(f"{module.Uncovered}")),
+				nodes.entry("", nodes.Text(f"{module.Coverage :.1%}")),
 				classes=[
 					"report-module",
 					self._ConvertToColor(module.Coverage, "class")
@@ -396,7 +396,7 @@ class DocCoverageLegend(DocCoverageBase):
 			if isinstance(level, int):
 				columns.append((f"≤{level} %", None, 200))
 
-		table, tableGroup = self._CreateTableHeader(columns, identifier=identifier, classes=classes)
+		tableGroup = self._CreateDoubleRowTableHeader(columns, identifier=identifier, classes=classes)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
@@ -410,7 +410,7 @@ class DocCoverageLegend(DocCoverageBase):
 		return table
 
 	def _CreateVerticalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
-		table, tableGroup = self._CreateTableHeader([
+		tableGroup = self._CreateDoubleRowTableHeader([
 				("Documentation Coverage", None, 300),
 				("Coverage Level", None, 300)
 			],
@@ -425,12 +425,12 @@ class DocCoverageLegend(DocCoverageBase):
 			if isinstance(level, int):
 				tableBody += nodes.row(
 					"",
-					nodes.entry("", nodes.paragraph(text=f"≤{level} %")),
+					nodes.entry("", nodes.Text(f"≤{level} %")),
 					nodes.entry("", nodes.paragraph(text=config["desc"])),
 					classes=["report-doccov-legend-row", self._ConvertToColor((level - 1) / 100, "class")]
 				)
 
-		return table
+		return tableGroup.parent
 
 	def run(self) -> List[nodes.Node]:
 		container = nodes.container()

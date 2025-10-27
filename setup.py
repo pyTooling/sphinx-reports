@@ -55,7 +55,7 @@ setup(
 			"Topic :: Software Development :: Testing :: Unit",
 		],
 		developmentStatus="beta",
-		pythonVersions=("3.11", "3.12", "3.13"),
+		pythonVersions=("3.11", "3.12", "3.13", "3.14"),
 		dataFiles={
 			"sphinx_reports": ["static/*.css"]
 		},
