@@ -37,14 +37,14 @@ See the following :file:`doc/requirements.txt` file as an example with commonly 
       -r ../requirements.txt
 
       # Enforce latest version on ReadTheDocs
-      sphinx ~= 8.2
-      docutils ~= 0.21
+      sphinx ~= 9.0
+      docutils ~= 0.22
 
       # ReadTheDocs Theme
       sphinx_rtd_theme ~= 3.0
 
       # Sphinx Extenstions
-      sphinxcontrib-mermaid ~= 1.0
+      sphinxcontrib-mermaid ~= 1.2
       autoapi ~= 2.0.1
       sphinx_design ~= 0.6
       sphinx-copybutton ~= 0.5
