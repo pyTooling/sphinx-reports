@@ -16,7 +16,7 @@ from sphinx_reports.DataModel.Dependency import Distribution
 class DependencyScanner:
 	_distribution: Distribution
 
-	def __init__(self, distributionName: str):
+	def __init__(self, distributionName: str) -> None:
 		md1 = importlib_metadata(distributionName)
 
 		self._distribution = Distribution(distributionName)

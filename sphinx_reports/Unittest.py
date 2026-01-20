@@ -64,7 +64,7 @@ class ShowTestcases(Flag):
 	all = passed | failed | skipped | excluded | errors | aborted
 	not_passed = all & ~passed
 
-	def __eq__(self, other):
+	def __eq__(self, other: Any) -> bool:
 		if isinstance(other, TestcaseStatus):
 			if other is TestcaseStatus.Passed:
 				return ShowTestcases.passed in self
