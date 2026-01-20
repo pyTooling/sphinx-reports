@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2023-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -38,7 +38,7 @@ from pyTooling.Decorators import export, readonly
 class VersionSpecifier:
 	_spec: str
 
-	def __init__(self, spec: str):
+	def __init__(self, spec: str) -> None:
 		self._spec = spec
 
 
@@ -46,7 +46,7 @@ class VersionSpecifier:
 class License:
 	_name: str
 
-	def __init__(self, name: str):
+	def __init__(self, name: str) -> None:
 		self._name = name
 
 
@@ -58,7 +58,7 @@ class Distribution:
 	_licenses:     List[License]
 	_dependencies: List["Distribution"]
 
-	def __init__(self, name: str):
+	def __init__(self, name: str) -> None:
 		self._name = name
 
 		self._packages = []

@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2023-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -41,9 +41,9 @@ Supported reports:
 """
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
-__copyright__ = "2023-2025, Patrick Lehmann"
+__copyright__ = "2023-2026, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.9.9"
+__version__ =   "0.10.0"
 __keywords__ =  [
 	"Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate", "Code Coverage", "Coverage",
 	"Documentation Coverage", "Unittest", "Dependencies", "Summary"
@@ -215,7 +215,7 @@ class ReportDomain(Domain):
 		cssContent = readResourceFile(ResourcePackage, cssFilename)
 
 		# Compute md5 hash of CSS file
-		hash = md5(cssContent.encode("utf8")).hexdigest()
+		hash = md5(cssContent.encode("utf8")).hexdigest()      # nosec B324
 
 		# Write the CSS file into output directory
 		cssFile = staticDirectory / f"sphinx-reports.{hash}.css"

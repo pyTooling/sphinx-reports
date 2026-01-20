@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2023-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -64,7 +64,7 @@ class ShowTestcases(Flag):
 	all = passed | failed | skipped | excluded | errors | aborted
 	not_passed = all & ~passed
 
-	def __eq__(self, other):
+	def __eq__(self, other: Any) -> bool:
 		if isinstance(other, TestcaseStatus):
 			if other is TestcaseStatus.Passed:
 				return ShowTestcases.passed in self

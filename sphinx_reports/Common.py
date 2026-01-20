@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2023-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -32,7 +32,6 @@
 **Common exceptions, classes and helper functions.**
 """
 from enum                        import Flag
-from sys                         import version_info
 from typing                      import List
 
 from pyTooling.Decorators        import export
@@ -41,15 +40,7 @@ from sphinx.errors               import ExtensionError
 
 @export
 class ReportExtensionError(ExtensionError):
-	# WORKAROUND: for Python <3.11
-	# Implementing a dummy method for Python versions before
-	__notes__: List[str]
-	if version_info < (3, 11):  # pragma: no cover
-		def add_note(self, message: str) -> None:
-			try:
-				self.__notes__.append(message)
-			except AttributeError:
-				self.__notes__ = [message]
+	pass
 
 
 @export
