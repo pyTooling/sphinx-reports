@@ -1,6 +1,6 @@
 pyTooling >= 8.0
 pyEDAA.Reports ~= 0.17.0
-sphinx >= 9.0
+sphinx >= 9.0, < 10.0
 docutils >= 0.22.0
 docutils_stubs >= 0.0.22
 

@@ -44,7 +44,7 @@ See the following :file:`doc/requirements.txt` file as an example with commonly 
       sphinx_rtd_theme ~= 3.1
 
       # Sphinx Extenstions
-      sphinxcontrib-mermaid ~= 1.2
+      sphinxcontrib-mermaid ~= 2.0
       autoapi ~= 2.0.1
       sphinx_design ~= 0.7.0
       sphinx-copybutton ~= 0.5.0
