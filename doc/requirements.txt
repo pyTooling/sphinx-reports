@@ -2,7 +2,7 @@
 
 # Enforce latest version on ReadTheDocs
 sphinx >= 8.0, < 10.0
-docutils ~= 0.22
+docutils >= 0.22.0
 docutils_stubs ~= 0.0.22
 
 # ReadTheDocs Theme
@@ -11,6 +11,6 @@ sphinx_rtd_theme ~= 3.0
 # Sphinx Extenstions
 sphinxcontrib-mermaid ~= 1.2
 autoapi ~= 2.0.1
-sphinx_design ~= 0.6
-sphinx-copybutton ~= 0.5
-sphinx_autodoc_typehints ~= 3.5
+sphinx_design ~= 0.7.0
+sphinx-copybutton ~= 0.5.0
+sphinx_autodoc_typehints ~= 3.6

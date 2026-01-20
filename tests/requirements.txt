@@ -1,13 +1,2 @@
--r ../requirements.txt
-
-# Coverage collection
-Coverage ~= 7.12
-
-# Test Runner
-pytest ~= 9.0
-pytest-cov ~= 7.0
-
-# Static Type Checking
-mypy[reports] ~= 1.19; sys_platform != 'win32'
-typing_extensions ~= 4.15; sys_platform != 'win32'
-lxml >= 5.4, <7.0; sys_platform != 'win32'
+-r unit/requirements.txt
+-r typing/requirements.txt
