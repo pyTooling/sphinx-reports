@@ -1,4 +1,4 @@
-.. _UNITTEST:
+.. _UNITTESTING:
 
 Unit Test Summary
 #################
@@ -10,7 +10,7 @@ Unit Test Summary
 
       The :rst:dir:`report:unittest-summary` directive generates a unittest report summary table. The unittest report
       file(s) need to be configured in Sphinx's ``conf.py`` for pre-analysis and data aggregation
-      (:ref:`see below <UNITTEST/Config>` for details). This also allows the directive to supports multiple unittest
+      (:ref:`see below <UNITTESTING/Config>` for details). This also allows the directive to supports multiple unittest
       reports per Sphinx documentation. Each unittest report is referenced by the
       :rst:dir:`report <report:unittest-summary:reportid>` option, which matches the dictionary key used in the
       configuration file.
@@ -72,7 +72,7 @@ Unit Test Summary
 
          .. tab-item:: Only Testsuites
 
-            .. image:: ../_static/Unittest_OnlyTestsuites.png
+            .. #image:: ../_static/Unittest_OnlyTestsuites.png
 
          .. tab-item:: Testsuites and Testcases
             :selected:
@@ -80,7 +80,7 @@ Unit Test Summary
             .. image:: ../_static/Unittest.png
 
 
-.. _UNITTEST/Config:
+.. _UNITTESTING/Config:
 
 Configuration Entries in :file:`conf.py`
 ****************************************
@@ -120,7 +120,7 @@ Configuration Entries in :file:`conf.py`
             }
 
 
-.. _UNITTEST/Example:
+.. _UNITTESTING/Example:
 
 Example Document
 ****************
@@ -171,7 +171,7 @@ The second file shows how to integrate that document into the navigation bar / *
          :hidden:
 
 
-.. _UNITTEST/Directives:
+.. _UNITTESTING/Directives:
 
 Sphinx Directives
 *****************
@@ -213,7 +213,7 @@ The following directives are provided for visualizing unittest reports.
 
 
 
-.. _UNITTEST/Roles:
+.. _UNITTESTING/Roles:
 
 Sphinx Roles
 ************
@@ -222,7 +222,7 @@ Sphinx Roles
 
 
 
-.. _UNITTEST/Styling:
+.. _UNITTESTING/Styling:
 
 Custom CSS Styling
 ******************

@@ -73,10 +73,13 @@ from sphinx_reports.LaTeX  import translateLandscape as translateLandscapeAsLaTe
 
 @export
 class RegisteredNode(TypedDict):
-	name:  str
-	node:  Type[Element]
-	html:  Tuple[visitFunc, departFunc]
-	latex: Tuple[visitFunc, departFunc]
+	"""
+	Type information for an entry in :attr:`ReportDomain.nodes`.
+	"""
+	name:  str                           #: Name of the new docutils node to register.
+	node:  Type[Element]                 #: The new node class to register.
+	html:  Tuple[visitFunc, departFunc]  #: A tuple of visit and depart functions rendering the new node in case of HTML output.
+	latex: Tuple[visitFunc, departFunc]  #: A tuple of visit and depart functions rendering the new node in case of LaTeX output.
 
 
 @export

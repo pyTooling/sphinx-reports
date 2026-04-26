@@ -3,14 +3,27 @@
 Dependencies
 ############
 
-.. |img-pyTooling-lib-status| image:: https://img.shields.io/librariesio/release/pypi/sphinx-reports
-   :alt: Libraries.io status for latest release
-   :height: 22
-   :target: https://libraries.io/github/pyTooling/sphinx-reports
-.. |img-pyTooling-vul-status| image:: https://img.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
-   :alt: Snyk Vulnerabilities for GitHub Repo
-   :height: 22
-   :target: https://img.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
+.. only:: html
+
+   .. |img-pyTooling-lib-status| image:: https://img.shields.io/librariesio/release/pypi/sphinx-reports
+      :alt: Libraries.io status for latest release
+      :height: 22
+      :target: https://libraries.io/github/pyTooling/sphinx-reports
+   .. |img-pyTooling-vul-status| image:: https://img.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
+      :alt: Snyk Vulnerabilities for GitHub Repo
+      :height: 22
+      :target: https://raster.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
+
+.. only:: latex
+
+   .. |img-pyTooling-lib-status| image:: https://raster.shields.io/librariesio/release/pypi/sphinx-reports
+      :alt: Libraries.io status for latest release
+      :height: 22
+      :target: https://libraries.io/github/pyTooling/sphinx-reports
+   .. |img-pyTooling-vul-status| image:: https://raster.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
+      :alt: Snyk Vulnerabilities for GitHub Repo
+      :height: 22
+      :target: https://raster.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
 
 +------------------------------------------+------------------------------------------+
 | `Libraries.io <https://libraries.io/>`_  | Vulnerabilities Summary                  |

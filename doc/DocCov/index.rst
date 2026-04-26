@@ -1,4 +1,4 @@
-.. _DOCCOV:
+.. _DOCCOVER:
 
 Documentation Coverage
 ######################
@@ -10,7 +10,7 @@ Documentation Coverage
 
       The :rst:dir:`report:doc-coverage` directive generates a documentation coverage report summary table. The
       documentation coverage reports need to be configured in Sphinx's ``conf.py`` for pre-analysis and data aggregation
-      (:ref:`see below <DOCCOV/Config>` for details). This also allows the directive to supports multiple documentation
+      (:ref:`see below <DOCCOVER/Config>` for details). This also allows the directive to supports multiple documentation
       coverage reports per Sphinx documentation. Each documentation coverage report is referenced by the
       :rst:dir:`reportid <report:doc-coverage:reportid>` option, which matches the dictionary key used in the
       configuration file.
@@ -55,7 +55,7 @@ Documentation Coverage
          .. image:: ../_static/DocCoverage.png
 
 
-.. _DOCCOV/Config:
+.. _DOCCOVER/Config:
 
 Configuration Entries in :file:`conf.py`
 ****************************************
@@ -130,7 +130,7 @@ Configuration Entries in :file:`conf.py`
                }
 
 
-.. _DOCCOV/Example:
+.. _DOCCOVER/Example:
 
 Example Document
 ****************
@@ -150,7 +150,7 @@ The second file shows how to integrate that document into the navigation bar / *
 
    .. code-block:: ReST
 
-      .. _DOCCOV:
+      .. _DOCCOVER:
 
       Documentation Coverage Report
       #############################
@@ -194,7 +194,7 @@ The second file shows how to integrate that document into the navigation bar / *
          :hidden:
 
 
-.. _DOCCOV/Directives:
+.. _DOCCOVER/Directives:
 
 Sphinx Directives
 *****************
@@ -241,7 +241,7 @@ The following directives are provided for visualizing documentation coverage rep
       * ``vertical-table``
 
 
-.. _DOCCOV/Roles:
+.. _DOCCOVER/Roles:
 
 Sphinx Roles
 ************
@@ -249,7 +249,7 @@ Sphinx Roles
 *There are no roles defined.*
 
 
-.. _DOCCOV/ColorPalett:
+.. _DOCCOVER/ColorPalett:
 
 Color Paletts
 *************
