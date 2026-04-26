@@ -233,6 +233,8 @@ graphviz_output_format = "svg"
 # ==============================================================================
 # SphinxContrib.Mermaid
 # ==============================================================================
+mermaid_cmd = "mmdc"
+mermaid_cmd_shell = True
 mermaid_params = [
 	'--backgroundColor', 'transparent',
 ]

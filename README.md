@@ -1,7 +1,7 @@
 [![Sourcecode on GitHub](https://img.shields.io/badge/pyTooling-sphinx--reports-323131.svg?logo=github&longCache=true)](https://github.com/pyTooling/sphinx-reports)
 [![Sourcecode License](https://img.shields.io/pypi/l/sphinx-reports?longCache=true&style=flat-square&logo=Apache&label=code)](LICENSE.md)
 [![Documentation](https://img.shields.io/website?longCache=true&style=flat-square&label=pyTooling.github.io%2Fsphinx-reports&logo=GitHub&logoColor=fff&up_color=blueviolet&up_message=Read%20now%20%E2%9E%9A&url=https%3A%2F%2FpyTooling.github.io%2Fsphinx%2Dreports%2Findex.html)](https://pyTooling.github.io/sphinx-reports/)
-[![Documentation License](https://img.shields.io/badge/doc-CC--BY%204.0-green?longCache=true&style=flat-square&logo=CreativeCommons&logoColor=fff)](LICENSE.md)  
+[![Documentation License](https://img.shields.io/badge/doc-CC--BY%204.0-green?longCache=true&style=flat-square&logo=CreativeCommons&logoColor=fff)](doc/Doc-License.rst)  
 [![PyPI](https://img.shields.io/pypi/v/sphinx-reports?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)](https://pypi.org/project/sphinx-reports/)
 ![PyPI - Status](https://img.shields.io/pypi/status/sphinx-reports?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/sphinx-reports?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)  
