@@ -18,7 +18,7 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r7
     with:
       package_name: 'sphinx_reports'
-      unittest_python_version_list: '3.11 3.12 3.13 3.14'
+      unittest_python_version_list: '3.12 3.13 3.14'   # dropped 3.11 due to Sphinx 9.1 dropping 3.11
       unittest_disable_list:        'windows-arm:* windows-arm:pypy-3.11'
       bandit:       'true'
       pylint:       'false'
