@@ -32,10 +32,14 @@
 **Common exceptions, classes and helper functions.**
 """
 from enum                        import Flag
-from typing                      import List
+from typing                      import Callable, Any
 
 from pyTooling.Decorators        import export
 from sphinx.errors               import ExtensionError
+
+
+type visitFunc =  Callable[[Any, Any], Any]
+type departFunc = Callable[[Any, Any], Any]
 
 
 @export

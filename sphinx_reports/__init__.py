@@ -43,7 +43,7 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2023-2026, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.10.0"
+__version__ =   "0.11.0"
 __keywords__ =  [
 	"Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate", "Code Coverage", "Coverage",
 	"Documentation Coverage", "Unittest", "Dependencies", "Summary"
@@ -51,9 +51,9 @@ __keywords__ =  [
 
 from hashlib               import md5
 from pathlib               import Path
-from typing                import TYPE_CHECKING, Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable
+from typing                import TYPE_CHECKING, Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable, Type
 
-from docutils              import nodes
+from docutils.nodes        import Element
 from sphinx.addnodes       import pending_xref
 from sphinx.application    import Sphinx
 from sphinx.builders       import Builder
@@ -65,7 +65,18 @@ from pyTooling.Decorators  import export
 from pyTooling.Common      import readResourceFile
 
 from sphinx_reports        import static as ResourcePackage
-from sphinx_reports.Common import ReportExtensionError
+from sphinx_reports.Common import ReportExtensionError, visitFunc, departFunc
+from sphinx_reports.Node   import Landscape
+from sphinx_reports.HTML   import translateLandscape as translateLandscapeAsHTML
+from sphinx_reports.LaTeX  import translateLandscape as translateLandscapeAsLaTeX
+
+
+@export
+class RegisteredNode(TypedDict):
+	name:  str
+	node:  Type[Element]
+	html:  Tuple[visitFunc, departFunc]
+	latex: Tuple[visitFunc, departFunc]
 
 
 @export
@@ -105,6 +116,17 @@ class ReportDomain(Domain):
 
 	dependencies: List[str] = [
 	]  #: A list of other extensions this domain depends on.
+
+	latexPackages: Tuple[str, ...] = (
+		"pdflscape",
+	)
+	nodes: Tuple[RegisteredNode, ...] = (
+		{ "name": "Landscape",
+			"node": Landscape,
+			"html": translateLandscapeAsHTML,
+			"latex": translateLandscapeAsLaTeX
+		},
+	)
 
 	from sphinx_reports.CodeCoverage import CodeCoverage, CodeCoverageLegend, ModuleCoverage
 	from sphinx_reports.DocCoverage  import DocStrCoverage, DocCoverageLegend
@@ -262,8 +284,8 @@ class ReportDomain(Domain):
 		typ: str,
 		target: str,
 		node: pending_xref,
-		contnode: nodes.Element
-	) -> Nullable[nodes.Element]:
+		contnode: Element
+	) -> Nullable[Element]:
 		raise NotImplementedError()
 
 
@@ -291,6 +313,14 @@ def setup(sphinxApplication: Sphinx) -> "setup_ReturnType":
 	"""
 	sphinxApplication.add_domain(ReportDomain)
 
+	# Request new LaTeX package dependencies
+	for latexPackage in ReportDomain.latexPackages:
+		sphinxApplication.add_latex_package(latexPackage)
+
+	# Register new docutil nodes.
+	for newNode in ReportDomain.nodes:
+		sphinxApplication.add_node(newNode["node"], html=newNode["html"], latex=newNode["latex"])
+
 	# Register callbacks
 	for eventName, callbacks in ReportDomain.callbacks.items():
 		for callback in callbacks:
@@ -303,6 +333,6 @@ def setup(sphinxApplication: Sphinx) -> "setup_ReturnType":
 	return {
 		"version": __version__,                          # version of the extension
 		"env_version": int(__version__.split(".")[0]),   # version of the data structure stored in the environment
-		'parallel_read_safe': False,                     # Not yet evaluated, thus false
+		'parallel_read_safe': False,                     # TODO: Not yet evaluated, thus false
 		'parallel_write_safe': True,                     # Internal data structure is used read-only, thus no problems will occur by parallel writing.
 	}

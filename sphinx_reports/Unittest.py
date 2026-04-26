@@ -45,6 +45,7 @@ from sphinx.application                import Sphinx
 from sphinx.config                     import Config
 
 from sphinx_reports.Common             import ReportExtensionError
+from sphinx_reports.Node               import Landscape
 from sphinx_reports.Sphinx             import strip, stripAndNormalize, BaseDirective
 
 
@@ -54,12 +55,12 @@ class report_DictType(TypedDict):
 
 @export
 class ShowTestcases(Flag):
-	passed = 1
-	failed = 2
-	skipped = 4
-	excluded = 8
-	errors = 16
-	aborted = 32
+	passed =    1
+	failed =    2
+	skipped =   4
+	excluded =  8
+	errors =   16
+	aborted =  32
 
 	all = passed | failed | skipped | excluded | errors | aborted
 	not_passed = all & ~passed
@@ -356,7 +357,7 @@ class UnittestSummary(BaseDirective):
 		tableRow += nodes.entry("", nodes.Text(f"{self._formatTimedelta(testsuiteSummary.TotalDuration)}"))
 
 	def run(self) -> List[nodes.Node]:
-		container = nodes.container()
+		container = Landscape()
 
 		try:
 			self._CheckOptions()
