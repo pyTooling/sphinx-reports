@@ -51,12 +51,8 @@ def visit_Landscape(translator: LaTeXTranslator, node: Landscape) -> None:
 	:param translator: The LaTeX translator instance.
 	:param node:       The current node being visited.
 	"""
-	translator.body.append(dedent("""\
+	translator.body.append(dedent("""
 		\\begin{landscape}
-		  \\begingroup
-		    \\setlength{\\textwidth}{\\textheight}
-		    \\setlength{\\linewidth}{\\textwidth}
-		    \\setlength{\\hsize}{\\textwidth}
 		""")
 	)
 
@@ -70,8 +66,7 @@ def depart_Landscape(translator: LaTeXTranslator, node: Landscape) -> None:
 	:param translator: The LaTeX translator instance.
 	:param node:       The current node being departed.
 	"""
-	translator.body.append(dedent("""\
-		  \\endgroup
+	translator.body.append(dedent("""
 		\\end{landscape}
 		""")
 	)

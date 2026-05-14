@@ -122,7 +122,7 @@ latex_use_xindy = False
 latex_elements = {
 	"papersize":   "a4paper",      # The paper size ('letterpaper' or 'a4paper').
 	"pointsize":   "10pt",         # The font size ('10pt', '11pt' or '12pt').
-	"inputenc":    "",            # Let LuaLaTeX handle input encoding
+	"inputenc":    "",             # Let LuaLaTeX handle input encoding
 	"utf8extra":   "",
 	"polyglossia": "",
 	"babel":      r"\usepackage[english]{babel}",
@@ -138,7 +138,8 @@ latex_elements = {
 
 		% Set Symbol font
 		\\usepackage{newunicodechar}
-		\\newfontfamily{\\emojifont}[Renderer=OpenType]{NotoColorEmoji.ttf}
+		\\newfontfamily{\\emojifont}[Renderer=OpenType, Scale=0.6]{NotoColorEmoji.ttf}
+		\\newcommand{\\emoji}[1]{{\\raisebox{0.1em}{\\emojifont{#1}}}}
 		\\usepackage{pytooling}
 	"""),
 	"passoptionstopackages": dedent("""\
@@ -195,7 +196,7 @@ extensions = [
 intersphinx_mapping = {
 	"python": ("https://docs.python.org/3", None),
 	"pyTool": ("https://pyTooling.github.io/pyTooling/", None),
-	"edarpt": ("https://edaa.org.github.io/pyEDAA.Reports/", None),
+	"edarpt": ("https://edaa-org.github.io/pyEDAA.Reports/", None),
 }
 
 

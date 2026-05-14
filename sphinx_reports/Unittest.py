@@ -247,24 +247,24 @@ class UnittestSummary(BaseDirective):
 	def _GenerateTestSummaryTable(self) -> nodes.table:
 		# Create a table and table header with 8 columns
 		columns = [
-			("Testsuite / Testcase", None, 500),
-			("Testcases", None, 100),
-			("Skipped", None, 100),
-			("Errored", None, 100),
-			("Failed", None, 100),
-			("Passed", None, 100),
-			("Assertions", None, 100),
-			("Runtime (HH:MM:SS.sss)", None, 100),
+			("Testsuite / Testcase", 5),
+			("Testcases", 1),
+			("Skipped", 1),
+			("Errored", 1),
+			("Failed", 1),
+			("Passed", 1),
+			("Assertions", 1),
+			("Runtime (HH:MM:SS.sss)", 1),
 		]
 
 		# If assertions shouldn't be displayed, remove column from columns list
 		if self._noAssertions:
 			columns.pop(6)
 
-		cssClasses = ["report-unittest-table", f"report-unittest-{self._reportID}"]
+		cssClasses = ["colwidths-given", "report-unittest-table", f"report-unittest-{self._reportID}"]
 		cssClasses.extend(self._cssClasses)
 
-		tableGroup = self._CreateDoubleRowTableHeader(
+		tableGroup = self._CreateSingleTableHeader(
 			identifier=self._reportID,
 			columns=columns,
 			classes=cssClasses
