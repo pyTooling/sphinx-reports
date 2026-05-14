@@ -140,9 +140,6 @@ latex_elements = {
 		\\usepackage{newunicodechar}
 		\\newfontfamily{\\emojifont}[Renderer=OpenType]{NotoColorEmoji.ttf}
 		\\usepackage{pytooling}
-		\\newunicodechar{❓}{{\\emojifont ❓}}   % Black Question Mark Ornament       U+2753
-		\\newunicodechar{❗}{{\\emojifont ❗}}   % Heavy Exclamation Mark Symbol      U+2757
-		\\newunicodechar{➖}{{\\emojifont ➖}}   % Heavy Minus Sign                   U+2796
 	"""),
 	"passoptionstopackages": dedent("""\
 		\\PassOptionsToPackage{verbatimvisiblespace=\\ }{sphinx}
@@ -152,7 +149,6 @@ latex_elements = {
 	"makeindex":  r"\usepackage[columns=1]{idxlayout}\makeindex",
 	"printindex": r"\def\twocolumn[#1]{#1}\printindex",
 }
-
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,

@@ -28,6 +28,7 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
+from textwrap import dedent
 from typing import Tuple
 
 from sphinx.writers.latex  import LaTeXTranslator
@@ -50,8 +51,14 @@ def visit_Landscape(translator: LaTeXTranslator, node: Landscape) -> None:
 	:param translator: The LaTeX translator instance.
 	:param node:       The current node being visited.
 	"""
-	translator.body.append(r'\begin{landscape}')
-
+	translator.body.append(dedent("""\
+		\\begin{landscape}
+		  \\begingroup
+		    \\setlength{\\textwidth}{\\textheight}
+		    \\setlength{\\linewidth}{\\textwidth}
+		    \\setlength{\\hsize}{\\textwidth}
+		""")
+	)
 
 @export
 def depart_Landscape(translator: LaTeXTranslator, node: Landscape) -> None:
@@ -63,7 +70,11 @@ def depart_Landscape(translator: LaTeXTranslator, node: Landscape) -> None:
 	:param translator: The LaTeX translator instance.
 	:param node:       The current node being departed.
 	"""
-	translator.body.append(r'\end{landscape}')
+	translator.body.append(dedent("""\
+		  \\endgroup
+		\\end{landscape}
+		""")
+	)
 
 
 translateLandscape: Tuple[visitFunc, departFunc] = (visit_Landscape, depart_Landscape)
