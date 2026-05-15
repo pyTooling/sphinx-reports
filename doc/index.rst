@@ -34,18 +34,18 @@ Supported Report Formats
 
 Supported format reports are:
 
-* ✅🚧 :ref:`Unit Test summaries <UNITTEST>` (by `pytest <https://github.com/pytest-dev/pytest>`__)
+* ✅🚧 :ref:`Unit Test summaries <UNITTESTING>` (by `pytest <https://github.com/pytest-dev/pytest>`__)
 
   * ✅ Summary page (displaying ``unittest.xml``)
   * 🚧 Show logging, output and error messages.
 
-* 🚧 :ref:`Code coverage <CODECOV>` (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
+* 🚧 :ref:`Code coverage <CODECOVER>` (by `Coverage.py <https://github.com/nedbat/coveragepy/tree/master>`__)
 
   * ✅ Summary page (displaying ``coverage.json``)
   * 🚧 Individual Sphinx documents per package/module
   * 🚧 Highlighted source code with syntax highlighting and coverage highlighting
 
-* 🚧 :ref:`Documentation coverage <DOCCOV>`
+* 🚧 :ref:`Documentation coverage <DOCCOVER>`
 
   * ✅ Summary page (displaying data from `"""docstr_coverage""" <https://github.com/HunterMcGushion/docstr_coverage>`__)
   * ❓ Additionally support `interrogate <https://github.com/econchick/interrogate>`__ as data source.
@@ -65,7 +65,7 @@ Unit Test Summary
    .. grid-item::
       :columns: 6
 
-      :ref:`Unittesting <UNITTEST>` executes isolated tests on tiny source code portions (units). The results are
+      :ref:`Unittesting <UNITTESTING>` executes isolated tests on tiny source code portions (units). The results are
       collected in a unittest summary report usually in the Any JUnit XML format (or a related dialect). These test
       results can be visualized as a hierarchy of groups (testsuites) and tests (testcases).
 
@@ -103,7 +103,7 @@ Code Coverage
    .. grid-item::
       :columns: 6
 
-      :ref:`CODECOV` checks if a source code (lines, statements, branches, ...) were used during execution. Usually,
+      :ref:`CODECOVER` checks if a source code (lines, statements, branches, ...) were used during execution. Usually,
       testcases are run by a testcase execution framework like `pytest <https://github.com/pytest-dev/pytest>`__, which
       also offers to instrument the source code for code coverage collection using the ``pytest-cov`` plugin. For
       Python, code coverage collection is usually based on `Coverage.py <https://github.com/nedbat/coveragepy>`__, which
@@ -141,9 +141,9 @@ Documentation coverage
    .. grid-item::
       :columns: 6
 
-      :ref:`DOCCOV` counts how many publicly accessible members are documented using a Python :term:`doc-string`. Based
-      on the count of possibly documented public members and the actual number of non-empty *doc-strings*, a percentage
-      of documentation coverage can be computed.
+      :ref:`DOCCOVER` counts how many publicly accessible members are documented using a Python :term:`doc-string`.
+      Based on the count of possibly documented public members and the actual number of non-empty *doc-strings*, a
+      percentage of documentation coverage can be computed.
 
       .. rubric:: Configuration Options
 
@@ -187,15 +187,8 @@ Contributors
 License
 *******
 
-.. only:: html
-
-   This Python package (source code) is licensed under `Apache License 2.0 <Code-License.html>`__. |br|
-   The accompanying documentation is licensed under `Creative Commons - Attribution 4.0 (CC-BY 4.0) <Doc-License.html>`__.
-
-.. only:: latex
-
-   This Python package (source code) is licensed under **Apache License 2.0**. |br|
-   The accompanying documentation is licensed under **Creative Commons - Attribution 4.0 (CC-BY 4.0)**.
+This Python package (source code) is licensed under :ref:`Apache License 2.0 <CODELICENSE>`. |br|
+The accompanying documentation is licensed under :ref:`Creative Commons - Attribution 4.0 (CC-BY 4.0) <DOCLICENSE>`.
 
 
 .. toctree::

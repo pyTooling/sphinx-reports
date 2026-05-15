@@ -247,14 +247,14 @@ class UnittestSummary(BaseDirective):
 	def _GenerateTestSummaryTable(self) -> nodes.table:
 		# Create a table and table header with 8 columns
 		columns = [
-			("Testsuite / Testcase", 5),
+			("Testsuite / Testcase", 6),
 			("Testcases", 1),
 			("Skipped", 1),
 			("Errored", 1),
 			("Failed", 1),
 			("Passed", 1),
 			("Assertions", 1),
-			("Runtime (HH:MM:SS.sss)", 1),
+			("Runtime (HH:MM:SS.sss)", 2),
 		]
 
 		# If assertions shouldn't be displayed, remove column from columns list

@@ -45,6 +45,7 @@ from pyTooling.Decorators                  import export
 
 from sphinx_reports.Common                 import ReportExtensionError, LegendStyle
 from sphinx_reports.Sphinx                 import strip, stripAndNormalize, BaseDirective
+from sphinx_reports.Node                   import Landscape
 from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, Coverage, ModuleCoverage
 from sphinx_reports.Adapter.Coverage       import Analyzer
 
@@ -419,7 +420,7 @@ class CodeCoverage(CodeCoverageBase):
 		handlePackage(self._coverage)
 
 	def run(self) -> List[nodes.Node]:
-		container = nodes.container()
+		container = Landscape()
 
 		try:
 			self._CheckOptions()

@@ -46,13 +46,16 @@ class FixLatexTableWidths(Transform):
 		if sphinxEnvironment.app.builder.format != "latex":
 			return
 
+		# Tables used with Landscape node
+		tableClasses = ("report-unittest-table", "report-codecov-table")
+
 		# search for all table nodes
 		for tableNode in self.document.findall(table):
 			if (cssClasses := tableNode.get("classes", None)) is None:
 				continue
 
-			if "report-unittest-table" in cssClasses:
+			if any(tableClass in cssClasses for tableClass in tableClasses):
 				if 'colwidths-given' not in cssClasses:
 					cssClasses.append('colwidths-given')
-					
+
 					logger.info("Applied 'colwidths-given' to a table via FixLatexTableWidths transform.", location=tableNode)
