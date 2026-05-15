@@ -54,6 +54,7 @@ from pathlib               import Path
 from typing                import TYPE_CHECKING, Any, Tuple, Dict, Optional as Nullable, TypedDict, List, Callable, Type
 
 from docutils.nodes        import Element
+from docutils.transforms   import Transform
 from sphinx.addnodes       import pending_xref
 from sphinx.application    import Sphinx
 from sphinx.builders       import Builder
@@ -64,11 +65,12 @@ from sphinx.util.logging   import getLogger
 from pyTooling.Decorators  import export
 from pyTooling.Common      import readResourceFile
 
-from sphinx_reports        import static as ResourcePackage
-from sphinx_reports.Common import ReportExtensionError, visitFunc, departFunc
-from sphinx_reports.Node   import Landscape
-from sphinx_reports.HTML   import translateLandscape as translateLandscapeAsHTML
-from sphinx_reports.LaTeX  import translateLandscape as translateLandscapeAsLaTeX
+from sphinx_reports            import static as ResourcePackage
+from sphinx_reports.Common     import ReportExtensionError, visitFunc, departFunc
+from sphinx_reports.Node       import Landscape
+from sphinx_reports.Workaround import FixLatexTableWidths
+from sphinx_reports.HTML       import translateLandscape as translateLandscapeAsHTML
+from sphinx_reports.LaTeX      import translateLandscape as translateLandscapeAsLaTeX
 
 
 @export
@@ -129,6 +131,9 @@ class ReportDomain(Domain):
 			"html": translateLandscapeAsHTML,
 			"latex": translateLandscapeAsLaTeX
 		},
+	)
+	transformations: Tuple[Type[Transform], ...] = (
+		FixLatexTableWidths,
 	)
 
 	from sphinx_reports.CodeCoverage import CodeCoverage, CodeCoverageLegend, ModuleCoverage
@@ -324,6 +329,10 @@ def setup(sphinxApplication: Sphinx) -> "setup_ReturnType":
 	for newNode in ReportDomain.nodes:
 		sphinxApplication.add_node(newNode["node"], html=newNode["html"], latex=newNode["latex"])
 
+	# Register transformations
+	for transformation in ReportDomain.transformations:
+		sphinxApplication.add_post_transform(transformation)
+
 	# Register callbacks
 	for eventName, callbacks in ReportDomain.callbacks.items():
 		for callback in callbacks:
@@ -336,6 +345,6 @@ def setup(sphinxApplication: Sphinx) -> "setup_ReturnType":
 	return {
 		"version": __version__,                          # version of the extension
 		"env_version": int(__version__.split(".")[0]),   # version of the data structure stored in the environment
-		'parallel_read_safe': False,                     # TODO: Not yet evaluated, thus false
+		'parallel_read_safe': True,                      # TODO: Not yet evaluated
 		'parallel_write_safe': True,                     # Internal data structure is used read-only, thus no problems will occur by parallel writing.
 	}

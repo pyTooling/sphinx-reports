@@ -261,7 +261,7 @@ class UnittestSummary(BaseDirective):
 		if self._noAssertions:
 			columns.pop(6)
 
-		cssClasses = ["colwidths-given", "report-unittest-table", f"report-unittest-{self._reportID}"]
+		cssClasses = ["report-unittest-table", f"report-unittest-{self._reportID}"]
 		cssClasses.extend(self._cssClasses)
 
 		tableGroup = self._CreateSingleTableHeader(
