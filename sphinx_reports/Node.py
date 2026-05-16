@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2026-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -28,32 +28,13 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""
-**Common exceptions, classes and helper functions.**
-"""
-from enum                        import Flag
-from typing                      import Callable, Any
+from docutils.nodes import container
 
-from pyTooling.Decorators        import export
-from sphinx.errors               import ExtensionError
-
-
-type visitFunc =  Callable[[Any, Any], Any]
-type departFunc = Callable[[Any, Any], Any]
+from pyTooling.Decorators import export
 
 
 @export
-class ReportExtensionError(ExtensionError):
-	pass
-
-
-@export
-class LegendStyle(Flag):
-	Default = 0
-	Table = 1
-
-	Horizontal = 1024
-	Vertical = 2048
-
-	horizontal_table = Table | Horizontal
-	vertical_table =   Table | Vertical
+class Landscape(container):
+	"""
+	A container node used in LaTeX to render content in landscape view in PDF pages.
+	"""

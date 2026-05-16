@@ -45,6 +45,7 @@ from pyTooling.Decorators                  import export
 
 from sphinx_reports.Common                 import ReportExtensionError, LegendStyle
 from sphinx_reports.Sphinx                 import strip, stripAndNormalize, BaseDirective
+from sphinx_reports.Node                   import Landscape
 from sphinx_reports.DataModel.CodeCoverage import PackageCoverage, Coverage, ModuleCoverage
 from sphinx_reports.Adapter.Coverage       import Analyzer
 
@@ -301,10 +302,10 @@ class CodeCoverage(CodeCoverageBase):
 
 		# Create a table and table header with 10 columns
 		columns = [
-			("Package",   [(" Module", 500)], None),
-			("Statments", [("Total", 100), ("Excluded", 100), ("Covered", 100), ("Missing", 100), ("Coverage", 100)], None),
-			("Branches" , [("Total", 100), ("Covered", 100), ("Partial", 100), ("Missing", 100), ("Coverage", 100)], None),
-			# ("Coverage",  [("in %", 100)], None)
+			("Package",   [(" Module", 5)], None),
+			("Statments", [("Total", 1), ("Excluded", 1), ("Covered", 1), ("Missing", 1), ("Coverage", 1)], None),
+			("Branches" , [("Total", 1), ("Covered", 1), ("Partial", 1), ("Missing", 1), ("Coverage", 1)], None),
+			# ("Coverage",  [("in %", 1)], None)
 		]
 
 		if self._noBranchCoverage:
@@ -419,7 +420,7 @@ class CodeCoverage(CodeCoverageBase):
 		handlePackage(self._coverage)
 
 	def run(self) -> List[nodes.Node]:
-		container = nodes.container()
+		container = Landscape()
 
 		try:
 			self._CheckOptions()
@@ -517,12 +518,12 @@ class CodeCoverageLegend(CodeCoverageBase):
 		self._levels = packageConfiguration["levels"]
 
 	def _CreateHorizontalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
-		columns = [("Code Coverage:", None, 300)]
+		columns = [("Code Coverage:", 3)]
 		for level in self._levels:
 			if isinstance(level, int):
-				columns.append((f"≤{level} %", None, 200))
+				columns.append((f"≤{level} %", 2))
 
-		tableGroup = self._CreateDoubleRowTableHeader(columns, identifier=identifier, classes=classes)
+		tableGroup = self._CreateSingleTableHeader(columns, identifier=identifier, classes=classes)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
@@ -543,9 +544,9 @@ class CodeCoverageLegend(CodeCoverageBase):
 		return table
 
 	def _CreateVerticalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
-		tableGroup = self._CreateDoubleRowTableHeader([
-				("Code Coverage", None, 300),
-				("Coverage Level", None, 300)
+		tableGroup = self._CreateSingleTableHeader([
+				("Code Coverage", 3),
+				("Coverage Level", 3)
 			],
 			identifier=identifier,
 			classes=classes

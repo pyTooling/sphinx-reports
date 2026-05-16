@@ -18,7 +18,7 @@
    :alt: Code license
    :height: 22
    :target: Code-License.html
-.. |SHIELD:png:SphinxReports-src-license| image:: https://img.shields.io/pypi/l/sphinx-reports?longCache=true&style=flat-square&logo=Apache&label=code
+.. |SHIELD:png:SphinxReports-src-license| image:: https://raster.shields.io/pypi/l/sphinx-reports?longCache=true&style=flat-square&logo=Apache&label=code
    :alt: Code license
    :height: 22
    :target: https://GitHub.com/pyTooling/sphinx-reports/blob/main/LICENSE.md

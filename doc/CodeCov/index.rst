@@ -1,4 +1,4 @@
-.. _CODECOV:
+.. _CODECOVER:
 
 Code Coverage
 #############
@@ -10,7 +10,7 @@ Code Coverage
 
       The :rst:dir:`report:code-coverage` directive generates a code coverage report summary table. The code coverage
       report file(s) need to be configured in Sphinx's ``conf.py`` for pre-analysis and data aggregation
-      (:ref:`see below <CODECOV/Config>` for details). This also allows the directive to supports multiple code coverage
+      (:ref:`see below <CODECOVER/Config>` for details). This also allows the directive to supports multiple code coverage
       reports per Sphinx documentation. Each code coverage report is referenced by the
       :rst:dir:`reportid <report:code-coverage:reportid>` option, which matches the dictionary key used in the
       configuration file.
@@ -62,7 +62,7 @@ Code Coverage
          .. image:: ../_static/CodeCoverage.png
 
 
-.. _CODECOV/Config:
+.. _CODECOVER/Config:
 
 Configuration Entries in :file:`conf.py`
 ****************************************
@@ -134,7 +134,7 @@ Configuration Entries in :file:`conf.py`
                }
 
 
-.. _CODECOV/Example:
+.. _CODECOVER/Example:
 
 Example Document
 ****************
@@ -197,7 +197,7 @@ The second file shows how to integrate that document into the navigation bar / *
          :hidden:
 
 
-.. _CODECOV/Directives:
+.. _CODECOVER/Directives:
 
 Sphinx Directives
 *****************
@@ -249,7 +249,7 @@ The following directives are provided for visualizing code coverage reports.
 
 
 
-.. _CODECOV/Roles:
+.. _CODECOVER/Roles:
 
 Sphinx Roles
 ************
@@ -257,7 +257,7 @@ Sphinx Roles
 *There are no roles defined.*
 
 
-.. _CODECOV/ColorPalett:
+.. _CODECOVER/ColorPalett:
 
 Color Paletts
 *************
@@ -289,7 +289,7 @@ Color Paletts
                :width: 350 px
 
 
-.. _CODECOV/Styling:
+.. _CODECOVER/Styling:
 
 Custom CSS Styling
 ******************

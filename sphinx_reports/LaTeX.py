@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2023-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2026-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -28,32 +28,49 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""
-**Common exceptions, classes and helper functions.**
-"""
-from enum                        import Flag
-from typing                      import Callable, Any
+from textwrap import dedent
+from typing import Tuple
 
-from pyTooling.Decorators        import export
-from sphinx.errors               import ExtensionError
+from sphinx.writers.latex  import LaTeXTranslator
 
-
-type visitFunc =  Callable[[Any, Any], Any]
-type departFunc = Callable[[Any, Any], Any]
+from pyTooling.Decorators import export
+from sphinx_reports.Common import visitFunc, departFunc
+from sphinx_reports.Node   import Landscape
 
 
-@export
-class ReportExtensionError(ExtensionError):
-	pass
+__all__ = ["translateLandscape"]
 
 
 @export
-class LegendStyle(Flag):
-	Default = 0
-	Table = 1
+def visit_Landscape(translator: LaTeXTranslator, node: Landscape) -> None:
+	"""
+	Call back function for visiting a :class:`Landscape`.
 
-	Horizontal = 1024
-	Vertical = 2048
+	This function begins a ``landscape`` environment in LaTeX.
 
-	horizontal_table = Table | Horizontal
-	vertical_table =   Table | Vertical
+	:param translator: The LaTeX translator instance.
+	:param node:       The current node being visited.
+	"""
+	translator.body.append(dedent("""
+		\\begin{landscape}
+		""")
+	)
+
+@export
+def depart_Landscape(translator: LaTeXTranslator, node: Landscape) -> None:
+	"""
+	Call back function for departing a :class:`Landscape`.
+
+	This function ends a ``landscape`` environment in LaTeX.
+
+	:param translator: The LaTeX translator instance.
+	:param node:       The current node being departed.
+	"""
+	translator.body.append(dedent("""
+		\\end{landscape}
+		""")
+	)
+
+
+translateLandscape: Tuple[visitFunc, departFunc] = (visit_Landscape, depart_Landscape)
+"""A tuple combining both ``visit_*`` and ``depart_*`` call back functions for a :class:`Landscape` node."""

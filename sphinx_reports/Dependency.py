@@ -86,12 +86,12 @@ class DependencyTable(BaseDirective):
 	def _GenerateDependencyTable(self) -> nodes.table:
 		# Create a table and table header with 8 columns
 		columns = [
-			("Package", None, 500),
-			("Version", None, 100),
-			("License", None, 100),
+			("Package", 5),
+			("Version", 1),
+			("License", 1),
 		]
 
-		tableGroup = self._CreateDoubleRowTableHeader(
+		tableGroup = self._CreateSingleTableHeader(
 			identifier=self._packageName,
 			columns=columns,
 			classes=["report-dependency-table"]

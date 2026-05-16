@@ -1,12 +1,17 @@
 .. _DOCLICENSE:
 
+.. raw:: latex
+
+   \chapter{Creative Commons Attribution 4.0 International}
+
 .. note:: This is a local copy of the `Creative Commons - Attribution 4.0 International (CC BY 4.0) <https://creativecommons.org/licenses/by/4.0/legalcode>`__.
 
 .. attention:: This **CC BY 4.0** license applies only to the **documentation** of this project.
 
+.. only:: html
 
-Creative Commons Attribution 4.0 International
-##############################################
+   Creative Commons Attribution 4.0 International
+   ##############################################
 
 Creative Commons Corporation (“Creative Commons”) is not a law firm and does not
 provide legal services or legal advice. Distribution of Creative Commons public
@@ -61,8 +66,14 @@ Licensor grants You such rights in consideration of benefits the Licensor
 receives from making the Licensed Material available under these terms and
 conditions.
 
-Section 1 – Definitions.
-========================
+.. raw:: latex
+
+   \section{Section 1 – Definitions.}
+
+.. only:: html
+
+   Section 1 – Definitions.
+   ========================
 
 a. **Adapted Material** means material subject to Copyright and Similar
    Rights that is derived from or based upon the Licensed Material and in
@@ -120,8 +131,14 @@ j. **Sui Generis Database Rights** means rights other than copyright
 k. **You** means the individual or entity exercising the Licensed Rights
    under this Public License. **Your** has a corresponding meaning.
 
-Section 2 – Scope.
-==================
+.. raw:: latex
+
+   \section{Section 2 – Scope.}
+
+.. only:: html
+
+   Section 2 – Scope.
+   ==================
 
 a. **License grant.**
 
@@ -186,8 +203,14 @@ b. **Other rights.**
       compulsory licensing scheme. In all other cases the Licensor expressly
       reserves any right to collect such royalties.
 
-Section 3 – License Conditions.
-===============================
+.. raw:: latex
+
+   \section{Section 3 – License Conditions.}
+
+.. only:: html
+
+   Section 3 – License Conditions.
+   ===============================
 
 Your exercise of the Licensed Rights is expressly made subject to the following conditions.
 
@@ -231,8 +254,14 @@ a. **Attribution.**
       must not prevent recipients of the Adapted Material from complying with
       this Public License.
 
-Section 4 – Sui Generis Database Rights.
-========================================
+.. raw:: latex
+
+   \section{Section 4 – Sui Generis Database Rights.}
+
+.. only:: html
+
+   Section 4 – Sui Generis Database Rights.
+   ========================================
 
 Where the Licensed Rights include Sui Generis Database Rights that apply to Your
 use of the Licensed Material:
@@ -253,8 +282,14 @@ For the avoidance of doubt, this Section 4 supplements and does not replace
 Your obligations under this Public License where the Licensed Rights include
 other Copyright and Similar Rights.
 
-Section 5 – Disclaimer of Warranties and Limitation of Liability.
-=================================================================
+.. raw:: latex
+
+   \section{Section 5 – Disclaimer of Warranties and Limitation of Liability.}
+
+.. only:: html
+
+   Section 5 – Disclaimer of Warranties and Limitation of Liability.
+   =================================================================
 
 a. **Unless otherwise separately undertaken by the Licensor, to the extent
    possible, the Licensor offers the Licensed Material as-is and as-available,
@@ -279,8 +314,14 @@ c. The disclaimer of warranties and limitation of liability provided above
    shall be interpreted in a manner that, to the extent possible, most
    closely approximates an absolute disclaimer and waiver of all liability.
 
-Section 6 – Term and Termination.
-=================================
+.. raw:: latex
+
+   \section{Section 6 – Term and Termination.}
+
+.. only:: html
+
+   Section 6 – Term and Termination.
+   =================================
 
 a. This Public License applies for the term of the Copyright and Similar Rights
    licensed here. However, if You fail to comply with this Public License, then
@@ -303,8 +344,14 @@ c. For the avoidance of doubt, the Licensor may also offer the Licensed Material
 
 d. Sections 1, 5, 6, 7, and 8 survive termination of this Public License.
 
-Section 7 – Other Terms and Conditions.
-=======================================
+.. raw:: latex
+
+   \section{Section 7 – Other Terms and Conditions.}
+
+.. only:: html
+
+   Section 7 – Other Terms and Conditions.
+   =======================================
 
 a. The Licensor shall not be bound by any additional or different terms or
    conditions communicated by You unless expressly agreed.
@@ -313,8 +360,14 @@ b. Any arrangements, understandings, or agreements regarding the Licensed
    Material not stated herein are separate from and independent of the terms
    and conditions of this Public License.
 
-Section 8 – Interpretation.
-===========================
+.. raw:: latex
+
+   \section{Section 8 – Interpretation.}
+
+.. only:: html
+
+   Section 8 – Interpretation.
+   ===========================
 
 a. For the avoidance of doubt, this Public License does not, and shall not be
    interpreted to, reduce, limit, restrict, or impose conditions on any use of

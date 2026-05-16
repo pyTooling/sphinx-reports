@@ -47,8 +47,8 @@ See the following :file:`doc/requirements.txt` file as an example with commonly 
       sphinxcontrib-mermaid ~= 2.0
       autoapi ~= 2.0.1
       sphinx_design ~= 0.7.0
-      sphinx-copybutton ~= 0.5.0
-      sphinx_autodoc_typehints ~= 3.6
+      sphinx-copybutton ~= 0.5.2
+      sphinx_autodoc_typehints ~= 3.10
       sphinx_reports ~= 1.0             # <= new entry
 
 Finally, the extension needs to be enabled in Sphinx's :file:`conf.py`, so the extension is loaded by Sphinx.

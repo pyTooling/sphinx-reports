@@ -271,14 +271,14 @@ class DocCoverage(DocCoverageBase):
 		cssClasses.extend(self._cssClasses)
 
 		# Create a table and table header with 5 columns
-		tableGroup = self._CreateDoubleRowTableHeader(
+		tableGroup = self._CreateSingleTableHeader(
 			identifier=self._reportID,
 			columns=[
-				("Filename", None, 500),
-				("Total", None, 100),
-				("Covered", None, 100),
-				("Missing", None, 100),
-				("Coverage in %", None, 100)
+				("Filename", 5),
+				("Total", 1),
+				("Covered", 1),
+				("Missing", 1),
+				("Coverage in %", 1)
 			],
 			classes=cssClasses
 		)
@@ -391,12 +391,12 @@ class DocCoverageLegend(DocCoverageBase):
 		self._levels = packageConfiguration["levels"]
 
 	def _CreateHorizontalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
-		columns = [("Documentation Coverage:", None, 300)]
+		columns = [("Documentation Coverage:", 3)]
 		for level in self._levels:
 			if isinstance(level, int):
-				columns.append((f"≤{level} %", None, 200))
+				columns.append((f"≤{level} %", 2))
 
-		tableGroup = self._CreateDoubleRowTableHeader(columns, identifier=identifier, classes=classes)
+		tableGroup = self._CreateSingleTableHeader(columns, identifier=identifier, classes=classes)
 		tableBody = nodes.tbody()
 		tableGroup += tableBody
 
@@ -410,9 +410,9 @@ class DocCoverageLegend(DocCoverageBase):
 		return table
 
 	def _CreateVerticalLegendTable(self, identifier: str, classes: List[str]) -> nodes.table:
-		tableGroup = self._CreateDoubleRowTableHeader([
-				("Documentation Coverage", None, 300),
-				("Coverage Level", None, 300)
+		tableGroup = self._CreateSingleTableHeader([
+				("Documentation Coverage", 3),
+				("Coverage Level", 3)
 			],
 			identifier=identifier,
 			classes=classes

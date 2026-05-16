@@ -45,6 +45,7 @@ from sphinx.application                import Sphinx
 from sphinx.config                     import Config
 
 from sphinx_reports.Common             import ReportExtensionError
+from sphinx_reports.Node               import Landscape
 from sphinx_reports.Sphinx             import strip, stripAndNormalize, BaseDirective
 
 
@@ -54,12 +55,12 @@ class report_DictType(TypedDict):
 
 @export
 class ShowTestcases(Flag):
-	passed = 1
-	failed = 2
-	skipped = 4
-	excluded = 8
-	errors = 16
-	aborted = 32
+	passed =    1
+	failed =    2
+	skipped =   4
+	excluded =  8
+	errors =   16
+	aborted =  32
 
 	all = passed | failed | skipped | excluded | errors | aborted
 	not_passed = all & ~passed
@@ -246,14 +247,14 @@ class UnittestSummary(BaseDirective):
 	def _GenerateTestSummaryTable(self) -> nodes.table:
 		# Create a table and table header with 8 columns
 		columns = [
-			("Testsuite / Testcase", None, 500),
-			("Testcases", None, 100),
-			("Skipped", None, 100),
-			("Errored", None, 100),
-			("Failed", None, 100),
-			("Passed", None, 100),
-			("Assertions", None, 100),
-			("Runtime (HH:MM:SS.sss)", None, 100),
+			("Testsuite / Testcase", 6),
+			("Testcases", 1),
+			("Skipped", 1),
+			("Errored", 1),
+			("Failed", 1),
+			("Passed", 1),
+			("Assertions", 1),
+			("Runtime (HH:MM:SS.sss)", 2),
 		]
 
 		# If assertions shouldn't be displayed, remove column from columns list
@@ -263,7 +264,7 @@ class UnittestSummary(BaseDirective):
 		cssClasses = ["report-unittest-table", f"report-unittest-{self._reportID}"]
 		cssClasses.extend(self._cssClasses)
 
-		tableGroup = self._CreateDoubleRowTableHeader(
+		tableGroup = self._CreateSingleTableHeader(
 			identifier=self._reportID,
 			columns=columns,
 			classes=cssClasses
@@ -356,7 +357,7 @@ class UnittestSummary(BaseDirective):
 		tableRow += nodes.entry("", nodes.Text(f"{self._formatTimedelta(testsuiteSummary.TotalDuration)}"))
 
 	def run(self) -> List[nodes.Node]:
-		container = nodes.container()
+		container = Landscape()
 
 		try:
 			self._CheckOptions()

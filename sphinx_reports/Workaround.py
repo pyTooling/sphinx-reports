@@ -29,31 +29,33 @@
 # ==================================================================================================================== #
 #
 """
-**Common exceptions, classes and helper functions.**
+Workarounds for Sphinx and Docutils problems.
 """
-from enum                        import Flag
-from typing                      import Callable, Any
+from docutils.nodes      import table
+from docutils.transforms import Transform
+from sphinx.util.logging import getLogger
 
-from pyTooling.Decorators        import export
-from sphinx.errors               import ExtensionError
+logger = getLogger(__name__)
 
+class FixLatexTableWidths(Transform):
+	default_priority = 500
 
-type visitFunc =  Callable[[Any, Any], Any]
-type departFunc = Callable[[Any, Any], Any]
+	def apply(self):
+		sphinxEnvironment = self.document.settings.env
 
+		if sphinxEnvironment.app.builder.format != "latex":
+			return
 
-@export
-class ReportExtensionError(ExtensionError):
-	pass
+		# Tables used with Landscape node
+		tableClasses = ("report-unittest-table", "report-codecov-table")
 
+		# search for all table nodes
+		for tableNode in self.document.findall(table):
+			if (cssClasses := tableNode.get("classes", None)) is None:
+				continue
 
-@export
-class LegendStyle(Flag):
-	Default = 0
-	Table = 1
+			if any(tableClass in cssClasses for tableClass in tableClasses):
+				if 'colwidths-given' not in cssClasses:
+					cssClasses.append('colwidths-given')
 
-	Horizontal = 1024
-	Vertical = 2048
-
-	horizontal_table = Table | Horizontal
-	vertical_table =   Table | Vertical
+					logger.info("Applied 'colwidths-given' to a table via FixLatexTableWidths transform.", location=tableNode)

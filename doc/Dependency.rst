@@ -3,14 +3,27 @@
 Dependencies
 ############
 
-.. |img-pyTooling-lib-status| image:: https://img.shields.io/librariesio/release/pypi/sphinx-reports
-   :alt: Libraries.io status for latest release
-   :height: 22
-   :target: https://libraries.io/github/pyTooling/sphinx-reports
-.. |img-pyTooling-vul-status| image:: https://img.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
-   :alt: Snyk Vulnerabilities for GitHub Repo
-   :height: 22
-   :target: https://img.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
+.. only:: html
+
+   .. |img-pyTooling-lib-status| image:: https://img.shields.io/librariesio/release/pypi/sphinx-reports
+      :alt: Libraries.io status for latest release
+      :height: 22
+      :target: https://libraries.io/github/pyTooling/sphinx-reports
+   .. |img-pyTooling-vul-status| image:: https://img.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
+      :alt: Snyk Vulnerabilities for GitHub Repo
+      :height: 22
+      :target: https://raster.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
+
+.. only:: latex
+
+   .. |img-pyTooling-lib-status| image:: https://raster.shields.io/librariesio/release/pypi/sphinx-reports
+      :alt: Libraries.io status for latest release
+      :height: 22
+      :target: https://libraries.io/github/pyTooling/sphinx-reports
+   .. |img-pyTooling-vul-status| image:: https://raster.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
+      :alt: Snyk Vulnerabilities for GitHub Repo
+      :height: 22
+      :target: https://raster.shields.io/snyk/vulnerabilities/github/pyTooling/sphinx-reports
 
 +------------------------------------------+------------------------------------------+
 | `Libraries.io <https://libraries.io/>`_  | Vulnerabilities Summary                  |
@@ -104,7 +117,7 @@ the mandatory dependencies too.
 +=====================================================================+=============+========================================================================================+======================+
 | `pytest <https://GitHub.com/pytest-dev/pytest>`__                   | ≥9.0        | `MIT <https://GitHub.com/pytest-dev/pytest/blob/master/LICENSE>`__                     | *Not yet evaluated.* |
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
-| `pytest-cov <https://GitHub.com/pytest-dev/pytest-cov>`__           | ≥7.0        | `MIT <https://GitHub.com/pytest-dev/pytest-cov/blob/master/LICENSE>`__                 | *Not yet evaluated.* |
+| `pytest-cov <https://GitHub.com/pytest-dev/pytest-cov>`__           | ≥7.1        | `MIT <https://GitHub.com/pytest-dev/pytest-cov/blob/master/LICENSE>`__                 | *Not yet evaluated.* |
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
 | `Coverage <https://GitHub.com/nedbat/coveragepy>`__                 | ≥7.13       | `Apache License, 2.0 <https://GitHub.com/nedbat/coveragepy/blob/master/LICENSE.txt>`__ | *Not yet evaluated.* |
 +---------------------------------------------------------------------+-------------+----------------------------------------------------------------------------------------+----------------------+
@@ -154,7 +167,7 @@ the mandatory dependencies too.
 +=================================================================================================+==============+==========================================================================================================+======================================================================================================================================================+
 | `pyTooling <https://GitHub.com/pyTooling/pyTooling>`__                                          | ≥8.11        | `Apache License, 2.0 <https://GitHub.com/pyTooling/pyTooling/blob/main/LICENSE.md>`__                    | *None*                                                                                                                                               |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `Sphinx <https://GitHub.com/sphinx-doc/sphinx>`__                                               | ≥9.0         | `BSD 3-Clause <https://GitHub.com/sphinx-doc/sphinx/blob/master/LICENSE>`__                              | *Not yet evaluated.*                                                                                                                                 |
+| `Sphinx <https://GitHub.com/sphinx-doc/sphinx>`__                                               | ≥9.1         | `BSD 3-Clause <https://GitHub.com/sphinx-doc/sphinx/blob/master/LICENSE>`__                              | *Not yet evaluated.*                                                                                                                                 |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 | `sphinx_rtd_theme <https://GitHub.com/readthedocs/sphinx_rtd_theme>`__                          | ≥3.1         | `MIT <https://GitHub.com/readthedocs/sphinx_rtd_theme/blob/master/LICENSE>`__                            | *Not yet evaluated.*                                                                                                                                 |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -162,11 +175,11 @@ the mandatory dependencies too.
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 | `autoapi <https://GitHub.com/carlos-jenkins/autoapi>`__                                         | ≥2.0.1       | `Apache License, 2.0 <https://GitHub.com/carlos-jenkins/autoapi/blob/master/LICENSE>`__                  | *Not yet evaluated.*                                                                                                                                 |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `sphinx_design <https://GitHub.com/executablebooks/sphinx-design>`__                            | ≥0.6         | `MIT <https://GitHub.com/executablebooks/sphinx-design/blob/main/LICENSE>`__                             | *Not yet evaluated.*                                                                                                                                 |
+| `sphinx_design <https://GitHub.com/executablebooks/sphinx-design>`__                            | ≥0.7         | `MIT <https://GitHub.com/executablebooks/sphinx-design/blob/main/LICENSE>`__                             | *Not yet evaluated.*                                                                                                                                 |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 | `sphinx-copybutton <https://GitHub.com/executablebooks/sphinx-copybutton>`__                    | ≥0.5         | `MIT <https://GitHub.com/executablebooks/sphinx-copybutton/blob/master/LICENSE>`__                       | *Not yet evaluated.*                                                                                                                                 |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `sphinx_autodoc_typehints <https://GitHub.com/agronholm/sphinx-autodoc-typehints>`__            | ≥3.6         | `MIT <https://GitHub.com/agronholm/sphinx-autodoc-typehints/blob/master/LICENSE>`__                      | *Not yet evaluated.*                                                                                                                                 |
+| `sphinx_autodoc_typehints <https://GitHub.com/agronholm/sphinx-autodoc-typehints>`__            | ≥3.10        | `MIT <https://GitHub.com/agronholm/sphinx-autodoc-typehints/blob/master/LICENSE>`__                      | *Not yet evaluated.*                                                                                                                                 |
 +-------------------------------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. TODO:: document the usage of
