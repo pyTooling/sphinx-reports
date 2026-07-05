@@ -39,15 +39,18 @@ Supported reports:
 * :ref:`DEP`
 
 """
-__author__ =    "Patrick Lehmann"
-__email__ =     "Paebbels@gmail.com"
-__copyright__ = "2023-2026, Patrick Lehmann"
-__license__ =   "Apache License, Version 2.0"
-__version__ =   "0.11.0"
-__keywords__ =  [
+__author__ =            "Patrick Lehmann"
+__email__ =             "Paebbels@gmail.com"
+__copyright__ =         "2023-2026, Patrick Lehmann"
+__license__ =           "Apache License, Version 2.0"
+__version__ =           "0.11.1"
+__keywords__ =          [
 	"Python3", "Sphinx", "Extension", "Report", "doc-string", "interrogate", "Code Coverage", "Coverage",
 	"Documentation Coverage", "Unittest", "Dependencies", "Summary"
 ]
+__project_url__ =       "https://github.com/pyTooling/sphinx-reports"
+__documentation_url__ = "https://pyTooling.github.io/sphinx-reports"
+__issue_tracker_url__ = "https://GitHub.com/pyTooling/sphinx-reports/issues"
 
 from hashlib               import md5
 from pathlib               import Path
