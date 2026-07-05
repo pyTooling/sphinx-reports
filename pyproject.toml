@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-  "setuptools >= 80.0",
+  "setuptools >= 83.0",
   "pyTooling ~= 8.11"
 ]
 build-backend = "setuptools.build_meta"
@@ -10,7 +10,7 @@ line-length = 120
 
 [tool.mypy]
 packages = ["sphinx_reports"]
-python_version = "3.13"
+python_version = "3.14"
 #ignore_missing_imports = true
 strict = true
 pretty = true

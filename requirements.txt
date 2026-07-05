@@ -4,5 +4,5 @@ sphinx >= 9.1, < 10.0
 docutils >= 0.22.0
 docutils_stubs >= 0.0.22
 
-Coverage ~= 7.13
+Coverage ~= 7.15
 docstr_coverage ~= 2.3.2
