@@ -657,7 +657,7 @@ class ModuleCoverage(CodeCoverageBase):
 		literalBlock: nodes.Element = nodes.literal_block(text, text, source=filename)
 		literalBlock["language"] = "codecov"
 		literalBlock['highlight_args'] = extra_args = {}
-		extra_args['hl_lines'] = [i for i in range(10, 20)]
+		extra_args['hl_lines'] = list(range(10, 20))
 		self.set_source_info(literalBlock)
 
 		container += literalBlock
