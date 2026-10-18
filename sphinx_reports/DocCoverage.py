@@ -216,7 +216,7 @@ class DocCoverageBase(BaseDirective):
 				for x, y in packageConfiguration["levels"].items():
 					pass
 			else:
-				raise ReportExtensionError(f"")
+				raise ReportExtensionError("")
 
 			cls._packageConfigurations[reportID] = {
 				"name": packageName,
@@ -447,8 +447,8 @@ class DocCoverageLegend(DocCoverageBase):
 			elif LegendStyle.Vertical in self._style:
 				container += self._CreateVerticalLegendTable(identifier=f"{self._reportID}-legend", classes=["report-doccov-legend"])
 			else:
-				container += nodes.paragraph(text=f"Unsupported legend style.")
+				container += nodes.paragraph(text="Unsupported legend style.")
 		else:
-			container += nodes.paragraph(text=f"Unsupported legend style.")
+			container += nodes.paragraph(text="Unsupported legend style.")
 
 		return [container]

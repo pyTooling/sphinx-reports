@@ -155,7 +155,7 @@ class UnittestSummary(BaseDirective):
 
 		:param sphinxApplication:   Sphinx application instance.
 		"""
-		print(f"[REPORT] Reading unittest reports ...")
+		print("[REPORT] Reading unittest reports ...")
 
 	@classmethod
 	def _CheckConfiguration(cls, sphinxConfiguration: Config) -> None:
@@ -293,7 +293,7 @@ class UnittestSummary(BaseDirective):
 			tableRow += nodes.entry("", nodes.Text(f"{testsuiteSummary.Failed}"))
 			tableRow += nodes.entry("", nodes.Text(f"{testsuiteSummary.Passed}"))
 			if not self._noAssertions:
-				tableRow += nodes.entry("", nodes.Text(f""))  # {testsuite.Uncovered}")),
+				tableRow += nodes.entry("", nodes.Text(""))  # {testsuite.Uncovered}")),
 			tableRow += nodes.entry("", nodes.Text(f"{self._formatTimedelta(testsuiteSummary.TotalDuration)}"))
 
 		for ts in self._sortedValues(testsuiteSummary._testsuites):
@@ -314,7 +314,7 @@ class UnittestSummary(BaseDirective):
 		tableRow += nodes.entry("", nodes.Text(f"{testsuite.Failed}"))
 		tableRow += nodes.entry("", nodes.Text(f"{testsuite.Passed}"))
 		if not self._noAssertions:
-			tableRow += nodes.entry("", nodes.Text(f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.Text(""))  # {testsuite.Uncovered}")),
 		tableRow += nodes.entry("", nodes.Text(f"{self._formatTimedelta(testsuite.TotalDuration)}"))
 
 		for ts in self._sortedValues(testsuite._testsuites):
@@ -331,11 +331,11 @@ class UnittestSummary(BaseDirective):
 		tableBody += tableRow
 
 		tableRow += nodes.entry("", nodes.Text(f"{'  ' * level}{state}{testcase.Name}"))
-		tableRow += nodes.entry("", nodes.Text(f""))  # {testsuite.Expected}")),
-		tableRow += nodes.entry("", nodes.Text(f""))  # {testsuite.Covered}")),
-		tableRow += nodes.entry("", nodes.Text(f""))  # {testsuite.Uncovered}")),
-		tableRow += nodes.entry("", nodes.Text(f""))  # {testsuite.Uncovered}")),
-		tableRow += nodes.entry("", nodes.Text(f""))  # {testsuite.Uncovered}")),
+		tableRow += nodes.entry("", nodes.Text(""))  # {testsuite.Expected}")),
+		tableRow += nodes.entry("", nodes.Text(""))  # {testsuite.Covered}")),
+		tableRow += nodes.entry("", nodes.Text(""))  # {testsuite.Uncovered}")),
+		tableRow += nodes.entry("", nodes.Text(""))  # {testsuite.Uncovered}")),
+		tableRow += nodes.entry("", nodes.Text(""))  # {testsuite.Uncovered}")),
 		if not self._noAssertions:
 			tableRow += nodes.entry("", nodes.Text(f"{testcase.AssertionCount}"))
 		tableRow += nodes.entry("", nodes.Text(f"{self._formatTimedelta(testcase.TotalDuration)}"))
@@ -353,7 +353,7 @@ class UnittestSummary(BaseDirective):
 		tableRow += nodes.entry("", nodes.Text(f"{testsuiteSummary.Failed}"))
 		tableRow += nodes.entry("", nodes.Text(f"{testsuiteSummary.Passed}"))
 		if not self._noAssertions:
-			tableRow += nodes.entry("", nodes.Text(f""))  # {testsuite.Uncovered}")),
+			tableRow += nodes.entry("", nodes.Text(""))  # {testsuite.Uncovered}")),
 		tableRow += nodes.entry("", nodes.Text(f"{self._formatTimedelta(testsuiteSummary.TotalDuration)}"))
 
 	def run(self) -> List[nodes.Node]:
