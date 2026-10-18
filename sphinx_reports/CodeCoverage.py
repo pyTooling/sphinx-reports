@@ -123,7 +123,7 @@ class CodeCoverageBase(BaseDirective):
 
 		:param sphinxApplication:   Sphinx application instance.
 		"""
-		print(f"[REPORT] Reading code coverage reports ...")
+		print("[REPORT] Reading code coverage reports ...")
 
 	@classmethod
 	def _CheckLevelsConfiguration(cls, sphinxConfiguration: Config) -> None:
@@ -237,7 +237,7 @@ class CodeCoverageBase(BaseDirective):
 				for x, y in packageConfiguration["levels"].items():
 					pass
 			else:
-				raise ReportExtensionError(f"")
+				raise ReportExtensionError("")
 
 			cls._packageConfigurations[reportID] = {
 				"name": packageName,
@@ -581,9 +581,9 @@ class CodeCoverageLegend(CodeCoverageBase):
 			elif LegendStyle.Vertical in self._style:
 				container += self._CreateVerticalLegendTable(identifier=f"{self._reportID}-legend", classes=["report-codecov-legend"])
 			else:
-				container += nodes.paragraph(text=f"Unsupported legend style.")
+				container += nodes.paragraph(text="Unsupported legend style.")
 		else:
-			container += nodes.paragraph(text=f"Unsupported legend style.")
+			container += nodes.paragraph(text="Unsupported legend style.")
 
 		return [container]
 
