@@ -139,8 +139,8 @@ class ReportDomain(Domain):
 		FixLatexTableWidths,
 	)
 
-	from sphinx_reports.CodeCoverage import CodeCoverage, CodeCoverageLegend, ModuleCoverage
-	from sphinx_reports.DocCoverage  import DocStrCoverage, DocCoverageLegend
+	from sphinx_reports.CodeCoverage import CodeCoverage, CodeCoverageLegend, ModuleCoverage, CodeCoverageBase
+	from sphinx_reports.DocCoverage  import DocStrCoverage, DocCoverageLegend, DocCoverageBase
 	from sphinx_reports.Dependency   import DependencyTable
 	from sphinx_reports.Unittest     import UnittestSummary
 
@@ -161,11 +161,6 @@ class ReportDomain(Domain):
 	indices = [
 		# LibraryIndex,
 	]  #: A list of all indices in this domain.
-
-	from sphinx_reports.CodeCoverage import CodeCoverageBase
-	from sphinx_reports.DocCoverage  import DocCoverageBase
-	from sphinx_reports.Dependency   import DependencyTable
-	from sphinx_reports.Unittest     import UnittestSummary
 
 	configValues: Dict[str, Tuple[Any, str, Any]] = {
 		**CodeCoverageBase.configValues,

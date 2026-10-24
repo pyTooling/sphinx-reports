@@ -38,8 +38,8 @@ from docutils             import nodes
 from sphinx.application   import Sphinx
 from sphinx.config        import Config
 from pyTooling.Decorators import export
-from pyEDAA.Reports.DocumentationCoverage.Python import DocStrCoverage as DocStrCovAnalyzer
-from pyEDAA.Reports.DocumentationCoverage.Python import PackageCoverage, AggregatedCoverage
+from pyEDAA.Reports.DocumentationCoverage.Python import DocStrCoverage as DocStrCovAnalyzer, PackageCoverage, \
+                                                        AggregatedCoverage
 
 from sphinx_reports.Common                          import ReportExtensionError, LegendStyle
 from sphinx_reports.Sphinx                          import strip, stripAndNormalize, BaseDirective
